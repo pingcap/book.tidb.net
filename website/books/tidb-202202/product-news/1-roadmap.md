@@ -1,3 +1,8 @@
+---
+title: 发版计划
+hide_title: true
+---
+
 # TiDB 产品发版计划
 
 | **Major.Minor** | **Patch** | **Progress** | **Final Date** |
@@ -18,5 +23,4 @@
 | v5.4.1          | Untriaged |              |                |
 | v6.0            | v6.0.0    | Scheduled    | 20220401       |
 
-看板： **https://github.com/pingcap/tidb/projects/63** 
-
+看板： **https://github.com/pingcap/tidb/projects/63**

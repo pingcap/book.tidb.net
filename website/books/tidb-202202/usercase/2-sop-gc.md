@@ -1,10 +1,13 @@
+---
+title: 诊断 SOP | GC 相关问题排查
+hide_title: true
+---
+
 # 诊断 SOP | GC 常见问题排查
 
 ## GC 机制
 
-详见官网文档 [GC 机制简介](https://docs.pingcap.com/zh/tidb/stable/garbage-collection-overview) 
-
-
+详见官网文档 [GC 机制简介](https://docs.pingcap.com/zh/tidb/stable/garbage-collection-overview)
 
 ## **诊断工具**
 
@@ -60,8 +63,6 @@ pd-ctl service-gc-safepoint 查询所有 service 的 gc safepoint。
 
 ![img](https://pingcap.feishu.cn/space/api/box/stream/download/asynccode/?code=N2IzZmY2M2UxNWY1YTYxYTczYzA1MWNhMGQ2ZTA4ZjFfRjFmSlgyUmV1R2RVSXNFODVVRHVRelpyUWJ2Tmhlc0NfVG9rZW46Ym94Y25HOW1HTGs0V0dudEFXbmNzekZiTVJmXzE2NTAxNjQ3MTE6MTY1MDE2ODMxMV9WNA)
 
-
-
 ## **如何判断 GC 所在阶段**
 
 GC 分为 Resolve Locks, Delete Ranges 和 Do GC 三个阶段。
@@ -76,8 +77,6 @@ Do GC 阶段：每个 TiKV 自行检测 PD 记录的 safe point 是否更新，�
 - 开启 compaction filter 时，通过 GC - GC in Compaction Filter 判断
 - 无论是否开启 compaction filter，都可以通过 GC - GC Speed 判断
 
-
-
 ## **常见 GC 问题**
 
 1. 主要现象
@@ -89,37 +88,35 @@ Do GC 阶段：每个 TiKV 自行检测 PD 记录的 safe point 是否更新，�
 
 - gc_life_time 等变量格式错误
 - 未提交的长事务 block GC
--  某些 service 的 safe_point block GC
+- 某些 service 的 safe_point block GC
 - Resolve Locks 失败
 - 将 GC life time 从一个较小的值调大
--  GC 运行很慢但正常
--  gc_life_time 或 gc_run_interval 等变量设置过大
+- GC 运行很慢但正常
+- gc_life_time 或 gc_run_interval 等变量设置过大
 
 1. 问题排查
 
 检查 GC leader 日志是否有相关报错，判断可能的原因，以下面几种情况的报错为例：
 
-Case1：报错 Failed to parse duration "time: unknown unit "min"in duration"10min"“ 
+Case1：报错 Failed to parse duration "time: unknown unit "min"in duration"10min"“
 
 参数格式错误，误将 gc_life_time 改成了 10min，应改成 10m
 
-Case2：报错 gc safepoint blocked by a running session 
+Case2：报错 gc safepoint blocked by a running session
 
 未提交事务 block GC，通过 show processlist 或 information_schema.cluster_processlist 找到 block session。
 
-Case3：报错 there's another service in the cluster requires an earlier safe point 
+Case3：报错 there's another service in the cluster requires an earlier safe point
 
 某些 service 的 safe_point block GC，通过 pd-ctl service-gc-safepoint 找到 block service。
 
-Case4：报错 resolve locks failed 
+Case4：报错 resolve locks failed
 
 通常是 Region unavailable 引起，通过 grep -E "gc_worker|range_task" tidb.log 查询相关报错日志，排查 Region unavailable 原因。
 
-Case5：日志出现 last safe point is later than current one. No need to gc 
+Case5：日志出现 last safe point is later than current one. No need to gc
 
 调大 GC life time 后，新一轮 GC 时 safe point 被重新计算，得到一个比上次 GC 的 safe point 更早的时间，因而无需进行 GC，这种情况不需要处理。
-
-
 
 ## **GC 对性能的影响**
 
@@ -129,13 +126,11 @@ Case5：日志出现 last safe point is later than current one. No need to gc
 
 注意：v5.1.3/v5.2.3/v5.3.0 版本修复了 compaction filter GC 工作机制和 batch client 层的多个 Bug ，建议升级到较新的 release 版本后再开启 compaction filter。
 
-
-
 ## **注意事项**
 
 当遇到需要恢复误删除数据或调查数据损坏问题（如数据索引不一致）等情况时，可能要临时调大 gc life time 避免历史数据被清理，例如
 
--  `update mysql.tidb set variable_value = "1000h" where variable_name = "tikv_gc_life_time"`
+- `update mysql.tidb set variable_value = "1000h" where variable_name = "tikv_gc_life_time"`
 
 - `set @@global.tidb_gc_life_time = "1000h"`
 

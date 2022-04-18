@@ -1,16 +1,19 @@
+---
+title: v5.3.0 - BR 备份报错并且耗时比升级前更长(v2)
+hide_title: true
+---
+
 # 【故障解读】v5.3.0 BR 备份报错并且耗时比升级前更长
 
 ## 作者介绍
 
 靳献旗，汽车之家 DBA，TUG 2021 年度 MVA，主要负责 MySQL、TiDB、MongoDB 的架构设计、性能调优、日常运维以及自动化平台开发工作。
 
-
-
 ## 问题背景
 
 集群版本：v5.3.0
 
-BR  版本：v5.3.0
+BR 版本：v5.3.0
 
 备份命令如下：
 
@@ -37,8 +40,6 @@ BR 日志末尾虽然显示备份成功(日志信息类似 Full backup success s
 - BR 备份耗时增加一倍多
 
 备份耗时增加一倍多，升级前备份耗时不足 2 个小时，升级后耗时高达 5 个半小时。
-
-
 
 ## 问题分析
 
@@ -116,9 +117,9 @@ Bug 详情请见：https://github.com/pingcap/br/issues/470
 
 （3）是否跟限速有关
 
-升级前：avg speed (MB/s): 682.20       # v4.0.4 版本
+升级前：avg speed (MB/s): 682.20 # v4.0.4 版本
 
-升级后：average-speed=117.3MB/s     # v5.3.0 版本
+升级后：average-speed=117.3MB/s # v5.3.0 版本
 
 用户共计 10 个 TiKV 节点，单个 TiKV 的平均备份速度(avg speed / 10)都没有超过 ratelimit 200 的上限，且平均备份速度差异很大。需要进行下面两种场景的验证：
 
@@ -135,8 +136,6 @@ Bug 详情请见：https://github.com/pingcap/br/issues/1007
 升级后备份变慢的分析流程图如下：
 
 ![img](https://pingcap.feishu.cn/space/api/box/stream/download/asynccode/?code=Y2Q1MjA1ODA3OWVmNzg2ZmUzMjg5N2VjOTZlYWMwMGJfWDVvTEIyQm5JNENDenJuQnh3VU1rbXA1dW56TXpqQW9fVG9rZW46Ym94Y25iRHlETEtzblFkZWdVNVpxcERmelhnXzE2NTAxNjI5ODc6MTY1MDE2NjU4N19WNA)
-
-
 
 ## 问题结论
 
@@ -160,8 +159,6 @@ Bug 详情请见：https://github.com/pingcap/br/issues/470
 
 Bug 详情请见：https://github.com/pingcap/br/issues/1007
 
-
-
 ## 优化措施
 
 为了减少备份任务对在线集群的影响，从 TiDB v5.4.0 起，BR 引入了自动调节功能，此功能会默认开启。在集群资源占用率较高的情况下，BR 可以通过该功能自动限制备份使用的资源，从而减少对集群的影响。
@@ -173,8 +170,6 @@ tikv-ctl modify-tikv-config -n backup.enable-auto-tune -v <true|false>
 ```
 
 详情请见官网文档：https://docs.pingcap.com/zh/tidb/stable/br-auto-tune
-
-
 
 ## 相关知识
 
@@ -189,8 +184,6 @@ v4.0.3 版本开始支持备份文件压缩，压缩完整的支持是在 v4.0.5
 - BR 参数 ratelimit 和 concurrency 问题
 
 为了避免 ratelimit 限速失败，当配置 ratelimit 时，会将 concurrency 参数从 4 修改为 1 (并且配置 ratelimit 时，concurrency 参数无法配置，默认为 1)。
-
- 
 
 ## 【参考】
 

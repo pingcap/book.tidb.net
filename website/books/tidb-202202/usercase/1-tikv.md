@@ -1,10 +1,13 @@
+---
+title: 诊断 SOP | TiKV/TiFlash 下线慢
+hide_title: true
+---
+
 # 诊断 SOP | TiKV/TiFlash 下线慢
 
 ## 作者介绍
 
 耿海直，TiDB 内核研发，主要负责 PD 调度相关组件的设计，研发工作
-
-
 
 ## **术语列表**
 
@@ -13,8 +16,6 @@
 - Region：TiDB 进行数据存储的基本单位，代表了一段范围内的二进制数据，默认一个 Region 的大小为 96 MB
 
 - Leader：Region 通过 Raft 共识算法在不同 Store 之间完成满足线性一致性的复制，从而达成数据上的冗余以备高可用，过程中的任意时刻一个 Region 可能是四个角色中的一种：leader，follower，candidate 和 learner。其中大多数情况下由 Region leader 负责对外提供读写服务；follower 负则同步数据，以便当 leader 宕机时随时顶替成为新的 leader 对外服务
-
-
 
 ## **下线流程概述**
 
@@ -25,7 +26,7 @@ TiKV 和 TiFlash 的下线是异步的，整个过程会分为多个环节，大
 3. 对应的 Store 在状态变为 Offline 后，会开始：
    1. 将其上的 leader 转移到其他 Store（Evict leader，由 TiUP 手动添加）
    2. 将其上的 Region 转移到其他 Store
-4.  在当前 Store 的 Region 全部被驱逐完毕后，PD 会将对应 Store 的状态从 **Offline —> Tombstone**。
+4. 在当前 Store 的 Region 全部被驱逐完毕后，PD 会将对应 Store 的状态从 **Offline —> Tombstone**。
 5. 过程中可以使用 tiup cluster display 命令查看下线节点的状态，等待其变为 Tombstone。
 6. 使用 tiup cluster prune 命令清理 Tombstone 节点，该命令会执行以下操作：
    1. 停止已经下线掉的节点的服务
@@ -33,8 +34,6 @@ TiKV 和 TiFlash 的下线是异步的，整个过程会分为多个环节，大
    3. 更新集群的拓扑，移除已经下线掉的节点
 
 其中，步骤 3 受数据量影响，耗时一般会比较久，因为系统中会同时运行有其他的调度任务从而产生竞争，比如下线迁移的 Scheduler 要和 Region balance scheduler 抢占资源，导致下线速度慢或 Balance 速度上不去。
-
-
 
 ## **常见操作**
 
@@ -56,8 +55,6 @@ TiKV 和 TiFlash 的下线是异步的，整个过程会分为多个环节，大
 curl -X POST http://{pd_address}:{pd_port}/pd/api/v1/store/{store_id}/state\?state=Up
 ```
 
-
-
 ## **案例汇总**
 
 - 案例一：下线过程未等调度完成就使用 API 强行设置 Store 为 Tombstone 并 delete store
@@ -76,7 +73,7 @@ curl -X POST http://{pd_address}:{pd_port}/pd/api/v1/store/{store_id}/state\?sta
 
 - PD 试图通过调度清除这个不存在 Store 上的 peer 却迟迟得不到回应
 
--  TiDB 可能通过 Region 里残留的 Store 信息错误地发送请求
+- TiDB 可能通过 Region 里残留的 Store 信息错误地发送请求
 
 一般遇到这种情况，需要我们手动的添加 operator 来告诉 Region 应该 “忘记” 这个不存在的 Store 信息，可以通过 pd-ctl 来生成移除 Store 信息的脚本，注意，使用这个方法前需要留意是否删除后 Region 的可用副本会低于多数：
 
@@ -90,4 +87,4 @@ pd-ctl region --jq=".regions[] | {id: .id, peer_stores: [.peers[].store_id] | se
 pd-ctl region --jq=".regions[] | {id: .id, peer_stores: [.peers[].store_id] | select(any(.=={store_id})) | select(length>1) } | .id" | sed -e "s/^/pd-ctl operator add remove-peer /" | sed -e "s/$/ {store_id}/"
 ```
 
-还有一个方法，但是由于需要停机所有 TiKV，并不推荐使用：[强制 Region 从多副本失败状态恢复服务](https://docs.pingcap.com/zh/tidb/stable/tikv-control#强制-region-从多副本失败状态恢复服务) 
+还有一个方法，但是由于需要停机所有 TiKV，并不推荐使用：[强制 Region 从多副本失败状态恢复服务](https://docs.pingcap.com/zh/tidb/stable/tikv-control#强制-region-从多副本失败状态恢复服务)

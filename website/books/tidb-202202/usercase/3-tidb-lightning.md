@@ -1,16 +1,17 @@
+---
+title: 最佳实践 | tidb-lightning 使用 tidb-backend 模式导入优化
+hide_title: true
+---
+
 # 最佳实践 | tidb-lightning 使用 tidb-backend 模式导入优化
 
 ## 作者介绍
 
 苏志鹏，TiDB DBA，TUG 2021 年度 MVA，拥有丰富的运维与交付经验，对相关数据库的原理及应用有浓厚兴趣
 
-
-
 ## **项目背景**
 
 近日，一个主 AP 业务项目 MyCat 下迁 TIDB 迁移，原分库分表架构（16 台 server） AP 大 SQL 普遍需 2 小时跑出结果，POC 实测（5 台 server）该类 SQL 调优后 TiDB 下 20 分钟内均能出结果，能获得近乎 5 倍下迁收益。
-
-
 
 ## **问题描述**
 
@@ -25,14 +26,10 @@
 1. TiDB 同 MySQL 用 LOAD 方式导入 csv 文件过慢
 2. LOAD 方式导入数据无法保证原子性导入
 
-
-
 ## **分析原因**
 
 1. 导入过慢的原因是 LOAD 是单线程方式工作，没有利用并发多线程导入加速。
 2. LOAD 走的是 batch insert 接口，默认会将 csv 文件切分为多份、构成多个小事务提交。(注意 : MySQL 的实现也是 batch insert，所以理论上也存在该风险)
-
-
 
 ## **解决方案**
 
@@ -47,9 +44,9 @@
 Plain Text
 
 ```Plain%20Text
-./TiChange_for_lightning.sh 
+./TiChange_for_lightning.sh
 Auther : jan su
-Introduce : TiChange_for_lightning 是一个能让你快速将csv文件适配 tidb-lightning csv 文件格式要求的工具，如有任何 BUG 请及时反馈，作者将及时修复！ 
+Introduce : TiChange_for_lightning 是一个能让你快速将csv文件适配 tidb-lightning csv 文件格式要求的工具，如有任何 BUG 请及时反馈，作者将及时修复！
 
 Usage: TiChange_for_lightning.sh [option] [parameter]
 option: -i --input-file [input_csv_path] | | 需要处理的csv文件路径;
@@ -60,4 +57,3 @@ option: -i --input-file [input_csv_path] | | 需要处理的csv文件路径;
         -n --null_import [null_import_format] |(default: '\N')| 需要指定解析 csv 文件中字段值为 NULL 的字符， eg: '\N' 导入 TiDB 中会被解析为 NULL ;
         -h --help | | 获取关于 TiChange.sh 的操作指引，详细 Demo 请参考 ： https://github.com/jansu-dev/TiChange_for_lightning ;
 ```
-
