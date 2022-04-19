@@ -26,8 +26,8 @@ const config = {
           path: "book",
           routeBasePath: "book",
           // Please change this to your repo.
-          editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+          // editUrl:
+          //   "https://github.com/pingcap/community/tree/master/",
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
