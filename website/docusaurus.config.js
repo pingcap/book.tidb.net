@@ -9,7 +9,7 @@ const config = {
   title: "TiDB | Community",
   tagline: "TiDB | Community",
   url: "https://tidb.net",
-  baseUrl: "/",
+  baseUrl: "/book/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/book_favicon.png",
@@ -23,8 +23,8 @@ const config = {
       ({
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
-          path: "book",
-          routeBasePath: "book",
+          path: "monthly",
+          routeBasePath: "/monthly",
           // Please change this to your repo.
           // editUrl:
           //   "https://github.com/pingcap/community/tree/master/",
@@ -49,9 +49,9 @@ const config = {
           {
             // type: "doc",
             // docId: "intro",
-            to: "/book/tidb-202202",
+            to: "/monthly",
             position: "left",
-            label: "Book",
+            label: "月刊",
           },
           {
             href: "https://github.com/pingcap/community",
