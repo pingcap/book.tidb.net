@@ -21,17 +21,47 @@ const config = {
       "classic",
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
-        docs: {
-          sidebarPath: require.resolve("./sidebars.js"),
-          path: "monthly",
-          routeBasePath: "/monthly",
-          // Please change this to your repo.
-          // editUrl:
-          //   "https://github.com/pingcap/community/tree/master/",
-        },
+        // docs: {
+        //   sidebarPath: require.resolve("./sidebars.js"),
+        //   path: "monthly",
+        //   routeBasePath: "/monthly",
+        //   // Please change this to your repo.
+        //   // editUrl: "https://github.com/pingcap/book.tidb.net/tree/main/website",
+        // },
+        docs: false,
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
+      }),
+    ],
+  ],
+
+  plugins: [
+    [
+      "content-docs",
+      /** @type {import('@docusaurus/plugin-content-docs').Options} */
+      ({
+        id: "monthly",
+        path: "monthly",
+        routeBasePath: "/monthly",
+        editUrl: "https://github.com/pingcap/book.tidb.net/tree/main/website",
+        sidebarPath: require.resolve("./sidebars.js"),
+      }),
+    ],
+    [
+      "content-docs",
+      /** @type {import('@docusaurus/plugin-content-docs').Options} */
+      ({
+        id: "bookrush",
+        path: "bookrush",
+        routeBasePath: "/bookrush",
+        // editUrl: ({locale, versionDocsDirPath, docPath}) => {
+        //   if (locale !== 'en') {
+        //     return `https://crowdin.com/project/docusaurus-v2/${locale}`;
+        //   }
+        //   return `https://github.com/facebook/docusaurus/edit/main/website/${versionDocsDirPath}/${docPath}`;
+        // },
+        sidebarPath: require.resolve("./sidebars.js"),
       }),
     ],
   ],
@@ -52,6 +82,11 @@ const config = {
             to: "/monthly",
             position: "left",
             label: "月刊",
+          },
+          {
+            to: "/bookrush",
+            position: "left",
+            label: "Book Rush",
           },
           {
             href: "https://github.com/pingcap/community",
