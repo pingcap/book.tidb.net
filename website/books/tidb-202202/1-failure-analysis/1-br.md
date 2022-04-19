@@ -135,7 +135,7 @@ Bug 详情请见：https://github.com/pingcap/br/issues/1007
 
 升级后备份变慢的分析流程图如下：
 
-![img](https://pingcap.feishu.cn/space/api/box/stream/download/asynccode/?code=Y2Q1MjA1ODA3OWVmNzg2ZmUzMjg5N2VjOTZlYWMwMGJfWDVvTEIyQm5JNENDenJuQnh3VU1rbXA1dW56TXpqQW9fVG9rZW46Ym94Y25iRHlETEtzblFkZWdVNVpxcERmelhnXzE2NTAxNjI5ODc6MTY1MDE2NjU4N19WNA)
+![img](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/65638c5b-7ee7-4432-8f32-df5441f6322b-1650285626203.png)
 
 ## 问题结论
 

@@ -31,11 +31,11 @@ Tidb server 发生 oom 后，ticdc checkpointTs 不向前推进，尝试 pause c
 
 TiDB server oom 监控
 
-![img](https://pingcap.feishu.cn/space/api/box/stream/download/asynccode/?code=NjQ4OTJiYWM2NjdiYzg1Y2M2ZDdlMjk3ZDIyMGVmYzBfcUJ0YlJvRFExUEJwRnE2MzN3TUdIZW5uUlM3eDFLRzdfVG9rZW46Ym94Y25LajFxUFhiNXBBSGdXVHQ2NTJqbW9iXzE2NTAxNjM4NjU6MTY1MDE2NzQ2NV9WNA)
+![img](https://asktug.com/uploads/default/original/4X/b/0/b/b0b230685c228b59e2efa6bed04e37928576bbdf.png)
 
 Tidb cdc 监控
 
-![img](https://pingcap.feishu.cn/space/api/box/stream/download/asynccode/?code=NGM1NTk5NzJhMGY5YmE1ZWU5OGRlYzIyM2M2ODkwNWVfOTdieDg2UTZQdjEzUURNbkQwd1hsZnBKSE1WY0hJaUZfVG9rZW46Ym94Y252OENzelRJZlJZWGx0TjJTcWlKTXJiXzE2NTAxNjM4NjU6MTY1MDE2NzQ2NV9WNA)
+![img](https://asktug.com/uploads/default/original/4X/2/0/5/205843a7a9d85607f2b4686ec4aa46a6647b56ae.png)
 
 ## 问题排查
 
@@ -53,7 +53,7 @@ dashboard 的慢查询页面导致 oom，从 4.0 版本到 5.1.2 版本，曾经
 - 在查询时选择时间范围选小一点，比如一小时以内，并尽量避免多人并发查询 slow query 。
 - 查询时尽量不要使用 order by 排序功能。
 
-![img](https://pingcap.feishu.cn/space/api/box/stream/download/asynccode/?code=MTgxYjczMmNkZGYxOWZmMDYzY2Y4YWMwNmI5NjAxMTNfUkNuTlVaWk84RmVGeEVIeVBHV0VaNGlHQnlBQkJWQUpfVG9rZW46Ym94Y25Mdjd2NmdVQ3I4M284aHN3TFBxb1RjXzE2NTAxNjM4NjU6MTY1MDE2NzQ2NV9WNA)
+![img](https://asktug.com/uploads/default/original/4X/e/8/b/e8bfda7e8ffbf112d499da8036cfd54e729676b4.png)
 
 目前 tidb 在分析 oom 问题上提供了一个 oom tracker 工具，能将当时的 top memory sql 以及 heap 统计到 tidb server 的 tmp 目录下以供分析，较以前版本来说，排查问题相对简单容易很多。
 
@@ -61,13 +61,13 @@ dashboard 的慢查询页面导致 oom，从 4.0 版本到 5.1.2 版本，曾经
 
 从监控中可以看到，在 tidb server oom 后，部分 tikv 节点中 resolved-lag 增大
 
-![img](https://pingcap.feishu.cn/space/api/box/stream/download/asynccode/?code=NjcyMWM3NGUzNjA5MTA2NmM0ZjQ4NDMyODc0MDVlZTJfTkVVbkZpcXVIWnN1TXBVNW1HUUdtaTFQZWhaSFFVYnZfVG9rZW46Ym94Y25ZOVpPb0E5c0pYWDJWcjZENERXbGlnXzE2NTAxNjM4NjU6MTY1MDE2NzQ2NV9WNA)
+![img](https://asktug.com/uploads/default/original/4X/c/c/0/cc0a0e361cea8be00ef38525a4e5895e406828b2.jpeg)
 
 通过 cdc 研发人员确认，tidb 在事务中对相关表加乐观或悲观锁，当 tidb server oom 后，相关锁未正常释放，且 region merge 会阻塞 resolveLock 功能，导致 lock 无法释放
 
 在最新的 5.1.4 版本中，已经修复了该问题
 
-![img](https://pingcap.feishu.cn/space/api/box/stream/download/asynccode/?code=NzI5Yjk0ZDJlZWVhNzYzY2JjNmYyNDU1ZTE5ZThjOGJfUXJWd1dEUHh5Tm45M1BWMTFqQm1kVEdNSDlZdlhIMGJfVG9rZW46Ym94Y25pRUtUc2NPQjN5Vmh2NlVhcEJBUFdiXzE2NTAxNjM4NjU6MTY1MDE2NzQ2NV9WNA)
+![img](https://asktug.com/uploads/default/original/4X/0/e/a/0ea6a601299a34a656f54cd570fb59e312e2509c.png)
 
 ## 问题处理
 

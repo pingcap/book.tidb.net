@@ -40,7 +40,7 @@ GC in Compaction Filter：write CF 的 compaction filter 中已过滤版本的�
 
 1. 系统表 mysql.tidb
 
-![img](https://pingcap.feishu.cn/space/api/box/stream/download/asynccode/?code=NGQ3ZjE3NGJiYmY1YmFkNDFmNWE0ZDM1NzQ1NzJhNGFfcGF0aTBEcFNCUWliTGNUZ2tSYUg3aHVGZTdER1RmZ0pfVG9rZW46Ym94Y25hVVgyVDFIWnhXNjZZRUxjd0ltcFJjXzE2NTAxNjQ3MTE6MTY1MDE2ODMxMV9WNA)
+![img](https://asktug.com/uploads/default/original/4X/c/1/c/c1c36dacede413af8f956df929eb87eebe1951f8.jpeg)
 
 以 tikv_gc 开头的变量都与 GC 相关，其中 tikv_gc_leader_uuid/tikv_gc_leader_desc/tikv_gc_leader_lease 用于记录 GC leader 的状态，tikv_gc_safe_point 和 tikv_gc_last_run_time 在每轮 GC 开始前会被自动更新，其他几个变量则是可配置的，详见 [GC 配置](https://docs.pingcap.com/zh/tidb/stable/garbage-collection-configuration)。
 
@@ -61,7 +61,7 @@ pd-ctl service-gc-safepoint 查询所有 service 的 gc safepoint。
 - "service_gc_safe_points": gc_worker/ticdc/br/dumpling 等各 service 记录的 safe point。
 - "gc_safe_point": 用于通知 TiKV 进行 Do GC 的 safe point，该 safe point 不保证在此时间之后的数据可以安全读取。
 
-![img](https://pingcap.feishu.cn/space/api/box/stream/download/asynccode/?code=N2IzZmY2M2UxNWY1YTYxYTczYzA1MWNhMGQ2ZTA4ZjFfRjFmSlgyUmV1R2RVSXNFODVVRHVRelpyUWJ2Tmhlc0NfVG9rZW46Ym94Y25HOW1HTGs0V0dudEFXbmNzekZiTVJmXzE2NTAxNjQ3MTE6MTY1MDE2ODMxMV9WNA)
+![img](https://asktug.com/uploads/default/original/4X/e/b/f/ebf1fdbcb49e2b1b9c0ac0c8586e516bc08d87d2.jpeg)
 
 ## **如何判断 GC 所在阶段**
 

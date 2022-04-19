@@ -60,7 +60,7 @@ v5.0.6，v5.1.3，v5.2.3，v5.3.0,
 
 1. TiDB 监控的 GC - Delete Range Failure OPM 中有持续的 send 失败，如图：
 
-![img](https://pingcap.feishu.cn/space/api/box/stream/download/asynccode/?code=MjNkY2IyNTM1MmFiOWFlODM3MTdmZmU5YWZhYWQ5ZmFfbVRRd0lUQUVlNlRuRFNEemg4UVZqcGVPbHVkdnFxRElfVG9rZW46Ym94Y25zYUEzbnZGb1dJSXcxUWhZSVdSU1kxXzE2NTAxNjU4MDE6MTY1MDE2OTQwMV9WNA)
+![img](https://asktug.com/uploads/default/original/4X/d/d/2/dd242365e269f79e83a5abfc166e1aa24d710183.png)
 
 1. TiDB 日志中确认 Delete Range 错误原因是 "gc worker is too busy"
 2. 从原理上再次确认，检查 TiKV 曾经出现过 GC worker 持续 CPU 100% 的状况。
