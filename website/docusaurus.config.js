@@ -68,7 +68,7 @@ const config = {
             items: [
               {
                 label: "活动",
-                to: "/events",
+                to: "https://tidb.net/events",
               },
               {
                 label: "问答论坛",
@@ -97,7 +97,7 @@ const config = {
               },
               {
                 label: "专栏",
-                to: "/blog",
+                to: "https://tidb.net/blog",
               },
               {
                 label: "视频课程",
@@ -122,7 +122,7 @@ const config = {
             items: [
               {
                 label: "TiDB User Group",
-                to: "/tug",
+                to: "https://tidb.net/tug",
               },
               {
                 label: "问答之星",
