@@ -5,6 +5,12 @@ hide_title: true
 
 # 活动预告
 
+**[直播预告丨TiFlash 源码解读（一）TiFlash 存储引擎的设计思路](https://mp.weixin.qq.com/s/kqyymRjRYNtiCXUN-iaKEg)**
+
+**活动介绍：**  4 月 21 日（本周四）晚上 8 点，TiFlash 背后的研发小哥会来聊聊《TiFlash 存储引擎的设计思路》，本次分享会让听众对 TiFlash 整体架构有初步了解，并介绍存储层 DeltaTree 引擎的设计思路以及其子模块。
+
+
+
 **[【征文大赛】TiDB 社区专栏第一届征文大赛，快来一次性集齐所有周边吧！](https://tidb.io/blog/ab7959f4)**
 
 > TiDB 社区专栏第一届征文大赛来袭！只要你对 TiDB 产品感兴趣、有研究的 TiDBer 都可以来参加，在这里给你准备了非常多的主题供你选择，也可以说出你和 TiDB 的故事。
@@ -33,7 +39,9 @@ hide_title: true
 
 2、在 [专栏 ](https://tidb.io/blog)中发布技术文章
 
-**活动时间：2022.03.14-2022.05.31**
+活动时间：2022.03.14-2022.05.31
+
+
 
 **[TiDB 社区活动来袭 | 春暖花开的时候武汉再相聚，分享嘉宾招募中！](https://asktug.com/t/topic/662777)**
 
