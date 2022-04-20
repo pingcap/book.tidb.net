@@ -38,6 +38,20 @@ const config = {
 
   plugins: [
     [
+      "@docusaurus/plugin-client-redirects",
+      {
+        fromExtensions: ["html", "htm"], // /myPage.html -> /myPage
+        redirects: [
+          // baseUrl is `/book/`
+          // Temporarily redirect baseUrl request: /book/ => /book/monthly/
+          {
+            to: "/monthly/",
+            from: "/",
+          },
+        ],
+      },
+    ],
+    [
       "content-docs",
       /** @type {import('@docusaurus/plugin-content-docs').Options} */
       ({
@@ -57,9 +71,9 @@ const config = {
         routeBasePath: "/bookrush",
         // editUrl: ({locale, versionDocsDirPath, docPath}) => {
         //   if (locale !== 'en') {
-        //     return `https://crowdin.com/project/docusaurus-v2/${locale}`;
+        //     return `https://github.com/pingcap/book.tidb.net/tree/main/website/${locale}`;
         //   }
-        //   return `https://github.com/facebook/docusaurus/edit/main/website/${versionDocsDirPath}/${docPath}`;
+        //   return `https://github.com/pingcap/book.tidb.net/tree/main/website/${versionDocsDirPath}/${docPath}`;
         // },
         sidebarPath: require.resolve("./sidebars.js"),
       }),
@@ -74,11 +88,10 @@ const config = {
         logo: {
           alt: "TiDB | Community Logo",
           src: "img/logo.svg",
+          href: "/book/monthly",
         },
         items: [
           {
-            // type: "doc",
-            // docId: "intro",
             to: "/monthly",
             position: "left",
             label: "月刊",
