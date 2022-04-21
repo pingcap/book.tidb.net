@@ -24,18 +24,10 @@ $ yarn build
 
 This command generates static content into the `build` directory and can be served using any static contents hosting service.
 
-### Deployment
-
-Using SSH:
+### Serve and Deployment
 
 ```
-$ USE_SSH=true yarn deploy
+$ yarn serve
 ```
 
-Not using SSH:
-
-```
-$ GIT_USER=<Your GitHub username> yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+Nginx reverse porxy: tidb.net/book -> website.serve:3000
