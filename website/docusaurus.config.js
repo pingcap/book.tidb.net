@@ -14,7 +14,7 @@ const config = {
   onBrokenMarkdownLinks: "warn",
   favicon: "img/book_favicon.png",
   organizationName: "pingcap", // Usually your GitHub org/user name.
-  projectName: "community", // Usually your repo name.
+  projectName: "book.tidb.net", // Usually your repo name.
 
   presets: [
     [
@@ -45,7 +45,7 @@ const config = {
           // baseUrl is `/book/`
           // Temporarily redirect baseUrl request: /book/ => /book/monthly/
           {
-            to: "/monthly/",
+            to: "/tidb-monthly",
             from: "/",
           },
         ],
@@ -55,9 +55,9 @@ const config = {
       "content-docs",
       /** @type {import('@docusaurus/plugin-content-docs').Options} */
       ({
-        id: "monthly",
-        path: "monthly",
-        routeBasePath: "/monthly",
+        id: "tidb-monthly",
+        path: "tidb-monthly",
+        routeBasePath: "/tidb-monthly",
         editUrl: "https://github.com/pingcap/book.tidb.net/tree/main/website",
         sidebarPath: require.resolve("./sidebars.js"),
       }),
@@ -66,9 +66,9 @@ const config = {
       "content-docs",
       /** @type {import('@docusaurus/plugin-content-docs').Options} */
       ({
-        id: "bookrush",
-        path: "bookrush",
-        routeBasePath: "/bookrush",
+        id: "book-rush",
+        path: "book-rush",
+        routeBasePath: "/book-rush",
         // editUrl: ({locale, versionDocsDirPath, docPath}) => {
         //   if (locale !== 'en') {
         //     return `https://github.com/pingcap/book.tidb.net/tree/main/website/${locale}`;
@@ -88,21 +88,21 @@ const config = {
         logo: {
           alt: "TiDB | Community Logo",
           src: "img/logo.svg",
-          href: "/book/monthly",
+          href: "/book/tidb-monthly",
         },
         items: [
           {
-            to: "/monthly",
+            to: "/tidb-monthly",
             position: "left",
             label: "月刊",
           },
           {
-            to: "/bookrush",
+            to: "/book-rush",
             position: "left",
-            label: "Book Rush",
+            label: "🔥 Book Rush",
           },
           {
-            href: "https://github.com/pingcap/community",
+            href: "https://github.com/pingcap/book.tidb.net",
             label: "GitHub",
             position: "right",
           },
