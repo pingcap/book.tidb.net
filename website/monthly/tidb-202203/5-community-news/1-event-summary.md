@@ -28,10 +28,10 @@ hide_title: true
 
 作为一款优秀数据库的优化器，TiDB 优化器具备哪些能力？在商业化加速、用户场景越来越复杂多样的趋势下，TiDB 优化器如何保证稳定性、易用性？在 HTAP 场景下，TiDB 优化器如何兼容？今天就来聊一聊 TiDB 优化器的现在和未来。
 
-视频回顾：https://www.bilibili.com/video/BV1yS4y167NF
+视频回顾：https://www.bilibili.com/video/BV1c5411S7Xu
 
 **【PingCAP Infra Meetup】No.148 深入解读 TiFlash**
 
 4 月 1 日，TiDB 分析引擎 TiFlash 以 Apache 2.0 协议正式开源，至此 TiDB 完整的 HTAP 能力都已开源。大家对于 TiFlash 是否还有很多疑问：TiFlash 的研发和迭代经历了哪些思考，对于用户又有哪些价值？我们邀请到了 PingCAP 联合创始人兼 CTO 黄东旭、首席技术布道师马晓宇与大家分享 TiFlash 的前世今生及应用实践。
 
-视频回顾：https://www.bilibili.com/video/BV1c5411S7Xu
+视频回顾：https://www.bilibili.com/video/BV1rS4y1c78m
