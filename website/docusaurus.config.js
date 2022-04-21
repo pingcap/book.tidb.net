@@ -44,7 +44,7 @@ const config = {
         redirects: [
           // Redirect /book/ => /book/monthly/
           {
-            to: "/tidb-monthly",
+            to: "/tidb-monthly/",
             from: "/",
           },
         ],
