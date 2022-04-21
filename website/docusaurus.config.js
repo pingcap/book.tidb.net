@@ -68,6 +68,7 @@ const config = {
         id: "book-rush",
         path: "book-rush",
         routeBasePath: "/book-rush",
+        editUrl: "https://github.com/pingcap/book.tidb.net/tree/main/website",
         // editUrl: ({locale, versionDocsDirPath, docPath}) => {
         //   if (locale !== 'en') {
         //     return `https://github.com/pingcap/book.tidb.net/tree/main/website/${locale}`;
