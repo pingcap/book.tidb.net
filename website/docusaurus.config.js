@@ -42,8 +42,7 @@ const config = {
       {
         fromExtensions: ["html", "htm"], // /myPage.html -> /myPage
         redirects: [
-          // baseUrl is `/book/`
-          // Temporarily redirect baseUrl request: /book/ => /book/monthly/
+          // Redirect /book/ => /book/monthly/
           {
             to: "/tidb-monthly",
             from: "/",
