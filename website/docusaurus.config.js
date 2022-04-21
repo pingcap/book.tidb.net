@@ -6,8 +6,8 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "TiDB | Community",
-  tagline: "TiDB | Community",
+  title: "TiDB Books",
+  tagline: "TiDB Books",
   url: "https://tidb.net",
   baseUrl: "/book/",
   onBrokenLinks: "throw",
