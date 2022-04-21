@@ -84,7 +84,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: "TiDB | Community",
+        title: "TiDB | Books",
         logo: {
           alt: "TiDB | Community Logo",
           src: "img/logo.svg",
@@ -92,9 +92,14 @@ const config = {
         },
         items: [
           {
+            to: "https://tidb.net",
+            position: "left",
+            label: "社区首页",
+          },
+          {
             to: "/tidb-monthly",
             position: "left",
-            label: "月刊",
+            label: "社区月刊",
           },
           {
             to: "/book-rush",
@@ -160,7 +165,7 @@ const config = {
                 href: "https://pingcap.com/case/",
               },
               {
-                label: "开发者指南",
+                label: "贡献者指南",
                 href: "https://pingcap.github.io/tidb-dev-guide",
               },
             ],
@@ -204,10 +209,6 @@ const config = {
               {
                 label: "BiliBili",
                 href: "https://space.bilibili.com/584479667",
-              },
-              {
-                label: "Mailing List",
-                href: "https://lists.tidb.io/g/main",
               },
             ],
           },
