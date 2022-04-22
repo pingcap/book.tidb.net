@@ -5,21 +5,21 @@ hide_title: true
 
 # TiDB 课程推荐
 
-**【限时免费】\*\***[TiDB 高级系统管理 - TiDB 从入门到精通的绝佳武器](https://learn.pingcap.com/learner/course/120005)\*\*
+**[【限时免费】302 TiDB 高级系统管理 - TiDB 从入门到精通的绝佳武器](https://learn.pingcap.com/learner/course/120005)**
 
-**课程简介：**通过本课程，您将深入了解 TiDB 数据库的体系架构、设计理念与各个组件的运行原理。学习并掌握 TiDB 数据库的体系架构，设计实践，性能监控、参数优化、故障排除、SQL 优化和高可用设计。
+**课程简介：** 通过本课程，您将深入了解 TiDB 数据库的体系架构、设计理念与各个组件的运行原理。学习并掌握 TiDB 数据库的体系架构，设计实践，性能监控、参数优化、故障排除、SQL 优化和高可用设计。
 
 **[【限时免费】301 TiDB 系统管理基础](https://learn.pingcap.com/learner/course/30002)**
 
-**课程简介：**在 TiDB 系统管理基础课程中，您将学习 TiDB 数据库的体系架构、设计理念与各个组件的运行原理。学习并掌握 TiDB 数据库的管理。掌握 TiDB 的数据迁移、同步、复制和备份恢复方法。熟悉主要生态工具的适用范围、场景和基本使用方法。
+**课程简介：** 在 TiDB 系统管理基础课程中，您将学习 TiDB 数据库的体系架构、设计理念与各个组件的运行原理。学习并掌握 TiDB 数据库的管理。掌握 TiDB 的数据迁移、同步、复制和备份恢复方法。熟悉主要生态工具的适用范围、场景和基本使用方法。
 
 **[【限时免费】101 TiDB 快速起步](https://learn.pingcap.com/learner/course/6)**
 
-**课程简介：**在 Get Started with TiDB 课程中，您将学习 TiDB 由来、发展与演进，理解 TiDB 5.0 数据库的体系架构、技术创新、关键特性、应用案例与适用场景。
+**课程简介：** 在 Get Started with TiDB 课程中，您将学习 TiDB 由来、发展与演进，理解 TiDB 5.0 数据库的体系架构、技术创新、关键特性、应用案例与适用场景。
 
 **[Talent Plan 之 TinyKV 学习营推荐课程](https://learn.pingcap.com/learner/course/390002)**
 
-**课程简介：**本课程可以帮助 TinyKV 学习营同学快速了解工业级产品 TiKV 的架构及核心组件，TiKV 上层组件 TiDB Server，帮助同学们快速理清 LSM 存储引擎，Raft 一致性协议，Multi-Raft 以及分布式事务在存储层的作用和位置。
+**课程简介：** 本课程可以帮助 TinyKV 学习营同学快速了解工业级产品 TiKV 的架构及核心组件，TiKV 上层组件 TiDB Server，帮助同学们快速理清 LSM 存储引擎，Raft 一致性协议，Multi-Raft 以及分布式事务在存储层的作用和位置。
 
 **[Talent Plan 2021 KV 学习营分享课](https://learn.pingcap.com/learner/course/510001)**
 
