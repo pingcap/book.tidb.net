@@ -51,23 +51,23 @@ hide_title: true
 
 ## 用户实践
 
-[专栏 - Tiflash 尝鲜小案例 | TiDB 社区](https://tidb.io/blog/94e92326)
+[专栏 - Tiflash 尝鲜小案例 | TiDB 社区](https://tidb.net/blog/94e92326)
 
-[专栏 - TiFlash 运维漫谈 | TiDB 社区](https://tidb.io/blog/a898b21e)
+[专栏 - TiFlash 运维漫谈 | TiDB 社区](https://tidb.net/blog/a898b21e)
 
-[专栏 - 初探 TiDB-TiFlash | TiDB 社区](https://tidb.io/blog/9da1cede)
+[专栏 - 初探 TiDB-TiFlash | TiDB 社区](https://tidb.net/blog/9da1cede)
 
-[专栏 - TiDB 4.0 试玩体验–Tiflash | TiDB 社区](https://tidb.io/blog/e97d3ea0)
+[专栏 - TiDB 4.0 试玩体验–Tiflash | TiDB 社区](https://tidb.net/blog/e97d3ea0)
 
 ## 性能测评
 
-[专栏 - TiDB 升级、TiFlash 测试及对比 ClickHouse | TiDB 社区](https://tidb.io/blog/dc8e840d)
+[专栏 - TiDB 升级、TiFlash 测试及对比 ClickHouse | TiDB 社区](https://tidb.net/blog/dc8e840d)
 
-[专栏 - TiFlash5.0.1 与 4.0.10 对比测试 | TiDB 社区](https://tidb.io/blog/3217b5eb)
+[专栏 - TiFlash5.0.1 与 4.0.10 对比测试 | TiDB 社区](https://tidb.net/blog/3217b5eb)
 
-[专栏 - TiFlash 5.x 与 4.x 对比测试 | TiDB 社区](https://tidb.io/blog/b3740d1c)
+[专栏 - TiFlash 5.x 与 4.x 对比测试 | TiDB 社区](https://tidb.net/blog/b3740d1c)
 
-[专栏 - TPC-H 下 TiFlash 的扩展性测试报告 - v5.1.0 | TiDB 社区](https://tidb.io/blog/8d93cf4e)
+[专栏 - TPC-H 下 TiFlash 的扩展性测试报告 - v5.1.0 | TiDB 社区](https://tidb.net/blog/8d93cf4e)
 
 ## 运维实践
 
@@ -75,7 +75,7 @@ hide_title: true
 
 [【SOP 系列 24】TiKV/TiFlash 下线慢](https://asktug.com/t/topic/603526)
 
-[专栏 - TiUP 升级 TiFlash 重启失败解决方案 | TiDB 社区](https://tidb.io/blog/6bb6ec8f)
+[专栏 - TiUP 升级 TiFlash 重启失败解决方案 | TiDB 社区](https://tidb.net/blog/6bb6ec8f)
 
 ## 快来尝鲜 TiFlash 吧！
 

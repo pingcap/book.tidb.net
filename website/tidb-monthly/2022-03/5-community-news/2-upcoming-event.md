@@ -11,7 +11,7 @@ hide_title: true
 
 
 
-**[【征文大赛】TiDB 社区专栏第一届征文大赛，快来一次性集齐所有周边吧！](https://tidb.io/blog/ab7959f4)**
+**[【征文大赛】TiDB 社区专栏第一届征文大赛，快来一次性集齐所有周边吧！](https://tidb.net/blog/ab7959f4)**
 
 > TiDB 社区专栏第一届征文大赛来袭！只要你对 TiDB 产品感兴趣、有研究的 TiDBer 都可以来参加，在这里给你准备了非常多的主题供你选择，也可以说出你和 TiDB 的故事。
 
@@ -37,7 +37,7 @@ hide_title: true
 
 1、注册 TiDB 社区账号
 
-2、在 [专栏 ](https://tidb.io/blog)中发布技术文章
+2、在 [专栏 ](https://tidb.net/blog)中发布技术文章
 
 活动时间：2022.03.14-2022.05.31
 
