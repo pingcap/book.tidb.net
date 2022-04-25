@@ -1,9 +1,9 @@
 ---
-title: Placement Rules 体验
+title: 3. Placement Rules 体验
 hide_title: true
 ---
 
-# Placement Rules 体验
+# 3. Placement Rules 体验
 
 ## 基于 SQL 的数据放置规则
 

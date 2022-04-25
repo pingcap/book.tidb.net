@@ -1,6 +1,6 @@
 ---
-title: TiDB Demo Application
+title: 2. TiDB Demo Application
 hide_title: true
 ---
 
-# TiDB Demo Application
+# 2. TiDB Demo Application

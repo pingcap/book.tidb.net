@@ -1,9 +1,9 @@
 ---
-title: TiDB 可观测性 & 性能优化实践
+title: 4. TiDB 可观测性 & 性能优化实践
 hide_title: true
 ---
 
-# TiDB 可观测性 & 性能优化实践
+# 4. TiDB 可观测性 & 性能优化实践
 
 ## 面向非专家的可观测性
 

@@ -1,9 +1,9 @@
 ---
-title: TiDB 6.0 版本测评
+title: 1. TiDB 6.0 版本测评
 hide_title: true
 ---
 
-# TiDB 6.0 版本测评
+# 1. TiDB 6.0 版本测评
 
 在这一章节中，你可以将 TiDB 6.0 与以往版本进行对比测评，撰写相关文章。
 

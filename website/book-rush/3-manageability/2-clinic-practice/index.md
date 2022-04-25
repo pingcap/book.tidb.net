@@ -1,9 +1,9 @@
 ---
-title: Clinic 体验
+title: 2. Clinic 体验
 hide_title: true
 ---
 
-# Clinic 体验
+# 2. Clinic 体验
 
 PingCAP Clinic 诊断服务 Technical Preview 版本已经上线
 

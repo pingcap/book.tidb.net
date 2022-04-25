@@ -1,6 +1,6 @@
 ---
-title: TiDB Cloud DevTier 搭建
+title: 1. TiDB Cloud DevTier 搭建
 hide_title: true
 ---
 
-# TiDB Cloud DevTier 搭建
+# 1. TiDB Cloud DevTier 搭建

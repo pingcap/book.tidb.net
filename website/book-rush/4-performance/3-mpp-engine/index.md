@@ -1,9 +1,9 @@
 ---
-title: MPP 引擎计算性能提升
+title: 3. MPP 引擎计算性能提升
 hide_title: true
 ---
 
-# MPP 引擎计算性能提升
+# 3. MPP 引擎计算性能提升
 
 在 TiDB 6.0 中，通过支持更多函数和算子下推至 MPP 引擎，持续提升 MPP 引擎计算性能：
 

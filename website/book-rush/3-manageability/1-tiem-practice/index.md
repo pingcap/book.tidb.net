@@ -1,9 +1,9 @@
 ---
-title: TiEM 体验
+title: 1. TiEM 体验
 hide_title: true
 ---
 
-# TiEM 体验
+# 1. TiEM 体验
 
 TiDB Enterprise Manager (TiEM) 是一款以 TiDB 数据库为核心的企业级数据库管理平台，帮助用户在私有部署 (on-premises) 或公有云环境中管理 TiDB 集群。
 
