@@ -1,9 +1,9 @@
 ---
-title: HTAP 最佳实践
+title: 1. HTAP 最佳实践
 hide_title: true
 ---
 
-# HTAP 最佳实践
+# 1. HTAP 最佳实践
 
 ## 更成熟的 HTAP 能力
 
