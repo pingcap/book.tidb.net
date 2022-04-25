@@ -30,7 +30,7 @@ hide_title: true
 
 视频回顾：https://www.bilibili.com/video/BV1c5411S7Xu
 
-**【PingCAP Infra Meetup】No.148 深入解读 TiFlash**
+**【PingCAP Infra Meetup】No.147 深入解读 TiFlash 开源**
 
 4 月 1 日，TiDB 分析引擎 TiFlash 以 Apache 2.0 协议正式开源，至此 TiDB 完整的 HTAP 能力都已开源。大家对于 TiFlash 是否还有很多疑问：TiFlash 的研发和迭代经历了哪些思考，对于用户又有哪些价值？我们邀请到了 PingCAP 联合创始人兼 CTO 黄东旭、首席技术布道师马晓宇与大家分享 TiFlash 的前世今生及应用实践。
 
