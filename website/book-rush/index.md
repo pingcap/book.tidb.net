@@ -40,7 +40,6 @@ TiDB 6.0 Book Rush 将分为 TiDB 6.0 原理和特性，TiDB Developer 体验指
   - 7 月 22 日前将在 asktug 公布结果，并在 PingCAP DevCon 2022 颁奖
 
 
-
 ## 多重权益
 
 **权益一：TiDB 社区 100 经验值&积分**
