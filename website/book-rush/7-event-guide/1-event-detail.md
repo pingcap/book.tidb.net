@@ -1,8 +1,9 @@
 ---
-sidebar_position: 0
+title: TiDB 6.0 Book Rush！一起来分布式创作 6.0 的使用手册吧！
+hide_title: true
 ---
 
-# TiDB 6.0 Book Rush！
+# TiDB 6.0 Book Rush！一起来分布式创作 6.0 的使用手册吧！
 
 2020 年 3 月 TiDB 4.0 发布，48 小时分布式写一本书的疯狂念头把一群社区小伙伴聚在一起，造就了 TiDB 历史上第一本分布式创作的电子书—— 《[TiDB in Action](https://book.tidb.io/)》。这本书以 TiDB 4.0 版本为基础，介绍了 TiDB 的基本原理、安装部署与管理的实践，以及 Trouble Shooting 指南，是一本集合技术原理与实践指南的实用手册。这本书也成为了很多社区用户的 TiDB 入门指南，甚至有一些小伙伴默默地把它打印出来装订成册。
 
