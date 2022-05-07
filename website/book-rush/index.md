@@ -12,15 +12,13 @@ TiDB 6.0 Book Rush 将分为 TiDB 6.0 原理和特性，TiDB Developer 体验指
 
 https://forms.pingcap.com/f/BookRush
 
-
 ## 活动详情
 
-[TiDB 6.0 Book Rush！一起来分布式创作 6.0 的使用手册吧！](../../7-event-guide/1-event-detail.md)
-
+[TiDB 6.0 Book Rush！一起来分布式创作 6.0 的使用手册吧！](7-event-guide/1-event-detail.md)
 
 ## 贡献指南
-[TiDB 6.0 Book Rush 贡献指南](../../7-event-guide/2-contribute-guide.md)
 
+[TiDB 6.0 Book Rush 贡献指南](7-event-guide/2-contribute-guide.md)
 
 ## License
 
