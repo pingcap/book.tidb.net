@@ -7,9 +7,9 @@ hide_title: true
 
 2020 年 3 月 TiDB 4.0 发布，48 小时分布式写一本书的疯狂念头把一群社区小伙伴聚在一起，造就了 TiDB 历史上第一本分布式创作的电子书—— 《[TiDB in Action](https://book.tidb.io/)》。这本书以 TiDB 4.0 版本为基础，介绍了 TiDB 的基本原理、安装部署与管理的实践，以及 Trouble Shooting 指南，是一本集合技术原理与实践指南的实用手册。这本书也成为了很多社区用户的 TiDB 入门指南，甚至有一些小伙伴默默地把它打印出来装订成册。
 
-![img](media/github-screenshot.png)
+![img](../media/github-screenshot.png)
 
-![img](media/book-print.jpg)
+![img](../media/book-print.jpg)
 
 TiDB Book Rush 活动也铭刻在了很多社区小伙伴的记忆中，有人说“[这是数据库史上最浪漫的 36 小时](https://cdn.modb.pro/db/77946)”，让我们看到社区的力量如何将疯狂的想法变成现实。
 
@@ -53,14 +53,14 @@ TiDB 6.0 Book Rush 将分为 TiDB 6.0 原理和特性，TiDB Developer 体验指
 
 > “PingCAP DevCon”是由 PingCAP 举办的年度顶级数据技术盛会，大会已连续举办三年，成为观测开源产业、数据库前瞻趋势的风向标。
 
-![img](media/charge.jpeg)
+![img](../media/charge.jpeg)
 
 **权益三：TiDB 6.0 Book Rush 优秀贡献者，并在 DevCon 荣誉展示**
 
 - 完成测试，撰写测试体验类技术文章，文章入选 TiDB 6.0 Book Rush 即可获得
 - 奖励：TiDB Community 键盘，300 积分&经验值
 
-![img](media/keyboard.jpeg)
+![img](../media/keyboard.jpeg)
 
 **权益四：TiDB 6.0 荣誉体验官（限额 10 名），并在 DevCon 2022 现场颁奖**
 
@@ -74,7 +74,7 @@ TiDB 6.0 Book Rush 将分为 TiDB 6.0 原理和特性，TiDB Developer 体验指
 2. 重点体验 feature 的真实使用感受优先；
 3. 应用场景的可复制性强，文章中有关于收益/价值总结的描述；
 
-![img](media/applewatch7.png)
+![img](../media/applewatch7.png)
 
 
 
