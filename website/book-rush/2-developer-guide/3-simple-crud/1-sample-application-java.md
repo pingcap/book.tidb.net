@@ -3,6 +3,9 @@ title: TiDB 和 Java 的简单 CRUD 应用程序
 hide_title: true
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 <!-- markdownlint-disable MD024 -->
 <!-- markdownlint-disable MD029 -->
 
