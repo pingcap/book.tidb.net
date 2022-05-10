@@ -35,7 +35,7 @@ New data commitTs > New schema commitTs
 
 F1 Online Schema Change 机制要解决的核心问题是，在单存储多缓存节点的架构下，如何实现满足数据一致性的 Online Schema 变更，如图1所示：
 
-![img](https://lh5.googleusercontent.com/H8MBRq7fGb8YHm9-NmeBREaJWzEXVipiRXaZRD_UJ3j5b_kEFg1UAcpsYcP9yw3t9eLgRdruXHT4omEmHSqj4Onq8xEzVqnPH-Zi-vhLLyW8YgeBPvqRday5NnjtGapyiGJ2I5d8)
+![img](https://asktug.com/uploads/default/original/4X/e/4/7/e47e3e5f73613a776c4df476bb79d59e53ca27f1.png)
 
 ​                                                                         图1: 单存储多缓存节点的架构下的 schema 变更
 
@@ -51,7 +51,7 @@ F1 Online Schema Change 机制要解决的核心问题是，在单存储多缓�
 
 Schema 变更问题的特点 2 和特点 3 看起来是互相矛盾的死结，new schema 和 old schema 无法共存，但又必然共存。而 F1 Online Schema 机制提供的解决方案也很巧妙，改变不了结果就改变条件。所以该论文的解决思路上主要有2点，如图 2 所示：
 
-![img](https://lh5.googleusercontent.com/LepQZXI1XOLGzrMscBPOXJrzoDPHvtHi0TBi_CTQd4ebDfyKj8Wna1Ss6qTOa18-TqPhIwxuN4jK8buaMDTdRImQ-EAx_Chd0k5wRFx8kjUjsqzATAJylNoRkKNmvJwgcIR-gLu_)
+![img](https://asktug.com/uploads/default/optimized/4X/d/f/9/df970b209f26c52c236ed317eb03ed8a4ea12344_2_1228x998.png)
 
 ​                                                                                    图2: F1 Online DDL 解决方案
 
@@ -78,7 +78,7 @@ Schema 变更问题的特点 2 和特点 3 看起来是互相矛盾的死结，n
 
 我们可以看到 old schema 是无法看到索引信息的，所以会导致出现删除数据，遗留没有指向的索引这种数据多余的异常场景，所以我们要引入的第一个中间状态是 delete-only 状态，赋予 schema 删除索引的能力。在delete-only 状态下，schema 只能在 delete 操作的时候对索引进行删除，在 insert/select 操作的时候无法操作索引，如图3 所示：
 
-![img](https://lh6.googleusercontent.com/yUHaUr-Y_1RV-_1dRn5HkfMeSvUoe3qeYHOvVyWof9qSELPSX0W3lZgtlKaS8qHWdZW_JMC5B8Yi2wzcZhV3Tn_LVtD0moJvZXrhAn8XhvdvckWqRuXbdneadLkwnRwiRtij4Fxc)
+![img](https://asktug.com/uploads/default/original/4X/b/4/a/b4a7406aafb6d98b955491fa6d47e3a8a3655f4e.png)
 
 ​                                                                                          图3: 引入 delete-only 中间状态
 
@@ -86,7 +86,7 @@ Schema 变更问题的特点 2 和特点 3 看起来是互相矛盾的死结，n
 
 原始论文对于 delete-only 的定义如下：
 
-![img](https://lh4.googleusercontent.com/PiK3GRQF1dr9wT7gnzlSW27ptSkLqMQGnF9CfV9TymInZ9Jien7W6gCo9SEDiC_Pya74P3dZGawuxSiGwMrx64b9n892dVNBuPQBV3Obq6FTb7GIIp7K0MB--2-9wc7pHisJKBgp)
+![img](https://asktug.com/uploads/default/original/4X/e/9/5/e95da17a0c40f1d5a7fedd111eebfc2033dd02d3.png)
 
 假设我们已经引入了明确的隔离时间区间（下一个小节会细讲），能保证同一时刻最多只出现 2 个 schema 状态。所以当我们引入 delete-only 状态之后，需要考虑的场景就变成:
 
@@ -104,13 +104,13 @@ Schema 变更问题的特点 2 和特点 3 看起来是互相矛盾的死结，n
 
 在场景 2 中我们可以看到，对于 add index 这种场景，处于 new schema( delete-only) 状态节点插入的数据和存量数据都存在索引缺失的问题。而存量数据本身数量是确定且有限的，总可以在有限的时间内根据数据生成索引，但是 new insert 的数据却可能随时间不断增加。为了解决这个数据缺失的问题，我们还需要引入第二个中间状态 write-only 状态，赋予 schema insert/delete 索引的能力。处于 write-only 状态的节点可以 insert/delete/update 索引，但是 select 无法看到索引，如图4所示：
 
-![img](https://lh3.googleusercontent.com/sbboDTY-ksEZLESjiNyAzhmTWbdR6Caz91qyh0jEC4j62TWMA6Uy-bCXxsYPiOjAwuy8QM-z0zyavb2pvp3Kkzeiehzg4YlRUECbOIQDq_4gGUZ7bVAQQg36ruyFYRtjYjrDzyUt)
+![img](https://asktug.com/uploads/default/original/4X/5/c/a/5cab07501bc86e06a614c8a74cb5d9bc613fbe83.png)
 
 ​                                                                                    图4: 引入 write-only 状态
 
 原始论文中对于 write-only 状态的定义如下：
 
-![img](https://lh3.googleusercontent.com/mDVjbhG7FiJ3I92gBNKyQs8zEBbx1hHenXKai3ts9kGrcsOUXvVQqSKgNcB8VAlQmQWKFMJ4ZQyxjAcXCXp6hfUXeZOPZCJBIGUWwY_w-JujoMK0kZHUUsfkhdhA4f6HYhFwThf4)
+![img](https://asktug.com/uploads/default/original/4X/b/c/6/bc6143d5c00a0bdd84c3aa8095659d51e4912ff2.png)
 
 引入 write-only 状态之后，上述的场景 2 被切分成了场景 2‘ 和场景 3:
 
@@ -125,7 +125,7 @@ Schema 变更问题的特点 2 和特点 3 看起来是互相矛盾的死结，n
 
 通过上面对 delete-only 和 write-only 这两个中间状态的表述，我们可以看到，在 F1 Online DDL 流程中，原来的单步 schema 变更被两个中间状态分隔开了。每两个状态之间都是可以共存的，每次状态变更都能保证数据一致性，全流程的数据变更也能保证数据一致性。
 
-![img](https://lh6.googleusercontent.com/dK0CiWFXKcBVkWxt4_rPiQ-Dhhrz1jlzyf1B4X74KP3rjizLDMz9rmtyJG16yG0dLyuP_pSQK_Axey_trxU_IiQWyl9R38FCqfKWTXsFNw1PTjtzgz0icjCgB184xO7z84FPuz-L)
+![img](https://asktug.com/uploads/default/original/4X/c/9/c/c9c757069603a9630087714f89cc9414d52740a5.png)
 
 
 
@@ -138,7 +138,7 @@ Schema 变更问题的特点 2 和特点 3 看起来是互相矛盾的死结，n
 
 通过对服务层节点加载行为的约定，我们可以得到一个确定的时间边界，在 2*lease 的时间周期之后，所有正常工作的服务层节点都能从 schema state1 过渡到 schema state2, 如图5 所示：
 
-![img](https://lh5.googleusercontent.com/-_MPxH-x60keMRZhnUVC_L_95nTZlRGQ7k0TJnX5cFg8uot24JhMdhQ6dz96kB6sc8wD6yRdyQrf0HdnmwehmR7PjDlqYP6OzG2Ip_xzwjC3az-3v0aVyJl4gOXYQoDpNUz_VHol)
+![img](https://asktug.com/uploads/default/original/4X/d/e/b/debfb402dfdef297644a8a3bfc8cfcf954a38549.png)
 
 ​                                                   图5: 最多 2*lease 时长后所有的节点都能过渡到下一个状态
 
