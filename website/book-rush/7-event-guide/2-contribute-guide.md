@@ -74,7 +74,21 @@ hide_title: true
 
 ![](https://asktug.com/uploads/default/original/4X/6/7/d/67d11a7b8e4cb71fe1d6be3dcf3e258205a6855d.png) 
 
-#### 4.3 在二级目录下提交文章
+#### 4.3 md 文档格式
+下面通过第一章第 1 节中的占位文章来说明下 md 文档的基本格式：
+
+```
+---
+title: 欢迎投稿
+hide_title: true
+---
+```
+
+每个 md 文档中都必须添加这个表头，title 部分的文字可以自定义，对应了左侧目录栏中的章节显示，一级标题对应了右侧电子书中文章的大标题。
+
+更多格式可查看 Docusaurus 的 Markdown 特性：https://docusaurus.io/zh-CN/docs/markdown-features
+
+#### 4.4 在二级目录下提交文章
 
 1. 第一步：找到你要上传的目录地址，在这个目录下点击“Upload files”
 
