@@ -4,12 +4,14 @@
 const lightCodeTheme = require("prism-react-renderer/themes/github");
 const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
+const BASE_URL = process.env.BASE_URL || `/book/`;
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "TiDB Books",
   tagline: "TiDB Books",
   url: "https://tidb.net",
-  baseUrl: "/book/",
+  baseUrl: BASE_URL,
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/book_favicon.png",
@@ -88,7 +90,7 @@ const config = {
         logo: {
           alt: "TiDB | Community Logo",
           src: "img/logo.svg",
-          href: "/book/tidb-monthly",
+          href: `/tidb-monthly`,
         },
         items: [
           {
