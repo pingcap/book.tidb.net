@@ -150,7 +150,7 @@ Schema 变更问题的特点 2 和特点 3 看起来是互相矛盾的死结，n
 
 总得来说，中间状态的 delete/insert 可见性是内部可见性，具体而言是服务层节点对存储层节点的可见性，而不是用户可见性。对于 add column 这个 DDL，服务层节点在 delete-only 和 write-only 状态下就能看到 new column，但是操作受到不同的限制。对用户而言，只有到 new schema 状态下才能看到 new column，才能显式操作 new column，如图 6 所示：
 
-![img](https://lh6.googleusercontent.com/4zq6FdrxiUCB5ulyNn5PPyfi7Yo-glOp0wD0iTy_W021-7nVWfwcykTR-EllQhTQnbXHcRLKHKISRBLygQXLPPMZ6Ry-DgOfZACGg1AC_blPeelfYrraAZBQorjLfju1feXIIw0a)
+![img](https://asktug.com/uploads/default/original/4X/7/b/f/7bf6db1eb69d4da459634936f47bf447501a7678.png)
 
 ​                                                                                        图6: 中间状态可见性
 
@@ -158,9 +158,9 @@ Schema 变更问题的特点 2 和特点 3 看起来是互相矛盾的死结，n
 
 为了清晰表述可见性，我们举个例子，如图 7 所示。原始的表列信息为 <c1>, DDL 操作之后表列信息为 <c1,c2>。
 
-![img](https://lh3.googleusercontent.com/vWwq3dFTQZzHgUcwno10MeJwBMJTRWpaca3Xw7QYXHlVNZFAqBzZ96xSCCVbYUIXCVI7oxoKrKzWHyYA_HRBVQV6A4mGBCQoL2JgkxBO2MK2Eorj6TBv2cWCHhhbYHumQKeZ5Tfj)
+![img](https://asktug.com/uploads/default/original/4X/8/e/5/8e50ba666bfb6a17a74c79be50e98d81c77939df.png)
 
-![img](https://lh5.googleusercontent.com/eme0guTtlyX_rsoo-WoKKJ3BUlK95XfIGxAOupsA1JpA28gEEixglBJMtJF2qyFazegskeeCkDVjHNXqMhJPA6QJ2Gx-2cPjBGN0I01kRlkNsTkOYg-ugnwKxAcZpCNlSZBQH7Ij)
+![img](https://asktug.com/uploads/default/original/4X/d/e/d/deda6d139e2c02a304487dc4a1c6c8f5b079e55e.png)
 
 ​                                                                                          图7: 中间状态过渡
 
@@ -175,7 +175,7 @@ Schema 变更问题的特点 2 和特点 3 看起来是互相矛盾的死结，n
 
 上面我们通过 3 个小节对 F1 online Schema 机制进行了简要描述。原来单步 schema 变更被拆解成了多个中间变更流程，从而保证数据一致性的前提下实现了在线 DDL 变更。
 
-![img](https://lh6.googleusercontent.com/McK30ESPAeCbgyBlO4lkq4CQVRXjwY4MYTCaYKjCm7nggf95EAW3WwavIT-NfkHE9yCp6sJyiUPnnpsF-xOtF01iXvSYNJuv111Go8p4yxoLttd1gAylVUJjqAUwWCLLc-ZcQqn1)
+![img](https://asktug.com/uploads/default/original/4X/a/8/e/a8e602c9ba08b7bb6ec33ca7c703ce5f1016ed63.png)
 
 对于 add index 或者 add column DDL 是上述的状态变更，对于 drop index 或者 drop column 则是完全相反的过程。比如 drop column 在 write-only 阶段及之后对用户都不可见了，内部可以正确 insert/delete，可见性和之前的论述完全一样。
 
@@ -185,7 +185,7 @@ Schema 变更问题的特点 2 和特点 3 看起来是互相矛盾的死结，n
 
 TiDB Online DDL 是基于 F1 Online Schema 实现的，整体流程如图8 所示：
 
-![img](https://lh5.googleusercontent.com/wTuiX1R1Yr00y5WBniqCUYeQavU18-5PlYSYLRWMiTCLt0Jn6AyXOEx-TKcctNpocIka2p_WCMUqnG8rjkXpEcAUAMRFKP5MlDO63yZtugFLyX41eAM0_f3VQ_5PA96adm0Zr9lh)
+![img](https://asktug.com/uploads/default/original/4X/d/4/7/d470bf51f975ee670fd1c4cdad08a62a79e472ce.png)
 
 ​                                                           图8 TiDB Online DDL 流程
 
