@@ -156,7 +156,7 @@ Schema 变更问题的特点 2 和特点 3 看起来是互相矛盾的死结，n
 
 
 
-为了清晰表述可见性，我们举个例子，如图 7 所示。原始的表列信息为 <c1>, DDL 操作之后表列信息为 <c1,c2>。
+为了清晰表述可见性，我们举个例子，如图 7 所示。原始的表列信息为 ``<c1>``, DDL 操作之后表列信息为 ``<c1,c2>``。
 
 ![img](https://asktug.com/uploads/default/original/4X/8/e/5/8e50ba666bfb6a17a74c79be50e98d81c77939df.png)
 
@@ -164,8 +164,8 @@ Schema 变更问题的特点 2 和特点 3 看起来是互相矛盾的死结，n
 
 ​                                                                                          图7: 中间状态过渡
 
-- 小图(1) 中，服务层节点已经过渡到了场景1，部分节点处于 old schema 状态，部分节点处于 new schema(delete-only) 状态。此时 c2 对用户是不可见的，不管是 insert<c1,c2> 还是 delete<c1,c2> 的显式指定 c2 都是失败的。但是存储层如果存在 [1,xxx] 这样的数据是可以顺利删除的，只能插入 [7] 这样的缺失 c2 的行数据。
-- 小图(2) 中，服务层节点已经过渡到了场景2，部分节点处于 new schema(delete-only) 状态，部分节点处于 new schema(write-only) 状态，此时 c2 对用户仍是不可见的，不管是 insert<c1,c2> 还是 delete<c1,c2> 的显式指定 c2 都是失败的。但是处于 write-only 状态的节点，insert [9] 在内部会被默认值填充成 [9,0] 插入存储层。处于 delete-only 状态的节点，delete [9] 会被转成 delete [9,0]。
+- 小图(1) 中，服务层节点已经过渡到了场景1，部分节点处于 old schema 状态，部分节点处于 new schema(delete-only) 状态。此时 c2 对用户是不可见的，不管是 ``insert<c1,c2>`` 还是 ``delete<c1,c2>`` 的显式指定 c2 都是失败的。但是存储层如果存在 [1,xxx] 这样的数据是可以顺利删除的，只能插入 [7] 这样的缺失 c2 的行数据。
+- 小图(2) 中，服务层节点已经过渡到了场景2，部分节点处于 new schema(delete-only) 状态，部分节点处于 new schema(write-only) 状态，此时 c2 对用户仍是不可见的，不管是 ``insert<c1,c2>`` 还是 ``delete<c1,c2>`` 的显式指定 c2 都是失败的。但是处于 write-only 状态的节点，insert [9] 在内部会被默认值填充成 [9,0] 插入存储层。处于 delete-only 状态的节点，delete [9] 会被转成 delete [9,0]。
 - 小图(3) 中，服务层所有节点都过渡到 write-only 之后，c2 对用户仍是不可见的。此时开始进行数据填充，将历史数据中缺失 c2 的行进行填充(实现时可能只是在表的列信息中打上一个标记，取决于具体的实现)。
 - 小图(4) 中，开始过渡到场景3，部分节点处于 new schema(write-only) 状态，部分节点处于 new schema 状态。处于 new schema(write-only) 状态的节点，c2 对用户仍是不可见的。处于 new schema 状态的节点，c2 对用户可见。此时连接在不同服务层节点上的用户，可以看到不同的的 select 结果，不过底层的数据是完整且一致的。
 
