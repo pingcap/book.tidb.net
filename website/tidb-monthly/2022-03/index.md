@@ -1,7 +1,7 @@
 ---
 title: 2022 年 3 月刊
 hide_title: true
-sidebar_position: 10
+sidebar_position: 11
 ---
 
 # TiDB 社区技术月刊 - 2022 年 3 月
