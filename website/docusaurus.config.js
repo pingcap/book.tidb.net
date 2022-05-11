@@ -18,6 +18,11 @@ const config = {
   organizationName: "pingcap", // Usually your GitHub org/user name.
   projectName: "book.tidb.net", // Usually your repo name.
 
+  i18n: {
+    defaultLocale: "zh-Hans",
+    locales: ["zh-Hans"],
+  },
+
   presets: [
     [
       "classic",
