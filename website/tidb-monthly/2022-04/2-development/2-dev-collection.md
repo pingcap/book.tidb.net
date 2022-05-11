@@ -1,5 +1,5 @@
 ---
-title: 开发者手册概览
+title: TiDB 应用开发专区 & 干货合集
 hide_title: true
 ---
 
