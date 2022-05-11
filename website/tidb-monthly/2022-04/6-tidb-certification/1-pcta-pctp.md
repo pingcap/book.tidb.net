@@ -15,13 +15,7 @@ hide_title: true
 
 ## PCTA 考试安排
 
-- [【即将开启报名】PCTA 认证考试（2022-04-28）](https://learn.pingcap.com/learner/exam-market/detail/1020002)
-  - 报名时间：2022-04-09 至 2022-04-25
-  - 考试时间：2022-04-28 20:00 至 21:05
-- [【即将开启报名】PCTA 认证考试（2022-05-12）](https://learn.pingcap.com/learner/exam-market/detail/1050002)
-  - 报名时间：2022-04-23 至 2022-05-09
-  - 考试时间：2022-05-12 20:00 至 21:05
-- [【即将开启报名】PCTA 认证考试（2022-05-26）](https://learn.pingcap.com/learner/exam-market/detail/1080001)
+- [【报名中】PCTA 认证考试（2022-05-26）](https://learn.pingcap.com/learner/exam-market/detail/1080001)
   - 报名时间：2022-05-07 至 2022-05-23
   - 考试时间：2022-05-26 20:00 至 21:05
 - [【即将开启报名】PCTA 认证考试（2022-06-09）](https://learn.pingcap.com/learner/exam-market/detail/1050001)
@@ -33,10 +27,7 @@ hide_title: true
 
 ## PCTP 考试安排
 
-- [【报名中】PCTP 认证考试（2022-04-20）](https://learn.pingcap.com/learner/exam-market/detail/1110002)
-  - 报名时间：2022-03-26 至 2022-04-18
-  - 考试时间：2022-04-20 19:30 至 19:45
-- [【即将开启报名】PCTP 认证考试（2022-05-18）](https://learn.pingcap.com/learner/exam-market/detail/1020004)
+- [【报名中】PCTP 认证考试（2022-05-18）](https://learn.pingcap.com/learner/exam-market/detail/1020004)
   - 报名时间：2022-04-16 至 2022-05-16
   - 考试时间：2022-05-18 19:30 至 19:45
 - [【即将开启报名】PCTP 认证考试（2022-06-15）](https://learn.pingcap.com/learner/exam-market/detail/1170001)
