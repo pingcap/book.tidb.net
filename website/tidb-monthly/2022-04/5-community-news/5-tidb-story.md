@@ -23,7 +23,7 @@ hide_title: true
 
 能够投入到这么前沿的技术领域中，我认为是一件幸运的事。
 
-![WeChat Image_20220405213840.jpg](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/WeChat Image_20220405213840-1649166143171.jpg)
+![WeChat Image_20220405213840.jpg](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/WeChat%20Image_20220405213840-1649166143171.jpg)
 
 
 
@@ -39,7 +39,7 @@ hide_title: true
 
 从一个小白到能够熟练使用，真实的项目环境以及面对各种各样的问题无疑是最快的提升方式，在和官方的合作中也得到了很多PingCAP大佬的指点，受益匪浅。在这些项目中，我走过凌晨3点空荡荡的街道也熬过通宵睡过椅子，去过好多个城市也喜提过红码隔离。
 
- ![WeChat Image_20220405204959.jpg](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/WeChat Image_20220405204959-1649166311256.jpg)
+ ![WeChat Image_20220405204959.jpg](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/WeChat%20Image_20220405204959-1649166311256.jpg)
 
 我相信每一位热爱写代码的人都有这么一个愿望，就是希望自己写的代码能够运行在成千上万的设备上影响着用户，之于微信QQ一样。但是我着实比较菜运气也不够好，通过写代码的方式实现这个愿望遥遥无期。直到我亲手把打磨了半个多月的TiDB投产到服务了1千多万用户的生产环境当中，看到每天早上业务开始慢慢进来，热力图像黑夜一样开始变亮，有种感觉我的愿望被TiDB实现了。
 
@@ -51,7 +51,7 @@ hide_title: true
 
 时隔几个月，虽然过程很艰苦，我总是会怀念和小伙伴们一起战斗的感觉。
 
-![WeChat Image_20220405205016.jpg](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/WeChat Image_20220405205016-1649166431653.jpg)
+![WeChat Image_20220405205016.jpg](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/WeChat%20Image_20220405205016-1649166431653.jpg)
 
 > 🌚 吐槽时间
 
@@ -77,7 +77,7 @@ hide_title: true
 
 2021年7月的DevCon大会是一场大型网友见面会，我在大会上见到了版主团队的其他成员，还有号称技术小白的表妹。这种感觉就像，每一位用户或者说TiDB爱好者都离社区和产品很近，说不定擦肩而过的人就是曾经帮你解决问题的某个大佬，CTO会亲自下场带大家写代码，和大家一起当选手参加Hackathon比赛，CEO会经常关注社区用户的声音回复你的问题。从老板到一线运营人员，大家都不遗余力地在做社区这件事情，从诞生之初这就是TiDB特有的基因。
 
-![WeChat Image_20220405205010.jpg](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/WeChat Image_20220405205010-1649166499116.jpg)
+![WeChat Image_20220405205010.jpg](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/WeChat%20Image_20220405205010-1649166499116.jpg)
 
 表妹对我们版主团队简直不能再好，各种TIDB周边礼物管够，有新周边准备上架先给我们尝鲜，每逢过节也费尽心思给我们准备礼物手写感谢信。以至于被某位版主家属“抱怨”，是不是加入了什么非法组织，三天两头就收到奇怪的快递。保守估计，我收到的TiDB周边起码50件以上，我就这么凡尔赛的说了，大家有的周边版主都有，大家没有的我们也有。
 
@@ -87,7 +87,7 @@ hide_title: true
 
 某天晚上我把放在家里的礼物整理了一下，满满地堆了一桌子，这还不包括我转送给别人还有放在公司的那部分，估计P社的同学看了也要投来羡慕的目光。
 
-![WeChat Image_20220405214913.jpg](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/WeChat Image_20220405214913-1649166593133.jpg)
+![WeChat Image_20220405214913.jpg](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/WeChat%20Image_20220405214913-1649166593133.jpg)
 
 你以为表妹只会整这些物质奖励收买人心？那必然不是，除了丰富的周边，表妹还给我们争取了太多太多学习特权，比如版主资料库、P社员工才能访问的Knowledge Base、PE课程永久观看、免费考试资格、每月一次的直面产研大佬的交流会等等等等。
 
