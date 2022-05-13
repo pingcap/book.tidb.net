@@ -203,10 +203,10 @@ const config = {
             ],
           },
           {
-            title: "More",
+            title: "更多",
             items: [
               {
-                label: "Mail",
+                label: "邮件",
                 href: "mailto:user-zh@tidb.io",
               },
               {
@@ -227,6 +227,7 @@ const config = {
         darkTheme: darkCodeTheme,
       },
     }),
+  scripts: [`https://hm.baidu.com/hm.js?2321846dd5ff3a4f0ffeef2e2a25e218`],
 };
 
 module.exports = config;
