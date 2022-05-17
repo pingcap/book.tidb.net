@@ -16,9 +16,13 @@ https://forms.pingcap.com/f/BookRush
 
 [TiDB 6.0 Book Rush！一起来分布式创作 6.0 的使用手册吧！](7-event-guide/1-event-detail.md)
 
+## 文章构思指南
+
+[TiDB 6.0 Book Rush 文章构思指南](7-event-guide/2-article-guide.md)
+
 ## 贡献指南
 
-[TiDB 6.0 Book Rush 贡献指南](7-event-guide/2-contribute-guide.md)
+[TiDB 6.0 Book Rush 贡献指南](7-event-guide/3-contribute-guide.md)
 
 ## License
 
