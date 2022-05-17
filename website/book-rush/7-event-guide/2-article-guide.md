@@ -158,7 +158,7 @@ hide_title: true
 
 接下来，如果你的文章通过 Book Rush Reviewer 小组的审核，最终入选了电子书，请按照以下的指引去提交 pr，你的文章就可以在电子书的页面展示啦！
 
-- PR 贡献指南：[TiDB 6.0 Book Rush 贡献指南](./3-contribute-guide.md)
+- PR 贡献指南：[TiDB 6.0 Book Rush 贡献指南](3-contribute-guide.md)
 
 
 ## TiDB 6.0 Book Rush 已投稿文章
