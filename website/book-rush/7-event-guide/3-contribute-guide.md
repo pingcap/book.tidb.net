@@ -122,7 +122,7 @@ Fork 成功后，点击右侧用户名下拉列表，进入 Your repositories �
 
 #### 5.3 描述 pr 提交内容，完成 pr 创建
 
-然后，在跳出的页面中简明扼要的描述你要提交的内容，然后点击“Create pull request”，pr 即创建成找
+然后，在跳出的页面中简明扼要的描述你要提交的内容，然后点击“Create pull request”，pr 即创建成功。
 
 ![](https://asktug.com/uploads/default/original/4X/2/e/8/2e894e006f7bf361e4bb1334f495b78a00f8c3cb.png) 
 
