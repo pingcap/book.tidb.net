@@ -228,6 +228,7 @@ const config = {
       },
     }),
   scripts: [`https://hm.baidu.com/hm.js?2321846dd5ff3a4f0ffeef2e2a25e218`],
+  clientModules: [require.resolve("./myClientModule.ts")],
 };
 
 module.exports = config;
