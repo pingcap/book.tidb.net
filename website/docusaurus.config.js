@@ -28,16 +28,13 @@ const config = {
       "classic",
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
-        // docs: {
-        //   sidebarPath: require.resolve("./sidebars.js"),
-        //   path: "monthly",
-        //   routeBasePath: "/monthly",
-        //   // Please change this to your repo.
-        //   // editUrl: "https://github.com/pingcap/book.tidb.net/tree/main/website",
-        // },
         docs: false,
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
+        },
+        gtag: {
+          trackingID: "G-5FQSB5GH7F",
+          anonymizeIP: true,
         },
       }),
     ],
