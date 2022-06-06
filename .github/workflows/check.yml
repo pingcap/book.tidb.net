@@ -1,4 +1,4 @@
-name: CI - Check
+name: Check
 
 on:
   pull_request:
@@ -17,7 +17,6 @@ jobs:
           node-version: 16
 
       - run: |
-        cd website
-        yarn
-        yarn build
-
+          cd website
+          yarn
+          yarn build
