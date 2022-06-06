@@ -5,7 +5,7 @@ hide_title: true
 
 # 体验 TiSpark 基于 TiDB v6.0 (DMR) 最小实践
 
->By 边城元元 (https://tidb.net/u/边城元元/post/all)
+>By [边城元元](https://tidb.net/u/边城元元/post/all)
 
 ### 一、概述
 
