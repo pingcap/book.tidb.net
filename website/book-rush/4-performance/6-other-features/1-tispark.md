@@ -4,7 +4,7 @@ hide_title: true
 ---
 
 # 体验 TiSpark 基于 TiDB v6.0 (DMR) 最小实践
-
+>By 边城元元 (https://tidb.net/u/边城元元/post/all)
 ### 一、概述
 
 正值 TiDB v6.0 (DMR) 发布，本地虚拟机体验一把 TiSpark ，感受一下 TiDB 的强大！
