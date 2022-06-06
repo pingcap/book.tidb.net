@@ -12,13 +12,14 @@ hide_title: true
 ![](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/640-1651036221985.png)
 
 本系列会聚焦在 TiFlash 自身，读者需要有一些对 TiDB 基本的知识。可以通过这三篇文章了解 TiDB 体系里的一些概念[《说存储》](https://pingcap.com/zh/blog/tidb-internal-1)、[《说计算》](https://pingcap.com/zh/blog/tidb-internal-2)、[《谈调度》](https://pingcap.com/zh/blog/tidb-internal-3)。
-今天的主角 -- TiFlash 是 TiDB HTAP 形态的关键组件，它是 TiKV 的列存扩展，通过 Raft Learner 协议异步复制，但提供与 TiKV 一样的快照隔离支持。我们用这个架构解决了 HTAP 场景的隔离性以及列存同步的问题。自 5.0 引入 MPP后，也进一步增强了 TiDB 在实时分析场景下的计算加速能力。
+本文的主角 -- TiFlash 是 TiDB HTAP 形态的关键组件，它是 TiKV 的列存扩展，通过 Raft Learner 协议异步复制，但提供与 TiKV 一样的快照隔离支持。我们用这个架构解决了 HTAP 场景的隔离性以及列存同步的问题。自 5.0 引入 MPP后，也进一步增强了 TiDB 在实时分析场景下的计算加速能力。
 
 ![](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/640-1-1651036241039.png)
 
-上图描述了 TiFlash 整体逻辑模块的划分，通过 Raft Learner Proxy 接入到 TiDB 的 multi-Raft 体系中。我们可以对照着 TiKV 来看：计算层的 MPP 能够在 TiFlash 之间做数据交换，拥有更强的分析计算能力；作为列存引擎，我们有一个 schema 的模块负责与 TiDB 的表结构进行同步，将 TiKV 同步过来的数据转换为列的形式，并写入到列存引擎中；最下面的一块，是稍后会介绍的列存引擎，我们将它命名为 DeltaTree 引擎。
+上图描述了 TiFlash 整体逻辑模块的划分。我们可以对照着 TiKV 来看：TiFlash 整体通过 Raft Learner Proxy 接入到 TiDB 的 multi-Raft 体系中；计算层的 MPP 能够在 TiFlash 之间做数据交换，拥有更强的分析计算能力；作为列存引擎，我们有一个 schema 的模块负责与 TiDB 的表结构进行同步，将 TiKV 同步过来的数据转换为列的形式，并写入到列存引擎中；最下面的一块，是稍后会介绍的列存引擎，我们将它命名为 DeltaTree 引擎。
 有持续关注 TiDB 的用户可能之前阅读过 [《TiDB 的列式存储引擎是如何实现的？》](https://pingcap.com/zh/blog/how-tidb-implements-columnar-storage-engine/) 这篇文章，随着 TiFlash 开源，也有新的用户想更多地了解 TiFlash 的内部实现。这篇文章会从更接近代码层面，来介绍 TiFlash 内部实现的一些细节。
-这里是 TiFlash 内一些重要的模块划分以及它们对应在代码中的位置。在今天的分享和后续的系列里，会逐渐对里面的模块开展介绍。
+
+下面是 TiFlash 内一些重要的模块划分以及它们对应在代码中的位置。在后续的源码解读系列里，会逐渐对里面的模块开展介绍。
 
 ```
 # TiFlash 模块对应的代码位置
@@ -39,9 +40,8 @@ dbms/
     └── TestUtils # Unittest 辅助类
 ```
 
-
 ## 二、TiFlash 中的一些基本元素抽象
-TiFlash 这款引擎的代码是 18 年从 ClickHouse fork 下来的。ClickHouse 为 TiFlash 提供了一套性能十分强劲的向量化执行引擎，我们将其当做 TiFlash 的单机的计算引擎使用。在此基础上，我们增加了针对 TiDB 前端的对接，MySQL 兼容，Raft 协议和集群模式，实时更新列存引擎，MPP 架构等等。虽然和原本的 ClickHouse 已经完全不是一回事，但代码自然地 TiFlash 代码继承自 ClickHouse，也沿用着 CH 的一些抽象。比如：
+TiFlash 这款引擎的代码是 18 年从 ClickHouse fork 下来的。ClickHouse (以下简称为 CH) 为 TiFlash 提供了一套性能十分强劲的向量化执行引擎，我们将其当做 TiFlash 的单机的计算引擎使用。在此基础上，我们增加了针对 TiDB 前端的对接，MySQL 兼容，Raft 协议和集群模式，实时更新列存引擎，MPP 架构等等。虽然和原本的 CH 已经完全不是一回事，但代码自然地 TiFlash 代码继承自 CH，也沿用着 CH 的一些抽象。比如：
 IColumn 代表内存里面以列方式组织的数据。IDataType 是数据类型的抽象。Block 则是由多个 IColumn 组成的数据块，它是执行过程中，数据处理的基本单位。
 在执行过程中，Block 会被组织为流的形式，以 BlockInputStream 的方式，从存储层 “流入” 计算层。而 BlockOutputStream，则一般从执行引擎往存储层或其他节点 “写出” 数据。
 IStorage 则是对存储层的抽象，定义了数据写入、读取、DDL 操作、表锁等基本操作。
@@ -49,7 +49,7 @@ IStorage 则是对存储层的抽象，定义了数据写入、读取、DDL 操�
 ![](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/640-2-1651036295848.png)
 
 ## 三、DeltaTree 引擎
-虽然 TiFlash 基本沿用了 ClickHouse (以下简称为 CH) 的向量化计算引擎，但是存储层最终没有沿用 CH 的 MergeTree 引擎，而是重新研发了一套更适合 HTAP 场景的列存引擎，我们称为 DeltaTree，对应代码中的 "StorageDeltaMerge"。
+虽然 TiFlash 基本沿用了 ClickHouse 的向量化计算引擎，但是存储层最终没有沿用 CH 的 MergeTree 引擎，而是重新研发了一套更适合 HTAP 场景的列存引擎，我们称为 DeltaTree，对应代码中的 "StorageDeltaMerge"。
 
 ### 3.1 DeltaTree 引擎解决的是什么问题
 A. 原生支持高频率数据写入，适合对接 TP 系统，更好地支持 HTAP 场景下的分析工作。
