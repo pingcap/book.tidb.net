@@ -3,9 +3,11 @@ title: 内存悲观锁原理浅析与实践
 hide_title: true
 ---
 
+# 内存悲观锁原理浅析与实践
+
 > 本文作者：jiyf, 开源 NewSQL 爱好者，目前就职于天翼云，社区资深用户，[asktug 主页](https://tidb.net/u/jiyf/post/all)
 
-# 背景
+## 背景
 
 在 v6.0.0 版本，针对悲观事务引入了[内存悲观锁](https://docs.pingcap.com/zh/tidb/v6.0/pessimistic-transaction#内存悲观锁)的优化（In-memory lock），从压测数据来看，带来的性能提升非常明显（Sysbench 工具压测 oltp_write_only 脚本）。
 
@@ -14,7 +16,7 @@ hide_title: true
 
 TiDB 事务模型从最初的乐观事务到悲观事务；在悲观事务上，又针对悲观锁进行的 ”[Pipelined 写入](https://docs.pingcap.com/zh/tidb/v6.0/pessimistic-transaction#pipelined-加锁流程)“ 和 ”In-memory lock“ 优化，从功能特性上可以看出演进过程（参考[TiDB 事务概览](https://docs.pingcap.com/zh/tidb/v6.0/transaction-overview)）。
 
-## 乐观事务
+### 乐观事务
 
 乐观事务在提交时，可能因为并发写造成写写冲突，不同设置会出现以下两种不同的现象：
 
@@ -55,7 +57,7 @@ ERROR 9007 (HY000): Write conflict, txnStartTS=433599424403603460, conflictStart
 1. T2 提示 affected rows 显示为 1 行，删除的是仅有的 id = 1 的记录，但是实际提交时候，删除的是 id 为 2 和 3 的两条记录，实际的 affected rows 是 2 行，参考博客[TiDB 新特性漫谈：悲观事务](https://pingcap.com/zh/blog/pessimistic-transaction-the-new-features-of-tidb)。
 2. 破坏[可重复读的隔离级别](https://docs.pingcap.com/zh/tidb/dev/transaction-isolation-levels)，参考下[重试的局限性](https://docs.pingcap.com/zh/tidb/dev/optimistic-transaction#重试的局限性)的说明，在使用重试时，要判断好是否会影响业务的正确性。
 
-## 悲观事务
+### 悲观事务
 
 针对乐观事务存在的问题，悲观事务通过在执行 DML 过程中加悲观锁，来达到与传统数据库的行为：
 
@@ -67,7 +69,7 @@ ERROR 9007 (HY000): Write conflict, txnStartTS=433599424403603460, conflictStart
 - 悲观锁写入 TiKV，增加了 RPC 调用流程并同步等待悲观锁写入成功，导致 DML 时延增加
 - 悲观锁信息会通过 raft 写入多个副本，给 TiKV raftstore、磁盘等带来处理压力
 
-### pipelined
+#### pipelined
 
 针对悲观锁带来的时延增加问题，在 TiKV 层增加了 pipelined 加锁流程优化，优化前后逻辑对比：
 
@@ -76,7 +78,7 @@ ERROR 9007 (HY000): Write conflict, txnStartTS=433599424403603460, conflictStart
 
 异步 lock 信息 raft 写入流程后，从用户角度看，悲观锁流程的时延降低了；但是从 TiKV 负载的角度，并没有节省开销。
 
-### in-memory
+#### in-memory
 
 pipelined 优化只是减少了 DML 时延，lock 信息跟优化前一样需要经过 raft 写入多个 region 副本，这个过程会给 raftstore、磁盘带来负载压力。
 
@@ -92,7 +94,7 @@ pipelined 优化只是减少了 DML 时延，lock 信息跟优化前一样需要
 - 降低磁盘的使用带宽
 - 降低 raftstore CPU 消耗
 
-# 实现原理
+## 实现原理
 
 引用下内存悲观锁 RFC [In-memory Pessimistic Locks](https://github.com/tikv/rfcs/blob/master/text/0077-in-memory-pessimistic-locks.md) 的介绍：
 
@@ -115,7 +117,7 @@ in-memory lock 跟非优化前相比，不会破坏数据一致性，具体的�
   - 对于 write 操作，事务提交 prewrite 阶段会检查版本冲突，有冲突会因为冲突提交失败，没冲突正常提交
   - 对于 read 操作，同上面 follower read，悲观锁不会影响读
 
-## 锁丢失
+### 锁丢失
 
 in-memory 悲观锁的设计初衷是在收益与付出之间做的权衡：
 
@@ -164,7 +166,7 @@ mysql> commit;
 
 **如果对于成功率和事务过程中执行返回结果有强需求或者依赖的业务，可选择关闭内存锁（以及 pipelined 写入）模式。**
 
-## 开启 in-memory
+### 开启 in-memory
 
 TiKV 配置文件：
 
@@ -185,15 +187,9 @@ in-memory = true
 
 Grafana 查看 in-memory lock 的写入情况，在 {clusterName}-TiKV-Details->Pessimistic Locking 标签下：
 
-
-
 ![in-memory-success.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/in-memory-success-1654072012188.png)
 
-
-
-
-
-## 内存限制
+### 内存限制
 
 **每个 region 的 in-memory 锁内存固定限制为 512 KiB，如果当前 region 悲观锁内存达到限制，新的悲观锁写入将回退到 pipelined 加锁流程（在典型 TP 场景下，很少会超过这个限制）。**
 
@@ -206,27 +202,15 @@ Query OK, 10000000 rows affected (3.26 sec)
 Rows matched: 10000000  Changed: 10000000  Warnings: 0
 ```
 
-
-
 ![in-memory-full.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/in-memory-full-1654072031389.png)
-
-
-
-
 
 由于大量悲观锁写入，悲观锁内存达到限制值，监控中 full 值大量出现。
 
-
-
 ![rocks-locks.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/rocks-locks-1654072047807.png)
-
-
-
-
 
 回退到 pipelined 写入流程，通过 raft 写入多副本，Rockdb 的 lock CF 出现 lock 信息，在 {clusterName}-TiKV-Details->RocksDB - kv 标签下。
 
-# 性能测试
+## 性能测试
 
 对乐观锁、悲观锁、pipelined 写入、in-memory lock 进行压力测试。
 
@@ -261,23 +245,11 @@ TiDB、pd 独立部署，均为高配置服务器，其中 TiDB 节点足够多�
 
 **压测结果 TPS：**
 
-
-
 ![oltp_write_only_TPS.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/oltp_write_only_TPS-1654072061337.png)
-
-
-
-
 
 **压测结果 Latency:**
 
-
-
 ![oltp_write_only_LATENCY.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/oltp_write_only_LATENCY-1654072074237.png)
-
-
-
-
 
 从压测结果上来看：
 
@@ -286,17 +258,11 @@ TiDB、pd 独立部署，均为高配置服务器，其中 TiDB 节点足够多�
 - 随着并发数增大，TiKV 磁盘 iops、带宽很快增长，pessimistic 和 pipelined 磁盘负载较早出现压力，后面时延增加较快，对应 TPS 增长相对缓慢
 - 当接近 TiKV 磁盘性能瓶颈时，in-memory 和 optimistic 能支撑集群更大的 TPS。
 
-## 悲观锁优化
+### 悲观锁优化
 
 对比下 in-memory、pipelined 两个特性，对于悲观锁的性能提升。
 
-
-
 ![oltp_write_only_tps_promotion.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/oltp_write_only_tps_promotion-1654072090788.png)
-
-
-
-
 
 **TPS 提升：**
 
@@ -305,13 +271,7 @@ TiDB、pd 独立部署，均为高配置服务器，其中 TiDB 节点足够多�
   - 高并发下，减少磁盘 io 压力、减少了 raftstore 压力
 - pipelined 提升在 10% 左右，在较小并发时异步写入 Latency 减少，支撑了较大的 TPS 提升；当磁盘压力增大，慢慢出现性能瓶颈，提升越来越小。
 
-
-
 ![oltp_write_only_latency_reduce.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/oltp_write_only_latency_reduce-1654072111277.png)
-
-
-
-
 
 **减少 Latency：**
 
@@ -320,7 +280,7 @@ TiDB、pd 独立部署，均为高配置服务器，其中 TiDB 节点足够多�
   - in-memory 维持在 10% 以上
   - pipelined 降到 5% 以下
 
-# 总结
+## 总结
 
 从压测数据来看，v6.0.0 版本的内存悲观锁是非常有吸引力的新特性。
 
