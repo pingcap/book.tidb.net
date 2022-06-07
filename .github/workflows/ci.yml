@@ -1,4 +1,4 @@
-name: Docker Image Build
+name: CI
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    name: Build and Push Docker Image
     steps:
       - uses: actions/checkout@v3
 
@@ -29,9 +29,18 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
-
+    name: Deploy Website
     steps:
-      - name: executing remote ssh commands using ssh key
+      - name: Update preview
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.PREVIEW_HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            kubectl rollout restart deployment/community-book-preview
+      - name: Update prod
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
