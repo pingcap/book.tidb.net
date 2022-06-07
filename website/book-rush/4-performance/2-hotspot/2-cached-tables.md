@@ -89,8 +89,6 @@ KEY k_1 (k)
 ) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_bin AUTO_INCREMENT = 1
 ```
 
-
-
 ### 读性能测试
 
 #### 测试主要参数
@@ -119,7 +117,7 @@ KEY k_1 (k)
 
 **oltp\_read\_only** 只读操作（包含聚合、去重等）
 
-&#x20;主要 SQL 语句：
+主要 SQL 语句：
 
 `SELECT c FROM sbtest1 WHERE id=?`
 
@@ -201,8 +199,6 @@ sysbench --mysql-host=10.0.0.1  --mysql-port=4000  --mysql-db=sbtest --mysql-use
 
 ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651323606372.png)
 
-
-
 ### 读写混合性能测试
 
 #### 测试主要场景参数
@@ -283,10 +279,6 @@ sysbench --mysql-host=10.0.0.1  --mysql-port=4000  --mysql-db=sbtest --mysql-use
 
 ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1653748709260.png)
 
-
-
-
-
 ## 五、遇到的问题
 
 - 尝试将 30w 数据的表改为缓存表时报错 `ERROR 8242 (HY000): 'table too large' is unsupported on cache tables`。
@@ -302,8 +294,6 @@ sysbench --mysql-host=10.0.0.1  --mysql-port=4000  --mysql-db=sbtest --mysql-use
 - 根据测试结果，写入较为频繁的情况下缓存表的性能是比较差的。在包含写请求的测试中，缓存表相较于普通表的性能几乎都大幅下降。
 
 在 lease 过期之前，无法对数据执行修改操作。为了保证数据一致性，修改操作必须等待 lease 过期，所以会出现写入延迟。例如 `tidb_table_cache_lease` 为 10 时，写入可能会出现较大的延迟。因此写入比较频繁或者对写入延迟要求很高的业务不建议使用缓存表。
-
-
 
 ## 六、测试总结
 
