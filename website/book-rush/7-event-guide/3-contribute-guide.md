@@ -52,11 +52,33 @@ hide_title: true
 
 ### 3. 为通过筛选的文章生成 md 文档
 
-> 把专栏文章复制黏贴到 https://markdown.com.cn/editor/ ，调整好格式之后，点击：文件-导出 Markdown ，把文章导出为 md 文档。
-
+- 方案一：把专栏文章复制黏贴到 https://markdown.com.cn/editor/ ，调整好格式之后，点击：文件-导出 Markdown ，把文章导出为 md 文档；
 ![](https://asktug.com/uploads/default/original/4X/3/4/d/34da414481aaf18e23c6781d310a9323b837ee0c.png) 
+- 方案二（推荐）：下载安装 [Typora](https://typoraio.cn/)，新建文档来复制粘贴专栏文章，会将格式一键粘贴过来，调格式会简单很多。
+
+#### 3.1 md 文档格式说明
+
+下面通过第一章第 1 节中的占位文章来说明下这里 md 文档的基本格式：
+
+![](https://asktug.com/uploads/default/original/4X/d/3/3/d33fe274238c0ec4f22cad2988aa59801cc5b7d8.png) 
+
+```
+> ---
+> title: 欢迎投稿
+> hide_title: true
+> ---
+```
+
+**表头说明：** 每个 md 文档中都必须添加这个表头，title 部分的文字可以自定义，对应了左侧目录栏中的章节显示，一级标题对应了右侧电子书中文章的大标题。
+
+**文档命名规则：** 章节序号 - 文章英文名.md，比如你是某章节的第二篇文章，文章名为《 TiFlash 存储层概览》就可以命名为 2-tiflash-storage-overview.md。
+
+**作者简介：** 建议文章开头加上作者的简介和社区主页的链接，是一个对外展示的好机会~
 
 > Markdown 基本语法学习：https://markdown.com.cn/basic-syntax/
+> 
+> 更多格式可查看 Docusaurus 的 Markdown 特性：https://docusaurus.io/zh-CN/docs/markdown-features
+
 
 ### 4. 找到目录提交文章
 
@@ -74,21 +96,7 @@ hide_title: true
 
 ![](https://asktug.com/uploads/default/original/4X/6/7/d/67d11a7b8e4cb71fe1d6be3dcf3e258205a6855d.png) 
 
-#### 4.3 md 文档格式
-下面通过第一章第 1 节中的占位文章来说明下 md 文档的基本格式：
-
-```
----
-title: 欢迎投稿
-hide_title: true
----
-```
-
-每个 md 文档中都必须添加这个表头，title 部分的文字可以自定义，对应了左侧目录栏中的章节显示，一级标题对应了右侧电子书中文章的大标题。
-
-更多格式可查看 Docusaurus 的 Markdown 特性：https://docusaurus.io/zh-CN/docs/markdown-features
-
-#### 4.4 在二级目录下提交文章
+#### 4.3 在二级目录下提交文章
 
 1. 第一步：找到你要上传的目录地址，在这个目录下点击“Upload files”
 
