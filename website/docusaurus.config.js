@@ -82,6 +82,17 @@ const config = {
         sidebarPath: require.resolve("./sidebars.js"),
       }),
     ],
+    [
+      "content-docs",
+      /** @type {import('@docusaurus/plugin-content-docs').Options} */
+      ({
+        id: "db-selection",
+        path: "db-selection",
+        routeBasePath: "/db-selection",
+        editUrl: "https://github.com/pingcap/book.tidb.net/tree/main/website",
+        sidebarPath: require.resolve("./sidebars.js"),
+      }),
+    ],
   ],
 
   themeConfig:
@@ -110,6 +121,21 @@ const config = {
             position: "left",
             label: "🔥 Book Rush",
           },
+          {
+            to: "/db-selection",
+            label: "数据库架构选型指南",
+          },
+          // {
+          //   type: "dropdown",
+          //   label: "电子书",
+          //   position: "left",
+          //   items: [
+          //     {
+          //       to: "/db-selection",
+          //       label: "数据库架构选型指南",
+          //     },
+          //   ],
+          // },
           {
             href: "https://github.com/pingcap/book.tidb.net",
             label: "GitHub",
