@@ -1,3 +1,10 @@
+---
+title: 内存悲观锁原理浅析与实践
+hide_title: true
+---
+
+> 本文作者：jiyf, 开源 NewSQL 爱好者，目前就职于天翼云，社区资深用户，[asktug 主页](https://tidb.net/u/jiyf/post/all)
+
 # 背景
 
 在 v6.0.0 版本，针对悲观事务引入了[内存悲观锁](https://docs.pingcap.com/zh/tidb/v6.0/pessimistic-transaction#内存悲观锁)的优化（In-memory lock），从压测数据来看，带来的性能提升非常明显（Sysbench 工具压测 oltp_write_only 脚本）。
