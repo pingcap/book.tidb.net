@@ -6,7 +6,7 @@ on:
     paths:
       - "website/**"
 
-concurrency: ci-${{ github.ref }}
+concurrency: ci-prod
 
 jobs:
   build:
