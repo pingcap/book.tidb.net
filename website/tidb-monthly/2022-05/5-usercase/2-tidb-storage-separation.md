@@ -213,13 +213,13 @@ TiDB 6.0正式提供了数据放置框架（Placement Rules in SQL ）功能，�
 
 - 集群只有3个ssd的tikv节点，启动flink流往目标表导入数据，可以看到这3个ssd节点的region数和空间使用在不断增长
 
-﻿![1650964998281.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650964998281-1652255376368.png)﻿﻿
+![1650964998281.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650964998281-1652255376368.png)
 
- ![1650965222072.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650965222072-1652255470197.png)﻿﻿![img](file://e:/gitlab/tidb_docs/tidb%E6%95%B0%E6%8D%AE%E6%9C%8D%E5%8A%A1/%E5%86%B7%E7%83%AD%E5%AD%98%E5%82%A8%E4%B8%93%E9%A2%98/assets/1650965222072.png?lastModify=1652232640)﻿﻿
-
+ ![1650965222072.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650965222072-1652255470197.png)
+ 
 - 在原有基础上再扩容3个hdd tikv实例
 
-﻿![1650965633758.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650965633758-1652255491471.png)﻿﻿![img](file://e:/gitlab/tidb_docs/tidb%E6%95%B0%E6%8D%AE%E6%9C%8D%E5%8A%A1/%E5%86%B7%E7%83%AD%E5%AD%98%E5%82%A8%E4%B8%93%E9%A2%98/assets/1650965633758.png?lastModify=1652232640)﻿﻿
+![1650965633758.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650965633758-1652255491471.png)
 
 4.冷热分离
 
@@ -245,15 +245,15 @@ TiDB 6.0正式提供了数据放置框架（Placement Rules in SQL ）功能，�
 
 在应用hdd转存策略后，如下图可以看到调度规则里2022-04-16这一天的分区Placement由ssd变为了hdd，即集群已经知晓最新的调度策略是将这一天的分区数据调度到hdd去，Scheduling_State处于PENDING状态，表示 Follower 的 raft log 与 Leader 有较大差距，在这里可以理解为是正在处于调度的过程。
 
-﻿![1650341702179.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650341702179-1652255522063.png)﻿﻿![img](file://e:/gitlab/tidb_docs/tidb%E6%95%B0%E6%8D%AE%E6%9C%8D%E5%8A%A1/%E5%86%B7%E7%83%AD%E5%AD%98%E5%82%A8%E4%B8%93%E9%A2%98/assets/1650341702179.png?lastModify=1652232640)﻿﻿
+![1650341702179.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650341702179-1652255522063.png)
 
 随着时间的推移，数据在不断从ssd迁移到hdd上。从集群grafana监控面板可以看到ssd节点上的region数据在不断下降，直到降到接近于0；相反，hdd上的region数不断上升，直到数据全部迁出ssd节点。110万行数据从ssd迁移到hdd，大约耗时3min 。
 
-﻿![1650342094048.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650342094048-1652255541662.png)﻿﻿![img](file://e:/gitlab/tidb_docs/tidb%E6%95%B0%E6%8D%AE%E6%9C%8D%E5%8A%A1/%E5%86%B7%E7%83%AD%E5%AD%98%E5%82%A8%E4%B8%93%E9%A2%98/assets/1650342094048.png?lastModify=1652232640)﻿﻿
+![1650342094048.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650342094048-1652255541662.png)
 
 在数据全部迁如hdd节点后，查看调度进度，此时Scheduling_State处于SCHEDULED完成调度状态：
 
-﻿![1650342133243.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650342133243-1652255556889.png)﻿﻿![img](file://e:/gitlab/tidb_docs/tidb%E6%95%B0%E6%8D%AE%E6%9C%8D%E5%8A%A1/%E5%86%B7%E7%83%AD%E5%AD%98%E5%82%A8%E4%B8%93%E9%A2%98/assets/1650342133243.png?lastModify=1652232640)﻿﻿
+![1650342133243.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650342133243-1652255556889.png)
 
 结论：
 
@@ -269,7 +269,7 @@ TiDB 6.0正式提供了数据放置框架（Placement Rules in SQL ）功能，�
  alter table tidb_ssd_hdd_test.logoutrole_log partition p20220417 placement policy storeonhdd;
 ```
 
-﻿![1650970144694.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650970144694-1652255581080.png)﻿﻿![img](file://e:/gitlab/tidb_docs/tidb%E6%95%B0%E6%8D%AE%E6%9C%8D%E5%8A%A1/%E5%86%B7%E7%83%AD%E5%AD%98%E5%82%A8%E4%B8%93%E9%A2%98/assets/1650970144694.png?lastModify=1652232640)﻿﻿
+![1650970144694.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650970144694-1652255581080.png)
 
 ssd上的region全部迁移到hdd上，ssd空间被释放，hdd空间使用逐渐增加，迁移过程中ssd和hdd的IO消耗都在5%左右，内存和网络带宽使用不变、保持平稳。 约6千万行130GB数据从ssd数据迁移到 hdd大概需要2个小时
 
@@ -282,17 +282,15 @@ ssd上的region全部迁移到hdd上，ssd空间被释放，hdd空间使用逐�
 
 在没有外部流量访问时，将数据从hdd迁移回ssd，从监控图可以看到，hdd节点的tikv的leader数、region数在此期间都在下降，分别从850、2500逐渐下降直到为0，磁盘空间也从62GB下降为0，表示数据在持续迁移出hdd节点；
 
-﻿![1652425488812.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1652425488812-1652676946070.png)﻿﻿
+![1652425488812.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1652425488812-1652676946070.png)
 
-﻿![1652425944226.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1652425944226-1652676921148.png)﻿﻿
+![1652425944226.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1652425944226-1652676921148.png)
 
 相反地，由于数据不断迁入到ssd中，ssd节点的tikv的leader数、region数在此期间都在上升，分别从1500、4200逐渐上升到2200、6700，直到数据迁入完成，然后保持数量不变，ssd的磁盘空间消耗也从100GB上升到161GB。
 
 迁移的过程中，ssd和hdd节点的IO使用率都比较低，如下图：
 
-﻿![1652426155311.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1652426155311-1652677003022.png)﻿﻿
-
-﻿
+![1652426155311.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1652426155311-1652677003022.png)
 
 结论：
 
@@ -310,29 +308,23 @@ alter table tidb_ssd_hdd_test.logoutrole_log partition p20220418 placement polic
 
 在归档过程，flink同时持续以2100的QPS写入热数据，期间ssd IO接近100%，hdd的IO消耗在10%以下，各节点CPU在500%以下，网络带宽在200MB/s以下，内存使用保持平稳。
 
-﻿![img](file://e:/gitlab/tidb_docs/tidb%E6%95%B0%E6%8D%AE%E6%9C%8D%E5%8A%A1/%E5%86%B7%E7%83%AD%E5%AD%98%E5%82%A8%E4%B8%93%E9%A2%98/assets/1650594122114.png?lastModify=1652232640)﻿﻿
-
 从region数变化的角度来看：
 
 - 在归档数据时，ssd的tikv region数从6300下降到3500左右，当迁移完成后是净写入数据，此时ssd 节点的region数量又持续上升；
 - hdd节点的region数从开始的2600上升到6500左右，随着数据迁移完成，hdd的region数不再增加，一直保持6500不变。
 
-﻿![1650971789523.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650971789523-1652255605880.png)﻿﻿![img](file://e:/gitlab/tidb_docs/tidb%E6%95%B0%E6%8D%AE%E6%9C%8D%E5%8A%A1/%E5%86%B7%E7%83%AD%E5%AD%98%E5%82%A8%E4%B8%93%E9%A2%98/assets/1650971789523.png?lastModify=1652232640)﻿﻿
+![1650971789523.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650971789523-1652255605880.png)
 
 从磁盘使用空间变化的角度来看：
 
 - 归档数据时，ssd节点的磁盘使用空间从152GB下降到88GB，当迁移完成后，此时是净写入数据，ssd空间开始上升；
 - 数据在不断写入到hdd节点，所以其使用空间从61GB上升到154GB，随着数据迁移完成，一直保持不变
 
-﻿![1650593578630.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650593578630-1652255621039.png)﻿﻿
+![1650593578630.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650593578630-1652255621039.png)
 
-﻿![1650593565818.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650593565818-1652255636535.png)﻿﻿
+![1650593565818.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650593565818-1652255636535.png)
 
-﻿![1650593789799.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650593789799-1652255652551.png)﻿﻿![img](file://e:/gitlab/tidb_docs/tidb%E6%95%B0%E6%8D%AE%E6%9C%8D%E5%8A%A1/%E5%86%B7%E7%83%AD%E5%AD%98%E5%82%A8%E4%B8%93%E9%A2%98/assets/1650593578630.png?lastModify=1652232640)﻿﻿
-
-﻿![img](file://e:/gitlab/tidb_docs/tidb%E6%95%B0%E6%8D%AE%E6%9C%8D%E5%8A%A1/%E5%86%B7%E7%83%AD%E5%AD%98%E5%82%A8%E4%B8%93%E9%A2%98/assets/1650593565818.png?lastModify=1652232640)﻿﻿
-
-﻿![img](file://e:/gitlab/tidb_docs/tidb%E6%95%B0%E6%8D%AE%E6%9C%8D%E5%8A%A1/%E5%86%B7%E7%83%AD%E5%AD%98%E5%82%A8%E4%B8%93%E9%A2%98/assets/1650593789799.png?lastModify=1652232640)﻿﻿
+![1650593789799.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650593789799-1652255652551.png)
 
 结论：
 
@@ -345,13 +337,11 @@ alter table tidb_ssd_hdd_test.logoutrole_log partition p20220418 placement polic
 
 - 2022-04-16这一天的数据已经全部转存到hdd冷盘中。启动flink流，继续对2022-04-16分区写入数据，这些只会写hdd，不会写入ssd。flink流以2000左右的sink QPS补全冷数据，hdd tikv节点IO打满，SSD的IO使用率比较低。
 
-﻿![1650969265594.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650969265594-1652255669705.png)﻿﻿![img](file://e:/gitlab/tidb_docs/tidb%E6%95%B0%E6%8D%AE%E6%9C%8D%E5%8A%A1/%E5%86%B7%E7%83%AD%E5%AD%98%E5%82%A8%E4%B8%93%E9%A2%98/assets/1650969265594.png?lastModify=1652232640)﻿﻿
+![1650969265594.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650969265594-1652255669705.png)
 
 从下图可以看到，在补全冷数据的时候， hdd节点的region数在不断上升，hdd tikv的空间消耗也在不断增加，而ssd的空间使用和region数均保持不变，说明数据并不会写入ssd中，符合预期。
 
-﻿![1650969430703.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650969430703-1652255687630.png)﻿﻿![img](file://e:/gitlab/tidb_docs/tidb%E6%95%B0%E6%8D%AE%E6%9C%8D%E5%8A%A1/%E5%86%B7%E7%83%AD%E5%AD%98%E5%82%A8%E4%B8%93%E9%A2%98/assets/1650969430703.png?lastModify=1652232640)﻿﻿
-
-﻿![img](file://e:/gitlab/tidb_docs/tidb%E6%95%B0%E6%8D%AE%E6%9C%8D%E5%8A%A1/%E5%86%B7%E7%83%AD%E5%AD%98%E5%82%A8%E4%B8%93%E9%A2%98/assets/1650343731489.png?lastModify=1652232640)﻿﻿
+![1650969430703.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650969430703-1652255687630.png)
 
 结论：
 
@@ -366,7 +356,8 @@ alter table tidb_ssd_hdd_test.logoutrole_log partition p20220418 placement polic
 
 **举例说明，业务 A和B 共享资源，降低存储和管理成本，而业务 C 和 D 独占资源，提供最高的隔离性。由于多个业务共享一套 TiDB 集群，升级、打补丁、备份计划、扩缩容等日常运维管理频率可以大幅缩减，降低管理负担提升效率**。
 
-﻿![1651723818212.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1651723818212-1652255709075.png)﻿﻿![img](file://e:/gitlab/tidb_docs/tidb%E6%95%B0%E6%8D%AE%E6%9C%8D%E5%8A%A1/%E5%86%B7%E7%83%AD%E5%AD%98%E5%82%A8%E4%B8%93%E9%A2%98/assets/1651723818212.png?lastModify=1652232640)﻿﻿
+![1651723818212.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1651723818212-1652255709075.png)
+
 
 ```
 CREATE PLACEMENT POLICY 'shared_nodes' CONSTRAINTS = "[+region=shared_nodes]";

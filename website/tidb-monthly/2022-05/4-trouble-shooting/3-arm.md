@@ -7,8 +7,6 @@ hide_title: true
 
 > 作者：[Kangli Mao](https://github.com/tiancaiamao) 更新于 2022.05.27 
 
-💡  ARM平台下 tidb 服务器卡死
-
 ## Issue
 
 在 ARM 平台中，执行稳定性测试，一段时间后，发现 tidb 进程卡死了。

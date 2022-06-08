@@ -15,7 +15,7 @@ https://forms.pingcap.com/f/tidb-contribution-swag?utm_source=monthly
 
 ### 新增 Committer
 
-本月新增 2 位 Committer，均来自 tidb team 和 migration team：
+本月新增 4 位 Committer，均来自 tidb team 和 migration team：
 
 - https://github.com/joccau
 - https://github.com/zanmato1984

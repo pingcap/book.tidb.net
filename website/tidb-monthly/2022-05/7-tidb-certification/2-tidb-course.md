@@ -29,7 +29,7 @@ hide_title: true
 
 **课程难度：**中级
 
-## [【限时免费】在 TiDB 上开发应用的最佳实践 [TiDB v6\]](https://learn.pingcap.com/learner/course/780002?utm_source=community-monthly)
+## [【限时免费】在 TiDB 上开发应用的最佳实践 [TiDB v6]](https://learn.pingcap.com/learner/course/780002?utm_source=community-monthly)
 
 **课程简介：**本课程总结了关于在TiDB上开发的指导原则和最佳实践。在学习本课程前，您应当已经具有 SQL 使用和后端应用程序编程经验。
 
