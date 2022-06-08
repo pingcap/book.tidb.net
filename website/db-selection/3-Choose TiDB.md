@@ -1,5 +1,5 @@
 ---
-title: 我们为什么放弃 MongoDB 和 MySQL，选择 TiDB
+title: 三、我们为什么放弃 MongoDB 和 MySQL，选择 TiDB
 hide_title: true
 ---
 

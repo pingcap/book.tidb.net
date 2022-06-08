@@ -1,5 +1,5 @@
 ---
-title: 从数据库架构选型看 TiDB 常见应用场景
+title: 二、从数据库架构选型看 TiDB 常见应用场景
 hide_title: true
 ---
 
