@@ -1,9 +1,9 @@
 ---
-title: TiDB 6.0: 让 TSO 更高效
+title: TiDB 6.0：让 TSO 更高效
 hide_title: true
 ---
 
-# TiDB 6.0: 让 TSO 更高效
+# TiDB 6.0：让 TSO 更高效
 
 > 作者：**[h5n1](https://tidb.net/u/h5n1/post/all)** 发表于 **2022-05-16**
 
@@ -33,7 +33,7 @@ TSO 是一个单调递增的时间戳，由 PD leader 分配。TiDB 在事务开
 
 ​在 5.3.0 版本引入 TSO Follower Proxy 功能，当开启后 tidb 的 PD Client 会随机选择一个 PD 节点(包括 leader 和 follower )发送 TSO 请求，PD Follower 会作为一个代理服务将收到的一批请求按照默认情况下 PD Client 处理 TSO 方式打包发送给 leader 处理，以进一步减少 PD Client 和 PD Leader 的交互次数以及 PD leader 的连接数，以此降低 leader 的 CPU 负载。
 
-​ ![1654048816(1).jpg](<https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1654048816(1)-1654048828624.jpg>)
+​ ![1654048816(1).jpg](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1654048816(1)-1654048828624.jpg)
 
 ​通过设置全局变量 tidb_enable_tso_follower_proxy 为 true 即可开启 PD follower 的 TSO 代理功能，该功能适用于 tidb server 数量较多并发请求很高，PD leader 因高压力的 TSO 请求而达到 CPU 瓶颈，导致 TSO RPC 请求的延迟较高的场景。
 
