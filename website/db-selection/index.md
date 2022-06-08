@@ -18,9 +18,11 @@ sidebar_position: 0
 
 这些文章的作者都来自于 TUG（TiDB User Group）社区，这里汇聚了全球数据库、大数据技术从业者，是一个独立、自治、不以盈利为目的的社区组织。如果你想学习更多技术文章，欢迎扫码查看。
 
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 <center>
-    <img src="/img/db-selection/0-qcode.png" width="30%" />
+    <img src={useBaseUrl('/img/db-selection/0-qcode.png')} width="30%" />
     <div>
         扫码查看更多技术分享
-        </div>
-    </center>
+    </div>
+</center>
