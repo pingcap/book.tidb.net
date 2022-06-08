@@ -6,6 +6,8 @@ on:
     paths:
       - "website/**"
 
+concurrency: ci-prod
+
 jobs:
   build:
     runs-on: ubuntu-latest
