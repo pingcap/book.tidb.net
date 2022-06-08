@@ -136,7 +136,6 @@ in-memory 悲观锁的设计初衷是在收益与付出之间做的权衡：
 | T1                                                           | T2                                                 | OS CLi       |
 | ------------------------------------------------------------ | -------------------------------------------------- | ------------ |
 | mysql> begin;Query OK, 0 rows affected (0.00 sec)            | mysql> begin;Query OK, 0 rows affected (0.00 sec)  |              |
-|                                                              |                                                    |              |
 | mysql> delete from t where id=1;Query OK, 1 row affected (0.00 sec) |                                                    |              |
 |                                                              | mysql> delete from t where id=1;                   |              |
 |                                                              | ......                                             | kill -9 tikv |
