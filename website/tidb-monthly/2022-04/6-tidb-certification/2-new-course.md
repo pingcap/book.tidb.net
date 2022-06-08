@@ -3,7 +3,7 @@ title: 【课程上新】面向应用开发者的 201 全系列课程内测体�
 hide_title: true
 ---
 
-#【课程上新】面向应用开发者的 201 全系列课程内测体验官招募啦！
+# 【课程上新】面向应用开发者的 201 全系列课程内测体验官招募啦！
 
 如题，【 201 TiDB SQL for Developers 】全系列课程内测体验官正式开始招募啦， 限额 50 人 ！叫上你身边的开发小伙伴一起开卷吧！！！
 
@@ -26,7 +26,7 @@ hide_title: true
 	- 201.B：适合熟悉 SQL 语句、熟悉 MySQL 环境，没有使用数据库驱动经验的后端开发者
 	- 201：适合数据库初学者，具有前瞻性，计划使用 TiDB 作为后端数据库的开发者
 
-![](https://asktug.com/uploads/default/optimized/4X/8/8/6/88612984313fa7ce0243790c6b3682af0e069eb1_2_1380x956.png) 
+![](https://asktug.com/uploads/default/original/4X/c/0/2/c025977802ad83858bf755a0c36693c26214fb7f.png) 
 
 ## 如何获得 201 系列课程内测资格？
 
