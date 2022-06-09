@@ -1,5 +1,5 @@
 ---
-title: TiDB 6.0 版本测评
+title: TiDB 6.0.0 与 5.1.4 对比测试
 hide_title: true
 ---
 
