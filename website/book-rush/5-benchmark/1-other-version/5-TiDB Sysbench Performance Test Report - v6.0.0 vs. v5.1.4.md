@@ -1,9 +1,9 @@
-# TiDB Sysbench 性能对比测试报告 - v5.1.4 对比 v6.0.0 DMR
+---
+title: TiDB 6.0 版本测评
+hide_title: true
+---
 
-\> ---
-\> title: TiDB 6.0 版本测评
-\> hide_title: true
-\> ---
+# TiDB Sysbench 性能对比测试报告 - v5.1.4 对比 v6.0.0 DMR
 
 > 作者：靳献旗，DBA，2020、2021 MVA，2022 MOA
 
@@ -197,8 +197,6 @@ v6.0.0 对比 v5.1.4，Read Write 性能提升了 2.67%。
 本次测试对比了 TiDB v6.0.0 和 v5.1.4 在 OLTP 场景下的 Sysbench 性能表现。结果显示，相比于 v5.1.4，v6.0.0 在  oltp_read_write、oltp_point_select、oltp_update_index 和 oltp_update_non_index 几种场景性能均有提升，具体内容可以参考上述表格，v6.0.0 版本还是很值得我们期待的。
 
 本文主要测试了在相同硬件和配置下 v6.0.0 和 v5.1.4 的性能，不代表最佳性能实践和部署。
-
-
 
 【参考文档】
 
