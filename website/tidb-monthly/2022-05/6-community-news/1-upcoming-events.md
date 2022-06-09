@@ -24,13 +24,13 @@ hide_title: true
 
 报名链接：https://forms.pingcap.com/f/tianjin
 
-## [【报名中】6月 ](https://asktug.com/t/topic/664960)****[25日 ](https://asktug.com/t/topic/664960)****[TiDB 社区线下技术交流-石家庄站](https://asktug.com/t/topic/664960)
+## [【报名中】6 月 25 日 TiDB 社区线下技术交流-石家庄站](https://asktug.com/t/topic/664960)
 
 活动介绍：由石家庄地区组织者 边城元元 组织策划，正在招募石家庄站的分享嘉宾，如果你也想助力石家庄建立起技术交流的氛围，欢迎报名成为石家庄地区的组织者喔~
 
 报名链接：https://forms.pingcap.com/f/shijiazhuang
 
-## [【活动报名】 TiDB社区济南站技术交流（限流15人）！](https://asktug.com/t/topic/693132)
+## [【活动报名】 TiDB 社区济南站技术交流（限流 15 人）！](https://asktug.com/t/topic/693132)
 
 活动介绍：这个夏天，让我们与 TiDB 社区一起牵手，在大明湖畔来一场不期而遇的技术之旅，也希望 TiDB 可以发展的越来越好，凝聚更多的开源爱好者，我们一起赏花、喝茶、看星星~
 
