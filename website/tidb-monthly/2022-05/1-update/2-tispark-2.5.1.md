@@ -5,16 +5,26 @@ hide_title: true
 
 # TiSpark 2.5.1
 
-## Fixes
+**TiSpark v2.5.1版本**于 2022 年 05 月 16日 正式发布。
 
-- Fix limit not push down bug [#2335](https://github.com/pingcap/tispark/pull/2335)
-- Fix ClassCastException when cluster index with type Timestamp and Date [#2323](https://github.com/pingcap/tispark/pull/2323)
-- Upgrade jackson-databind from 2.9.10.8 to 2.12.6.1 [#2288](https://github.com/pingcap/tispark/pull/2288)
-- Fix the wrong result of _tidb_rowid [#2278](https://github.com/pingcap/tispark/pull/2278)
-- Fix set catalog throw NoSuchElementException [#2254](https://github.com/pingcap/tispark/pull/2254)
+## 主要变更
 
-## Documents
+​### 修复问题
 
-- Add limitation: TLS is not supported [#2281](https://github.com/pingcap/tispark/pull/2281)
-- Add limitation: new collations are not supported [#2251](https://github.com/pingcap/tispark/pull/2251)
-- Update communication channels [#2244](https://github.com/pingcap/tispark/pull/2244)
+- 修复 limit 没有正确下推的 bug [#2335](https://github.com/pingcap/tispark/pull/2335)
+
+- 修复当聚簇索引为 Timestamp 或 Date 类型时抛出 ClassCastException 的 bug[#2323](https://github.com/pingcap/tispark/pull/2323)
+
+- 修复错误显示 _tidb_rowid 的 bug [#2278](https://github.com/pingcap/tispark/pull/2278)
+
+- 修复 set catalog 时 抛出 NoSuchElementException 的 bug[#2254](https://github.com/pingcap/tispark/pull/2254)
+
+​### 优化提升
+
+- 文档中增加限制：不支持 TLS [#2281](https://github.com/pingcap/tispark/pull/2281)
+
+- 文档中增加限制：不支持打开 collations [#2251](https://github.com/pingcap/tispark/pull/2251)
+
+- 文档中增加沟通方式 [#2244](https://github.com/pingcap/tispark/pull/2244)
+
+- 升级 jackson-databind 从 2.9.10.8 到 2.12.6.1 [#2288](https://github.com/pingcap/tispark/pull/2288)
