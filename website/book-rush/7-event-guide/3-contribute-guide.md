@@ -65,10 +65,10 @@ hide_title: true
 ![](https://asktug.com/uploads/default/original/4X/d/3/3/d33fe274238c0ec4f22cad2988aa59801cc5b7d8.png) 
 
 ```
-> ---
-> title: 欢迎投稿
-> hide_title: true
-> ---
+ ---
+ title: 欢迎投稿
+ hide_title: true
+ ---
 ```
 
 **表头说明：** 每个 md 文档中都必须添加这个表头，title 部分建议和文章标题一致，也可以自定义为比文章标题更简洁的表述方式。title 对应了左侧目录栏中的章节显示，一级标题对应了右侧电子书中文章的大标题。并且 title 部分要放在 md 文档的最开头，一级标题的前面。
