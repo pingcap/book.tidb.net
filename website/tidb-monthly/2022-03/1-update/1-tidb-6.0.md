@@ -13,7 +13,7 @@ hide_title: true
 对于企业级和云数据库，除了性能，可用性和功能等常规维度外，一个重要维度就是可管理性。除了提供必备的「硬」能力以完成用户的技术及业务目标，是否「好用」，是用户做选择时的重要考量，可管理性维度也会很深地影响用户实际使用数据库的隐性成本。而这点对于云数据库则更为明显，将数据库作为云服务提供，将使得可管理性的重要程度被放大：一个可运维性更好的数据库，在固定的运维和支持资源下，将为用户提供更好的服务。
 针对这个方向，TiDB 6.0 引入数据放置框架（Placement Rules In SQL），增加了企业级集群管理组件 TiDB Enterprise Manager ，开放了智能诊断服务 PingCAP Clinic 的预览，大幅加强了生态工具的可运维性，并针对热点问题为用户提供了更多的手段。这些努力加在一起，将使用户无论使用的是公有云服务，还是私有部署，都获得体验更平滑和近似的使用体验，让 TiDB 在成熟的企业级云数据库维度更向前迈进。
 除此之外，在这一年的时间内 TiDB 6.0 相较于前序版本也有了长足的进步，修复了 137 个 Issues，并融入了 77 个严苛的真实环境锤炼带来的增强。而社区一直期望的 [TiFlash 开源 ](https://github.com/pingcap/tiflash) 也实现了，欢迎广大社区开发者一起参与。
-[下载 TiDB 社区版](https://pingcap.com/zh/product-community/?utm_source=blog&utm_medium=cta&utm_campaign=tidb-6.0-release) [注册 TiDB Cloud](https://tidbcloud.com/signup?utm_source=blog&utm_medium=cta&utm_campaign=tidb-6.0-release) 适用于中国出海企业和开发者
+[下载 TiDB 社区版](https://pingcap.com/zh/product-community/?utm_source=blog&utm_medium=cta&utm_campaign=tidb-6.0-release) [注册 TiDB Cloud](https://tidbcloud.com/free-trial?utm_source=blog&utm_medium=cta&utm_campaign=tidb-6.0-release) 适用于中国出海企业和开发者
 
 ## 全面加强可管理性
 
@@ -99,7 +99,7 @@ TiCDC 对于增量数据的提取、排序、加载、投递等多个处理流�
 
 ## 展望
 
-由于云数据库并不强调版本，因此在前文中我们没有对 [TiDB Cloud ](https://tidbcloud.com/signup) 进行过多赘述。但是可以看到，6.0 版本不但是 TiDB 迈向企业级 HTAP 数据库的又一个全新版本，也是 TiDB 向云数据库进发的新起点。诸如可管理性主题，数据放置框架，Clinic 自动诊断兼顾了私有部署的使用，但实际上它们都将在云端形态下拥有更大的潜力。
+由于云数据库并不强调版本，因此在前文中我们没有对 [TiDB Cloud ](https://tidbcloud.com/free-trial) 进行过多赘述。但是可以看到，6.0 版本不但是 TiDB 迈向企业级 HTAP 数据库的又一个全新版本，也是 TiDB 向云数据库进发的新起点。诸如可管理性主题，数据放置框架，Clinic 自动诊断兼顾了私有部署的使用，但实际上它们都将在云端形态下拥有更大的潜力。
 云原生数据库是一个很有趣的话题。我们对云数据库的认识随着持续的摸索在不断提升中，从在云上可运行的数据库，到借助云基础设施实现的数据库，再到在云上可自运维数据库，6.0 版本是我们践行这个理念的重要一步。试想，结合良好的可管理性，当云数据库服务为成千上万用户提供支持的同时，也可以采集到远超于现在的非敏感的集群运行数据，这些数据将作为数据库自运维自服务的基础信息，不断学习不断进化，在用户体验提升的前提下也解放服务后端团队更多的资源，集中精力更好地提供用户所需的产品，这将带来私有部署形态无法替代的优势。
 而在后续的版本规划中，我们将尝试通过借助云存储服务和资源按需启停等技术，为用户提供超越以往形态的使用体验。借助开源的力量，让用户觉得云服务相比免费使用私有部署更值得，转化为我们新的推力，是我们和整个整个社区双赢的共同目标。
 查看 TiDB 6.0.0 [Release Notes ](https://docs.pingcap.com/zh/tidb/v6.0/release-6.0.0-dmr) ，立即 [下载试用 ](https://pingcap.com/zh/product/#SelectProduct) ，开启 TiDB 6.0.0 企业级云数据库之旅。

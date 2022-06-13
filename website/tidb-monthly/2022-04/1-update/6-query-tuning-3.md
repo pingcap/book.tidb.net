@@ -15,7 +15,7 @@ hide_title: true
 
 [咨询 TiDB 企业版](https://pingcap.com/zh/contact#submit-form)
 
-[免费试用 TiDB Cloud](https://tidbcloud.com/signup?utm_source=blog&utm_medium=referral&utm_campaign=tidb-query-optimization-and-tuning-3)
+[免费试用 TiDB Cloud](https://tidbcloud.com/free-trial?utm_source=blog&utm_medium=referral&utm_campaign=tidb-query-optimization-and-tuning-3)
 
 适用于中国出海企业和开发者
 
