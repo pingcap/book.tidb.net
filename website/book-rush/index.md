@@ -24,6 +24,10 @@ https://forms.pingcap.com/f/BookRush
 
 [TiDB 6.0 Book Rush 贡献指南](7-event-guide/3-contribute-guide.md)
 
+## TiDB 6.0 Release 文档
+
+https://docs.pingcap.com/zh/tidb/v6.0/release-6.0.0-dmr
+
 ## License
 
 [![Creative Commons License](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
