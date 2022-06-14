@@ -76,7 +76,7 @@ User Response time = Service time + Queuing delay + Coherency delay
 - 用户响应时间的平均值和长尾值、应用系统的吞吐
 - 数据库时间、Query 延迟和 QPS 等数据库性能数据。
 
-TiDB 针对不同维度的性能数据进行了完善的测量和存储，例如[慢日志](https://docs.pingcap.com/zh/tidb/stable/identify-slow-queries)、[Top SQL](https://docs.pingcap.com/zh/tidb/stable/top-sql)、[持续性能分析功能]([/dashboard//continuous-profiling.md](https://docs.pingcap.com/zh/tidb/stable/continuous-profiling))和[流量可视化](https://docs.pingcap.com/zh/tidb/stable/dashboard-key-visualizer)等。此外，你还可以对存储在 Prometheus 中的时序指标数据进行历史回溯和对比。
+TiDB 针对不同维度的性能数据进行了完善的测量和存储，例如[慢日志](https://docs.pingcap.com/zh/tidb/stable/identify-slow-queries)、[Top SQL](https://docs.pingcap.com/zh/tidb/stable/top-sql)、[持续性能分析功能](https://docs.pingcap.com/zh/tidb/stable/continuous-profiling)和[流量可视化](https://docs.pingcap.com/zh/tidb/stable/dashboard-key-visualizer)等。此外，你还可以对存储在 Prometheus 中的时序指标数据进行历史回溯和对比。
 
 - 资源使用率，包含 CPU、IO 和网络等资源
 - 配置信息，比如应用系统、数据库和操作系统的配置
