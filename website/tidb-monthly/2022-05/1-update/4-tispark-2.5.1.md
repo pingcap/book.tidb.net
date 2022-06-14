@@ -9,7 +9,7 @@ hide_title: true
 
 ## 主要变更
 
-​### 修复问题
+### 修复问题
 
 - 修复 limit 没有正确下推的 bug [#2335](https://github.com/pingcap/tispark/pull/2335)
 
@@ -19,7 +19,7 @@ hide_title: true
 
 - 修复 set catalog 时 抛出 NoSuchElementException 的 bug[#2254](https://github.com/pingcap/tispark/pull/2254)
 
-​### 优化提升
+### 优化提升
 
 - 文档中增加限制：不支持 TLS [#2281](https://github.com/pingcap/tispark/pull/2281)
 
