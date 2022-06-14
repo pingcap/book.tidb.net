@@ -440,8 +440,8 @@ v5.4.0：
 Store 线程的 Commit Log Duration 明显比 Apply Log Duration 高，并且 Append Log Duration 比 Apply Log Duration 明显的高，说明 Store 线程在 CPU 和 IO 都可能都存在瓶颈。可能降低 Commit Log Duration 和 Append Log Duration 的方式如下：
 
 - 如果 TiKV CPU 资源充足，考虑增加 Store 线程，即 `raftstore.store-pool-size` 。
-- 如果 TiDB 为 v5.4.0 及之后的版本，考虑启用 [`Raft Engine`](/tikv-configuration-file.md#raft-engine)，Raft Engine 具有更轻量的执行路径，在一些场景下显著减少 IO 写入量和写入请求的长尾延迟，启用方式为设置：`raft-engine.enable: true`
-- 如果 TiKV CPU 资源充足，且 TiDB 为 v5.3.0 及之后的版本，考虑启用 [`StoreWriter`](/tune-tikv-thread-performance.md#tikv-线程池调优)。启用方式：`raftstore.store-io-pool-size: 1`。
+- 如果 TiDB 为 v5.4.0 及之后的版本，考虑启用 [`Raft Engine`](https://docs.pingcap.com/zh/tidb/stable/tikv-configuration-file#raft-engine)，Raft Engine 具有更轻量的执行路径，在一些场景下显著减少 IO 写入量和写入请求的长尾延迟，启用方式为设置：`raft-engine.enable: true`
+- 如果 TiKV CPU 资源充足，且 TiDB 为 v5.3.0 及之后的版本，考虑启用 [`StoreWriter`](https://docs.pingcap.com/zh/tidb/stable/tune-tikv-thread-performance#tikv-%E7%BA%BF%E7%A8%8B%E6%B1%A0%E8%B0%83%E4%BC%98)。启用方式：`raftstore.store-io-pool-size: 1`。
 
 ## 低于 v6.1.0 的 TiDB 版本如何使用 Performance overview 面板
 
