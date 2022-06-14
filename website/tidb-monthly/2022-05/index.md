@@ -12,7 +12,7 @@ sidebar_position: 9
 
 ## 目录
 
-手机端查看，点击左上角即可展开目录结构。
+> 手机端查看，点击左上角即可展开目录结构。
 
 - [产品动态](1-update/index.md)
   - [TiDB 6.1 发版：LTS 版本来了](1-update/1-tidb-6.1.md)
