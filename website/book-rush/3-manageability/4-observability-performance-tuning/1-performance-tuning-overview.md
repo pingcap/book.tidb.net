@@ -1,5 +1,5 @@
 ---
-title: 性能优化概述
+title: TiDB 性能优化概述
 hide_title: true
 ---
 
