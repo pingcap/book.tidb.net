@@ -5,6 +5,8 @@ hide_title: true
 
 # OLTP 负载性能优化实践
 
+> 作者：PingCAP 性能测试工程师：邵希茜 陈焕生 宋昱颖
+
 TiDB 提供了完善的性能诊断和分析功能，例如 TiDB Dashboard 的 [Top SQL](https://docs.pingcap.com/zh/tidb/stable/top-sql) 和 [Continuous Profiling](https://docs.pingcap.com/zh/tidb/stable/continuous-profiling) 功能，以及 TiDB [Performance Overview 面板](https://docs.pingcap.com/zh/tidb/stable/grafana-performance-overview-dashboard)。
 
 本文介绍如何综合利用这些功能，对同一个 OLTP 负载在七种不同运行场景下的性能表现进行分析和对比，并演示了具体的 OLTP 负载的优化过程，帮助你更快地对 TiDB 的性能进行分析和优化。
