@@ -15,12 +15,12 @@ sidebar_position: 9
 > 手机端查看，点击左上角即可展开目录结构。
 
 - [产品动态](1-update/index.md)
-  - [TiDB 6.1 发版：LTS 版本来了](1-update/1-tidb-6.1.md)
-  - [TiDB v5.4.1 release notes](1-update/2-tidb-5.4.1-release-note.md)
+  - [TiDB 6.1 发版：LTS 版本来了](1-update/1-tidb-6-1.md)
+  - [TiDB v5.4.1 release notes](1-update/2-tidb-5-4-1-release-note.md)
   - [TiDB Cloud GA，正式商用](1-update/3-tidb-cloud-ga.md)
+  - [TiSpark v2.5.1 发布](1-update/4-tispark-2-5-1.md)
 
 - [开发适配](2-development/index.md)
-  - [TiSpark v2.5.1 发布](1-update/4-tispark-2.5.1.md)
   - [TiDB 和 Python 的 CRUD 应用开发实践](2-development/1-tidb-python.md)
   - [TiDB 和 C# 的简单 CRUD 应用程序](2-development/2-tidb-c.md)
   
@@ -45,10 +45,10 @@ sidebar_position: 9
   - [TiDB冷热存储分离解决方案](5-usercase/2-tidb-storage-separation.md)
   - [TiDB库表设计和使用规范](5-usercase/3-table-design.md)
   - [6.0体验：TiKV重启后leader均衡加速](5-usercase/4-tikv-restart.md)
-  - [TiDBv6.0与TiDBv5.1.2 TiKV 节点重启后 leader 平衡加速，提升业务恢复速度对比测试](5-usercase/5-tidb6.0-5.1.2.md)
+  - [TiDBv6.0与TiDBv5.1.2 TiKV 节点重启后 leader 平衡加速，提升业务恢复速度对比测试](5-usercase/5-tidb6-0-5-1-2.md)
   - [TiCDC系列分享 Open API与业务系统集成](5-usercase/6-open-api.md)
   - [TiDB 6.0：让 TSO 更高效](5-usercase/7-tso-efficient.md)
-  - [基于tidbV6.0探索tiflash在多标签组合场景下的使用](5-usercase/8-tidb-6.0-tiflash.md)
+  - [基于tidbV6.0探索tiflash在多标签组合场景下的使用](5-usercase/8-tidb-6-0-tiflash.md)
   - [文件数据导入到TiDB的实践](5-usercase/9-file-to-tidb.md)
   - [TiDB Lightning在数据迁移中的应用与错误处理实践](5-usercase/10-tidb-lightning.md)
   - [TiDB 多活方案](5-usercase/11-tidb-plan.md)
