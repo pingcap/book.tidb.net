@@ -1,15 +1,11 @@
 ---
-
-title: TiKV 节点重启后业务恢复速度（leader 平衡速度）v6.0 vs v5.1.2对比测试
-
+title: TiKV 节点重启后业务恢复速度（leader 平衡速度）v6.0 vs v5.1.2 对比测试
 hide_title: true
 ---
 
+# TiKV 节点重启后业务恢复速度（leader 平衡速度）v6.0 vs v5.1.2 对比测试
 
-
-# TiKV 节点重启后业务恢复速度（leader 平衡速度）v6.0 vs v5.1.2对比测试
-
-作者: 杨端端，开发，获得PCTP，TiDB-Contributor，关注TiDB社区。
+作者: 杨端端，开发，获得 PCTP，TiDB-Contributor，关注 TiDB 社区。
 
 ## 1. 目标:
 
@@ -60,11 +56,10 @@ server_configs:
 
 ## 4. TiUP 部署 TiDB v5.1.2 和 TiDB v6.0.0
 
- ![no-alt](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-20220509234811503-1652885902882.png)﻿ 
+![no-alt](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-20220509234811503-1652885902882.png)
 
-﻿![no-alt](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-20220517223503425-1652885995958.png)﻿ 
+![no-alt](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-20220517223503425-1652885995958.png)
 
-﻿
 
 ## 5. 测试TiKV 节点重启后 leader 平衡时间方法
 
@@ -137,7 +132,6 @@ tikv 是作为一个进程服务在节点上,所以可以通过 systemctl 管理
 
 5. TiDB v6.0 TiKV关闭后，leader 平衡时间基本上与 TiDB v5.1.2 没 变化。
 
-﻿
 
 以上TiDB v5.1.2 与 TiDB v6.0.0 TiKV 节点重启后 leader 平衡加速, 提升业务恢复速度的对比,是没有修改`balance-leader-scheduler` 策略的情况下做的,可以看到默认情况下是有提升的,如想要获取更大的加速效果,请按以下操作:
 
