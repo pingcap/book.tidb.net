@@ -82,7 +82,6 @@ ID                     Role          Host    
 ```
 
 ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651213580960.png)![](file:///C:/Users/yongjian.wu/AppData/Local/Temp/enhtmlclip/Image.png)
-
 这里有一点需要大家注意一下
 **默认的 PLACEMENT POLICY 是需要以 region 来作为区分标签的，所以在创建 tikv 的时候这里需要明确的指定 tikv 的 region 的标签，不然的话在show placement labels 是无法看到 region lable 的。这里可以参照官方文档的建议**[**https://docs.pingcap.com/zh/tidb/stable/sql-statement-create-placement-policy**](https://docs.pingcap.com/zh/tidb/stable/sql-statement-create-placement-policy)
 
@@ -367,7 +366,6 @@ PARTITION p_sz VALUES IN ('sz') PLACEMENT POLICY=policy_sz
 > 表级别的放置规则要优先于数据库级别的放置规则
 
 ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651214209248.png)![](file:///C:/Users/yongjian.wu/AppData/Local/Temp/enhtmlclip/Image\(7\).png)
-
 ## 10 高级放置规则
 
 **注意： PRIMARY\_REGION、REGIONS  和  SCHEDULE  选项不可与  CONSTRAINTS  选项同时指定，否则会报错**
