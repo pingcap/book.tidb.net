@@ -105,19 +105,17 @@ SourceExecutor [Selection] [Aggregation|TopN|Limit] [Having] [ExchangeSender]
 </p>
 
 BlockInputStream 可以分为两类：
-
-- UnionBlockInputStream：把多个 InputStream 合成一个 InputStream；
-- ParallelAggregatingBlockInputStream：和 Union 类似，不过还会做一个额外的数据聚合；
-- SharedQueryBlockInputStream：把一个 InputStream 扩散成多个 InputStream。
-
-- DMSegmentThreadInputStream：与存储交互的 InpuStream，可以简单理解为是 table scan；
-- ExchangeReceiverInputStream：从远端读数据的 InputStream；
-- ExpressionBlockInputStream：进行 expression 计算的 InputStream；
-- FilterBlockInputStream：对数据进行过滤的 InputStream；
-- ParallelAggregatingBlockInputStream：做数据进行聚合的 InputStream。
-
 - 用于做计算的，例如：
+  - DMSegmentThreadInputStream：与存储交互的 InpuStream，可以简单理解为是 table scan；
+  - ExchangeReceiverInputStream：从远端读数据的 InputStream；
+  - ExpressionBlockInputStream：进行 expression 计算的 InputStream；
+  - FilterBlockInputStream：对数据进行过滤的 InputStream；
+  - ParallelAggregatingBlockInputStream：做数据进行聚合的 InputStream。
+
 - 用于并发控制的，例如：
+  - UnionBlockInputStream：把多个 InputStream 合成一个 InputStream；
+  - ParallelAggregatingBlockInputStream：和 Union 类似，不过还会做一个额外的数据聚合；
+  - SharedQueryBlockInputStream：把一个 InputStream 扩散成多个 InputStream。
 
 <p align="center">
   <img src="https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/640-8-1653359045657.png">
@@ -149,23 +147,21 @@ MPP 在 API 层共有三个：
 
 上图是 Exchange 过程中的一些关键数据结构，主要有如下几个：
 
-- 将数据 encode 成协议规定的格式；
-- 如果 Exchange Type 是 HashPartition 的话，还需要负责把数据进行 Hash partition 的切分。
-
-- Sync Tunnel：用 sync grpc 实现的 tunnel；
-- Async Tunnel：用 async grpc 实现的 tunnel；
-- Local Tunnel：对于处于同一个节点的不同 task，他们之间的 Tunnel 不走 RPC，在内存里传输数据即可。
-
-- MPPTunnel：持有 grpc streaming writer，用于将计算结果发送给其他 task，目前有三种模式：
-- MPPTunnelSet：同一个 ExchangeSender 可能需要向多个 mpp task 传输数据，所以会有多个 MPPTunnel，这些 MPPTunnel 在一起组成一个 MPPTunnelSet。
-- StreamingDAGResponseWriter：持有 MPPTunnelSet，主要做一些发送之前的数据预处理工作：
-- ExchangeSenderBlockInputStream：执行框架中的一个 InputStream，持有 StreamingDAGResponseWriter，把计算的结果发送给 writer。
-
-- ExchangeReceiver：用于向其他 task 建立连接，接收数据并放在 result queue；
-- ExchangeReceiverInputStream：执行框架中的一个 InputStream，多个 ER Stream 共同持有一个 ExchangeReceiver，并从其 result queue 中读数据。
-
 - 接收端
+  - ExchangeReceiver：用于向其他 task 建立连接，接收数据并放在 result queue；
+  - ExchangeReceiverInputStream：执行框架中的一个 InputStream，多个 ER Stream 共同持有一个 ExchangeReceiver，并从其 result queue 中读数据。
 - 发送端
+  - MPPTunnel：持有 grpc streaming writer，用于将计算结果发送给其他 task，目前有三种模式：
+    - Sync Tunnel：用 sync grpc 实现的 tunnel；
+    - Async Tunnel：用 async grpc 实现的 tunnel；
+    - Local Tunnel：对于处于同一个节点的不同 task，他们之间的 Tunnel 不走 RPC，在内存里传输数据即可。
+  - MPPTunnelSet：同一个 ExchangeSender 可能需要向多个 mpp task 传输数据，所以会有多个 MPPTunnel，这些 MPPTunnel 在一起组成一个 MPPTunnelSet。
+  - StreamingDAGResponseWriter：持有 MPPTunnelSet，主要做一些发送之前的数据预处理工作：
+    - 将数据 encode 成协议规定的格式；
+    - 如果 Exchange Type 是 HashPartition 的话，还需要负责把数据进行 Hash partition 的切分。
+  - ExchangeSenderBlockInputStream：执行框架中的一个 InputStream，持有 StreamingDAGResponseWriter，把计算的结果发送给 writer。
+
+
 
 除了 Exchange，MPP 还有一个重要部分是 MPP task 的管理，与 BatchCoprocessor/Coprocessor 不同，MPP query 的多个 task 需要有一定的通信协作，所以 TiFlash 中需要有对 MPP task 的管理模块。其主要的数据结构如下：
 
