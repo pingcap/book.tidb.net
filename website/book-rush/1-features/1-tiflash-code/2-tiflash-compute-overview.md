@@ -1,3 +1,8 @@
+---
+title: TiFlash 源码阅读（二）计算层概览
+hide_title: true
+---
+
 # TiFlash 源码阅读（二）计算层概览
 
 > TiFlash 是 TiDB 的分析引擎，是 TiDB HTAP 形态的关键组件。TiFlash 源码阅读系列文章将从源码层面介绍 TiFlash 的内部实现。主要包括架构的演进，DAGRequest 协议、dag request 在 TiFlash 侧的处理流程以及 MPP 基本原理。
@@ -120,9 +125,9 @@ BlockInputStream 可以分为两类：
   - ParallelAggregatingBlockInputStream：和 Union 类似，不过还会做一个额外的数据聚合；
   - SharedQueryBlockInputStream：把一个 InputStream 扩散成多个 InputStream。
 
-<p align="center">
-  <img src="https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/640-8-1653359045657.png" width="600" height="600">
-</p>
+<center>
+    <img src={useBaseUrl('https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/640-8-1653359045657.png')} width="600" height="600" />
+</center>
 
 用于计算的 InputStream 与用于并发控制的 InputStream 最大的不同在于用于计算的 InputStream 自己不管理线程，它们只负责在某个线程里跑起来，而用于并发控制的 InputStream 会自己管理线程，如上所示，Union，ParallelAggregating 以及 SharedQuery 都会在自己内部维护一个线程池。当然有些并发控制的 InputStream 自己也会完成一些计算，比如 ParallelAggregatingBlockInputStream。
 
