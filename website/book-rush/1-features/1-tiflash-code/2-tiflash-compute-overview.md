@@ -93,7 +93,7 @@ SourceExecutor [Selection] [Aggregation|TopN|Limit] [Having] [ExchangeSender]
 
 对于第一个问题，我们引入了 Learner read 的过程，即在 TiFlash 编译 tablescan 之前，会用 start_ts 向 raft leader 查询截止到该 start_ts 时，raft 的 index 是多少，在得到该 index 之后，TiFlash 会等自己这个 raft leaner 的 index 追上 leader 的 index。
 
-对于第二个问题，我们引入了 Remote reader 的概念，即如果 TiFlash 遇到了 region error，那么如果是 BatchCoprocessor 和 MPP request，那 TiFlash 会主动像其他 TiFlash 节点发 Coprocessor request 来拿到该 region 的数据。
+对于第二个问题，我们引入了 Remote reader 的概念，即如果 TiFlash 遇到了 region error，那么如果是 BatchCoprocessor 和 MPP request，那 TiFlash 会主动向其他 TiFlash 节点发 Coprocessor request 来拿到该 region 的数据。
 
 在把 DAGRequest 编译成 BlockInputStream 之后，就进入了向量化执行的阶段，在向量化执行的时候，有两个基本的概念：
 
