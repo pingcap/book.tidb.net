@@ -1,7 +1,15 @@
-# 简介
+---
+title: TiDB 6.0 Placement Rules In SQL 使用实践
+hide_title: true
+---
+
+# TiDB 6.0 Placement Rules In SQL 使用实践
+
+> 本文作者：吴永健 https://tidb.net/u/banana_jian
+
+## 简介
 
 TiDB 6.0 版本正式提供了基于 SQL 接口的数据放置框架（Placement Rules in SQL）， 特性用于通过 SQL 接口配置数据在 TiKV 集群中的放置位置。通过该功能，用户可以将表和分区指定部署至不同的地域、机房、机柜、主机。适用场景包括低成本优化数据高可用策略、保证本地的数据副本可用于本地 Stale Read 读取、遵守数据本地要求等。它支持针对任意数据提供副本数、角色类型、放置位置等维度的灵活调度管理能力，这使得在多业务共享集群、跨 AZ 部署等场景下，TiDB 得以提供更灵活的数据管理能力，满足多样的业务诉求。
-
 
 该功能可以实现以下业务场景：
 
@@ -9,7 +17,9 @@ TiDB 6.0 版本正式提供了基于 SQL 接口的数据放置框架（Placement
 - 增加重要数据的副本数，提高业务可用性和数据可靠性
 - 将最新数据存入 SSD，历史数据存入 HDD，降低归档数据存储成本
 - 把热点数据的 leader 放到高性能的 TiKV 实例上
-- 将冷数据分离到不同的存储中以提高可用性![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651215364036.png)
+- 将冷数据分离到不同的存储中以提高可用性
+
+![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651215364036.png)
 
 使用放置规则时有 2 种方式
 
@@ -32,28 +42,26 @@ alter table jian placement policy location_policy;
 ```
 
 使用时：
-创建放置策略会使placement policy 更加易于管理，通过修改放置策略可以直接更新所有使用该策略的对象。
-另一方面对于create table 时使用和 alter table 时指定，这里也建议大家能注意一下两点：
-1 create 方式建议在项目初期的库表结构设计节点进行设定，那么在初始话项目数据库的时候可以一次成型。否则需要将整个表进行recreate，此处
-就需要考虑历史数据的问题。
-2 alter  方式由于是使用ALTER进行修改当表数据量大的时候可能会产生大量数据peer的移动，可能会消耗一定的资源，建议在业务低峰进行，但是
-也较好的弥补了一些即存表没有进行放置规则的设定后期需要添加，或者版本升级后需要使用新特性的问题。
+创建放置策略会使placement policy 更加易于管理，通过修改放置策略可以直接更新所有使用该策略的对象。另一方面对于create table 时使用和 alter table 时指定，这里也建议大家能注意以下两点：
 
-## Placement Rules in SQL 的应用场景猜想
+1. create 方式建议在项目初期的库表结构设计节点进行设定，那么在初始话项目数据库的时候可以一次成型。否则需要将整个表进行recreate，此处就需要考虑历史数据的问题。
+2. alter  方式由于是使用ALTER进行修改当表数据量大的时候可能会产生大量数据peer的移动，可能会消耗一定的资源，建议在业务低峰进行，但是也较好地弥补了一些即存表没有进行放置规则的设定后期需要添加，或者版本升级后需要使用新特性的问题。
+
+### Placement Rules in SQL 的应用场景猜想
 
 由于Placement Rules in SQL 的灵活性，在使用时可以“因地适宜”。以下是几个可以考虑的场景：
 
-1 当采取两地三中心或跨地域数据中心部署的时候，由于tidb是无状态的应用那么可以利用就近原则将业务接入点进行分块，同时对于数据的分布也可以采用同样的方式。使数据的存放可以达到“本地数据本地访问”，即所有的数据存储，管理在本地区内完成。减少了数据跨地区复制延迟，降低流量成本。
+1. 当采取两地三中心或跨地域数据中心部署的时候，由于tidb是无状态的应用那么可以利用就近原则将业务接入点进行分块，同时对于数据的分布也可以采用同样的方式。使数据的存放可以达到“本地数据本地访问”，即所有的数据存储，管理在本地区内完成。减少了数据跨地区复制延迟，降低流量成本。
 
-2 当系统IO存在某些瓶颈时可以考虑将某些tikv节点的数据盘更换为SSD，之后经过 Placement Rules 动态调整数据副本的存放策略，提高db的IO性能。对于一些历史及记录类的数据可以选择存放在一些主要由普通硬盘构成的tikv节点上。使硬件资源的配置得到充分的利用，而又不铺张浪费。
+2. 当系统IO存在某些瓶颈时可以考虑将某些tikv节点的数据盘更换为SSD，之后经过 Placement Rules 动态调整数据副本的存放策略，提高db的IO性能。对于一些历史及记录类的数据可以选择存放在一些主要由普通硬盘构成的tikv节点上。使硬件资源的配置得到充分的利用，而又不铺张浪费。
 
-3 同时也考虑当进行硬件更换时可以使用Placement Rules 对数据分布进行调整以减小tikv节点下线时的peer移动所需要的时间，因为通过Placement Rules可以将数据移动的动作提前进行分散在平时的小维护中。
+3. 同时也考虑当进行硬件更换时可以使用Placement Rules 对数据分布进行调整以减小tikv节点下线时的peer移动所需要的时间，因为通过Placement Rules可以将数据移动的动作提前进行分散在平时的小维护中。
 
-4 由于数据的重要程度不同对于以往的副本设置可能更偏向于全局，引入Placement Rules in SQL后对于数据的副本数就可以进行灵活的限定，对高要求的数据表进行多副本设置，对于不太紧要的表尽量的减小副本数，在保证数据的安全性的情况下又可以节约存储资源。
+4. 由于数据的重要程度不同对于以往的副本设置可能更偏向于全局，引入Placement Rules in SQL后对于数据的副本数就可以进行灵活的限定，对高要求的数据表进行多副本设置，对于不太紧要的表尽量的减小副本数，在保证数据的安全性的情况下又可以节约存储资源。
 
-5 如果业务采用了分库的模式为了减少运维成本，那么也可以考虑进行数据库整合，将分散的mysql实例迁移到一个Tidb集群中以多schema的方式存在，同时根据Placement Rules 原始业务数据库的数据存放节点仍然可以放置在原来的硬件节点上，但是逻辑上由于整合到了一个数据库集群中升级、打补丁、备份计划、扩缩容等日常运维管理频率可以大幅缩减，降低管理负担提升效率。
+5. 如果业务采用了分库的模式为了减少运维成本，那么也可以考虑进行数据库整合，将分散的mysql实例迁移到一个Tidb集群中以多schema的方式存在，同时根据Placement Rules 原始业务数据库的数据存放节点仍然可以放置在原来的硬件节点上，但是逻辑上由于整合到了一个数据库集群中升级、打补丁、备份计划、扩缩容等日常运维管理频率可以大幅缩减，降低管理负担提升效率。
 
-6 对于经典的热点问题在Placement Rules in SQL 也添加了更多的解决方案，通过Placement Rules in SQL也可以进行热点表的分布调整，而且也更加的方便与安全。虽然不能精确到region的级别，但是在表的粒度上也多提供了一种处理方法。
+6. 对于经典的热点问题在Placement Rules in SQL 也添加了更多的解决方案，通过Placement Rules in SQL也可以进行热点表的分布调整，而且也更加的方便与安全。虽然不能精确到region的级别，但是在表的粒度上也多提供了一种处理方法。
 
 下面我们来详细看看 placement policy 的使用方法：
 
@@ -81,15 +89,13 @@ ID                     Role          Host    
 192.168.135.148:20162  tikv          192.168.135.148  20162/20182  linux/x86_64  Up       /tidb-data/tikv-20162         /tidb-deploy/tikv-20162
 ```
 
-![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651213580960.png)![](file:///C:/Users/yongjian.wu/AppData/Local/Temp/enhtmlclip/Image.png)
-这里有一点需要大家注意一下
-**默认的 PLACEMENT POLICY 是需要以 region 来作为区分标签的，所以在创建 tikv 的时候这里需要明确的指定 tikv 的 region 的标签，不然的话在show placement labels 是无法看到 region lable 的。这里可以参照官方文档的建议**[**https://docs.pingcap.com/zh/tidb/stable/sql-statement-create-placement-policy**](https://docs.pingcap.com/zh/tidb/stable/sql-statement-create-placement-policy)
+![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651213580960.png)
 
-![](file:///C:/Users/yongjian.wu/AppData/Local/Temp/enhtmlclip/Image\(1\).png)
+这里有一点需要大家注意一下：**默认的 PLACEMENT POLICY 是需要以 region 来作为区分标签的，所以在创建 tikv 的时候这里需要明确的指定 tikv 的 region 的标签，不然的话在show placement labels 是无法看到 region lable 的。这里可以参照[官方文档的建议](https://docs.pingcap.com/zh/tidb/stable/sql-statement-create-placement-policy)**
 
-# PLACEMENT RULES的使用
+## PLACEMENT RULES的使用
 
-## 1 创建 PLACEMENT POLICY，并指定 PLACEMENT POLICY，定制其副本放置的位置
+### 1. 创建 PLACEMENT POLICY，并指定 PLACEMENT POLICY，定制其副本放置的位置
 
 这里创建一个 PLACEMENT POLICY 使其  PRIMARY\_REGION 放置在 region lable 为 bj 的 tikv 节点上，其余副本放置在 region lable 为 dl,sz 的 tikv 节点上
 
@@ -134,7 +140,7 @@ APPROXIMATE_KEYS: 0
 1 row in set (0.00 sec)
 ```
 
-## 2 创建表不指定 PLACEMENT POLICY，之后修改 PLACEMENT POLICY 定制其副本放置的位置
+### 2. 创建表不指定 PLACEMENT POLICY，之后修改 PLACEMENT POLICY 定制其副本放置的位置
 
 **leader 的 store 节点由原来的 1 变为了 4，看之前开头的环境信息可以验证 PLACEMENT POLICY 已经生效,可使用这个特性来修改表的leader节点或者当有热点问题时也可以变相的通过这种方式去修改频繁访问的表的leader所在的tikv的节点位置**
 
@@ -204,7 +210,7 @@ APPROXIMATE_KEYS: 0
 1 row in set (0.00 sec)
 ```
 
-## 3 通过  PLACEMENT POLICY 修改表的副本数
+### 3. 通过  PLACEMENT POLICY 修改表的副本数
 
 > Follower 的数量。例如 FOLLOWERS=2 表示数据有 3 个副本（2 个 follower 和 1 个 leader）。
 
@@ -275,11 +281,11 @@ APPROXIMATE_KEYS: 0
 1 row in set (0.02 sec)
 ```
 
-![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651214383481.png)![](file:///C:/Users/yongjian.wu/AppData/Local/Temp/enhtmlclip/Image\(2\).png)
+![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651214383481.png)
 
-![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651214403071.png)![](file:///C:/Users/yongjian.wu/AppData/Local/Temp/enhtmlclip/Image\(3\).png)
+![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651214403071.png)
 
-## 4 修改 PLACEMENT POLICY 定义
+### 4. 修改 PLACEMENT POLICY 定义
 
 **注意：修改定义时需要将原来的定义都带上否则会将其覆盖**
 这一点在官方文档中并没有特殊说明，也是自己在测试这个功能的时候偶然的发现，目前官方也没有直接修改的语法，所以大家在修改放置规则的时候一定要注意之前的定义以免将之前的定义覆盖。
@@ -292,29 +298,27 @@ APPROXIMATE_KEYS: 0
 ##########################################################
 ```
 
-## 5 PRIMARY\_REGION 节点宕机
+### 5. PRIMARY\_REGION 节点宕机
 
 **如果 PRIMARY\_REGION 的 tikv 节点宕机，那么 leader 节点也会转移到非 PRIMARY\_REGION 节点，当 tikv 节点恢复正常后 leader 节点也会随之转移回来**
 
 以下的过程
 
-> leader 节点：store4--  停止 store 的 tikv   ---》store1 --  恢复 tikv 节点-- 》store4
+> leader 节点：store4--  停止 store 的 tikv   ---》store1 --  恢复 tikv 节点-- 》store4             
 
-                 
+![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651214317831.png)
 
-![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651214317831.png)![](file:///C:/Users/yongjian.wu/AppData/Local/Temp/enhtmlclip/Image\(4\).png)
+![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651214284407.png)
 
-![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651214284407.png)![](file:///C:/Users/yongjian.wu/AppData/Local/Temp/enhtmlclip/Image\(5\).png)
-
-## 6 更改 PRIMARY\_REGION
+### 6. 更改 PRIMARY\_REGION
 
 **如果更改表当前 palcement policy 定义的 primary region 那么表的 leader 也会随 PRIMARY\_REGION 的改变而改变**
 
 > 下图 jian1 表一开始的 region 1005 的 leader 是在 store4（bj）上边,之后修改其 PRIMARY\_REGION 为 dl(store 1),可以看到 region 1005 的 leader 也确实随之发生了改变
 
-![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651214258850.png)![](file:///C:/Users/yongjian.wu/AppData/Local/Temp/enhtmlclip/Image\(6\).png)
+![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651214258850.png)
 
-## 7  PLACEMENT POLICY 同样适用与分区表
+### 7. PLACEMENT POLICY 同样适用与分区表
 
 **以下样例中我们手动指定了每一个分区的 PLACEMENT POLICY，使其每个分区的 leader 都存放于不同的 store 上。**
 
@@ -349,34 +353,35 @@ PARTITION p_sz VALUES IN ('sz') PLACEMENT POLICY=policy_sz
 
 下图可一看到t1的region分别存放在store 1(dl),4(bj),5(sz)上边
 
-## ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651214027508.png)
+![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651214027508.png)
 
+### 8. 查看数据库中现有的 PLACEMENT POLICY
 
+![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651214122983.png)
 
-## 8  查看数据库中现有的  PLACEMENT POLICY
+![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651214129042.png)
 
-## ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651214122983.png)![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651214129042.png)
+### 9. 设置数据库级别的 PLACEMENT POLICY
 
-## 9 设置数据库级别的   PLACEMENT POLICY
-
-> 更改默认的放置选项，但更改不影响已有的表 。
-
-> 创建新表会自动继承当前数据的放置规则。
-
+> 更改默认的放置选项，但更改不影响已有的表
+> 
+> 创建新表会自动继承当前数据的放置规则
+> 
 > 表级别的放置规则要优先于数据库级别的放置规则
 
-![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651214209248.png)![](file:///C:/Users/yongjian.wu/AppData/Local/Temp/enhtmlclip/Image\(7\).png)
-## 10 高级放置规则
+![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651214209248.png)
 
-**注意： PRIMARY\_REGION、REGIONS  和  SCHEDULE  选项不可与  CONSTRAINTS  选项同时指定，否则会报错**
+### 10. 高级放置规则
+
+**注意：PRIMARY\_REGION、REGIONS 和 SCHEDULE 选项不可与 CONSTRAINTS 选项同时指定，否则会报错**
 
 #### 以下 placement policy 的解读为：
 
-> 1 使用该规则的表的 region 只可以放置在含有 rack 标签且等于 rack1 的 tikv 节点上
-
-> 2  使用该规则的表的 leader region  只可以放置在含有 dc 标签且等于 bja 的 tikv 节点上
-
-> 3  使用该规则的表的 follower region  只可以放置在含有 dc 标签且等于 dla 的 tikv 节点上
+> 1. 使用该规则的表的 region 只可以放置在含有 rack 标签且等于 rack1 的 tikv 节点上
+> 
+> 2. 使用该规则的表的 leader region 只可以放置在含有 dc 标签且等于 bja 的 tikv 节点上
+> 
+> 3. 使用该规则的表的 follower region 只可以放置在含有 dc 标签且等于 dla 的 tikv 节点上
 
 ```
 
@@ -445,9 +450,7 @@ FOLLOWERS: 2
 LEARNERS: 0
 ```
 
-## 11 placement policy 的创建选项
-
-
+### 11. placement policy 的创建选项
 
 | 选项名                   |                                  描述                                 |
 | :-------------------- | :-----------------------------------------------------------------: |
@@ -461,7 +464,7 @@ LEARNERS: 0
 | LEARNER\_CONSTRAINTS  |                         仅适用于 learner 的约束列表。                         |
 | LEARNERS              |                           指定 learner 的数量。                           |
 
-## 12 删除 placement policy
+### 12. 删除 placement policy
 
 **删除 placement policy 时一定要确保没有任何表在使用当前的 placement policy 否则会报错**
 
@@ -483,10 +486,6 @@ SELECT table\_schema, table\_name FROM information\_schema.tables WHERE tidb\_pl
 SELECT table\_schema, table\_name FROM information\_schema.partitions WHERE tidb\_placement\_policy\_name='jianplacementpolicy';
 ```
 
-
-
-
-
 ## 总结
 
 当前版本在使用 Placement Rules in SQL 时如果使用基本的放置规则那么只可以使用   PRIMARY\_REGION 和 REGIONS 来进行放置规则的设置，但是如果使用高级放置规则那么 tikv 的 label 标签不需要必须设置 region 层级的标签，可以灵活使用和定义已存在或者需要的标签。
@@ -496,5 +495,3 @@ SELECT table\_schema, table\_name FROM information\_schema.partitions WHERE tidb
 Placement Rules in SQL可以通过它对分区 / 表 / 库不同级别的数据进行基于标签的自由放置。
 
 总之TiDB 6.0 的 Placement Rules In SQL 暴露了以往用户无法控制的内部调度能力，并提供了方便的 SQL 接口，这开启了诸多以往不可能实现的场景，更多的运用方式与使用场景还期待各位的发掘。
-
---本文作者：吴永健 https://tidb.net/u/banana_jian
