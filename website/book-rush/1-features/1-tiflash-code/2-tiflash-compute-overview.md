@@ -1,9 +1,9 @@
 ---
-title: TiFlash 源码阅读（二）计算层概览
+title: 计算层概览
 hide_title: true
 ---
 
-# TiFlash 源码阅读（二）计算层概览
+# 计算层概览
 
 > TiFlash 是 TiDB 的分析引擎，是 TiDB HTAP 形态的关键组件。TiFlash 源码阅读系列文章将从源码层面介绍 TiFlash 的内部实现。主要包括架构的演进，DAGRequest 协议、dag request 在 TiFlash 侧的处理流程以及 MPP 基本原理。
 >
