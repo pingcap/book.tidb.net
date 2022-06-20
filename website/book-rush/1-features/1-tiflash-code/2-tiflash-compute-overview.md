@@ -2,15 +2,19 @@
 
 > TiFlash 是 TiDB 的分析引擎，是 TiDB HTAP 形态的关键组件。TiFlash 源码阅读系列文章将从源码层面介绍 TiFlash 的内部实现。主要包括架构的演进，DAGRequest 协议、dag request 在 TiFlash 侧的处理流程以及 MPP 基本原理。
 >
-> **本文作者：**徐飞，PingCAP 资深研发工程师
+> 本文作者：徐飞，PingCAP 资深研发工程师
 
 ## 背景
 
-﻿![640.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/640-1653358753240.png)﻿﻿
+<p align="center">
+  <img src="https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/640-1653358753240.png">
+</p>
 
 上图是一个 TiDB 中 query 执行的示意图，可以看到在 TiDB 中一个 query 的执行会被分成两部分，一部分在 TiDB 执行，一部分下推给存储层（TiFlash/TiKV）执行。本文我们主要关注在 TiFlash 执行的部分。
 
-﻿![640-1.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/640-1-1653358788288.png)﻿﻿
+<p align="center">
+  <img src="https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/640-1-1653358788288.png">
+</p>
 
 **这个是一个 TiDB 的查询 request 在 TiFlash 内部的基本处理流程**，首先 Flash service 会接受到来自 TiDB 的 RPC 请求，然后会从请求里拿到 TiDB 的 plan，在 TiFlash 中我们称之为 DAGRequest，拿到 TiDB 的 plan 之后，TiFlash 需要把 TiDB 的 plan 编译成可以在 TiFlash 中执行的 BlockInputStream，最后在得到 BlockInputStream 之后，TiFlash 就会进入向量化执行的阶段。**本文要讲的 TiFlash 计算层实际上是包含以上四个阶段的广义上的计算层。**
 
@@ -18,7 +22,9 @@
 
 **首先，我们从 API 的角度来讲一下 TiDB + TiFlash 计算层的演进过程：**
 
-﻿![640-2.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/640-2-1653358826520.png)﻿﻿
+<p align="center">
+  <img src="https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/640-2-1653358826520.png">
+</p>
 
 最开始在没有引入 TiFlash 时，TiDB 是用过 Coprocessor 协议来与存储层（TiKV）进行交互的，在上图中，root executors 表示在 TiDB 中单机执行的算子，cop executors 指下推给 TiKV 执行的算子。**在 TiDB + TiKV 的计算体系中，有如下几个特点：**
 
@@ -29,7 +35,9 @@
 
 **在 TiDB 4.0 中，我们首次引入了 TiFlash：**
 
-﻿![640-3.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/640-3-1653358859369.png)﻿﻿
+<p align="center">
+  <img src="https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/640-3-1653358859369.png">
+</p>
 
 在引入之初，我们基本上就是只对接了现有的 Coprocessor 协议，可以看出上面这个图上之前 TiDB + TiKV 的图其实是一样的，除了存储层从 TiKV 变成了 TiFlash。但是本质上讲引入 TiFlash 之前 TiDB + TiKV 是一个面向 TP 的系统，TiFlash 在简单对接 Coprocessor 协议之后，马上发现了一些对 AP 很不友好的地方，主要有两点：
 
@@ -43,11 +51,15 @@
 
 尽管在引入 BatchCoprocessor 之后，Coprocessor 的两个主要缺点都得到了解决，但是因为无论是 BatchCoprocessor 还是 Coprocessor 都只是支持对单表的 query，**遇到复杂 sql，其大部分工作还是需要在 root executor 上单机执行**，以下面这个两表 join 的 plan 为例：
 
-﻿![640-4.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/640-4-1653358890635.png)﻿﻿
+<p align="center">
+  <img src="https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/640-4-1653358890635.png">
+</p>
 
 只有 TableScan 和 Selection 部分可以在 TiFlash 中执行，而之后的 Join 和 Agg 都需要在 TiDB 执行，这显然极大的限制了计算层的扩展性。**为了从架构层面解决这个问题，在 TiFlash 5.0 中，我们正式引入了 MPP 的计算架构：**
 
-﻿![640-5.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/640-5-1653358901475.png)﻿﻿
+<p align="center">
+  <img src="https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/640-5-1653358901475.png">
+</p>
 
 引入 MPP 之后，TiFlash 支持的 query 部分得到了极大的丰富，对于理想情况下，root executor 直接退化为一个收集结果的 TableReader，剩下部分都会下推给 TiFlash，从而从根本上解决了 TiDB 中计算能力无法横向扩展的问题。
 
@@ -55,7 +67,9 @@
 
 在 TiFlash 内部，接收到 TiDB 的 request 之后，首先会得到 TiDB 的 plan，在 TiFlash 中，称之为 DAGRequest，它是一个基于 protobuf 协议的一个定义，一些主要的部分如下：
 
-﻿![640-6.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/640-6-1653358943046.png)﻿﻿
+<p align="center">
+  <img src="https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/640-6-1653358943046.png">
+</p>
 
 **值得一提的就是 DAGRequest 中有两个 executor 相关的 field：**
 
@@ -86,7 +100,9 @@ SourceExecutor [Selection] [Aggregation|TopN|Limit] [Having] [ExchangeSender]
 - Block：是执行期的最小数据单元，它由一个 column 的数组组成；
 - BlockInputStream：相当于执行框架，每个 BlockInputStream 都有一个或者多个 child，执行时采用了 pull 的模型。下面是执行时的伪代码：
 
-﻿![640-7.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/640-7-1653359012506.png)﻿﻿
+<p align="center">
+  <img src="https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/640-7-1653359012506.png">
+</p>
 
 **BlockInputStream 可以分为两类：**
 
@@ -103,7 +119,9 @@ SourceExecutor [Selection] [Aggregation|TopN|Limit] [Having] [ExchangeSender]
 - 用于做计算的，例如：
 - 用于并发控制的，例如：
 
-﻿![640-8.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/640-8-1653359045657.png)﻿﻿
+<p align="center">
+  <img src="https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/640-8-1653359045657.png">
+</p>
 
 用于计算的 InputStream 与用于并发控制的 InputStream 最大的不同在于用于计算的 InputStream 自己不管理线程，它们只负责在某个线程里跑起来，而用于并发控制的 InputStream 会自己管理线程，如上所示，Union，ParallelAggregating 以及 SharedQuery 都会在自己内部维护一个线程池。当然有些并发控制的 InputStream 自己也会完成一些计算，比如 ParallelAggregatingBlockInputStream。
 
@@ -125,7 +143,9 @@ SourceExecutor [Selection] [Aggregation|TopN|Limit] [Having] [ExchangeSender]
 - HashPartition：即将一份数据用 hash partition 的方式切分成多个 partition，然后发送给目标 mpp task；
 - PassThrough：这个与 broadcast 几乎一样，不过 PassThrough 的目标 task 只能有一个，通常用于 MPP task 给 TiDB 返回结果。
 
-﻿![640-9.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/640-9-1653359087085.png)﻿﻿
+<p align="center">
+  <img src="https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/640-9-1653359087085.png">
+</p>
 
 **上图是 Exchange 过程中的一些关键数据结构，主要有如下几个：**
 
