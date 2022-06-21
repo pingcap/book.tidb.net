@@ -119,7 +119,7 @@ tiup diag collect ${cluster-name} -f="-4h" -t="-2h"
 
 #### 3.3.1 采集 TiDB 集群 cluster111
 
-采集4 小时前到现在的数据
+采集 4 小时前到现在的数据
 
 ```shell
 # 命令后面加上 -y 后,当执行该命令后,出现 需要选择确认或取消的时候,(即选择y/n的时候),自动选择y
@@ -190,7 +190,9 @@ tiup diag upload ${filepath}
 
 可以对日志进行在线日志检索
 
-![2.PNG](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/2-1655396885384.png)
+<center>
+    <img src={useBaseUrl('https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/2-1655396885384.png')} />
+</center>
 
 ![3.PNG](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/3-1655396913016.png)
 
@@ -198,7 +200,9 @@ tiup diag upload ${filepath}
 
 可以进行在线 SQL 分析
 
-![6.PNG](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/6-1655397056598.png)
+<center>
+    <img src={useBaseUrl('https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/6-1655397056598.png')} />
+</center>
 
 ![7.PNG](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/7-1655397093244.png)
 
@@ -206,7 +210,9 @@ tiup diag upload ${filepath}
 
 官方授权开发专家可以下载采集数据，协助诊断。
 
-![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1655397326036.png)
+<center>
+    <img src={useBaseUrl('https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1655397326036.png')} />
+</center>
 
 #### 3.3.4 体验过程中遇到的问题
 
@@ -240,7 +246,9 @@ tiup diag check ${filepath}
 
 - 2）tiup diag check 失败
 
-![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651728284251.png)
+<center>
+    <img src={useBaseUrl('https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651728284251.png')} />
+</center>
 
 ##### 3.3.4.4 PD 正常如果 TiDB 挂掉
 
@@ -276,7 +284,9 @@ tiup diag config clinic.token  ${token}
 
 > 可以使用tiup diag check ${filepath}
 
-![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651728313290.png)
+<center>
+    <img src={useBaseUrl('https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651728313290.png')} />
+</center>
 
 ### 3.4 采集 DM 集群的数据
 
@@ -421,7 +431,9 @@ Collected data are stored in /home/vagrant/diag-fSwQn7ZDb6f
 
 ```
 
-![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651728337265.png)
+<center>
+    <img src={useBaseUrl('https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651728337265.png')} />
+</center>
 
 ### 3.5 采集 TiFlash 数据
 
@@ -451,7 +463,9 @@ tiup cluster scale-out cluster111 ./scale-out-${nodename}.yml -uroot -p
 
 > 注意使用cdc server 增加的ticdc节点将无法使用clinic收集到信息
 
-![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651728350945.png)
+<center>
+    <img src={useBaseUrl('https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651728350945.png')} />
+</center>
 
 ## 四、信息安全
 
