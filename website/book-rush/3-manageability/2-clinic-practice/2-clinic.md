@@ -25,7 +25,7 @@ Clinic 目前支持 TiUP 部署的 v4.0 以上的 TiDB 本地集群和 TiDB Clou
 
 从部署工具（ tiup-cluster/tidb-operator) 获取集群拓扑信息。
 
-- 数据采集方式&#x20;
+- 数据采集方式
 
 1） scp 方式传输服务器文件
 
@@ -90,9 +90,12 @@ tiup install diag
 > 2. 先设置组织
 > 3. 右下角获取 Token
 
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 <center>
-![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651728143485.png)
+    <img src={useBaseUrl('https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651728143485.png')} />
 </center>
+
 
 ```shell
 # 设置上传采集数据的token
@@ -125,11 +128,11 @@ tiup diag collect cluster111 -f="-4h" -y
 ```
 
 <center>
-![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651728174858.png)
+    <img src={useBaseUrl('https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651728174858.png')} />
 </center>
 
 <center>
-![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651728193065.png)
+    <img src={useBaseUrl('https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651728193065.png')} />
 </center>
 
 #### 3.3.2 上传采集数据
@@ -156,7 +159,7 @@ tiup diag upload ${filepath}
 ```
 
 <center>
-![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651728215744.png)
+    <img src={useBaseUrl('https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651728215744.png')} />
 </center>
 
 #### 3.3.3 登录 Clinic 服务验证采数据
@@ -164,7 +167,7 @@ tiup diag upload ${filepath}
 ##### 3.3.3.1 集群数据的上报情况
 
 <center>
-![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1655719964734.png)
+    <img src={useBaseUrl('https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1655719964734.png')} />
 </center>
 
 完成数据上传后，通过上传输出结果中的 Download URL 获取诊断数据的链接。
