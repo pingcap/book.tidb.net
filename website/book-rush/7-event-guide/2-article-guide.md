@@ -171,10 +171,7 @@ hide_title: true
 - [体验TiDB v6.0.0 之TiCDC](https://tidb.net/blog/54af3eb4)
 - [体验TiDB V6.0.0 之TiDB的数据迁移工具DM-WebUI](https://tidb.net/blog/87a38392) 
 - [一篇文章说透缓存表](https://tidb.net/blog/f663f0f5)
-- [TiEM初级实践](https://tidb.net/blog/a51f9e05)
-- [TiEM初体验](https://tidb.net/blog/925a7ffe)
 - [TiDB 6.0 新特性解读 | 离线包变更](https://tidb.net/blog/3a05d13c)
-- [TiDB V6.0.0体验 -- TiEM](https://tidb.net/blog/e326d4bd)
 - [TiDB 6.0 新特性解读 | TiFlash 新增算子和函数下推](https://tidb.net/blog/2188d936)
 - [TiDB冷热存储分离解决方案](https://tidb.net/blog/387bd516)
 

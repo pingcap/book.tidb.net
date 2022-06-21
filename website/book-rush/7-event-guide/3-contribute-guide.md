@@ -107,9 +107,9 @@ hide_title: true
 
 #### 4.2 找到你要发布文章的二级目录
 
-> 一级目录下的下一级目录中，以“3-manageability 文件夹”为例，也是类似的对应关系，“1-tiem-pratice” 文件夹对应了“1. TiEM 体验”这一小节（如有不懂可以找运营小助手）
+> 一级目录下的下一级目录中，以“4-performance”文件夹为例，也是类似的对应关系，“3-mpp-engine” 文件夹对应了“3. MPP 引擎计算性能提升”这一小节（如有不懂可以找运营小助手）
 
-![](https://asktug.com/uploads/default/original/4X/6/7/d/67d11a7b8e4cb71fe1d6be3dcf3e258205a6855d.png) 
+![](https://asktug.com/uploads/default/original/4X/5/8/c/58cd8193139650834e23dbd35736123dce816486.png) 
 
 #### 4.3 在二级目录下提交文章
 
