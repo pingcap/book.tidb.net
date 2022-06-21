@@ -52,6 +52,22 @@ const config = {
             from: "/",
           },
         ],
+        createRedirects(existingPath) {
+          if (
+            existingPath.includes(
+              "/book-rush/manageability/tiunimanager-practice"
+            )
+          ) {
+            // Redirect from /book-rush/manageability/tiem-practice/X to /book-rush/manageability/tiunimanager-practice/X
+            return [
+              existingPath.replace(
+                "/book-rush/manageability/tiunimanager-practice",
+                "/book-rush/manageability/tiem-practice"
+              ),
+            ];
+          }
+          return undefined; // Return a falsy value: no redirect created
+        },
       },
     ],
     [
