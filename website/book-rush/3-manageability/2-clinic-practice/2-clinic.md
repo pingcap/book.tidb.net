@@ -9,11 +9,11 @@ hide_title: true
 
 ## 一、背景
 
-​	TiDB 的生态越来越完善，带来利好的同时，也增加了运维不可确定性。
+TiDB 的生态越来越完善，带来利好的同时，也增加了运维不可确定性。
 
-&#x20;       Clinic 的出现降低了运维成本，可以快速收集帮助定位问题的完整信息。对于使用 TiUP 部署的 TiDB 集群和 DM 集群，PingCAP Clinic 诊断服务（以下简称为 Clinic）可以通过 Diag 诊断客户端（以下简称为 Diag）与 [Clinic Server 云诊断平台](https://clinic.pingcap.com.cn/)（以下简称为 Clinic Server）实现远程定位集群问题和本地快速检查集群状态。基于好奇，对新技术的敬畏，记录 Clinic 之旅。
+Clinic 的出现降低了运维成本，可以快速收集帮助定位问题的完整信息。对于使用 TiUP 部署的 TiDB 集群和 DM 集群，PingCAP Clinic 诊断服务（以下简称为 Clinic）可以通过 Diag 诊断客户端（以下简称为 Diag）与 [Clinic Server 云诊断平台](https://clinic.pingcap.com.cn/)（以下简称为 Clinic Server）实现远程定位集群问题和本地快速检查集群状态。基于好奇，对新技术的敬畏，记录 Clinic 之旅。
 
-​        Clinic 目前支持 TiUP 部署的 v4.0 以上的 TiDB 本地集群和 TiDB Cloud。
+Clinic 目前支持 TiUP 部署的 v4.0 以上的 TiDB 本地集群和 TiDB Cloud。
 
 ## 二、Clinic 工作原理
 
@@ -23,25 +23,25 @@ hide_title: true
 
 - 获取集群拓扑信息
 
-&#x20;       从部署工具（ tiup-cluster/tidb-operator) 获取集群拓扑信息。
+从部署工具（ tiup-cluster/tidb-operator) 获取集群拓扑信息。
 
 - 数据采集方式&#x20;
 
-&#x20;       1） scp 方式传输服务器文件
+1） scp 方式传输服务器文件
 
-&#x20;           对于 TiUP 部署的集群，通过 scp 方式直接从目标组件节点采集日志文件、配置文件。
+对于 TiUP 部署的集群，通过 scp 方式直接从目标组件节点采集日志文件、配置文件。
 
-&#x20;        2）ssh 远程执行命令采集数据
+2）ssh 远程执行命令采集数据
 
-&#x20;           对于 TiUP 部署的集群，Diag 可以通过 ssh 到目标组件系统，执行 insight 等命令获取系统信息，包括内核日志、内核参数、基础的系统和硬件信息等。
+对于 TiUP 部署的集群，Diag 可以通过 ssh 到目标组件系统，执行 insight 等命令获取系统信息，包括内核日志、内核参数、基础的系统和硬件信息等。
 
-&#x20;         3）http 调用采集数据
+3）http 调用采集数据
 
-&#x20;           调用 TiDB 组件的 http 接口，获取 TiDB、TiKV、PD 等组件的实时配置、实时性能采样信息。调用 Prometheus 的 http 接口，获取 alert 信息和 metrics监控数据。
+调用 TiDB 组件的 http 接口，获取 TiDB、TiKV、PD 等组件的实时配置、实时性能采样信息。调用 Prometheus 的 http 接口，获取 alert 信息和 metrics监控数据。
 
-&#x20;         4）SQL 语句查询数据库参数
+4）SQL 语句查询数据库参数
 
-&#x20;           通过 SQL 语句，查询 TiDB 数据库的系统参数等信息，该方式需要用户在采集时额外提供访问 TiDB 数据库的用户名和密码。
+通过 SQL 语句，查询 TiDB 数据库的系统参数等信息，该方式需要用户在采集时额外提供访问 TiDB 数据库的用户名和密码。
 
 2、上传采集数据到 Clinic Server 平台
 
@@ -49,9 +49,8 @@ hide_title: true
 
 ## 三、体验目标
 
-1）体验 Clinic 基于 TiD v6.0.0 离线安装版
-
-2）体验 远程协助快速定位集群问题
+1. 体验 Clinic 基于 TiD v6.0.0 离线安装版
+2. 体验 远程协助快速定位集群问题
 
 ### 3.1 安装 TiDB 集群（这里不再详细说明）
 
@@ -87,13 +86,13 @@ tiup install diag
 #### 3.2.2 登录 Clinic 站点获取 Token
 
 > <https://clinic.pingcap.com.cn/portal>
-> 1、使用社区账号登录
-> 2、先设置组织
-> 3、右下角获取 Token
+> 1. 使用社区账号登录
+> 2. 先设置组织
+> 3. 右下角获取 Token
 
+<center>
 ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651728143485.png)
-
-
+</center>
 
 ```shell
 # 设置上传采集数据的token
@@ -115,7 +114,6 @@ tiup diag collect ${cluster-name} -f="-4h" -t="-2h"
 
 - 采集完成后，Diag 会提示采集数据所在的文件夹路径。
 
-
 #### 3.3.1 采集 TiDB 集群 cluster111
 
 采集4 小时前到现在的数据
@@ -126,11 +124,13 @@ tiup diag collect cluster111 -f="-4h" -y
 
 ```
 
+<center>
 ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651728174858.png)
+</center>
 
-
-
+<center>
 ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651728193065.png)
+</center>
 
 #### 3.3.2 上传采集数据
 
@@ -155,13 +155,17 @@ tiup diag package ${filepath}
 tiup diag upload ${filepath}
 ```
 
+<center>
 ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651728215744.png)
+</center>
 
 #### 3.3.3 登录 Clinic 服务验证采数据
 
 ##### 3.3.3.1 集群数据的上报情况
 
+<center>
 ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1655719964734.png)
+</center>
 
 完成数据上传后，通过上传输出结果中的 Download URL 获取诊断数据的链接。
 
@@ -218,7 +222,8 @@ tiup diag upload ${filepath}
 2、 PD 正常的情况下可以收集集群信息
 
 3、本地快速检查集群状态
-&#x20;     只能检测 --include ="config"
+
+只能检测 --include ="config"
 
 ```markdown
 tiup diag collect ${cluster-name} --include="config"
@@ -439,7 +444,6 @@ ALTER DATABASE db_name SET TIFLASH REPLICA count;
 # 扩容 ticdc
 tiup cluster scale-out cluster111 ./scale-out-${nodename}.yml -uroot -p 
 
-
 ```
 
 > 注意使用cdc server 增加的ticdc节点将无法使用clinic收集到信息
@@ -468,10 +472,7 @@ tiup cluster scale-out cluster111 ./scale-out-${nodename}.yml -uroot -p
 
 ## 六、参考
 
-- https\://asktug.com/t/topic/272957# [【SOP 系列 22】TiDB 集群诊断信息收集 Clinic 使用指南 & 资料大全](https://asktug.com/t/topic/272957) &#x20;
-
-- https\://docs.pingcap.com/zh/tidb/v6.0/clinic-data-instruction-for-tiup# [Clinic 数据采集说明](https://docs.pingcap.com/zh/tidb/v6.0/clinic-data-instruction-for-tiup#Clinic)&#x20;
-
-- https\://docs.pingcap.com/zh/tidb/v6.0/quick-start-with-clinic#[ Clinic 快速上手指南](https://docs.pingcap.com/zh/tidb/v6.0/quick-start-with-clinic)&#x20;
-
-- https\://asktug.com/t/topic/664214# [Clinic 使用指南](https://asktug.com/t/topic/664214)
+- [【SOP 系列 22】TiDB 集群诊断信息收集 Clinic 使用指南 & 资料大全](https://asktug.com/t/topic/272957)
+- [Clinic 数据采集说明](https://docs.pingcap.com/zh/tidb/v6.0/clinic-data-instruction-for-tiup#Clinic)
+- [Clinic 快速上手指南](https://docs.pingcap.com/zh/tidb/v6.0/quick-start-with-clinic)
+- [Clinic 使用指南](https://asktug.com/t/topic/664214)
