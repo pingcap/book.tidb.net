@@ -1,14 +1,15 @@
 ---
-title: 1. TiEM 体验
+title: 1. TiUniManager（原 TiEM） 体验
 hide_title: true
 ---
 
-# 1. TiEM 体验
+# 1. TiUniManager（原 TiEM） 体验
 
-TiDB Enterprise Manager (TiEM) 是一款以 TiDB 数据库为核心的企业级数据库管理平台，帮助用户在私有部署 (on-premises) 或公有云环境中管理 TiDB 集群。
+TiUniManager（原 TiEM） 是为分布式数据库 TiDB 打造的管控平台软件和数据库运维管理平台，主要为 TiDB 提供数据库集群管理功能、主机管理功能和平台管理功能，涵盖了数据库运维人员 (DBA) 在 TiDB 上进行的常用运维操作，帮助 DBA 对 TiDB 进行自动化、自助化和可视化管理。
 
+TiUniManager 可帮助 DBA 避免因人工操作失误导致的数据库故障，保障数据库安全、稳定、高效地运行，降低运维 TiDB 的难度，提升 DBA 工作效率。
 
-TiEM 不仅为 TiDB 集群提供全生命周期的可视化管理，也同时一站式提供 TiDB 数据库的参数管理、数据库版本升级、克隆集群、主备集群切换、数据导入导出、数据同步、数据备份恢复服务，能有效提高 TiDB 集群运维效率，降低企业运维成本。
+自 v1.0.2 版本起，TiUniManager 正式开放源码，详见 GitHub 仓库 [tiunimanager](https://github.com/pingcap/tiunimanager)。
 
 在此目录下，你可以撰写 TiEM 体验和实践相关的文章。
 
