@@ -5,6 +5,8 @@ hide_title: true
 
 # 如何让 TiDB 集群管理“更省心”？TiuniManager（原 TiEM）使用教程来了
 
+> 作者：周鹏，PingCAP 产品经理
+
 作为企业的 TiDB 数据库管理员，日常运维过程中你是否曾经遇到过以下这些难题？
 
 - 规划 TiDB 集群时，需要掌握大量的主机信息（CPU、内存、IP 地址、磁盘类型、磁盘大小），工作量随集群规模线性增加，担心一个人 hold 不住；
@@ -30,7 +32,9 @@ TiUniManager（原 TiEM）帮助管理员一站式管理多套 TiDB 集群，提
 
 相对于过去“黑屏”下命令行方式的管理模式，TiUniManager（原 TiEM）不仅提供可视化交互界面、优化的使用路径、简洁的信息框架，还将不同场景下的规范流程封装到不同功能中，既降低了集群管理的技术门槛，简化了集群运维复杂度，也规范了集群运维操作流程。
 
-<video src="https://asktug.com/uploads/short-url/bLqJExnSNMxObY2FeLDrmLKPZeh.mp4" />
+<video controls width="100%">
+  <source src="https://img1.www.pingcap.com/prod/Ti_EM_Demo_956fa5cccb.mp4"/>
+</video>
 
 <center> 点击观看视频：TiUniManager（原 TiEM）一站式集群全生命周期管理</center>
 
@@ -42,11 +46,11 @@ TiUniManager（原 TiEM）为 TiDB 各版本提供推荐参数组模板 （包�
 
 日常运维中，数据库管理员常常需要修改 TiDB 配置参数，以便让集群性能与业务模型相匹配，发挥出最优运行效果。TiUniManager（原 TiEM）提供集群运行参数的查看与修改，屏蔽不同类型参数间的修改差异，让管理员能轻松完成参数调整。
 
-<video src="https://asktug.com/uploads/short-url/j4g0vJZNNIL3mFa6Op8JB1u8lE5.mp4" />
+<video controls width="100%">
+  <source src="https://img1.www.pingcap.com/prod/Ti_EM_Demo_bc23aac067.mp4"/>
+</video>
 
 <center> 点击观看视频：TiUniManager（原 TiEM）集群参数管理</center>
-
-
 
 ## 一键克隆集群、一键切换主备集群
 
@@ -56,21 +60,21 @@ TiUniManager（原 TiEM）一键克隆集群可帮助管理员快速构建主备
 
 TiUniManager（原 TiEM）主备集群切换实现主集群与备集群之间快速角色切换，自动完成主备集群之间数据同步任务的管理与切换，保证切换期间至少有有一个集群始终可读。
 
-<video src="https://asktug.com/uploads/short-url/u6AY8mvYPiucU4sC3SOwwZQNSKt.mp4" />
+<video controls width="100%">
+  <source src="https://img1.www.pingcap.com/prod/Ti_EM_Demo_2af5652cdb.mp4"/>
+</video>
 
-<center> 点击观看视频：TiEM 克隆集群与主备集群切换</center>
+<center> 点击观看视频：TiUniManager（原 TiEM）克隆集群与主备集群切换</center>
 
 ## 集群原地升级
 
 分布式数据库的版本升级是一项复杂的系统工程，是数据库运维人员一大头痛的问题。TiUniManager（原 TiEM）支持集群一键原地升级，提供集群升级前后参数对比与选择，让升级前后参数变更清清楚楚。TiUniManager（原 TiEM）同时支持滚动升级与强制重启升级两种升级方式，管理员在不同场景下可以选择合适方式进行升级。
 
-
-
-<video src="https://asktug.com/uploads/short-url/qpvThPUQFa2ZNiakBwj2HDg4tLv.mp4" />
+<video controls width="100%">
+  <source src="https://img1.www.pingcap.com/prod/Ti_EM_Demo_333a599351.mp4"/>
+</video>
 
 <center> 点击观看视频：TiUniManager（原 TiEM）集群原地升级</center>
-
-
 
 ## 来自用户的声音
 
@@ -78,8 +82,6 @@ TiUniManager（原 TiEM）在 TiDB 社区开放小规模的用户试用体验以
 
 - 汽车之家：TiUniManager（原 TiEM）功能全面，覆盖了我们 DBA 日常的操作，日常的运维管理效率提升 50% 以上。
 - 联通软件研究院：TiUniManager（原 TiEM）极大地帮助了我们 DBA 减轻管理多套 TiDB 集群的负担。
-
-
 
 ## 总结
 
