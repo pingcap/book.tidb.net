@@ -51,7 +51,7 @@ TiDB 学习之路
 
 **个人主页：**https://asktug.com/u/xuexiaogang/summary
 
-## **MVA**：严世超 - 思佰益必智信息技术（大连）有限公司
+## **MVA**：严世超 - 思佰益
 
 **布道轨迹：**
 
