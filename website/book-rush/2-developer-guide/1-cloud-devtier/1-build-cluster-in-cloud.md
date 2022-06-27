@@ -10,6 +10,12 @@ import TabItem from '@theme/TabItem';
 
 # 使用 TiDB Cloud (DevTier) 构建 TiDB 集群
 
+:::info
+
+本文档同步自 PingCAP 开发者手册中的[同名章节](https://docs.pingcap.com/zh/tidb/stable/dev-guide-build-cluster-in-cloud)。你也可以跳转到开发者手册的[概览](https://docs.pingcap.com/zh/tidb/stable/dev-guide-overview)中获取更多针对开发者的信息。
+
+:::
+
 本章节将介绍以最快的方式开始使用 TiDB。你将使用 [TiDB Cloud](https://en.pingcap.com/tidb-cloud) 创建并启动一个免费的 TiDB 集群，使用 TiDB SQL 客户端，插入数据。随后将从示例程序读取出数据。
 
 若你需要在本地计算机上启动 TiDB，请参阅[本地启动 TiDB](https://docs.pingcap.com/zh/tidb/stable/quick-start-with-tidb)。
@@ -129,9 +135,9 @@ import TabItem from '@theme/TabItem';
 
     </TabItem>
 
-    <TabItem label="非本地默认集群、TiDB Cloud 或其他远程集群" value="非本地默认集群、TiDB Cloud 或其他远程集群">
+    <TabItem label="非本地默认集群、TiDB Cloud 或其他远程集群"  value="非本地默认集群、TiDB Cloud 或其他远程集群">
 
-    更改 `plain-java-jdbc/src/main/java/com/pingcap/JDBCExample.java` 内关于 Host、Post、User、Password 的参数：
+    更改 `plain-java-jdbc/src/main/java/com/pingcap/JDBCExample.java` 内关于 Host、Port、User、Password 的参数：
 
     ```java
     mysqlDataSource.setServerName("localhost");
@@ -141,16 +147,16 @@ import TabItem from '@theme/TabItem';
     mysqlDataSource.setPassword("");
     ```
 
-    若你设定的密码为 `123456`，在 TiDB Cloud 得到的连接字符串为：
+    若你设定的密码为 `123456`，而且从 TiDB Cloud 得到的连接字符串为：
 
     ```shell
-    mysql --connect-timeout 15 -u root -h tidb.e049234d.d40d1f8b.us-east-1.prod.aws.tidbcloud.com -P 4000 -p
+    mysql --connect-timeout 15 -u root -h xxx.tidbcloud.com -P 4000 -p
     ```
 
     那么此处应将参数更改为：
 
     ```java
-    mysqlDataSource.setServerName("tidb.e049234d.d40d1f8b.us-east-1.prod.aws.tidbcloud.com");
+    mysqlDataSource.setServerName("xxx.tidbcloud.com");
     mysqlDataSource.setPortNumber(4000);
     mysqlDataSource.setDatabaseName("test");
     mysqlDataSource.setUser("root");
@@ -164,3 +170,9 @@ import TabItem from '@theme/TabItem';
 3. 运行 `make plain-java-jdbc`。
 
     输出应如[预期](https://github.com/pingcap-inc/tidb-example-java/blob/main/Expected-Output.md#plain-java-jdbc)所示
+
+:::info
+
+本文档同步自 PingCAP 开发者手册中的[同名章节](https://docs.pingcap.com/zh/tidb/stable/dev-guide-build-cluster-in-cloud)。你也可以跳转到开发者手册的[概览](https://docs.pingcap.com/zh/tidb/stable/dev-guide-overview)中获取更多针对开发者的信息。
+
+:::

@@ -25,6 +25,7 @@ sidebar_position: 0.5
   
 - ### [2.3 Simple CRUD 指南](2-developer-guide/3-simple-crud/index.md)
   - [TiDB 和 Java 的简单 CRUD 应用程序](2-developer-guide/3-simple-crud/1-sample-application-java.md)
+  - [TiDB 和 Golang 的简单 CRUD 应用程序](2-developer-guide/3-simple-crud/2-sample-application-golang.md)
 
 ## [第三章：TiDB 6.0 可管理性](3-manageability/index.md)
 - ### [3.1 TiUniManager（原 TiEM） 体验](3-manageability/1-tiunimanager-practice/index.md)
