@@ -29,18 +29,18 @@ import TabItem from '@theme/TabItem';
 
 ### 使用 TiDB Cloud 免费集群
 
-[创建免费集群](/develop/dev-guide-build-cluster-in-cloud.md#第-1-步创建免费集群)。
+[创建免费集群](https://docs.pingcap.com/zh/tidb/stable/dev-guide-build-cluster-in-cloud#第-1-步创建免费集群)。
 
 ### 使用本地集群
 
 你可以部署一个本地测试的 TiDB 集群或正式的 TiDB 集群。详细步骤，请参考：
 
-- [部署本地测试 TiDB 集群](/quick-start-with-tidb.md#部署本地测试集群)
-- [部署正式 TiDB 集群](/production-deployment-using-tiup.md)。
+- [部署本地测试 TiDB 集群](https://docs.pingcap.com/zh/tidb/stable/quick-start-with-tidb#部署本地测试集群)
+- [部署正式 TiDB 集群](https://docs.pingcap.com/zh/tidb/stable/production-deployment-using-tiup)。
 
 ### 使用云原生开发环境
 
-基于 Git 的预配置的开发环境: [现在就试试](/develop/dev-guide-playground-gitpod.md)
+基于 Git 的预配置的开发环境: [现在就试试](https://docs.pingcap.com/zh/tidb/stable/dev-guide-playground-gitpod)
 
 该环境会自动克隆代码，并通过 TiUP 部署测试集群。
 

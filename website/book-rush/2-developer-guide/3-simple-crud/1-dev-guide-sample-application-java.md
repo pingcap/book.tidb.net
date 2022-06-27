@@ -25,7 +25,7 @@ import TabItem from '@theme/TabItem';
 
 > **建议：**
 >
-> 如果你希望使用 Spring Boot 进行 TiDB 应用程序的编写，可以查看 [Build the TiDB Application using Spring Boot](/develop/dev-guide-sample-application-spring-boot.md)。
+> 如果你希望使用 Spring Boot 进行 TiDB 应用程序的编写，可以查看 [Build the TiDB Application using Spring Boot](https://docs.pingcap.com/zh/tidb/stable/dev-guide-sample-application-spring-boot)。
 
 ## 第 1 步：启动你的 TiDB 集群
 
@@ -33,11 +33,11 @@ import TabItem from '@theme/TabItem';
 
 ### 使用 TiDB Cloud 免费集群
 
-[创建免费集群](/develop/dev-guide-build-cluster-in-cloud.md#第-1-步创建免费集群)。
+[创建免费集群](https://docs.pingcap.com/zh/tidb/stable/dev-guide-build-cluster-in-cloud#第-1-步创建免费集群)。
 
 ### 使用本地集群
 
-此处将简要叙述启动一个测试集群的过程，若需查看正式环境集群部署，或查看更详细的部署内容，请查阅[本地启动 TiDB](/quick-start-with-tidb.md)。
+此处将简要叙述启动一个测试集群的过程，若需查看正式环境集群部署，或查看更详细的部署内容，请查阅[本地启动 TiDB](https://docs.pingcap.com/zh/tidb/stable/quick-start-with-tidb)。
 
 **部署本地测试集群**
 
@@ -97,11 +97,11 @@ import TabItem from '@theme/TabItem';
 >
 > - 支持 v5.2.0 及以上版本的 TiDB 在 Apple M1 芯片的机器上运行 `tiup playground`。
 > - 以这种方式执行的 playground，在结束部署测试后 TiUP 会清理掉原集群数据，重新执行该命令后会得到一个全新的集群。
-> - 若希望持久化数据，可以执行 TiUP 的 `--tag` 参数：`tiup --tag <your-tag> playground ...`，详情参考 [TiUP 参考手册](/tiup/tiup-reference.md#-t---tag-string)。
+> - 若希望持久化数据，可以执行 TiUP 的 `--tag` 参数：`tiup --tag <your-tag> playground ...`，详情参考 [TiUP 参考手册](https://docs.pingcap.com/zh/tidb/stable/tiup-reference#-t---tag-string)。
 
 ### 使用云原生开发环境
 
-基于 Git 的预配置的开发环境: [现在就试试](/develop/dev-guide-playground-gitpod.md)
+基于 Git 的预配置的开发环境: [现在就试试](https://docs.pingcap.com/zh/tidb/stable/dev-guide-playground-gitpod)
 
 该环境会自动克隆代码，并通过 TiUP 部署测试集群。
 

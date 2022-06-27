@@ -23,7 +23,7 @@ hide_title: true
 
 > **建议：**
 >
-> 在[云原生开发环境](/develop/dev-guide-playground-gitpod.md)中尝试 Spring Boot 构建 TiDB 应用程序。
+> 在[云原生开发环境](https://docs.pingcap.com/zh/tidb/stable/dev-guide-playground-gitpod)中尝试 Spring Boot 构建 TiDB 应用程序。
 > 预配置完成的环境，自动启动 TiDB 集群，获取和运行代码，只需要一个链接。
 >
 > [现在就试试](https://gitpod.io/#targetFile=spring-jpa-hibernate_Makefile,targetMode=spring-jpa-hibernate/https://github.com/pingcap-inc/tidb-example-java)
@@ -34,11 +34,11 @@ hide_title: true
 
 ### 使用 TiDB Cloud 免费集群
 
-[创建免费集群](/develop/dev-guide-build-cluster-in-cloud.md#第-1-步创建免费集群)
+[创建免费集群](https://docs.pingcap.com/zh/tidb/stable/dev-guide-build-cluster-in-cloud#第-1-步创建免费集群)
 
 ### 使用本地集群
 
-此处将简要叙述启动一个测试集群的过程，若需查看正式环境集群部署，或查看更详细的部署内容，请查阅[本地启动 TiDB](/quick-start-with-tidb.md)。
+此处将简要叙述启动一个测试集群的过程，若需查看正式环境集群部署，或查看更详细的部署内容，请查阅[本地启动 TiDB](https://docs.pingcap.com/zh/tidb/stable/quick-start-with-tidb)。
 
 **部署本地测试集群**
 
@@ -98,7 +98,7 @@ hide_title: true
 >
 > - 支持 v5.2.0 及以上版本的 TiDB 在 Apple M1 芯片的机器上运行 `tiup playground`。
 > - 以这种方式执行的 playground，在结束部署测试后 TiUP 会清理掉原集群数据，重新执行该命令后会得到一个全新的集群。
-> - 若希望持久化数据，可以执行 TiUP 的 `--tag` 参数：`tiup --tag <your-tag> playground ...`，详情参考 [TiUP 参考手册](/tiup/tiup-reference.md#-t---tag-string)。
+> - 若希望持久化数据，可以执行 TiUP 的 `--tag` 参数：`tiup --tag <your-tag> playground ...`，详情参考 [TiUP 参考手册](https://docs.pingcap.com/zh/tidb/stable/tiup-reference#-t---tag-string)。
 
 ## 第 2 步：安装 JDK
 
@@ -243,7 +243,7 @@ hide_title: true
 
 ## 第 5 步：运行应用程序
 
-此处对应用程序代码进行编译和运行，将产生一个 Web 应用程序。Hibernate 将创建一个 在数据库 `test` 内的表 `player_jpa`，如果你想应用程序的 Restful API 进行请求，这些请求将会在 TiDB 集群上运行[数据库事务](/develop/dev-guide-transaction-overview.md)。
+此处对应用程序代码进行编译和运行，将产生一个 Web 应用程序。Hibernate 将创建一个 在数据库 `test` 内的表 `player_jpa`，如果你想应用程序的 Restful API 进行请求，这些请求将会在 TiDB 集群上运行[数据库事务](https://docs.pingcap.com/zh/tidb/stable/dev-guide-transaction-overview)。
 
 如果你想了解有关此应用程序的代码的详细信息，可参阅本教程下方的[实现细节](#实现细节)。
 
@@ -413,7 +413,7 @@ Hibernate: create table player_jpa (id bigint not null, coins integer, goods int
 
 #### 玩家交易
 
-点击 **Trade** 标签，点击 **Send** 按钮，发送 Put 形式的 `http://localhost:8080/player/trade` 请求，请求参数为售卖玩家 ID `sellID`、购买玩家 ID `buyID`、购买货物数量 `amount`、购买消耗金币数 `price`。返回值为交易是否成功。当出现售卖玩家货物不足、购买玩家金币不足或数据库错误时，交易将不成功，且由于[数据库事务](/develop/dev-guide-transaction-overview.md)保证，不会有玩家的金币或货物丢失的情况。
+点击 **Trade** 标签，点击 **Send** 按钮，发送 Put 形式的 `http://localhost:8080/player/trade` 请求，请求参数为售卖玩家 ID `sellID`、购买玩家 ID `buyID`、购买货物数量 `amount`、购买消耗金币数 `price`。返回值为交易是否成功。当出现售卖玩家货物不足、购买玩家金币不足或数据库错误时，交易将不成功，且由于[数据库事务](https://docs.pingcap.com/zh/tidb/stable/dev-guide-transaction-overview)保证，不会有玩家的金币或货物丢失的情况。
 
 ![Postman-Trade](../../media/IMG_20220402-003659102.png)
 
@@ -574,7 +574,7 @@ curl --location --request PUT 'http://localhost:8080/player/trade' \
   --data-urlencode 'price=100'
 ```
 
-这里使用 **Form Data** 作为信息的载荷。表示售卖玩家 ID `sellID` 为 1、购买玩家 ID `buyID` 为 2、购买货物数量 `amount` 为 10、购买消耗金币数 `price` 为 100。返回值为交易是否成功。当出现售卖玩家货物不足、购买玩家金币不足或数据库错误时，交易将不成功，且由于[数据库事务](/develop/dev-guide-transaction-overview.md)保证，不会有玩家的金币或货物丢失的情况。
+这里使用 **Form Data** 作为信息的载荷。表示售卖玩家 ID `sellID` 为 1、购买玩家 ID `buyID` 为 2、购买货物数量 `amount` 为 10、购买消耗金币数 `price` 为 100。返回值为交易是否成功。当出现售卖玩家货物不足、购买玩家金币不足或数据库错误时，交易将不成功，且由于[数据库事务](https://docs.pingcap.com/zh/tidb/stable/dev-guide-transaction-overview)保证，不会有玩家的金币或货物丢失的情况。
 
 ```json
 true
@@ -883,12 +883,12 @@ public class PlayerBean {
 - `@Table` 使用注解属性 `name` 将此实体类和表 `player_jpa` 关联。
 - `@Id` 声明此属性关联表的主键列。
 - `@GeneratedValue` 表示自动生成该列的值，而不应手动设置，使用属性 `generator` 指定生成器的名称为 `player_id`。
-- `@SequenceGenerator` 声明一个使用[序列](/sql-statements/sql-statement-create-sequence.md)的生成器，使用注解属性 `name` 声明生成器的名称为 `player_id` （与 `@GeneratedValue` 中指定的名称需保持一致）。随后使用注解属性 `sequenceName` 指定数据库中序列的名称。最后，使用注解属性 `allocationSize` 声明序列的步长为 1。
+- `@SequenceGenerator` 声明一个使用[序列](https://docs.pingcap.com/zh/tidb/stable/sql-statement-create-sequence)的生成器，使用注解属性 `name` 声明生成器的名称为 `player_id` （与 `@GeneratedValue` 中指定的名称需保持一致）。随后使用注解属性 `sequenceName` 指定数据库中序列的名称。最后，使用注解属性 `allocationSize` 声明序列的步长为 1。
 - `@Column` 将每个私有属性声明为表 `player_jpa` 的一列，使用注解属性 `name` 确定属性对应的列名。
 
 #### 存储库
 
-为了抽象数据库层，Spring 应用程序使用 [Repository](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories) 接口，或者 Repository 的子接口。 这个接口映射到一个数据库对象，常见的，比如会映射到一个表上。JPA 会实现一些预制的方法，比如 [INSERT](/sql-statements/sql-statement-insert.md) ，或使用主键的 [SELECT](/sql-statements/sql-statement-select.md) 等。
+为了抽象数据库层，Spring 应用程序使用 [Repository](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories) 接口，或者 Repository 的子接口。 这个接口映射到一个数据库对象，常见的，比如会映射到一个表上。JPA 会实现一些预制的方法，比如 [INSERT](https://docs.pingcap.com/zh/tidb/stable/sql-statement-insert) ，或使用主键的 [SELECT](https://docs.pingcap.com/zh/tidb/stable/sql-statement-select) 等。
 
 {{< copyable "" >}}
 
@@ -948,7 +948,7 @@ public interface PlayerRepository extends JpaRepository<PlayerBean, Long> {
 @Query(value = "SELECT * FROM player_jpa WHERE id = :id FOR UPDATE", nativeQuery = true)
 ```
 
-直接使用 SQL 的 `FOR UPDATE` 来增加锁。你也可通过 TiDB [SELECT 文档](/sql-statements/sql-statement-select.md) 进行更深层次的原理学习。
+直接使用 SQL 的 `FOR UPDATE` 来增加锁。你也可通过 TiDB [SELECT 文档](https://docs.pingcap.com/zh/tidb/stable/sql-statement-select) 进行更深层次的原理学习。
 
 ### 逻辑实现
 
@@ -1106,7 +1106,7 @@ public class PlayerServiceImpl implements PlayerService {
 
 你可以简单的认为，代理在带有 `@Transactional` 注释的对象内的函数调用时：在函数顶部将使用 `transaction.begin()` 开启事务，函数返回后，调用 `transaction.commit()` 进行事务提交，而出现任何运行时错误时，代理将会调用 `transaction.rollback()` 来回滚。
 
-你可参阅[数据库事务](/develop/dev-guide-transaction-overview.md)来获取更多有关事务的信息，或者阅读 Spring 官网中的文章 [理解 Spring 框架的声明式事务实现](https://docs.spring.io/spring-framework/docs/current/reference/html/data-access.html#tx-decl-explained)。
+你可参阅[数据库事务](https://docs.pingcap.com/zh/tidb/stable/dev-guide-transaction-overview)来获取更多有关事务的信息，或者阅读 Spring 官网中的文章 [理解 Spring 框架的声明式事务实现](https://docs.spring.io/spring-framework/docs/current/reference/html/data-access.html#tx-decl-explained)。
 
 整个实现类中，`buyGoods` 函数需重点关注，其在不符合逻辑时将抛出异常，引导 Hibernate 进行事务回滚，防止出现错误数据。
 
