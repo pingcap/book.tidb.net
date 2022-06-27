@@ -785,9 +785,151 @@ select 'CUSTOMER_2 （目标表）',count(*) from CUSTOMER_2;
 
 > <https://github.com/pingcap/tispark-test/tree/master/tpch/mysql>
 
-### 六、总结
+
+### 六、升级 TiSpark 之离线安装 TiSpark v2.5.1
+
+#### 6.1 准备安装包
+
+离线安装： https://pingcap.com/zh/product-community/#TiDB 6.0.0-DMR
+
+1）下载安装包 tidb-community-server-v6.0.0-linux-amd64.tar.gz 
+
+2）下载 tookit tidb-community-toolkit-v6.0.0-linux-amd64.tar.gz
+
+3）下载 Spark V3.1.3 https://dlcdn.apache.org/spark/spark-3.1.3/spark-3.1.3-bin-hadoop3.2.tgz
+
+4）下载 TiSpark V2.5.1 https://github.com/pingcap/tispark/releases/download/v2.5.1/tispark-assembly-3.1-2.5.1.jar 
+
+#### 6.2 离线安装 TiSpark v2.5.1
+
+##### 6.2.1 解压 spark-3.1.3-bin-hadoop3.2.tgz
+
+````shell
+```
+# 替换 Spark
+mkdir -p /usr/local0/webserver/tispark && tar -zxvf spark-3.1.3-bin-hadoop3.2.tgz -C /usr/local0/webserver/tispark/
+mv /usr/local0/webserver/tispark/spark-3.1.3-bin-hadoop3.2 /tidb-deploy/tispark-master-7077
+chown tidb.tidb -R /tidb-deploy/tispark-master-7077
+# 替换 TiSpark 包
+cp -rf tispark-assembly-3.1-2.5.1.jar /tidb-deploy/tispark-master-7077/jars/
+```
+````
+
+##### 6.2.2 安装 openjdk8 (略)
+
+##### 6.2.3 spark-defaults.conf 中增加配置
+
+````yaml
+```
+# sql扩展类
+spark.sql.extensions org.apache.spark.sql.TiExtensions
+# master节点
+spark.master spark://10.0.2.15:7077
+# pd节点 多个pd用逗号隔开 如：10.16.20.1:2379,10.16.20.2:2379,10.16.20.3:2379
+spark.tispark.pd.addresses 10.0.2.15:2379
+```
+````
+
+#### 6.3 启动 Spark 集群
+
+```
+/tidb-deploy/tispark-master-7077/sbin/start-all.sh
+```
+
+#### 6.4  在已有 Spark 集群上部署 TiSpark
+
+##### 6.4.1 启动 Spark-shell 的方式
+
+```
+# 启动 spark-shell
+/tidb-deploy/tispark-master-7077/bin/spark-shell --jars /tidb-deploy/tispark-master-7077/jars/tispark-assembly-3.1-2.5.1.jar 
+# 执行 spark.sql("select ti_version()").collect
+```
+
+![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1653925848979.png)﻿
+
+##### 6.4.2 启动 Spark-sql 的方式
+
+```
+# 启动 Spark-sql
+/tidb-deploy/tispark-master-7077/bin/spark-sql --jars /tidb-deploy/tispark-master-7077/jars/tispark-assembly-3.1-2.5.1.jar 
+
+# 执行 select ti_version();
+```
+
+![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1653925873658.png)
+
+##### 6.4.3 spark master 的情况
+
+![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1653928800215.png)
+
+
+
+### 七、TiSpark v2.4.x  升级到 TiSpark v2.5.x
+
+#### 7.1 下载升级软件
+
+```
+# 下载 Spark V3.1.3
+curl -L "https://dlcdn.apache.org/spark/spark-3.1.3/spark-3.1.3-bin-hadoop3.2.tgz" -O spark-3.1.3-bin-hadoop3.2.tgz
+# 下载 TiSpark V2.5.1
+curl -L "https://github.com/pingcap/tispark/releases/download/v2.5.1/tispark-assembly-3.1-2.5.1.jar" -O tispark-assembly-3.1-2.5.1.jar
+
+```
+
+#### 7.2 备份
+
+```
+\cp -rf /tidb-deploy/tispark-master-7077 /tidb-deploy/tispark-master-7077-bak2.4.1
+```
+
+#### 7.3 升级
+
+```
+# 替换 Spark
+mkdir -p /usr/local0/webserver/tispark && tar -zxvf spark-3.1.3-bin-hadoop3.2.tgz -C /usr/local0/webserver/tispark/
+mv /usr/local0/webserver/tispark/spark-3.1.3-bin-hadoop3.2 /tidb-deploy/tispark-master-7077
+chown tidb.tidb -R /tidb-deploy/tispark-master-7077
+# 替换 TiSpark 包
+cp -rf tispark-assembly-3.1-2.5.1.jar /tidb-deploy/tispark-master-7077/jars/
+# 配置文件
+cp -rf /tidb-deploy/tispark-master-7077-bak2.4.1/conf/* /tidb-deploy/tispark-master-7077/conf/
+```
+
+#### 7.4 测试
+
+- 启动 Spark 集群
+
+```
+/tidb-deploy/tispark-master-7077/sbin/start-all.sh
+```
+
+- 启动 Spark-shell
+
+```
+# 启动 spark-shell
+/tidb-deploy/tispark-master-7077/bin/spark-shell
+
+# 执行 spark.sql("select ti_version()").collect
+```
+
+![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1653925848979.png)
+
+- 启动 Spark-sql
+
+```
+# 启动 Spark-sql
+/tidb-deploy/tispark-master-7077/bin/spark-sql
+# 执行 select ti_version();
+```
+
+![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1653925873658.png)
+
+### 八、总结
 
 1、本次实验使用版本为 TiSpark ver 2.4.1 和 Spark 2.4.3 ，如果对新版的 TiSpark 比较感兴趣可以关注后面的文章。
+
+​     **为了便于阅读把 TiSpark v2.5.x 相关的 2 篇文章也合并在一起。**
 
 2、TiSpark 在写 TiDB 的时候注意下面几点：
 
@@ -807,7 +949,8 @@ select 'CUSTOMER_2 （目标表）',count(*) from CUSTOMER_2;
 
 ### 参考
 
-<https://docs.pingcap.com/zh/tidb/v6.0/tispark-overview#tispark-用户指南>
-<https://docs.pingcap.com/zh/tidb/v6.0/get-started-with-tispark#tispark-快速上手>
-<https://docs.pingcap.com/zh/tidb/v6.0/tispark-deployment-topology/#tispark-部署拓扑>
-<https://zhuanlan.zhihu.com/p/270265931#TiSpark> 批量写入 TiDB 原理与实现
+1. <https://docs.pingcap.com/zh/tidb/v6.0/tispark-overview#tispark-用户指南>
+2. <https://docs.pingcap.com/zh/tidb/v6.0/get-started-with-tispark#tispark-快速上手>
+3. <https://docs.pingcap.com/zh/tidb/v6.0/tispark-deployment-topology/#tispark-部署拓扑>
+4. <https://zhuanlan.zhihu.com/p/270265931#TiSpark-批量写入TiDB原理与实现>
+
