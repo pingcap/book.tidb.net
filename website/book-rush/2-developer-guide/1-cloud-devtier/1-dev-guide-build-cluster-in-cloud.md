@@ -25,13 +25,13 @@ hide_title: true
 4. 请在 **Create a Cluster (Dev Tier)** 页面填写集群名称/密码/云服务商（暂时仅可选择 AWS）/ 可用区（建议就近选择）后，点击 **Create** 按钮创建集群。
 5. 稍作等待，在 5~15 分钟后，将创建完毕，可在 [Active Clusters](https://tidbcloud.com/console/clusters) 查看创建进度。
 6. 创建完毕后，在 **Active Clusters** 页面，点击集群名称，进入该集群控制面板。
-    ![active clusters](/media/IMG_20220331-232643794.png)
+    ![active clusters](../../media/IMG_20220331-232643794.png)
 7. 点击 **Connect**，创建流量过滤器（允许连接的客户端 IP 列表）。
-    ![connect](/media/IMG_20220331-232726165.png)
+    ![connect](../../media/IMG_20220331-232726165.png)
 8. 在弹出框内点击 **Add Your Current IP Address**，此项将由 TiDB Cloud 解析你当前的网络 IP 填入。点击 **Create Filter**，进行流量过滤器的创建。
 9. 复制弹出框 **Step 2: Connect with a SQL client** 中的连接字符串，供后续步骤使用。
 
-![SQL string](/media/IMG_20220331-232800929.png)
+![SQL string](../../media/IMG_20220331-232800929.png)
 
 ## 第 2 步：连接到集群
 

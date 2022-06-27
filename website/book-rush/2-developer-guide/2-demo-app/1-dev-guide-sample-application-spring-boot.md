@@ -185,7 +185,7 @@ hide_title: true
 
 配置完毕后如图所示：
 
-![Spring Initializr Config](/media/IMG_20220401-234316020.png)
+![Spring Initializr Config](../../media/IMG_20220401-234316020.png)
 
 > **注意：**
 >
@@ -379,43 +379,43 @@ Hibernate: create table player_jpa (id bigint not null, coins integer, goods int
 
 你可下载[此配置文件](https://raw.githubusercontent.com/pingcap-inc/tidb-example-java/main/spring-jpa-hibernate/Player.postman_collection.json)到本地，并导入 [Postman](https://www.postman.com/)，导入后如图所示：
 
-![postman import](/media/IMG_20220402-003303222.png)
+![postman import](../../media/IMG_20220402-003303222.png)
 
 #### 增加玩家
 
 点击 **Create** 标签，点击 **Send** 按钮，发送 Post 形式的 `http://localhost:8080/player/` 请求。返回值为增加的玩家个数，预期为 1。
 
-![Postman-Create](/media/IMG_20220402-003350731.png)
+![Postman-Create](../../media/IMG_20220402-003350731.png)
 
 #### 使用 ID 获取玩家信息
 
 点击 **GetByID** 标签，点击 **Send** 按钮，发送 Get 形式的 `http://localhost:8080/player/1` 请求。返回值为 ID 为 1 的玩家信息。
 
-![Postman-GetByID](/media/IMG_20220402-003416079.png)
+![Postman-GetByID](../../media/IMG_20220402-003416079.png)
 
 #### 使用 Limit 批量获取玩家信息
 
 点击 **GetByLimit** 标签，点击 **Send** 按钮，发送 Get 形式的 `http://localhost:8080/player/limit/3` 请求。返回值为最多 3 个玩家的信息列表。
 
-![Postman-GetByLimit](/media/IMG_20220402-003505846.png)
+![Postman-GetByLimit](../../media/IMG_20220402-003505846.png)
 
 #### 分页获取玩家信息
 
 点击 **GetByPage** 标签，点击 **Send** 按钮，发送 Get 形式的 `http://localhost:8080/player/page?index=0&size=2` 请求。返回值为 index 为 0 的页，每页有 2 个玩家信息列表。此外，还包含了分页信息，如偏移量、总页数、是否排序等。
 
-![Postman-GetByPage](/media/IMG_20220402-003528474.png)
+![Postman-GetByPage](../../media/IMG_20220402-003528474.png)
 
 #### 获取玩家个数
 
 点击 **Count** 标签，点击 **Send** 按钮，发送 Get 形式的 `http://localhost:8080/player/count` 请求。返回值为玩家个数。
 
-![Postman-Count](/media/IMG_20220402-003549966.png)
+![Postman-Count](../../media/IMG_20220402-003549966.png)
 
 #### 玩家交易
 
 点击 **Trade** 标签，点击 **Send** 按钮，发送 Put 形式的 `http://localhost:8080/player/trade` 请求，请求参数为售卖玩家 ID `sellID`、购买玩家 ID `buyID`、购买货物数量 `amount`、购买消耗金币数 `price`。返回值为交易是否成功。当出现售卖玩家货物不足、购买玩家金币不足或数据库错误时，交易将不成功，且由于[数据库事务](/develop/dev-guide-transaction-overview.md)保证，不会有玩家的金币或货物丢失的情况。
 
-![Postman-Trade](/media/IMG_20220402-003659102.png)
+![Postman-Trade](../../media/IMG_20220402-003659102.png)
 
 ### 第 6 步第 2 部分：使用 curl 请求
 
