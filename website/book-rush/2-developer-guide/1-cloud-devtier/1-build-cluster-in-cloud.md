@@ -42,7 +42,7 @@ import TabItem from '@theme/TabItem';
 
     <Tabs>
 
-    <TabItem label="macOS">
+    <TabItem label="macOS" value="macOS">
 
     如果你没有安装 Homebrew，请移步 [Homebrew 官网](https://brew.sh/index_zh-cn)进行安装。
 
@@ -91,7 +91,7 @@ import TabItem from '@theme/TabItem';
 
     </TabItem>
 
-    <TabItem label="Linux">
+    <TabItem label="Linux" value="Linux">
 
     以 CentOS 7 为例：
 
@@ -143,13 +143,13 @@ import TabItem from '@theme/TabItem';
 
     <Tabs>
 
-    <TabItem label="本地默认集群">
+    <TabItem label="本地默认集群" value="本地默认集群">
 
     无需更改。
 
     </TabItem>
 
-    <TabItem label="非本地默认集群、TiDB Cloud 或其他远程集群">
+    <TabItem label="非本地默认集群、TiDB Cloud 或其他远程集群"  value="非本地默认集群、TiDB Cloud 或其他远程集群">
 
     更改 `plain-java-jdbc/src/main/java/com/pingcap/JDBCExample.java` 内关于 Host、Port、User、Password 的参数：
 
