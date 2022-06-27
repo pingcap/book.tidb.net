@@ -3,6 +3,9 @@ title: 使用 TiDB Cloud (DevTier) 构建 TiDB 集群
 hide_title: true
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 <!-- markdownlint-disable MD029 -->
 
 # 使用 TiDB Cloud (DevTier) 构建 TiDB 集群
