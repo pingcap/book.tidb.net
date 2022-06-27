@@ -46,8 +46,6 @@ import TabItem from '@theme/TabItem';
 
     如果你没有安装 Homebrew，请移步 [Homebrew 官网](https://brew.sh/index_zh-cn)进行安装。
 
-    {{< copyable "shell-regular" >}}
-
     ```shell
     brew install mysql-client
     ```
@@ -68,15 +66,11 @@ import TabItem from '@theme/TabItem';
 
     请运行其中的此行（命令行输出若与此处文档不一致，请以命令行输出为准）：
 
-    {{< copyable "shell-regular" >}}
-
     ```shell
     echo 'export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"' >> ~/.zshrc
     ```
 
     完成后，生效该配置文件（例如 `~/.zshrc`），并验证 MySQL 客户端是否安装成功：
-
-    {{< copyable "shell-regular" >}}
 
     ```shell
     source ~/.zshrc
@@ -95,15 +89,11 @@ import TabItem from '@theme/TabItem';
 
     以 CentOS 7 为例：
 
-    {{< copyable "shell-root" >}}
-
     ```shell
     yum install mysql
     ```
 
     完成后，请验证 MySQL 客户端是否安装成功：
-
-    {{< copyable "shell-regular" >}}
 
     ```shell
     mysql --version
@@ -121,8 +111,6 @@ import TabItem from '@theme/TabItem';
 
 2. 运行第 1 步中得到的连接字符串。
 
-    {{< copyable "shell-regular" >}}
-
     ```shell
     mysql --connect-timeout 15 -u root -h <host> -P 4000 -p
     ```
@@ -132,8 +120,6 @@ import TabItem from '@theme/TabItem';
 ## 第 3 步：运行示例应用程序
 
 1. 克隆 tidb-example-java 项目。
-
-    {{< copyable "shell-regular" >}}
 
     ```shell
     git clone https://github.com/pingcap-inc/tidb-example-java.git
@@ -153,8 +139,6 @@ import TabItem from '@theme/TabItem';
 
     更改 `plain-java-jdbc/src/main/java/com/pingcap/JDBCExample.java` 内关于 Host、Port、User、Password 的参数：
 
-    {{< copyable "" >}}
-
     ```java
     mysqlDataSource.setServerName("localhost");
     mysqlDataSource.setPortNumber(4000);
@@ -165,15 +149,11 @@ import TabItem from '@theme/TabItem';
 
     若你设定的密码为 `123456`，而且从 TiDB Cloud 得到的连接字符串为：
 
-    {{< copyable "shell-regular" >}}
-
     ```shell
     mysql --connect-timeout 15 -u root -h xxx.tidbcloud.com -P 4000 -p
     ```
 
     那么此处应将参数更改为：
-
-    {{< copyable "" >}}
 
     ```java
     mysqlDataSource.setServerName("xxx.tidbcloud.com");
