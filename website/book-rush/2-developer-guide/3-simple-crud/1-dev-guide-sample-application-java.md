@@ -11,6 +11,12 @@ import TabItem from '@theme/TabItem';
 
 # TiDB 和 Java 的简单 CRUD 应用程序
 
+:::info
+
+本文档同步自 PingCAP 开发者手册中的[同名章节](https://docs.pingcap.com/zh/tidb/stable/dev-guide-sample-application-java)。你也可以跳转到开发者手册的[概览](https://docs.pingcap.com/zh/tidb/stable/dev-guide-overview)中获取更多针对开发者的信息。
+
+:::
+
 本文档将展示如何使用 TiDB 和 Java 来构造一个简单的 CRUD 应用程序。
 
 > **注意：**
@@ -1804,3 +1810,9 @@ mysql --connect-timeout 15 -u root -h xxx.tidbcloud.com -P 4000 -p
 </TabItem>
 
 </Tabs>
+
+:::info
+
+本文档同步自 PingCAP 开发者手册中的[同名章节](https://docs.pingcap.com/zh/tidb/stable/dev-guide-sample-application-java)。你也可以跳转到开发者手册的[概览](https://docs.pingcap.com/zh/tidb/stable/dev-guide-overview)中获取更多针对开发者的信息。
+
+:::

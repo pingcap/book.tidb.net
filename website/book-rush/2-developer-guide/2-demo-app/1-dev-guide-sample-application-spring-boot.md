@@ -7,6 +7,12 @@ hide_title: true
 
 # 使用 Spring Boot 构建 TiDB 应用程序
 
+:::info
+
+本文档同步自 PingCAP 开发者手册中的[同名章节](https://docs.pingcap.com/zh/tidb/stable/dev-guide-sample-application-spring-boot)。你也可以跳转到开发者手册的[概览](https://docs.pingcap.com/zh/tidb/stable/dev-guide-overview)中获取更多针对开发者的信息。
+
+:::
+
 本教程向你展示如何使用 TiDB 构建 [Spring Boot](https://spring.io/projects/spring-boot) Web 应用程序。使用 [Spring Data JPA](https://spring.io/projects/spring-data-jpa) 模块作为数据访问能力的框架。此示例应用程序的代码仓库可在 [Github](https://github.com/pingcap-inc/tidb-example-java) 下载。
 
 这是一个较为完整的构建 Restful API 的示例应用程序，展示了一个使用 **TiDB** 作为数据库的通用 **Spring Boot** 后端服务。设计了以下过程，用于还原一个现实场景：
@@ -1178,3 +1184,9 @@ public class PlayerController {
     - [@PathVariable](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/PathVariable.html) 可以看到注解中有形如 `{id}` 、`{limit_size}` 这样的占位符，这种占位符将被绑定到 `@PathVariable` 注释的变量中，绑定的依据是注解中的注解属性 `name` （变量名可省略，即 `@PathVariable(name="limit_size")` 可写成 `@PathVariable("limit_size")` ），不特殊指定时，与变量名名称相同。
 - [@PutMapping](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/PutMapping.html) 声明此函数将响应 HTTP 中的 [PUT](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT) 类型请求。
 - [@RequestParam](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/RequestParam.html) 此声明将解析请求中的 URL 参数、表单参数等参数，绑定至注解的变量中。
+
+:::info
+
+本文档同步自 PingCAP 开发者手册中的[同名章节](https://docs.pingcap.com/zh/tidb/stable/dev-guide-sample-application-spring-boot)。你也可以跳转到开发者手册的[概览](https://docs.pingcap.com/zh/tidb/stable/dev-guide-overview)中获取更多针对开发者的信息。
+
+:::

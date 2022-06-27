@@ -7,6 +7,12 @@ hide_title: true
 
 # 使用 TiDB Cloud (DevTier) 构建 TiDB 集群
 
+:::info
+
+本文档同步自 PingCAP 开发者手册中的[同名章节](https://docs.pingcap.com/zh/tidb/stable/dev-guide-build-cluster-in-cloud)。你也可以跳转到开发者手册的[概览](https://docs.pingcap.com/zh/tidb/stable/dev-guide-overview)中获取更多针对开发者的信息。
+
+:::
+
 本章节将介绍以最快的方式开始使用 TiDB。你将使用 [TiDB Cloud](https://en.pingcap.com/tidb-cloud) 创建并启动一个免费的 TiDB 集群，使用 TiDB SQL 客户端，插入数据。随后将从示例程序读取出数据。
 
 若你需要在本地计算机上启动 TiDB，请参阅[本地启动 TiDB](/quick-start-with-tidb.md)。
@@ -181,3 +187,9 @@ hide_title: true
 3. 运行 `make plain-java-jdbc`。
 
     输出应如[预期](https://github.com/pingcap-inc/tidb-example-java/blob/main/Expected-Output.md#plain-java-jdbc)所示
+
+:::info
+
+本文档同步自 PingCAP 开发者手册中的[同名章节](https://docs.pingcap.com/zh/tidb/stable/dev-guide-build-cluster-in-cloud)。你也可以跳转到开发者手册的[概览](https://docs.pingcap.com/zh/tidb/stable/dev-guide-overview)中获取更多针对开发者的信息。
+
+:::
