@@ -18,14 +18,14 @@ sidebar_position: 0.5
 ## [第二章：TiDB Developer 体验指南](2-developer-guide/index.md)
 
 - ### [2.1 TiDB Cloud DevTier 搭建](2-developer-guide/1-cloud-devtier/index.md)
-  - [使用 TiDB Cloud (DevTier) 构建 TiDB 集群](2-developer-guide/1-cloud-devtier/1-dev-guide-build-cluster-in-cloud.md)
+  - [使用 TiDB Cloud (DevTier) 构建 TiDB 集群](2-developer-guide/1-cloud-devtier/1-build-cluster-in-cloud.md)
 
 - ### [2.2 TiDB Demo Application](2-developer-guide/2-demo-app/index.md)
-  - [使用 Spring Boot 构建 TiDB 应用程序](2-developer-guide/2-demo-app/1-dev-guide-sample-application-spring-boot.md)
+  - [使用 Spring Boot 构建 TiDB 应用程序](2-developer-guide/2-demo-app/1-sample-application-spring-boot.md)
   
 - ### [2.3 Simple CRUD 指南](2-developer-guide/3-simple-crud/index.md)
-  - [TiDB 和 Java 的简单 CRUD 应用程序](2-developer-guide/3-simple-crud/1-dev-guide-sample-application-java.md)
-  - [TiDB 和 Golang 的简单 CRUD 应用程序](2-developer-guide/3-simple-crud/2-dev-guide-sample-application-golang.md)
+  - [TiDB 和 Java 的简单 CRUD 应用程序](2-developer-guide/3-simple-crud/1-sample-application-java.md)
+  - [TiDB 和 Golang 的简单 CRUD 应用程序](2-developer-guide/3-simple-crud/2-sample-application-golang.md)
 
 ## [第三章：TiDB 6.0 可管理性](3-manageability/index.md)
 - ### [3.1 TiUniManager（原 TiEM） 体验](3-manageability/1-tiunimanager-practice/index.md)
