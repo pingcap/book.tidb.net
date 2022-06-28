@@ -1,14 +1,15 @@
-# TiDB Lightning在数据迁移中的应用与错误处理实践
+---
+title: TiDB Lightning 在数据迁移中的应用与错误处理实践
+hide_title: true
+---
 
-> 作者简介：DBA，会点MySQL，懂点TiDB，Python。
+# TiDB Lightning 在数据迁移中的应用与错误处理实践
+
+> 作者简介：DBA，会点 MySQL，懂点 TiDB，Python。
 >
 > 个人主页：https://tidb.net/u/seiang/answer ，希望随着自己在 TiDB 上的成长，后续的主页内容越来越丰富。
 
-
-
 俗话说：工欲善其事，必先利其器；我想 TiDB 之所以能够在国产数据库中脱颖而出，除了它是具备水平扩容或者缩容、金融级高可用、实时 HTAP、云原生的分布式数据库等功能的开源分布式关系型数据库之外，其 TiDB 周边丰富的生态工具可以满足不同业务场景下的数据迁移和同步、流转需求等；这为企业在做选型的时候提供了强有力的支撑。
-
-
 
 我司在 2020 年开始将 TiDB 数据库接入测试环境进行业务测试，在 2021 年 TiDB 数据库正式接入线上业务，截止目前线上生产业务共 7 套 TiDB 集群，涉及节点 100+；并且有些业务也在陆续从MySQL迁移到 TiDB，那么本文将针对 TiDB Lightning 工具在数据迁移中应用以及 6.0 新功能实践供大家参考。
 
@@ -18,19 +19,17 @@
 
 在使用 TiDB Lightning 做数据迁移工具使用，主要应用在一些变更不是很频繁，如字典表或按照时间维度分表的场景，比如按照时间进行分表或按照时间进行归档的表（例如：tabname_20220513 日表、tabname_202220 周表、tabname_202205 月表、tabname_2022 年表），这类表的业务特点就是 T+1 之后就不会有新的数据写入，针对这类型表在迁移到 TiDB，TiDB Lightning是非常好的工具，在 dumpling 和 tidb lightning 的上层做一层包装，即可实现自动化的迁移，并且根据是否影响 TiDB 对外提供服务选择 TiDB Lightning 的后端导入方式；
 
-1、上游为MySQL主从实例迁移TiDB集群
+1、上游为 MySQL 主从实例迁移 TiDB 集群
 
-2、上游为MySQL分片集群迁移数据迁移到TiDB集群
+2、上游为 MySQL 分片集群迁移数据迁移到 TiDB 集群
 
 3、迁移现有的大型数据库到全新的 TiDB 集群
 
 说明：TiDB Lightning的导入速度可达到传统导入 SQL 导入方式的至少 3 倍，甚至更多；
 
+## 二、TiDB Lightning 应用
 
-
-## 二、TiDB Lightning应用
-
-从上游MyCAT分片集群迁移到TiDB集群，具体的迁移架构如下：
+从上游 MyCAT 分片集群迁移到 TiDB 集群，具体的迁移架构如下：
 
 ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652435797945.png)
 
@@ -38,35 +37,29 @@
 
 1、这里针对上述场景之所以没有使用 DM，一是结合上游分片集群的业务特点，二是上游分片集群的节点数较多，并且单个节点的磁盘占用空间较大；如果使用 DM 进行迁移，DM-worker 的节点数至少要和上游 MySQL 分片节点一样，并且 DM-worker的节点的磁盘空间要至少要和上游分片节点一样，综合评估之后，选择使用 Dumpling 和 TiDB Lightning 的方式做按照时间维度分表的迁移；
 
-2、之所以不使用load的方式，原因有如下几方面：
+2、之所以不使用 load 的方式，原因有如下几方面：
 
 （1）LOAD 方式导入 csv 文件过慢
 
 （2）如果单个 csv 文件过大的话，在导入的时候甚至有可能导致 TiDB Server 出现 OOM 的问题（**生产环境 V5.0.3 遇到过该问题**）
 
-（3）LOAD 方式导入数据无法保证原子性导入的问题；具体表现为由于 TiKV  写入过慢报错 LockNotFound 事务锁被清除，在上游是大数据量分片的场景中，可能出现 LOAD 进去 部分数据后导入失败，无法支持断点续传，此时需要反向 delete 掉已导入的数据，delete的代价非常高。
+（3）LOAD 方式导入数据无法保证原子性导入的问题；具体表现为由于 TiKV  写入过慢报错 LockNotFound 事务锁被清除，在上游是大数据量分片的场景中，可能出现 LOAD 进去部分数据后导入失败，无法支持断点续传，此时需要反向 delete 掉已导入的数据，delete 的代价非常高。
 
-
-
-下面简单介绍下TiDB Lightning如何把将数据导入到目标集群中。目前，TiDB Lightning 支持以下后端：
+下面简单介绍下 TiDB Lightning 如何把将数据导入到目标集群中。目前，TiDB Lightning 支持以下后端：
 
 - [Local-backend](https://docs.pingcap.com/zh/tidb/stable/tidb-lightning-backends#tidb-lightning-local-backend)
 
-​       tidb-lightning 先将数据编码成键值对并排序存储在本地临时目录，然后将这些键值对以 SST 文件的形式上传到各个 TiKV 节点，然后由 TiKV 将这些 SST 文件 Ingest 到集群中。和 Importer-backend 原理相同，不过不依赖额外的 tikv-importer 组件
+tidb-lightning 先将数据编码成键值对并排序存储在本地临时目录，然后将这些键值对以 SST 文件的形式上传到各个 TiKV 节点，然后由 TiKV 将这些 SST 文件 Ingest 到集群中。和 Importer-backend 原理相同，不过不依赖额外的 tikv-importer 组件
 
 - [Importer-backend](https://docs.pingcap.com/zh/tidb/stable/tidb-lightning-backends#tidb-lightning-importer-backend)
 
-​       tidb-lightning 先将 SQL 或 CSV 数据编码成键值对，由 tikv-importer 对写入的键值对进行排序，然后把这些键值对 Ingest 到 TiKV 节点中。
+tidb-lightning 先将 SQL 或 CSV 数据编码成键值对，由 tikv-importer 对写入的键值对进行排序，然后把这些键值对 Ingest 到 TiKV 节点中。
 
 - [TiDB-backend](https://docs.pingcap.com/zh/tidb/stable/tidb-lightning-backends#tidb-lightning-tidb-backend)
 
-​       tidb-lightning 先将数据编码成 INSERT 语句，然后直接在 TiDB 节点上运行这些 SQL 语句进行数据导入。
+tidb-lightning 先将数据编码成 INSERT 语句，然后直接在 TiDB 节点上运行这些 SQL 语句进行数据导入。
 
-
-
-目前我们用的较多的是Local-backend和TiDB-backend，下面简单说明这两种模式在使用中一些需要注意事项：
-
-
+目前我们用的较多的是 Local-backend 和 TiDB-backend，下面简单说明这两种模式在使用中一些需要注意事项：
 
 **1、严格模式设置**
 
@@ -95,8 +88,6 @@ sid: 1
 des: {"aid":0,"bs":2646,"es":2524,"gid":1047,"ip":3249872394,"iszip":0,"mac":0,"mid":482714568,"mn":"初级场
 ```
 
-
-
 **2、解决冲突记录**
 
 TiDB-backend 支持导入到已填充的表（非空表）。但是，新数据可能会与旧数据的唯一键冲突。
@@ -117,15 +108,11 @@ Local-backend 模式导入，使用duplicate-resolution 配置提供了三种策
 
 以上三种模式中，如果不确定数据源是否存在冲突数据，推荐使用 remove 方式。none 和 record 方式由于不会移除目标表的冲突数据，意味着 TiDB Lightning 生成的唯一索引与数据可能不一致。
 
-
-
 ## 三、TiDB Lightning在6.0版本的新特性
 
 ### 1、TiDB Lightning 错误处理（最大可容忍错误）
 
 从 TiDB 5.4.0 开始，可以配置 TiDB Lightning 跳过诸如无效类型转换、唯一键冲突等错误，让导入任务持续进行，就如同出现错误的行数据不存在一样。可以依据生成的报告，手动修复这些错误。
-
-
 
 该功能适用于以下场景：
 
@@ -133,33 +120,23 @@ Local-backend 模式导入，使用duplicate-resolution 配置提供了三种策
 - 手动定位错误比较困难
 - 如果遇到错误就重启 TiDB Lightning，代价太大
 
+TiDB 5.4.0 Lightning 类型错误处理功能是实验特性。**不建议**在生产环境中仅依赖该功能处理相关错误，从 6.0 DMR 开始可以考虑在生产中使用；
 
-
-TiDB 5.4.0 Lightning 类型错误处理功能是实验特性。**不建议**在生产环境中仅依赖该功能处理相关错误，从6.0 DMR开始可以考虑在生产中使用；
-
-
-
-通过调整配置项 lightning.max-error=N来增加数据类型相关的容错数量。如果设置为 *N*，那么 TiDB Lightning 允许数据源中出现 *N* 个错误，而且会跳过这些错误，并且将错误等信息记录到type_error_v1和conflict_error_v1表中，如果超过这个错误数就会退出。默认值为 0，表示不允许出现错误。
-
-
+通过调整配置项 lightning.max-error=N 来增加数据类型相关的容错数量。如果设置为 *N*，那么 TiDB Lightning 允许数据源中出现 *N* 个错误，而且会跳过这些错误，并且将错误等信息记录到 type_error_v1 和 conflict_error_v1 表中，如果超过这个错误数就会退出。默认值为 0，表示不允许出现错误。
 
 **测试示例：**
 
-CSV文件格式，数据总条数5000
+CSV 文件格式，数据总条数 5000
 
-***备注：如下文件存在第一、二行主键冲突以及第三行字段缺少值\***
+**备注：如下文件存在第一、二行主键冲突以及第三行字段缺少值**
 
 ```markdown
 100006880|1532112|482714568|5|72702|1646679957|1|{"aid":0,"bs":2646,"es":2524,"gid":1047,"ip":3249872394,"iszip":0,"mac":0,"mid":482714568,"mn":"初级场","mpid":72702,"oid":7072560270639562758,"pids":[601977053,389118472,813827129,100006880],"plist":null,"rbt":1646679808,"ret":1646679957,"rid":5,"sid":1,"tid":1532112,"xmllen":12774,"ziplen":0}\
 
-
 100006880|1532112|482714568|5|72702|1646679957|1|{"aid":0,"bs":2414,"es":2172,"gid":1047,"ip":3249872394,"iszip":0,"mac":0,"mid":482714568,"mn":"初级场","mpid":72702,"oid":7072557887134040072,"pids":[934151055,477178155,100006880,167058307],"plist":null,"rbt":1646679310,"ret":1646679405,"rid":10,"sid":1,"tid":1532112,"xmllen":7992,"ziplen":0}\
-
 
 100006880|1532112|482714568|16|72702|1646679249||{"aid":0,"bs":2208,"es":0,"gid":1047,"ip":3249872394,"iszip":0,"mac":0,"mid":482714568,"mn":"初级场","mpid":72702,"oid":7072557213159718914,"pids":[755587427,121111569,100006880,121412060],"plist":null,"rbt":1646679179,"ret":1646679249,"rid":16,"sid":1,"tid":1532112,"xmllen":6988,"ziplen":0}\
 ```
-
-
 
 配置文件内容
 
@@ -228,8 +205,6 @@ dsn = "/tmp/tidb_lightning_checkpoint.pb"
 # keep-after-success = false
 ```
 
-
-
 导入成功后，查看导入数据的条数：
 
 ```markdown
@@ -255,8 +230,6 @@ mysql> select count(*) from rec20220512;
 
 从上述结果可以发现在非严格模式下，会将不符合表结构的数据也导入成功；很显然无法满足生成环境的需求
 
-
-
 在 TiDB Lightning 输出的日志文件中可以查看到如下的报错信息：
 
 ```markdown
@@ -266,8 +239,6 @@ mysql> select count(*) from rec20220512;
 [2022/05/12 17:23:34.493 +08:00] [WARN] [errormanager.go:459] ["Detect 2 data type errors in total, please refer to table `lightning_task_info`.`type_error_v1` for more details"]
 [2022/05/12 17:23:34.494 +08:00] [INFO] [main.go:106] ["tidb lightning exit"] [finished=true]
 ```
-
-
 
 所有错误都会写入下游 TiDB 集群 lightning_task_info 数据库中的表中。在导入完成后，如果收集到报错的数据，你可以根据数据库中记录的内容，手动进行处理。
 
@@ -294,9 +265,7 @@ table_name: `his_log`.`rec20220512`
 
 那么从上述的表中可以看到导入失败的行记录等信息，可以根据实际需求进行手动处理；表中记录的错误是文件偏移量，不是行号或列号，因为行号或列号的获取效率很低。
 
-
-
-上述相同的数据，如果是Local-backend 模式导入，conflict_error_v1 表捕获了主键冲突的两行，type_error_v1捕获了字段缺少数据的一行；
+上述相同的数据，如果是 Local-backend 模式导入，conflict_error_v1 表捕获了主键冲突的两行，type_error_v1 捕获了字段缺少数据的一行；
 
 ```markdown
 #严格模式
@@ -349,30 +318,26 @@ raw_handle: 0x7480000000000000BB5F728000000000000002
 
 更多相关内容可参考官方文档：https://docs.pingcap.com/zh/tidb/v6.0/tidb-lightning-error-resolution
 
-
-
-### 2、DM工具从v6.0.0 全量阶段默认使用 TiDB Lightning 的 TiDB-backend 方式导入
+### 2、DM 工具从 v6.0.0 全量阶段默认使用 TiDB Lightning 的 TiDB-backend 方式导入
 
 DM工具从 v6.0.0 起全量阶段默认使用 TiDB Lightning 的 TiDB-backend 方式导入，替换原来的 Loader 组件。该变动为内部组件替换，对日常使用没有明显影响。
 
+默认值 import-mode 为 sql 表示启用 tidb-backend 组件，可能在极少数场景下存在未能完全兼容的情况，可以通过配置为 "loader" 回退。
 
+（1）当 import-mode 设置为 sql 的时候，对于全量导入阶段针对冲突数据的解决方式：
 
-默认值import-mode为sql 表示启用 tidb-backend 组件，可能在极少数场景下存在未能完全兼容的情况，可以通过配置为 "loader" 回退。
-
-（1）当import-mode设置为sql时候，对于全量导入阶段针对冲突数据的解决方式：
-
-| on-duplicate参数值 | 说明                               |
+| on-duplicate 参数值 | 说明                               |
 | ------------------ | ---------------------------------- |
 | replace            | 默认值，表示用最新数据替代已有数据 |
 | ignore             | 保留已有数据，忽略新数据           |
 
-（2）当import-mode设置为loader时候，
+（2）当 import-mode 设置为 loader 的时候，
 
-| on-duplicate参数值 | 说明                             |
+| on-duplicate 参数值 | 说明                             |
 | ------------------ | -------------------------------- |
 | error              | 插入重复数据时报错并停止同步任务 |
 
-DM对于load 处理单元配置参数如下：
+DM 对于 load 处理单元配置参数如下：
 
 ```markdown
 loaders:                           
@@ -392,18 +357,18 @@ loaders:
 
 ### 3、支持 base64 格式的密码字符串
 
-从v6.0.0，在使用 TiDB Lightning 的时候支持 base64 格式的密码字符串
+从 v6.0.0，在使用 TiDB Lightning 的时候支持 base64 格式的密码字符串
 
-在使用 tidb-lightning 命令行参数配置--tidb-password *password（或对应的配置文件参数*tidb.password*）*
+在使用 tidb-lightning 命令行参数配置 --tidb-password *password（或对应的配置文件参数 *tidb.password*）*
 
-可以兼容base64 格式的密码字符串
+可以兼容 base64 格式的密码字符串
 
 
 
 ## 四、小结
 
-1、TiDB Lightning导入建议设置严格模式，否则导入的数据可能出现截断或错误；
+1、TiDB Lightning 导入建议设置严格模式，否则导入的数据可能出现截断或错误；
 
 2、如果单个文件太大，会影响 Lightning 的 local 模式对文件的导入效率，建议提前进行拆分；或者如果导入的 CSV 文件内都不存在包含字符换行符的字段 (U+000A 及 U+000D)，则可以启用strict-format（strict-format=true），TiDB Lightning 会自动分割大文件;
 
-3、往TiDB导入CSV数据，推荐使用 Lightning工具，不建议使用Load data，可能会出现OOM；
+3、往 TiDB 导入 CSV 数据，推荐使用 Lightning 工具，不建议使用 Load data，可能会出现 OOM。
