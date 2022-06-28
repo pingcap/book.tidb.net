@@ -1,17 +1,17 @@
- ---
- title: TiDB 6.0 体验：TiKV 重启后 leader 均衡加速
- hide_title: true
- ---
+---
+title: TiDB 6.0 体验：TiKV 重启后 leader 均衡加速
+hide_title: true
+---
  
- # TiDB 6.0 体验：TiKV 重启后 leader 均衡加速
+# TiDB 6.0 体验：TiKV 重启后 leader 均衡加速
  
 > 本文作者：h5n1，TiDB 爱好者，目前就职于联通软件研究院。
 
-# 1. 前言
+## 1. 前言
 
 为了均衡资源使用 TiDB 初始化后默认会创建 region-scheduler、leader-scheduler、hot-region-scheduler 三个调度器分别用于磁盘容量、计算和访问热点的均衡调度，TiDB 会根据计算的分值，将 region follower 或 leader 从高分值 TiKV 调度到低分值 TiKV，使各节点尽量达到均衡状态，以充分利用各节点资源。
 
-# 2. region 调度和限制
+## 2. region 调度和限制
 
 region 的调度是由 PD 根据 TiKV 上报的信息产生 operator 下发到 TiKV 去执行，Operator 是一组用于某个调度的操作集合，比如将 region 2 的 leader 由 store 5 转移到 store 3。operator 调度是针对 region 的，实际上就是对 raft 成员的管理。
 
@@ -35,7 +35,7 @@ $pd-ctl -u 10.125.144.18:23791 config show all | grep scheduler-max-waiting-oper
  "scheduler-max-waiting-operator": 5
 ```
 
-# 3. leader 调度加速实现
+## 3. leader 调度加速实现
 
 leader 的均衡由 balance-leader-scheduler 调度器控制，每隔一定时间会进行一次调度，间隔的最小时间是10ms(MinScheduleInterval)，当调度失败次数达到10次后，会调整间隔时间，最大间隔时间不超5秒。
 
@@ -57,17 +57,17 @@ leader 的均衡由 balance-leader-scheduler 调度器控制，每隔一定时�
  } 
 ```
 
-# 4 测试
+## 4 测试
 
-## 4.1 测试环境
+### 4.1 测试环境
 
 3个 TiKV，每 TiKV 约3.5万个 region，总存储大小 13.2 TB。
 
-## 4.2 测试方式
+### 4.2 测试方式
 
 每次测试前 stop tikv 然后修改相关参数后启动 TiKV，观察 TiKV 监控的 leader 均衡时间。
 
-## 4.3 测试结果
+### 4.3 测试结果
 
 不同参数值下 TiKV 重启后 leader 均衡时间
 
@@ -117,6 +117,6 @@ leader 的均衡由 balance-leader-scheduler 调度器控制，每隔一定时�
 
 ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1655715874584.png)
 
-# 5 总结
+## 5 总结
 
 由于早期版本中对 balance-leader 的 operator 产生速度有限制，而 transfer leader 操作本身比较快，造成了整体 leader 均衡速度较慢，TiDB 6.0 版本通过增加 balance-leader-scheduler 每次调度时产生的 operator 数量，极大的缩短了 TiKV 重启后 leader 的整体迁移速度，降低因为长时间不均衡带来的性能影响，对于大集群的快速恢复提供了保障。 
