@@ -9,27 +9,27 @@ hide_title: true
 
 ## 一、背景
 
-&#x20;       TiDB Data Migration (DM)  是一款便捷的数据迁移工具，支持从与 MySQL 协议兼容的数据库到 TiDB 的全量数据迁移和增量数据同步。 ​&#x20;
+TiDB Data Migration (DM)  是一款便捷的数据迁移工具，支持从与 MySQL 协议兼容的数据库到 TiDB 的全量数据迁移和增量数据同步。
 
-&#x20;       TiDB v6.0.0 之前，使用 DM 做数据迁移方式是通过 dmctl 和配置文件方式，对命令和配置不熟悉的 TiDBer 不是很方便。在 TiDB v6.0.0 发布同时发布了 DM 的可视化管理工具 WebUI 。真心感觉TiDB越来越好用，更加强大，迫不及待的体验一把。
+TiDB v6.0.0 之前，使用 DM 做数据迁移方式是通过 dmctl 和配置文件方式，对命令和配置不熟悉的 TiDBer 不是很方便。在 TiDB v6.0.0 发布同时发布了 DM 的可视化管理工具 WebUI 。真心感觉TiDB越来越好用，更加强大，迫不及待的体验一把。
 
 ## 二、DM 准备条件
 
 ### 2.1 了解 DM
 
-&#x20;        DM 支持从与 MySQL 协议兼容的数据库（MySQL、MariaDB、Aurora MySQL）到 TiDB 的全量数据迁移和增量数据同步。使用 DM 工具有利于简化数据迁移过程，降低数据迁移运维成本。
+DM 支持从与 MySQL 协议兼容的数据库（MySQL、MariaDB、Aurora MySQL）到 TiDB 的全量数据迁移和增量数据同步。使用 DM 工具有利于简化数据迁移过程，降低数据迁移运维成本。
 
 #### 2.1.1 DM 组成
 
-&#x20;       DM 主要包括三个组件：DM-master，DM-worker 和 dmctl。
+DM 主要包括三个组件：DM-master，DM-worker 和 dmctl。
 
-&#x20;       TiDB v6.0.0 增加了WebUI可视化管理（ http\://{master\_ip}:{master\_port}/dashboard/ )
+TiDB v6.0.0 增加了WebUI可视化管理（http\://{master\_ip}:{master\_port}/dashboard/)
 
 组件说明：
 
 1、DM-master
 
-&#x20;   DM-master 负责管理和调度数据迁移任务的各项操作。
+DM-master 负责管理和调度数据迁移任务的各项操作。
 
 - 保存 DM 集群的拓扑信息
 - 监控 DM-worker 进程的运行状态
@@ -39,7 +39,7 @@ hide_title: true
 
 2、DM-worker
 
-&#x20;   DM-worker 负责执行具体的数据迁移任务。
+DM-worker 负责执行具体的数据迁移任务。
 
 - 将 binlog 数据持久化保存在本地
 - 保存数据迁移子任务的配置信息
@@ -48,7 +48,7 @@ hide_title: true
 
 3、dmctl
 
-&#x20;   dmctl 是用来控制 DM 集群的命令行工具。
+dmctl 是用来控制 DM 集群的命令行工具。
 
 - 创建、更新或删除数据迁移任务
 - 查看数据迁移任务状态
@@ -57,7 +57,7 @@ hide_title: true
 
 4、WebUI
 
-&#x20;   DM 可视化管理
+DM 可视化管理
 
 #### 2.1.2 Data Migration 架构
 
@@ -71,11 +71,11 @@ hide_title: true
 
 - 数据库版本要求
 
-&#x20;       MySQL 版本 5.5 \~ 5.7 &#x20;
+MySQL 版本 5.5 \~ 5.7
 
-&#x20;       MySQL 版本 = 8.0 （实验特性）
+MySQL 版本 = 8.0 （实验特性）
 
-&#x20;       MariaDB 版本 >= 10.1.2 （实验特性）
+MariaDB 版本 >= 10.1.2 （实验特性）
 
 - 表结构的兼容性
 
@@ -96,9 +96,9 @@ TiKV 总节点要有足够的空间（应大于上游数据源的大小 × 副�
 
 > 为确保 DM WebUI 能正常显示，在使用 DM WebUI 前，确保以下操作或配置已完成：
 
-- 1、开启 DM OpenAPI 配置：&#x20;
+- 1、开启 DM OpenAPI 配置：
 
-  1）如果你的 DM 集群是通过二进制方式部署的，在该 master 节点的配置中开启 openapi 配置项： openapi = true&#x20;
+  1）如果你的 DM 集群是通过二进制方式部署的，在该 master 节点的配置中开启 openapi 配置项： openapi = true
 
   2）如果你的 DM 集群是通过 TiUP 部署的，在拓扑文件中添加如下配置：
 
@@ -108,14 +108,14 @@ TiKV 总节点要有足够的空间（应大于上游数据源的大小 × 副�
       openapi: true
   ```
 
-  3\)已经安装好的dm集群
+  3)已经安装好的dm集群
 
   ```
   tiup-dm  edit-config <dm-clustername>
   tiup-dm reload <dm-clustername> -N <dm-master>
   ```
 
-- 2、首次部署 Grafana 时，已正确安装监控相关组件：monitoring\_servers 和 grafana\_servers。grafana\_servers 须按如下进行配置 （ v6.1版本中已去掉此步骤）：
+- 2、首次部署 Grafana 时，已正确安装监控相关组件：monitoring\_servers 和 grafana\_servers。grafana\_servers 须按如下进行配置（v6.1版本中已去掉此步骤）：
 
   ```
   grafana_servers:
@@ -132,11 +132,11 @@ TiKV 总节点要有足够的空间（应大于上游数据源的大小 × 副�
 
 ## 三、DM 演练说明
 
-本次演练 mysql 环境为  MySQL5.7.26 （ Window 10 ）。
+本次演练 MySQL 环境为 MySQL 5.7.26（Window 10）。
 
 ### 3.1 演练图示
 
-本次演练从 mysql3306 单实例 迁移到 TiDB 4000
+本次演练从 mysql3306 单实例迁移到 TiDB 4000
 
 ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651728532491.png)
 
@@ -146,7 +146,7 @@ TiKV 总节点要有足够的空间（应大于上游数据源的大小 × 副�
 
 ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651728540483.png)
 
-#### 3.2.2 my.ini 配置&#x20;
+#### 3.2.2 my.ini 配置
 
 ```
 # 开启gtid
@@ -240,7 +240,7 @@ alertmanager_servers:
 
 离线安装： <https://pingcap.com/zh/product-community/#TiDB> 6.0.0-DMR
 
-1）下载安装包 tidb-community-server-v6.0.0-linux-amd64.tar.gz&#x20;
+1）下载安装包 tidb-community-server-v6.0.0-linux-amd64.tar.gz
 
 2）下载tookit tidb-community-toolkit-v6.0.0-linux-amd64.tar.gz
 
@@ -309,7 +309,7 @@ tiup-dm display dm-cluster111
 
 #### 3.4.3 登录 Dm-WebUI
 
-[http://127.0.0.1:8261/dashboard](http://127.0.0.1:8261/dashboard]\(http://127.0.0.1:8261/dashboard\))
+[http://127.0.0.1:8261/dashboard](http://127.0.0.1:8261/dashboard)
 
 ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651728557176.png)
 
@@ -347,7 +347,7 @@ tiup-dm display dm-cluster111
 
 ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651728598894.png)
 
-任务名：task-test-dm-full 原信息：meta\_test\_dm\_full&#x20;
+任务名：task-test-dm-full 原信息：meta\_test\_dm\_full
 
 **注意：** 这里自定义的存储路径无效，实际将保存在 dm-worker 节点下的 dumped\_data.xxx 目录下。 如：/tidb-deploy111/dm-worker-8262/dumped\_data.xxx/
 
@@ -498,7 +498,7 @@ select 'rpt_detail_org', count(*) from rpt_detail_org
 
 ##### 3.5.3.6 添加任务-同步规则
 
-\> 必须填写
+> 必须填写
 
 ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651728774300.png)
 
@@ -589,8 +589,6 @@ CREATE TABLE `m_user_new2` (
 -- 在test_dm中执行插入，在tidb中的all模式下基本没有延迟就可以看到新插入的记录
 INSERT INTO `test_dm`.`m_user_new2`( `name`, `age`) VALUES ( 'ddddddddddd', 99);
 
-
-
 ```
 
 2、下游（目标库 test\_dm\_all）
@@ -632,33 +630,33 @@ select 'rpt_detail_org', count(*) from rpt_detail_org order by ct desc;
 
 #### 3.5.4 适用场景
 
-- 从小数据量 MySQL 迁移数据到 TiDB&#x20;
+- 从小数据量 MySQL 迁移数据到 TiDB
 
-&#x20;       1）“小数据量”通常指 TB 级别以下&#x20;
+1）“小数据量”通常指 TB 级别以下
 
-&#x20;       2）直接使用 DM 进行数据同步到 TiDB
+2）直接使用 DM 进行数据同步到 TiDB
 
-- 从大数据量 MySQL 迁移数据到 TiDB&#x20;
+- 从大数据量 MySQL 迁移数据到 TiDB
 
-&#x20;       1）使用 Dumpling 导出全量数据&#x20;
+1）使用 Dumpling 导出全量数据
 
-&#x20;       2）使用 Lightning 导入全量数据&#x20;
+2）使用 Lightning 导入全量数据
 
-&#x20;       3）使用 DM 持续复制增量数据到 TiDB 需要记录 binlog-name 和 binlog-pos 或 binlog-gtid
+3）使用 DM 持续复制增量数据到 TiDB 需要记录 binlog-name 和 binlog-pos 或 binlog-gtid
 
 - 从小数据量分库分表 MySQL 合并迁移数据到 TiDB
 
-&#x20;       1）“小数据量”通常指 TB 级别以下&#x20;
+1）“小数据量”通常指 TB 级别以下
 
-&#x20;       2）直接使用 DM 进行数据同步到 TiDB
+2）直接使用 DM 进行数据同步到 TiDB
 
 - 从大数据量分库分表 MySQL 合并迁移数据到 TiDB
 
-&#x20;       1）使用 Dumpling 导出全量数据备份&#x20;
+1）使用 Dumpling 导出全量数据备份
 
-&#x20;       2）适用 Lightning 执行导入多个分库的全量数据到 TiDB 中的特定表&#x20;
+2）适用 Lightning 执行导入多个分库的全量数据到 TiDB 中的特定表
 
-&#x20;       3）使用 DM 进行增量数据迁移
+3）使用 DM 进行增量数据迁移
 
 ## 四、DM诊断
 
@@ -676,11 +674,14 @@ DM 集群会默认部署一套监控
 
 ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651728844452.png)
 
-#### 4.2 clinic
+#### 4.2 Clinic
 
-clinic 对 dm 的收集使用独立的命令
+Clinic 对 DM 的收集使用独立的命令
 
+```
 tiup diag help tiup diag collectdm \<dm-clustername>
+
+```
 
 **收集诊断信息**
 
@@ -695,10 +696,10 @@ tiup diag upload ${diagfilepath}.diag
 
 ## 五、注意
 
-### 5.1 webui 与 dmctl
+### 5.1 WebUI 与 dmctl
 
 - DM WebUI 中 `task` 的生命周期有所改变，不建议与 dmctl 同时使用。
-- 如果你不习惯 dmctl 可以使用 webui 替代
+- 如果你不习惯 dmctl 可以使用 WebUI 替代
 
 ## 六、体验过程遇到的小坑
 
@@ -716,11 +717,7 @@ tiup diag upload ${diagfilepath}.diag
 
 如果不需要改变原有表名，下面的空不要填写，下游这里的表名应该留空。注意：不能填写 `*` 星号 否则没有效果。
 
-
-
 ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652108442024.png)
-
-
 
 ## 七、总结
 
