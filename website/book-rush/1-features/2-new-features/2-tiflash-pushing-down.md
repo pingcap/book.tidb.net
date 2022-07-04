@@ -7,7 +7,7 @@ hide_title: true
 
 > 作者： ShawnYan, DBA, TiDB Fans, [AskTUG 个人主页](https://tidb.net/u/ShawnYan/post/all)
 
-TiDB 6.0 对 TiFlash 的功能做了进一步增强，其中新增支持了12个函数和2个算子下推到 TiFlash 层的 MPP 引擎进行计算。
+TiDB 6.0 对 TiFlash 的功能做了进一步增强，其中新增支持了 12 个函数和 2 个算子下推到 TiFlash 层的 MPP 引擎进行计算。
 
 本文将对其逐一进行演示，以期快速、直观的展示这些新特性。
 
@@ -22,7 +22,7 @@ TiDB 6.0 对 TiFlash 的功能做了进一步增强，其中新增支持了12个
 
 ## 新增支持下推函数汇总
 
-从 TiDB 6.0 的[发版说明](https://docs.pingcap.com/zh/tidb/v6.0/release-6.0.0-dmr#%E6%8F%90%E5%8D%87%E6%94%B9%E8%BF%9B)中可以清晰的看到，这次大版本迭代给 TiFlash 支持计算下推带来了进一步扩展，共计新增支持了12个函数，以及2个算子，原文如下。
+从 TiDB 6.0 的[发版说明](https://docs.pingcap.com/zh/tidb/v6.0/release-6.0.0-dmr#%E6%8F%90%E5%8D%87%E6%94%B9%E8%BF%9B)中可以清晰的看到，这次大版本迭代给 TiFlash 支持计算下推带来了进一步扩展，共计新增支持了 12 个函数，以及 2 个算子，原文如下。
 
 > 支持下推 DAYNAME()和 MONTHNAME() 函数到 TiFlash #32594
 >
@@ -40,7 +40,7 @@ TiDB 6.0 对 TiFlash 的功能做了进一步增强，其中新增支持了12个
 
 从文档中提供的线索，我们可以反向推演，经寻找代码变更，汇总可知，主要对文件 `expression.go` 进行了修改，主要修改的代码如下。
 
-已对代码进行了标注，增加了行数和相关RP号，以供参考。
+已对代码进行了标注，增加了行数和相关 RP 号，以供参考。
 
 ```
 // L1051
@@ -185,7 +185,7 @@ select istrue_with_null(id > 1), istrue(id = 1), isfalse(id = 1) from t;
 
 - 算子 `Left Outer Semi Join`、`Anti Left Outer Semi Join`
 
-新增支持下推的2个算子，上文新特性描述已做出阐释，下面这两条 SQL 的区别在于第二条语句使用了 `NOT IN`。
+新增支持下推的 2 个算子，上文新特性描述已做出阐释，下面这两条 SQL 的区别在于第二条语句使用了 `NOT IN`。
 
 ```
 explain 
@@ -219,4 +219,4 @@ ERROR 8200 (HY000): Unsupported ALTER table replica for table contain gbk charse
 
 从 TiDB v4 正式发布 TiFlash 组件，到 v5 引入 MPP 引擎，再到伴随 v6 的发布而正式宣布开源，TiFlash 已经逐步成熟，成为 TiDB 走向 HTAP 的关键组件。
 
-期待 TiFlash 可以支持更多下推函数和算子。期望 TiFlash 可以运行的更快、更稳。
+期待 TiFlash 可以支持更多下推函数和算子。期望 TiFlash 可以运行得更快、更稳。
