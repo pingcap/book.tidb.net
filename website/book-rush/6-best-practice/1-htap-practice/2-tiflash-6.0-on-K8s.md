@@ -1,9 +1,9 @@
 ---
-title: tiflash 6.0 on K8s 扩容与新特性实践
+title: TiFlash 6.0 on K8s 扩容与新特性实践
 hide_title: true
 ---
 
-# tiflash 6.0 on K8s 扩容与新特性实践
+# TiFlash 6.0 on K8s 扩容与新特性实践
 
 ## 概述
 
