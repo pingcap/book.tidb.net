@@ -7,31 +7,31 @@ hide_title: true
 
 >By [边城元元](https://tidb.net/u/边城元元/post/all)
 
-### 一、概述
+## 一、概述
 
 正值 TiDB v6.0 (DMR) 发布，本地虚拟机体验一把 TiSpark ，感受一下 TiDB 的强大！
 
-### 二、TiSpark 简述
+## 二、TiSpark 简述
 
-#### 2.1 TiSpark 是什么？
+### 2.1 TiSpark 是什么？
 
-​    TiSpark 是 PingCAP 为解决用户复杂 OLAP 需求而推出的产品。TiSpark 本身是 Spark 的一个扩展，利用了 Spark 提供的 Extensions 机制。
+TiSpark 是 PingCAP 为解决用户复杂 OLAP 需求而推出的产品。TiSpark 本身是 Spark 的一个扩展，利用了 Spark 提供的 Extensions 机制。
 
-#### 2.2 依赖其他组件吗？
+### 2.2 依赖其他组件吗？
 
-​   TiSpark 依赖于 TiKV 集群和 Placement Driver (PD)，也需要你搭建一个 Spark 集群（已有或全新搭建）。
+TiSpark 依赖于 TiKV 集群和 Placement Driver (PD)，也需要你搭建一个 Spark 集群（已有或全新搭建）。
 
-#### 2.3 架构在 TiDB 中的位置？
+### 2.3 架构在 TiDB 中的位置？
 
 > TiSpark 是将 Spark SQL 直接运行在分布式存储引擎 TiKV 上的 OLAP 解决方案。
 
 ![TiSpark Architecture](https://download.pingcap.com/images/docs-cn/tispark-architecture.png)
 
-#### 2.4 TiSpark 能做什么？
+### 2.4 TiSpark 能做什么？
 
 - 使用 TiSpark 进行数据分析和 ETL(Extraction-Transformation-Loading的缩写,中文名为数据抽取、转换和加载）。
 
-#### 2.5 TiSpark 的优势是什么？
+### 2.5 TiSpark 的优势是什么？
 
 - 简化了系统架构和运维
 
@@ -52,7 +52,7 @@ hide_title: true
 - 支持鉴权和授权（TiSpark2.5.0 版本以上）
   - 提高集群安全性、更好的优化 Tispark 的读写请求逻辑，拆分业务模块提高性能。
 
-### 三、安装 TiDB 集群和 TiSpark
+## 三、安装 TiDB 集群和 TiSpark
 
 > 环境： Centos 7.3 虚拟机 2C 4G TiDB v6.0
 >
@@ -97,11 +97,9 @@ tiup cluster
 tiup update --self && tiup update cluster
 ```
 
-####
+### 3.1 安装 TiDB 集群 Cluster111 和监控
 
-#### 3.1 安装 TiDB 集群 Cluster111 和监控
-
-##### 3.1.1 Cluster111 拓扑
+#### 3.1.1 Cluster111 拓扑
 
 ```yaml
 # 参考 https://github.com/pingcap/docs-cn/blob/master/config-templates/complex-mini.yaml
@@ -218,7 +216,7 @@ alertmanager_servers:
 
 ```
 
-##### 3.1.2 安装 Cluster1111
+### 3.1.2 安装 Cluster1111
 
 1. 查看 TiUP 支持的最新可用版本 （选择 v6.0.0）
 
@@ -261,7 +259,7 @@ tiup cluster display cluster111
 > - 如果不加--init 将不生成随机密码
 > - 演示期间把密码修改为123456。ALTER USER 'root' IDENTIFIED BY '123456';
 
-##### 3.1.3 查看 Dashboard
+#### 3.1.3 查看 Dashboard
 
 > - 虚拟机设置端口转发4000->4000,2379,2379
 > - <http://127.0.0.1:2379/dashboard>
@@ -269,19 +267,19 @@ tiup cluster display cluster111
 
 ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1649565393098.png)
 
-##### 3.1.4 Mysql 客户端连接 TiDB
+#### 3.1.4 Mysql 客户端连接 TiDB
 
 > mysql -h127.0.0.1 -uroot -P4000 -p
 
 ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1649565404743.png)
 
-#### 3.2 没有 Spark 集群的环境下安装 TiSpark
+### 3.2 没有 Spark 集群的环境下安装 TiSpark
 
 > 推荐使用 Spark Standalone 方式部署即扩容的方式安装 TiSpark。在安装 TiDB 集群的时候，一同安装 TiSpark 也是可以的（通过配置集群拓扑文件）。
 
-##### 3.2.1 TiSpark最小拓扑
+#### 3.2.1 TiSpark最小拓扑
 
-参考 https\://github.com/pingcap/docs-cn/blob/master/config-templates/complex-tispark.yaml
+参考 https://github.com/pingcap/docs-cn/blob/master/config-templates/complex-tispark.yaml
 
 仅保留 tispark的部分
 
@@ -320,8 +318,7 @@ tispark_workers:
     
 ```
 
-
-##### 3.2.2 安装 TiSpark
+#### 3.2.2 安装 TiSpark
 
 1. 安装 openjdk8
 
@@ -365,7 +362,7 @@ tiup cluster scale-out cluster111 ./cluster111-v6.0.0-tispark.yaml -uroot -p
 
 - ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1649565442927.png)
 
-#### 3.3 已有 Spark 集群的环境下安装 TiSpark
+### 3.3 已有 Spark 集群的环境下安装 TiSpark
 
 > 如果在已有 Spark 集群上运行 TiSpark，无需重启集群。可以使用 Spark 的 `--jars` 参数将 TiSpark 作为依赖引入
 
@@ -375,11 +372,9 @@ tiup cluster scale-out cluster111 ./cluster111-v6.0.0-tispark.yaml -uroot -p
 /tidb-deploy/tispark-master-7077/bin/spark-shell --jars /tidb-deploy/tispark-master-7077/jars/tispark-assembly-2.4.1.jar
 ```
 
-###
+## 四、启动Spark和TiSpark
 
-### 四、启动Spark和TiSpark
-
-#### 4.1 配置 TiSpark
+### 4.1 配置 TiSpark
 
 > tispark-master中的 /tidb-deploy/tispark-master-7077/conf/spark-defaults.conf 中增加如下配置：
 >
@@ -392,7 +387,7 @@ tiup cluster scale-out cluster111 ./cluster111-v6.0.0-tispark.yaml -uroot -p
 > spark.tispark.pd.addresses 10.0.2.15:2379
 > ```
 
-#### 4.2 启动 Spark Standalone 方式部署的本地 Spark 集群
+### 4.2 启动 Spark Standalone 方式部署的本地 Spark 集群
 
 已有 Spark 集群可略过此部分！
 
@@ -417,9 +412,9 @@ tiup cluster display cluster111
 tiup cluster start cluster111 -N 10.0.2.15:707,10.0.2.15:7078
 ```
 
-### 五、测试
+## 五、测试
 
-#### 5.1 导入样例数据
+### 5.1 导入样例数据
 
 ```shell
 curl -L http://download.pingcap.org/tispark-sample-data.tar.gz -o tispark-sample-data.tar.gz
@@ -440,7 +435,6 @@ mysql --local-infile=1 -h 127.0.0.1 -P 4000 -u root < dss.ddl
 包含 `TPCH_001` 库及以下表：
 
 ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1649565508447.png)
-
 
 
 **验证数据量**
@@ -472,7 +466,7 @@ select 0,0 from dual order by ct desc
 
 ![](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/unnamed-1653890908884.png)
 
-#### 5.2 spark-shell 像使用原生 Spark 一样
+### 5.2 spark-shell 像使用原生 Spark 一样
 
 ```shell
 # 启动spark-shell
@@ -524,7 +518,7 @@ scala> spark.sql(
 
 更多样例请参考 [`pingcap/tispark-test`](https://github.com/pingcap/tispark-test/tree/master/tpch/sparksql)
 
-#### 5.3 spark-sql 像使用 sql 一样
+### 5.3 spark-sql 像使用 sql 一样
 
 ```shell
 # 启动spark-sql
@@ -629,9 +623,9 @@ spark-sql> select
 
 ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1649565590732.png)
 
-#### 5.4 TiSpark 写数据
+### 5.4 TiSpark 写数据
 
-##### 5.4.1 配置 allow\_spark\_sql
+#### 5.4.1 配置 allow\_spark\_sql
 
 > 在通过 spark-sql 写数据时提示 “SparkSQL entry for tispark write is disabled. Set spark.tispark.write.allow\_spark\_sql to enable.”
 
@@ -646,9 +640,8 @@ spark-sql> select
 >
 > ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1649565603362.png)
 
-​
 
-##### 5.4.2 写数据测试
+#### 5.4.2 写数据测试
 
 **前提准备**
 
@@ -753,13 +746,13 @@ public class SparkDemo {
 }
 ```
 
-##### 5.4.3 执行 Spark-submit
+#### 5.4.3 执行 Spark-submit
 
 ```
 MASTER=spark://10.0.2.15:7077  ./bin/spark-submit --class org.example.demo.spark.SparkDemo /usr/local0/webserver/tispark/sparkdemo1-1.0.jar
 ```
 
-##### 5.4.4 数据验证
+#### 5.4.4 数据验证
 
 ```sql
 select 'CUSTOMER (源表）' as '表名',count(*) as '记录数' from CUSTOMER
@@ -772,25 +765,25 @@ select 'CUSTOMER_2 （目标表）',count(*) from CUSTOMER_2;
 > 数据复合预期！
 
 
-
 **注意**：
 
 1、如果出现错误提示 “Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources”
 解决：
 
-&#x20;       1）确保 tispark-worker 已经激活；
+1）确保 tispark-worker 已经激活；
 
-&#x20;       2\)再检查资源：打开<http://127.0.0.1:8080/>  发现 running 发现进程过多，可能导致资源不足，随即关闭进程，重新执行。
+2) 再检查资源：打开<http://127.0.0.1:8080/>  发现 running 发现进程过多，可能导致资源不足，随即关闭进程，重新执行。
 
 2、更多示例spark-sql的示例
 
 > <https://github.com/pingcap/tispark-test/tree/master/tpch/mysql>
 
 
-### 六、升级 TiSpark 之离线安装 TiSpark v2.5.1
+## 六、升级 TiSpark 之离线安装 TiSpark v2.5.1
+
 > 可以参考下面的步骤离线升级到 TiSpark v2.5.1
 
-#### 6.1 准备安装包
+### 6.1 准备安装包
 
 离线安装： https://pingcap.com/zh/product-community/#TiDB 6.0.0-DMR
 
@@ -817,9 +810,9 @@ cp -rf tispark-assembly-3.1-2.5.1.jar /tidb-deploy/tispark-master-7077/jars/
 ```
 ````
 
-##### 6.2.2 安装 openjdk8 (略)
+#### 6.2.2 安装 openjdk8 (略)
 
-##### 6.2.3 spark-defaults.conf 中增加配置
+#### 6.2.3 spark-defaults.conf 中增加配置
 
 ````yaml
 ```
@@ -832,15 +825,15 @@ spark.tispark.pd.addresses 10.0.2.15:2379
 ```
 ````
 
-#### 6.3 启动 Spark 集群
+### 6.3 启动 Spark 集群
 
 ```
 /tidb-deploy/tispark-master-7077/sbin/start-all.sh
 ```
 
-#### 6.4  在已有 Spark 集群上部署 TiSpark
+### 6.4  在已有 Spark 集群上部署 TiSpark
 
-##### 6.4.1 启动 Spark-shell 的方式
+#### 6.4.1 启动 Spark-shell 的方式
 
 ```
 # 启动 spark-shell
@@ -850,7 +843,7 @@ spark.tispark.pd.addresses 10.0.2.15:2379
 
 ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1653925848979.png)﻿
 
-##### 6.4.2 启动 Spark-sql 的方式
+#### 6.4.2 启动 Spark-sql 的方式
 
 ```
 # 启动 Spark-sql
@@ -861,16 +854,14 @@ spark.tispark.pd.addresses 10.0.2.15:2379
 
 ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1653925873658.png)
 
-##### 6.4.3 spark master 的情况
+#### 6.4.3 spark master 的情况
 
 ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1653928800215.png)
 
-
-
-### 七、TiSpark v2.4.x  升级到 TiSpark v2.5.x
+## 七、TiSpark v2.4.x  升级到 TiSpark v2.5.x
 > 如果已经安装了 TiSpark v2.4.x 可以参考下面的步骤升级到 TiSpark v2.5.x
 
-#### 7.1 下载升级软件
+### 7.1 下载升级软件
 
 ```
 # 下载 Spark v3.1.3
@@ -880,13 +871,13 @@ curl -L "https://github.com/pingcap/tispark/releases/download/v2.5.1/tispark-ass
 
 ```
 
-#### 7.2 备份
+### 7.2 备份
 
 ```
 \cp -rf /tidb-deploy/tispark-master-7077 /tidb-deploy/tispark-master-7077-bak2.4.1
 ```
 
-#### 7.3 升级
+### 7.3 升级
 
 ```
 # 替换 Spark
@@ -899,7 +890,7 @@ cp -rf tispark-assembly-3.1-2.5.1.jar /tidb-deploy/tispark-master-7077/jars/
 cp -rf /tidb-deploy/tispark-master-7077-bak2.4.1/conf/* /tidb-deploy/tispark-master-7077/conf/
 ```
 
-#### 7.4 测试
+### 7.4 测试
 
 - 启动 Spark 集群
 
@@ -928,17 +919,17 @@ cp -rf /tidb-deploy/tispark-master-7077-bak2.4.1/conf/* /tidb-deploy/tispark-mas
 
 ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1653925873658.png)
 
-### 八、总结
+## 八、总结
 
 1、本次实验使用版本为 TiSpark v2.4.1 和 Spark v2.4.3 ，如果对新版的 TiSpark 比较感兴趣可以关注后面的文章。
 
-​     **为了便于阅读把 TiSpark v2.5.x 相关的 2 篇文章也合并在一起。**
+**为了便于阅读把 TiSpark v2.5.x 相关的 2 篇文章也合并在一起。**
 
 2、TiSpark 在写 TiDB 的时候注意下面几点：
 
-&#x20;     1）目标表必须存在；
+1）目标表必须存在；
 
-&#x20;     2）目标表有明示主键（不算 \_tidb\_rowid ）。
+2）目标表有明示主键（不算 \_tidb\_rowid ）。
 
 3、一路过来，体验使用 TiSpark 还算顺利，给 PingCAP 的同学们点个赞！
 
@@ -946,11 +937,9 @@ cp -rf /tidb-deploy/tispark-master-7077-bak2.4.1/conf/* /tidb-deploy/tispark-mas
 
 5、如果文章中的表述有不当的地方、请私信留言！
 
-### 谢谢！
+## 谢谢！
 
-
-
-### 参考
+## 参考
 
 1. <https://docs.pingcap.com/zh/tidb/v6.0/tispark-overview#tispark-用户指南>
 2. <https://docs.pingcap.com/zh/tidb/v6.0/get-started-with-tispark#tispark-快速上手>
