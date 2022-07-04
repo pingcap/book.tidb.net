@@ -102,8 +102,11 @@ workOnNewThread： `while`循环， 每次申请新的 thread， 新 thread 内`
 
    at ../../../../-/libstdc++-v3/src/c++11/thread.cc:163
 ```
-
-<center> Figure 1： 线程申请阻塞时堆栈(1) </center>
+<center> 
+    <p>
+        Figure 1： 线程申请阻塞时堆栈(1) 
+    </p>  
+</center>
 
 ```bash
 #0 _lll_lock_wait_private () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:95
@@ -133,7 +136,11 @@ workOnNewThread： `while`循环， 每次申请新的 thread， 新 thread 内`
    at ../../../.././libstdc++-v3/src/c++11/thread.cc:163
 ```
 
-<center> Figure 2： 线程申请阻塞时堆栈(2) </center>
+<center>
+    <p>
+        Figure 2： 线程申请阻塞时堆栈(2) 
+    </p>
+</center>
 
 ```bash
 #0 __lll_lock_wait_private () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:95
@@ -153,7 +160,11 @@ workOnNewThread： `while`循环， 每次申请新的 thread， 新 thread 内`
 #6 std::thread::join (this=this@entry=0x7fbbc2005668) at ../../../.././libstdc++-v3/src/c++11/thread.cc:136
 ```
 
-<center> Figure 3： 线程释放阻塞时堆栈 </center>
+<center>
+    <p>
+        Figure 3： 线程释放阻塞时堆栈 
+    </p>
+</center>
 
 
 从图中堆栈可以看到， 线程创建时会调用`allocate_stack`和`get_cached_stack`， 而线程释放时会调用`__deallocate_stack`， 这几个函数会因为触发了名为`__lll_lock_wait_private`的锁争抢而发生阻塞。
@@ -345,7 +356,11 @@ get_cached_stack (size_t *sizep, void **memp)
 }
 ```
 
-<center> Figure 4： allocate_stack 代码分析 </center>
+<center>
+    <p>
+        Figure 4： allocate_stack 代码分析
+    </p>
+</center>
 
 结合堆栈和源码可知，`pthread_create`最开始会调用`allocate_stack`来进行线程堆栈的分配。 具体过程如上图： 首先检查用户是否自己提供了 stack 空间， 如果是， 那么直接用用户提供的空间进行分配。 不过这种情况很少见。 默认情况下， 用户是不提供的， 而是系统自己去分配。 这种情况下会先调用 `get_cached_stack`， 尝试从已经分配过的 stack 列表中重新利用。 如果获取 stack 失败， 那么会调用 syscall `mmap`进行 stack 的分配， 获取 stack 后， 会尝试获取全局锁`lll_lock`将 stack 添加到`stack_used`列表中。 这个过程中， `get_cached_stack`内部也会尝试获取相同的全局锁`lll_lock`， 首先扫描`stack_cache`列表， 将可用的 stack 找到， 然后将该 stack 从`stack_cache`列表中删除， 再加入到`stack_used`列表中。
 
@@ -487,7 +502,11 @@ __free_stacks (size_t limit)
 }
 ```
 
-<center> Figure 5： deallocate_stack 代码分析 </center>
+<center>
+    <p>
+        Figure 5： deallocate_stack 代码分析
+    </p>
+</center>
 
 ```c++
 //file path: nptl/allocatestack.c
@@ -500,7 +519,11 @@ static size_t stack_cache_maxsize = 40 * 1024 * 1024; /* 40MiBi by default.  */
 static size_t stack_cache_actsize;
 ```
 
-<center> Figure 6： stack_cache 列表容量 stack_cache_maxsize 的默认值 </center>
+<center>
+    <p>
+        Figure 6： stack_cache 列表容量 stack_cache_maxsize 的默认值
+    </p>    
+</center>
 
 
 结合堆栈和源码可知，线程在结束时， 会调用`__free_tcb`来先将线程的 TCB(Thread Control Block， 线程的元数据)释放， 然后调用`deallocate_stack`将 stack 回收。 这个过程中， 主要的瓶颈点在`deallocate_stack`上。 `deallocate_stack`会尝试持有跟`allocate_stack`里面相同的`lll_lock`全局锁， 将 stack 从`stack_used`列表中删除。 然后判断 stack 是否是系统分配的， 如果是， 那么将其加入到`stack_cache`列表中。 加入后， 会检查`stack_cache`列表的大小是否超出阈值`stack_cache_maxsize`， 如果是， 那么会调用`__free_stacks`函数释放一些 stack 直到小于阈值`stack_cache_maxsize`。 值得注意的是，`__free_stacks`函数里面会调用 syscall `munmap`来释放内存。对于阈值`stack_cache_maxsize`，如上图，从源码上看，它的默认值是 40*1024*1024， 结合代码中的注释， 似乎单位是 kB。但是后来实测后发现， 这个注释是有问题， 实际上`stack_cache_maxsize`的单位是 Byte， 也就是默认 40MB。 而 thread 默认 stack 大小一般为 8~10MB，也就是说glibc默认情况下大概可以帮用户cache 4~5 个线程 stack。
@@ -515,7 +538,11 @@ static size_t stack_cache_actsize;
 
 ![img](https://tva1.sinaimg.cn/large/e6c9d24egy1h2lo685qy5j20hs09adg7.jpg)
 
-<center> Figure 7： futex </center>
+<center>
+    <p>
+        Figure 7： futex
+    </p>
+</center>
 
 `lll` 是 low level lock 的缩写， 俗称底层锁， 实际是基于 Futex 实现的互斥锁。 Futex， 全称 fast userspace mutex， 是一个非 vDSO 的 system call。 高版本 linux 的 mutex 也是基于 futex 实现的。futex 的设计思路认为大部分情况锁争抢是不会发生的， 这时候可以直接在用户态完成锁操作。 而当发生锁争抢时， `lll_lock`通过非 vDSO 的系统调用 `sys_futex(FUTEX_WAIT)`陷入内核态等待被唤醒。 成功抢到锁的线程， 干完活后， 通过`lll_unlock`来唤醒 val 个线程(val 一般设为 1)， `lll_unlock`实际通过非 vDSO 的系统调用`sys_futex(FUTEX_WAIT)`来完成唤醒操作。
 
@@ -527,7 +554,11 @@ static size_t stack_cache_actsize;
 
 ![img](https://tva1.sinaimg.cn/large/e6c9d24egy1h2lo67z3qbj20nm0fu409.jpg)
 
-<center> Figure 8： system call 工作方式 </center>
+<center>
+    <p>
+        Figure 8： system call 工作方式
+    </p>
+</center>
 
 传统的 syscall 通过 int 0x80 中断的方式进行， CPU 把控制权交给 OS， OS 会检查传入的参数， 例如`SYS_gettimeofday`， 然后再根据寄存器中的系统调用号查找系统调用表，获得调用号对应的服务函数并执行比如： `gettimeofday`。中断会强制 CPU 保存中断前的执行状态， 为了在中断结束后可以把状态恢复。 除了中断本身， kernel 还会做更多的事情。 Linux 被分为用户空间和内核空间， 内核空间的权限等级最高，可以直接对硬件做操作．为了防止用户程序的恶意行为，用户应用无法直接访问内核空间， 要想做用户态无法完成的工作，便需要 syscall 来间接完成， kernel 必须在用户和内核这两个内存段之间切换来完成这个操作。 这种内存地址的切换， 需要 CPU 寄存器内容的“大换血”，因为需要保存和恢复之前寄存器的现场．此外还要对用户传入的内容做额外的权限检查，所以对性能的冲击是比较大的。 现代的 CPU 提供了 syscall 指令， 因此高版本的 linux 实际通过 syscall 指令来代替原来的 int 0x80 中断方式， 但是代价依然很高。
 
@@ -562,7 +593,11 @@ Syscall 的代价：http://arkanis.de/weblog/2017-01-05-measurements-of-system-c
 
 ![img](https://tva1.sinaimg.cn/large/e6c9d24egy1h2lo68qen7j20nm0fu409.jpg)
 
-<center> Figure 9： 核间中断 IPI 工作方式 </center>
+<center>
+    <p>
+        Figure 9： 核间中断 IPI 工作方式
+    </p>
+</center>
 
 IPI 的具体工作方式如上图，多个 CPU 核心通过系统总线 System Bus 进行 IPI 消息的通讯， 当一个 CPU 核需要在多个 CPU 核心上做 IPI 工作时，该核心会发送 IPI 请求到 System Bus 并等待其他核心全部完成 IPI 操作，相关的 CPU 核心上收到 IPI 请求后处理自己的 Interrupt 任务，完成后通过 System Bus 通知发起方。 因为这个过程需要通过 CPU 外部的 System Bus 来完成，并且发起方在发送 IPI 到等待其他核心完成中断操作的过程中只能傻等着，所以 overhead 非常高（几 us 甚至更高）。
 
@@ -778,7 +813,11 @@ switch (this->state) {
    }
 ```
 
-<center> Figure 10： top 源码分析 </center>
+<center>
+    <p>
+        Figure 10： top 源码分析
+    </p>
+</center>
 
 分析了 top 的源码后，终于明白了原因。原来 top 显示的不是当时的"瞬时情况"， 因为 top 不会把程序停掉。 具体的工作过程如上图， top 会扫描一遍当时的线程列表， 然后一个一个去取状态， 这个过程中程序是继续运行的， 所以 top 扫完列表后， 之后新启动线程是没记录进去的， 而旧线程一部分已经结束了， 结束状态的线程会算到 sleeping 里。所以对于高并发线程频繁申请和释放的场景下， top 上看到的 running 数就是会偏少的。
 
