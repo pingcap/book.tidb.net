@@ -54,15 +54,15 @@ hide_title: true
 
 ### 三、安装 TiDB 集群和 TiSpark
 
-> 环境： Centos 7.3 虚拟机 2C 4G TiDB V6.0
+> 环境： Centos 7.3 虚拟机 2C 4G TiDB v6.0
 >
 > 版本说明
 >
-> TiDB V6.0.0
+> TiDB v6.0.0
 >
-> TiSpark V2.4.1 （tispark-v2.4.1-any-any.tar.gz）
+> TiSpark v2.4.1 （tispark-v2.4.1-any-any.tar.gz）
 >
-> Spark V2.4.3 (spark-v2.4.3-any-any.tar.gz)
+> Spark v2.4.3 (spark-v2.4.3-any-any.tar.gz)
 
 **准备工作**
 
@@ -242,7 +242,6 @@ tiup cluster deploy cluster111 v6.0.0 ./cluster111.yml --user root -p
 
 3. 查看集群
 
-````
 ```shell 
 # 查看集群 
 tiup cluster list 
@@ -252,7 +251,7 @@ tiup cluster start cluster111 --init
 
 # 查看集群  
 tiup cluster display cluster111
-````
+```
 
 ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1649565381371.png)
 
@@ -318,7 +317,9 @@ tispark_workers:
     # web_port: 8081
     # deploy_dir: "/tidb-deploy/tispark-worker-7078"
     # java_home: "/usr/local/bin/java-1.8.0"
+    
 ```
+
 
 ##### 3.2.2 安装 TiSpark
 
@@ -632,7 +633,7 @@ spark-sql> select
 
 ##### 5.4.1 配置 allow\_spark\_sql
 
-> 在通过spark-sql写数据时提示“SparkSQL entry for tispark write is disabled. Set spark.tispark.write.allow\_spark\_sql to enable.”
+> 在通过 spark-sql 写数据时提示 “SparkSQL entry for tispark write is disabled. Set spark.tispark.write.allow\_spark\_sql to enable.”
 
 解决方式：
 需要在 conf/spark-defaults.conf 里面配置一下下面的参数
@@ -787,6 +788,7 @@ select 'CUSTOMER_2 （目标表）',count(*) from CUSTOMER_2;
 
 
 ### 六、升级 TiSpark 之离线安装 TiSpark v2.5.1
+> 可以参考下面的步骤离线升级到 TiSpark v2.5.1
 
 #### 6.1 准备安装包
 
@@ -796,9 +798,9 @@ select 'CUSTOMER_2 （目标表）',count(*) from CUSTOMER_2;
 
 2）下载 tookit tidb-community-toolkit-v6.0.0-linux-amd64.tar.gz
 
-3）下载 Spark V3.1.3 https://dlcdn.apache.org/spark/spark-3.1.3/spark-3.1.3-bin-hadoop3.2.tgz
+3）下载 Spark v3.1.3 https://dlcdn.apache.org/spark/spark-3.1.3/spark-3.1.3-bin-hadoop3.2.tgz
 
-4）下载 TiSpark V2.5.1 https://github.com/pingcap/tispark/releases/download/v2.5.1/tispark-assembly-3.1-2.5.1.jar 
+4）下载 TiSpark v2.5.1 https://github.com/pingcap/tispark/releases/download/v2.5.1/tispark-assembly-3.1-2.5.1.jar 
 
 #### 6.2 离线安装 TiSpark v2.5.1
 
@@ -866,13 +868,14 @@ spark.tispark.pd.addresses 10.0.2.15:2379
 
 
 ### 七、TiSpark v2.4.x  升级到 TiSpark v2.5.x
+> 如果已经安装了 TiSpark v2.4.x 可以参考下面的步骤升级到 TiSpark v2.5.x
 
 #### 7.1 下载升级软件
 
 ```
-# 下载 Spark V3.1.3
+# 下载 Spark v3.1.3
 curl -L "https://dlcdn.apache.org/spark/spark-3.1.3/spark-3.1.3-bin-hadoop3.2.tgz" -O spark-3.1.3-bin-hadoop3.2.tgz
-# 下载 TiSpark V2.5.1
+# 下载 TiSpark v2.5.1
 curl -L "https://github.com/pingcap/tispark/releases/download/v2.5.1/tispark-assembly-3.1-2.5.1.jar" -O tispark-assembly-3.1-2.5.1.jar
 
 ```
@@ -927,7 +930,7 @@ cp -rf /tidb-deploy/tispark-master-7077-bak2.4.1/conf/* /tidb-deploy/tispark-mas
 
 ### 八、总结
 
-1、本次实验使用版本为 TiSpark ver 2.4.1 和 Spark 2.4.3 ，如果对新版的 TiSpark 比较感兴趣可以关注后面的文章。
+1、本次实验使用版本为 TiSpark v2.4.1 和 Spark v2.4.3 ，如果对新版的 TiSpark 比较感兴趣可以关注后面的文章。
 
 ​     **为了便于阅读把 TiSpark v2.5.x 相关的 2 篇文章也合并在一起。**
 
@@ -935,7 +938,7 @@ cp -rf /tidb-deploy/tispark-master-7077-bak2.4.1/conf/* /tidb-deploy/tispark-mas
 
 &#x20;     1）目标表必须存在；
 
-&#x20;     2）目标表有明示主键（不算\_tidb\_rowid）。
+&#x20;     2）目标表有明示主键（不算 \_tidb\_rowid ）。
 
 3、一路过来，体验使用 TiSpark 还算顺利，给 PingCAP 的同学们点个赞！
 
