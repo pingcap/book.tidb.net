@@ -1,19 +1,19 @@
  ---
- title: tiflash 6.0 on K8s 扩容与新特性实践
+ title: 欢迎投稿
  hide_title: true
  ---
 
 # tiflash 6.0 on K8s 扩容与新特性实践
 
-# 概述
+## 概述
 
 TiFlash 的升级与扩缩容已经有很多同学实践了，随着 TiDB 的普及，这方面也不适合连篇累牍的描述，但是在这次测试 6.0 on K8s 的过程中也确实遇到了一些坎坷。本文首先讲解 TiFlash 6.0 on K8s 扩容的注意事项，然后描述在新扩容的机器上的一些新特性实践。此次发布的分区表动态裁剪等特性都在 6.1 GA 了，且 6.1 是 LTS 版本，生产环境建议直接升级 6.1 使用。
 
-# TiFlash 6.0 on K8s 扩容
+## TiFlash 6.0 on K8s 扩容
 
 我们有多个 TiDB 环境，一个实验性 TiDB 环境在 K8s 上，一个开发 TiDB 环境用的虚拟机部署的，给研发的同学提供支撑，一个是生产环境。开发环境为了保持研发同学的一致性体验，暂时不升级 6.0，使用实验性 TiDB 环境进行测试。实验性 TiDB 环境已经升级为 6.0，但是没有部署 TiFlash，TiDB on K8s 的升级暂不描述。
 
-## 扩容 TiFlash 6.0 on K8s
+### 扩容 TiFlash 6.0 on K8s
 
 按照官方文档描述，在 tc 中增加 TiFlash 的配置：
 
@@ -61,7 +61,7 @@ kubectl edit tc basic -n TiDB-cluster
       storageClassName: local-storage
 ```
 
-### core dump 设置过大错误
+#### core dump 设置过大错误
 
 保存当前配置后，等待 pod 部署，此时会发现 tifalsh 起不来，日志报错如下：
 
@@ -115,7 +115,7 @@ systemctl daemon-reload
 systemctl restart docker.service
 ```
 
-### 默认配置格式错误
+#### 默认配置格式错误
 
 上述操作重启后，发现上述错误已经没有了，但是在日志中出现了新的错误：
 TiFlash:
@@ -170,7 +170,7 @@ kubectl edit tc basic -n TiDB-cluster
    查看实例，已经部署成功：
    ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652695484724-1656042426983.png)
 
-# TiFlash 6.0 新特性解读
+## TiFlash 6.0 新特性解读
 
 6.0 版本下 TiFlash 新增特性如下：
 
@@ -185,21 +185,21 @@ kubectl edit tc basic -n TiDB-cluster
 
 其中，按库构建 TiFlash 副本，TiFlash MPP 引擎支持分区表正好符合了作者的需求，此文中做一些评测，加入数据和效果展示，方便各位评估。
 
-# 新增按库构建 TiFlash 副本功能
+## 新增按库构建 TiFlash 副本功能
 
-## 按库构建的方便之处
+### 按库构建的方便之处
 
 我们设置数据层次如下所示：
 ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652695495005-1656042426976.png)
 其实从明细层开始，就已经是 TiFlash 比较喜欢的宽表了，对于明细、汇总、萃取层的数据我们期望都用 TiDB 体系替代，所以这三层中的表都希望有 TiFlash 副本。
 
-## 操作实践
+### 操作实践
 
-### 测试环境描述
+#### 测试环境描述
 
 构建一个测试库，库中有 23 张表，其中最大的表有 3 千万数据，为非分区表，另外还有一张分区表，180 万数据，7 张空表，没有数据。
 
-### 执行按库构建 TiFlash 副本
+#### 执行按库构建 TiFlash 副本
 
 ```
 ALTER DATABASE TESTDB SET TiFlash REPLICA 1;
@@ -240,15 +240,15 @@ SELECT * FROM INFORMATION_SCHEMA.TIFLASH_REPLICA WHERE TABLE_SCHEMA = 'TESTDB';
 
 在实际操作过程中，要考虑以上提示信息。其中在按库构建 TiFlash 副本命令执行到结束期间，如果在目标库下创建表，则可能会对这些新增表创建 TiFlash 副本，存在不确定性；全部同步执行之后，再创建表，则确定会为这些新增表创建 TiFlash 副本。
 
-# TiFlash MPP 引擎支持分区表的动态裁剪模式
+## TiFlash MPP 引擎支持分区表的动态裁剪模式
 
-## 支持分区表的方便之处
+### 支持分区表的方便之处
 
 我们的很多事实表都会分区，分区在表的使用中会使用动态分区裁剪缩小数据扫描范围，有效的提高查询效率。在 5.4.0 版本中，分区表无法应用 MPP 计算，只是在 TiFlash 完成下推的算子之后，把数据汇总到 TiDB 中进行计算，因为这种计算方式还引起了一些问题，参考：[TiDB server 的 oom 问题优化探索](https://TiDB.net/blog/de9bf174)。
 
-## 操作实践
+### 操作实践
 
-### 操作环境介绍
+#### 操作环境介绍
 
 设计一个实验用分区表 cust\_partiton，一个非分区表 cust，一个维度表 info, 执行如下查询：
 
@@ -291,7 +291,7 @@ group by
 
 实验结果如下：
 
-### 非分区表查询
+#### 非分区表查询
 
 执行计划：
 
@@ -317,7 +317,7 @@ Projection_9                                  |1.00     |root
 
 执行时间：54ms
 
-### 默认参数分区表查询
+#### 默认参数分区表查询
 
 执行计划如下（因分区太多，部分执行计划被折叠）：
 
@@ -343,7 +343,7 @@ Projection_51                   |1.00     |root
 
 执行时间：146ms
 
-### 开启动态剪裁分区表查询
+#### 开启动态剪裁分区表查询
 
 开启动态剪裁模式，执行如下 SQL：
 
@@ -375,10 +375,10 @@ Projection_9                                  |1.00    |root
 
 执行时间：53ms
 
-### 总结
+#### 总结
 
 可以看到非分区表的执行计划中出现了 ExchangeSender 和 ExchangeReceiver，说明是走了 MPP 模式了，执行时间为 53ms。分区表默认参数执行计划中，没有出现 ExchangeSender 和 ExchangeReceiver，只是出现了 cop\[TiFlash]，说明走了 TiFlash 扫描，但是没走 MPP 模式执行时间为 146ms，修改为动态裁剪模式之后，执行计划与非分区表比较相似，因为在动态裁剪模式下，每个算子都支持直接访问多个分区，PartitionUnion 消失了，所以执行计划更简洁。在我的测试用例中，因为数据量和分区数量的关系，当增加 where 条件，减少分区扫描范围时没有获得执行效率上的明显提升，在此不做描述了。
 
-# 展望
+## 展望
 
 作者截稿时，6.1 LTS 版本已经发布，TiDB 具备更成熟的 HTAP 与容灾能力，加入多项云原生数据库所需的基础特性，对我关注的分区表处理也更加成熟，包括修复了以前提的很多个关于分区剪裁方面的 issue，相信 TiDB 作为 HTAP 已经有了更宽广的适应场景，希望将来的一天 TiDB 可以作为全场景、开箱即用的数据库产品创造辉煌。
