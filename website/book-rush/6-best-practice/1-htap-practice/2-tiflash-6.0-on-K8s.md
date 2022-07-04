@@ -1,5 +1,5 @@
 ---
-title: 欢迎投稿
+title: tiflash 6.0 on K8s 扩容与新特性实践
 hide_title: true
 ---
 
