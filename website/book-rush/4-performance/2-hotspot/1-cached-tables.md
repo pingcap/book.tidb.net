@@ -6,6 +6,7 @@ hide_title: true
 # TiDB v6.0.0(DMR) 缓存表初试
 
 > 本文作者：啦啦啦啦啦，TiDB 老粉，目前就职于京东物流，社区资深用户，[asktug 主页](https://tidb.net/u/啦啦啦啦啦/post/all)
+>          jiyf，TiDB 爱好者，目前就职于天翼云，社区资深用户，[asktug 主页](https://tidb.net/u/jiyf/post/all)
 
 ## 一、背景
 
@@ -27,7 +28,80 @@ TiDB v6.0.0(DMR) 版本推出了缓存表的功能，第一次看到这个词的
 
 缓存表把整张表的数据从 TiKV 加载到 TiDB Server 中，查询时可以不通过访问 TiKV 直接从 TiDB Server 的缓存中读取，节省了磁盘 IO 和网络带宽。使用普通表查询时，返回的数据量越多索引的效率可能越低，直到和全表扫描的代价接近优化器可能会直接选择全表扫描。缓存表本身数据都在 TiDB Server 的内存中，可以避免磁盘 IO，因此查询效率也会更高。以配置表为例，当业务重启的瞬间，全部业务连接一起加载配置，会造成较高的数据库读延迟。如果使用了缓存表，读请求可以直接从内存中读取数据，可以有效降低读延迟。在金融场景中，业务通常会同时涉及订单表和汇率表。汇率表通常不大，表结构很少发生变化因此几乎不会有 DDL，加上每天只更新一次，也非常适合使用缓存表。其他业务场景例如银行分行或者网点信息表，物流行业的城市、仓号库房号表，电商行业的地区、品类相关的字典表等等，对于这种很少新增记录项的表都是缓存表的典型使用场景。
 
-## 三、测试环境
+## 三、缓存一致性
+
+缓存表采用 lease 机制 ( 通过 tidb_table_cache_lease 变量设置 ) 保证从各个 TiDB Server 缓存读取跟从 TiKV 读取数据的一致性。
+
+lease 代表租约，在对应的 lease 周期内，尤其是 WRITE 操作，只在 WRITE lease 内允许。从缓存读取和从 TiKV 读取数据一致性通过以下方式确保：
+
+* 在 READ lease 内，不允许 WRITE 操作，那么获取 READ lease 内的 snapshot 时，可以保证从缓存中读取跟从 TiKV 读取的数据一致
+* 在 WRITE lease 内：
+  * 读取 WRITE lease 内的 snapshot 时，从 TiKV 读取
+  * 写操作（事务提交时候）会检查事务提交的 commit ts 要属于当前 WRITE lease 范围内，那么保证了 TiDB Server 中缓存的数据基于 Read lease 的 snapshot 依然一致
+
+### 一、lease 说明
+
+```
+mysql> select tb.TABLE_SCHEMA, tb.TABLE_NAME, cache.* from mysql.table_cache_meta as cache inner join information_schema.TABLES as tb on cache.tid = tb.TIDB_TABLE_ID;
++--------------+------------+-----+-----------+--------------------+--------------------+
+| TABLE_SCHEMA | TABLE_NAME | tid | lock_type | lease              | oldReadLease       |
++--------------+------------+-----+-----------+--------------------+--------------------+
+| sbtest1      | sbtest1    | 650 | WRITE     | 432986910940987392 | 432986909630267392 |
++--------------+------------+-----+-----------+--------------------+--------------------+
+1 row in set (0.00 sec)
+```
+
+table_cache_meta 各个列信息：
+
+* lock_type：缓存表 lease 的锁类型，有以下几种：
+  * NONE：没有锁，一般只有在新建的缓存表会有此类型
+  * READ：读锁，在 lease 内，不能进行表更新操作
+  * INTEND：写操作的意向锁，抢占式锁类型。如果当前锁类型为读锁时，需要进行写操作，添加 INTEND 阻止读操作延长 lease，使得写操作能顺利获取写锁。INTEND 类型时 oldReadLease 列生效，代表 READ lease 的时间，到期后开始允许写操作，lease 列代表期望后面获取的 WRITE lease 的时间。
+  * WRITE：写锁，在 lease 内可以进行表更新操作
+* lease：锁到期时间，是 tso 类型，代表当前 lock_type 的有效期，如果 lease 过期，锁将会无效
+* oldReadLease：只有加 INTEND 锁的时候才会更新此列，代表读操作的结束时间，到期后可以执行写操作
+
+### 二、写操作
+
+当数据量大于 64MB 时候，**禁止对表的 INSERT、UPDATE，允许 DELETE**。
+
+对缓存表进行 DML 操作时，TiDB Server 要获取表的 WRITE lease，代表在这个租约内，可以进行表的写操作，如果要查询的数据的 snapshot 在租约内，那就不能直接使用缓存的数据，因为 TiKV 数据可能已经更新，造成缓存数据不一致，这时候需要直接查询 TiKV 获取一致的数据。
+
+**在 WRITE lease 内，读查询退化为跟普通表一样的从 TiKV 读取**。
+
+使用 sysbench 压测 select 查询过程中，对表执行一个 dml 操作，表的 WRITE lease 期间，缓存失效，从 tikv 查询数据，表现出压测 tps 出现下降，latency 变长的情景；当 dml 执行结束，表重新回到 READ lease 时，tps 又回升到之前的数值。
+
+```
+[ 18s ] thds: 32 tps: 62388.72 qps: 62388.72 (r/w/o: 62388.72/0.00/0.00) lat (ms,95%): 0.80 err/s: 0.00 reconn/s: 0.00
+[ 19s ] thds: 32 tps: 62373.22 qps: 62373.22 (r/w/o: 62373.22/0.00/0.00) lat (ms,95%): 0.81 err/s: 0.00 reconn/s: 0.00
+[ 20s ] thds: 32 tps: 32795.91 qps: 32795.91 (r/w/o: 32795.91/0.00/0.00) lat (ms,95%): 1.86 err/s: 0.00 reconn/s: 0.00
+[ 21s ] thds: 32 tps: 31120.99 qps: 31120.99 (r/w/o: 31120.99/0.00/0.00) lat (ms,95%): 1.89 err/s: 0.00 reconn/s: 0.00
+[ 22s ] thds: 32 tps: 31001.04 qps: 31001.04 (r/w/o: 31001.04/0.00/0.00) lat (ms,95%): 1.89 err/s: 0.00 reconn/s: 0.00
+[ 23s ] thds: 32 tps: 30879.05 qps: 30879.05 (r/w/o: 30879.05/0.00/0.00) lat (ms,95%): 1.96 err/s: 0.00 reconn/s: 0.00
+[ 24s ] thds: 32 tps: 28217.93 qps: 28217.93 (r/w/o: 28217.93/0.00/0.00) lat (ms,95%): 2.07 err/s: 0.00 reconn/s: 0.00
+[ 25s ] thds: 32 tps: 52939.06 qps: 52939.06 (r/w/o: 52939.06/0.00/0.00) lat (ms,95%): 1.14 err/s: 0.00 reconn/s: 0.00
+[ 26s ] thds: 32 tps: 61600.98 qps: 61600.98 (r/w/o: 61600.98/0.00/0.00) lat (ms,95%): 0.81 err/s: 0.00 reconn/s: 0.00
+[ 27s ] thds: 32 tps: 60956.91 qps: 60956.91 (r/w/o: 60956.91/0.00/0.00) lat (ms,95%): 0.83 err/s: 0.00 reconn/s: 0.00
+```
+
+由于要先获取  WRITE lease，也就是在 DML 时候，要等待获取 lease 后才能进行事务提交，所以对于缓存表，执行更改可能耗时较长，正常等待获取 lease 的时间在 0 ~ tidb_table_cache_lease 的范围，也就是 INTEND lock 的持有时间，等待 READ lease 过期。
+
+**在 DML 事务 commit 阶段尝试获取  WRITE lease，也就是在提交时延时较大。**
+
+```
+mysql> begin;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> delete from sbtest1 where id = 100;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (5.32 sec)
+```
+
+这里 commit 语句耗时 5.32 秒，因为在提交阶段等待获取 WRITE lease 耗时较长。
+
+## 四、测试环境
 
 #### 1.硬件配置及集群拓扑规划
 
@@ -74,7 +148,7 @@ replication.enable-placement-rules: true
 
 &#x20;      由于硬件条件受限，只有 2 台普通性能的云主机混合部署的集群（实际上和单机部署也差不多了）。单机 CPU 核数较少且 TiDB Server 没有做负载均衡所以并发无法调整太高。以下测试均使用一个 TiDB Server 节点进行压测，因此不用特别关注本次测试的测试数据，可能会跟其他测试结果有所出入，不代表最佳性能实践和部署，测试结果仅限参考。
 
-## 四、性能测试
+## 五、性能测试
 
 Sysbench 生成的表结构
 
@@ -279,7 +353,7 @@ sysbench --mysql-host=10.0.0.1  --mysql-port=4000  --mysql-db=sbtest --mysql-use
 
 ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1653748709260.png)
 
-## 五、遇到的问题
+## 六、遇到的问题
 
 - 尝试将 30w 数据的表改为缓存表时报错 `ERROR 8242 (HY000): 'table too large' is unsupported on cache tables`。
 
@@ -295,7 +369,7 @@ sysbench --mysql-host=10.0.0.1  --mysql-port=4000  --mysql-db=sbtest --mysql-use
 
 在 lease 过期之前，无法对数据执行修改操作。为了保证数据一致性，修改操作必须等待 lease 过期，所以会出现写入延迟。例如 `tidb_table_cache_lease` 为 10 时，写入可能会出现较大的延迟。因此写入比较频繁或者对写入延迟要求很高的业务不建议使用缓存表。
 
-## 六、测试总结
+## 七、测试总结
 
 ### 读性能
 
