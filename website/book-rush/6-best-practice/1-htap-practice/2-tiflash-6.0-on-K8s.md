@@ -1,7 +1,7 @@
- ---
- title: 欢迎投稿
- hide_title: true
- ---
+---
+title: 欢迎投稿
+hide_title: true
+---
 
 # tiflash 6.0 on K8s 扩容与新特性实践
 
