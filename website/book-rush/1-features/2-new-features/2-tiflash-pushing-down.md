@@ -81,12 +81,12 @@ case ast.IsTruthWithNull, ast.IsTruthWithoutNull, ast.IsFalsity: -- #33047
 
 | Issue  | 代码中的函数名                                                    | SQL中的函数名                            | 函数类型  | 功能描述                                                  |
 | ------ | ---------------------------------------------------------- | ----------------------------------- | ----- | ----------------------------------------------------- |
-| #32594 | ast.DayName, ast.MonthName                                 | DAYNAME(), MONTHNAME()              | 日期函数  | 返回星期名称；返回参数的月份名称                                      |
-| #33012 | ast.DayOfMonth, ast.LastDay                                | DAYOFMONTH(), LAST\_DAY()           | 日期函数  | 返回参数对应的天数部分(1-31)；返回参数中月份的最后一天                        |
-| #33130 | ast.DayOfWeek, ast.DayOfYear                               | DAYOFWEEK(), DAYOFYEAR()            | 日期函数  | 返回参数对应的星期下标；返回参数代表一年的哪一天 (1-366)                      |
-| #32637 | ast.Regexp                                                 | REGEXP                              | 字符串函数 | 使用正则表达式匹配模式                                           |
-| #32787 | ast.Least, ast.Greatest                                    | LEAST(), GREATEST()                 | 操作符   | 返回最小值；返回最大值                                           |
-| #33047 | ast.IsTruthWithNull, ast.IsTruthWithoutNull, ast.IsFalsity | istrue\_with\_null, istrue, isfalse | 操作符   | 判断是否为真，如果结果为null，则返回null；判断是否为真，如果结果为null，则返回0；判断是否为假 |
+| [#32594](https://github.com/pingcap/tidb/issues/32594) | ast.DayName, ast.MonthName                                 | DAYNAME(), MONTHNAME()              | 日期函数  | 返回星期名称；返回参数的月份名称                                      |
+| [#33012](https://github.com/pingcap/tidb/issues/33012) | ast.DayOfMonth, ast.LastDay                                | DAYOFMONTH(), LAST\_DAY()           | 日期函数  | 返回参数对应的天数部分(1-31)；返回参数中月份的最后一天                        |
+| [#33130](https://github.com/pingcap/tidb/issues/33130) | ast.DayOfWeek, ast.DayOfYear                               | DAYOFWEEK(), DAYOFYEAR()            | 日期函数  | 返回参数对应的星期下标；返回参数代表一年的哪一天 (1-366)                      |
+| [#32637](https://github.com/pingcap/tidb/issues/32637) | ast.Regexp                                                 | REGEXP                              | 字符串函数 | 使用正则表达式匹配模式                                           |
+| [#32787](https://github.com/pingcap/tidb/issues/32787) | ast.Least, ast.Greatest                                    | LEAST(), GREATEST()                 | 操作符   | 返回最小值；返回最大值                                           |
+| [#33047](https://github.com/pingcap/tidb/issues/33047) | ast.IsTruthWithNull, ast.IsTruthWithoutNull, ast.IsFalsity | istrue\_with\_null, istrue, isfalse | 操作符   | 判断是否为真，如果结果为null，则返回null；判断是否为真，如果结果为null，则返回0；判断是否为假 |
 
 ## 新增支持算子下推汇总
 
