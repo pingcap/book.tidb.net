@@ -8,7 +8,7 @@
 
 PingCAP Clinic 诊断服务（以下简称为 PingCAP Clinic）是 PingCAP 为 TiDB 集群提供的诊断服务，支持对使用 TiUP 或 TiDB Operator 部署的集群进行远程定位集群问题和本地快速检查集群状态，用于从全生命周期确保 TiDB 集群稳定运行、预测可出现的集群问题、降低问题出现概率、快速定位并修复问题。
 
-![](/Users/mars.dai/Downloads/公众号/clinic-new.png)
+![](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/unnamed-1656989928075.png)
 
 ## 一、传统的故障排查
 
