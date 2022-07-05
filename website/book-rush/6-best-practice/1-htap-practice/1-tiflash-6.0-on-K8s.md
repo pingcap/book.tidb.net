@@ -63,14 +63,16 @@ kubectl edit tc basic -n TiDB-cluster
 
 #### core dump 设置过大错误
 
-保存当前配置后，等待 pod 部署，此时会发现 tifalsh 起不来，日志报错如下：
+保存当前配置后，等待 pod 部署，此时会发现 TiFlash 起不来，日志报错如下：
 
 ```
 Poco::Exception. Code: 1000, e.code()= 0, e.displayText() = Exception: Cannot set max size of core file to 1073741824, e.what() = Exception
 ```
 
 从 Rancher 的 console 上看，如下图：
+
 ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652695469018-1656042427005.png)
+
 在社区求助获取大神的指点后，翻阅源码发现问题：
 
 ```
@@ -165,9 +167,9 @@ kubectl edit tc basic -n TiDB-cluster
 
 1. 两次嵌套 config
 2. storage 下面如果有配置，需要全部在配置中指定，在实践中常常漏掉 storage.main 配置，要注意检查。
-   2022 年 6 月 24 日
-   等待 pod 重新部署之后，TiFlash 成功启动。
-   查看实例，已经部署成功：
+
+等待 pod 重新部署之后，TiFlash 成功启动。查看实例，已经部署成功：
+
    ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652695484724-1656042426983.png)
 
 ## TiFlash 6.0 新特性解读
@@ -212,10 +214,15 @@ SELECT * FROM INFORMATION_SCHEMA.TIFLASH_REPLICA WHERE TABLE_SCHEMA = 'TESTDB';
 ```
 
 看看副本同步情况：
+
 ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652695505565-1656042427008.png)
+
 所有的表都已经创建了 TiFlash 副本，包括空表，部分大表已经开始同步，目前空表和部分小表的 AVAILABLE 和 PROGRESS 都为 0，等待同步完成之后，再查看状态：
+
 ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652695511673-1656042427020.png)
+
 全部的表都建立了 TiFlash 副本。
+
 此时新建一张表：
 
 ```
@@ -228,8 +235,7 @@ CREATE TABLE ADCM_P2 LIKE ADCM_P;
 SELECT * FROM INFORMATION_SCHEMA.TIFLASH_REPLICA WHERE TABLE_SCHEMA = 'TESTDB';
 ```
 
-查询， TiFlash 表增加了一张，数量为 24 张，新建的表也创建了 TiFlash 副本。
-[官方文档](https://docs.pingcap.com/zh/tidb/stable/use-tiflash) 提示如下：
+查询， TiFlash 表增加了一张，数量为 24 张，新建的表也创建了 TiFlash 副本。[官方文档](https://docs.pingcap.com/zh/tidb/stable/use-tiflash) 提示如下：
 
 - 按库构建 TiFlash 副本命令实际是为用户执行一系列 DDL 操作，对资源要求比较高。如果在执行过程中出现中断，已经执行成功的操作不会回退，未执行的操作不会继续执行。
 - 从按库构建 TiFlash 副本命令执行开始到该库中所有表都已同步完成之前，不建议执行和该库相关的 TiFlash 副本数量设置或其他 DDL 操作，否则最终状态可能非预期。非预期场景包括：
