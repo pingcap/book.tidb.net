@@ -178,7 +178,7 @@ alertmanager_servers:
 > https://tidb.net/blog/af8080f7#Cluster111
 
 ```
-# 离线安装：[历史版本中选择 v6.0.0-DMR](https://pingcap.com/zh/product-community/#%E5%8E%86%E5%8F%B2%E7%89%88%E6%9C%AC%E4%B8%8B%E8%BD%BD)
+# 离线安装：https://pingcap.com/zh/product-community/#%E5%8E%86%E5%8F%B2%E7%89%88%E6%9C%AC%E4%B8%8B%E8%BD%BD，历史版本中选择 v6.0.0-DMR
 
 # 1）下载安装包 tidb-community-server-v6.0.0-linux-amd64.tar.gz 
 # 2）下载tookit tidb-community-toolkit-v6.0.0-linux-amd64.tar.gz
