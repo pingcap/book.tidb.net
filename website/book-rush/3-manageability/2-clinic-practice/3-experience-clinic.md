@@ -5,7 +5,7 @@ hide_title: true
 
 # TiDB 6.0 新特性漫谈之 Clinic
 
-> 作者：[Mars](https://tidb.net/u/%E4%BB%A3%E6%99%93%E7%A3%8A_Mars/answer)，公众号：Mars\_share\_DB，TUG 华北区 Leader，PIngCAP 金牌认证讲师，MOA/MVA。
+> 作者：[Mars](https://tidb.net/u/%E4%BB%A3%E6%99%93%E7%A3%8A_Mars/answer)，公众号：Mars\_share\_DB，TUG 华北区 Leader，PingCAP 金牌认证讲师，MOA/MVA。
 
 PingCAP Clinic 诊断服务（以下简称为 PingCAP Clinic）是 PingCAP 为 TiDB 集群提供的诊断服务，支持对使用 TiUP 或 TiDB Operator 部署的集群进行远程定位集群问题和本地快速检查集群状态，用于从全生命周期确保 TiDB 集群稳定运行、预测可出现的集群问题、降低问题出现概率、快速定位并修复问题。
 
@@ -25,15 +25,15 @@ PingCAP Clinic 诊断服务（以下简称为 PingCAP Clinic）是 PingCAP 为 T
 	【应用软件及版本】
 	【附件】 相关日志及配置信息
 	
-	* TiUP Cluster Display 信息
-	* TiUP CLuster Edit config 信息
+	- TiUP Cluster Display 信息
+	- TiUP CLuster Edit config 信息
 	
 	监控（https://metricstool.pingcap.com/)
-	* TiDB-Overview Grafana监控
-	* TiDB Grafana 监控
-	* TiKV Grafana 监控
-	* PD Grafana 监控
-	* 对应模块日志（包含问题前后 1 小时日志）
+	- TiDB-Overview Grafana监控
+	- TiDB Grafana 监控
+	- TiKV Grafana 监控
+	- PD Grafana 监控
+	- 对应模块日志（包含问题前后 1 小时日志）
 
 ### 1、提供监控
 
@@ -90,17 +90,17 @@ PS：脚本的主要问题，像 TiKV-Details 存储的时间比较长，另外 
    
  包括集群基本信息，集群节点的硬件配置、内核参数等。
  
-*  tiup cluster audit/display/edit-config 获取集群的信息。
-*  tiup exec --command 可以执行 Insight 等命令获取系统信息，包括内核日志、内核参数、系统和硬件的基础信息。
+- `tiup cluster audit/display/edit-config` 获取集群的信息。
+- `tiup exec --command` 可以执行 Insight 等命令获取系统信息，包括内核日志、内核参数、系统和硬件的基础信息。
 
 （2）TiDB 组件配置和日志
     
-TiDB/pd/TiKV/tiflash/ticdc/dm 的配置和日志，底层使用 SCP 直接从目标组件的节点采集日志文件和配置文件
+TiDB/PD/TiKV/TiFlash/TiCDC/DM 的配置和日志，底层使用 SCP 直接从目标组件的节点采集日志文件和配置文件
 
 （3）监控
 
-* 	通过 Prometheus 提供的 HTTP API，数据收集组件可获取 Alert 和 metric 监控指标
-*  另外 TiDB 的各个组件本身就暴露了 HTTP 接口，数据收集组件可以实时收集采样信息和进行性能采样。
+- 通过 Prometheus 提供的 HTTP API，数据收集组件可获取 Alert 和 metric 监控指标
+- 另外 TiDB 的各个组件本身就暴露了 HTTP 接口，数据收集组件可以实时收集采样信息和进行性能采样。
 
 **PS：这些不就是我们之前苦哈哈的手动需要提供的么？以后可以通过 Diag 数据收集工具几个命令搞定。**
 
