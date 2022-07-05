@@ -1,8 +1,7 @@
- ---
- title: TiDB 6.0新特性漫谈之Clinic
- hide_title: true
- ---
-
+---
+title: TiDB 6.0新特性漫谈之Clinic
+hide_title: true
+---
 # TiDB 6.0新特性漫谈之Clinic
 > 作者：[Mars](https://tidb.net/u/%E4%BB%A3%E6%99%93%E7%A3%8A_Mars/answer)，公众号：Mars\_share\_DB，TUG华北区Leader，PIngCAP金牌认证讲师，MOA/MVA .
 
