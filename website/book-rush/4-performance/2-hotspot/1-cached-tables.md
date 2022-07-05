@@ -6,7 +6,8 @@ hide_title: true
 # TiDB v6.0.0(DMR) 缓存表初试
 
 > 本文作者：啦啦啦啦啦，TiDB 老粉，目前就职于京东物流，社区资深用户，[asktug 主页](https://tidb.net/u/啦啦啦啦啦/post/all)
->          jiyf，TiDB 爱好者，目前就职于天翼云，社区资深用户，[asktug 主页](https://tidb.net/u/jiyf/post/all)
+>
+> jiyf，TiDB 爱好者，目前就职于天翼云，社区资深用户，[asktug 主页](https://tidb.net/u/jiyf/post/all)
 
 ## 一、背景
 
@@ -146,7 +147,7 @@ replication.enable-placement-rules: true
     - host
 ```
 
-&#x20;      由于硬件条件受限，只有 2 台普通性能的云主机混合部署的集群（实际上和单机部署也差不多了）。单机 CPU 核数较少且 TiDB Server 没有做负载均衡所以并发无法调整太高。以下测试均使用一个 TiDB Server 节点进行压测，因此不用特别关注本次测试的测试数据，可能会跟其他测试结果有所出入，不代表最佳性能实践和部署，测试结果仅限参考。
+由于硬件条件受限，只有 2 台普通性能的云主机混合部署的集群（实际上和单机部署也差不多了）。单机 CPU 核数较少且 TiDB Server 没有做负载均衡所以并发无法调整太高。以下测试均使用一个 TiDB Server 节点进行压测，因此不用特别关注本次测试的测试数据，可能会跟其他测试结果有所出入，不代表最佳性能实践和部署，测试结果仅限参考。
 
 ## 五、性能测试
 
