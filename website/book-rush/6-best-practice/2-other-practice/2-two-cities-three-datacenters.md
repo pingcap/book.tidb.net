@@ -9,11 +9,11 @@ hide_title: true
 
 ## 一、背景
 
-&#x20;       项目需要做两地三中心的架构，目前只考虑数据存储层的两地三中心，对 TiDB 了解的比较多一点，就尝试着使用 TiDB 做两地三中心的方案；主要用到的 Placement Rules in SQL 特性。
+项目需要做两地三中心的架构，目前只考虑数据存储层的两地三中心，对 TiDB 了解的比较多一点，就尝试着使用 TiDB 做两地三中心的方案；主要用到的 Placement Rules in SQL 特性。
 
-&#x20;       Placement Rules in SQL 用于通过 SQL 接口配置数据在 TiKV 集群中的放置位置。通过该功能，用户可以将表和分区指定部署至不同的地域、机房、机柜、主机。适用场景包括低成本优化数据高可用策略、保证本地的数据副本可用于本地 Stale Read 读取、遵守数据本地要求等。
+Placement Rules in SQL 用于通过 SQL 接口配置数据在 TiKV 集群中的放置位置。通过该功能，用户可以将表和分区指定部署至不同的地域、机房、机柜、主机。适用场景包括低成本优化数据高可用策略、保证本地的数据副本可用于本地 Stale Read 读取、遵守数据本地要求等。
 
-&#x20;       因为要考虑到全球化的因素，正好 TiDB 也可以开启 Follower Read，很期待这次的尝试！
+因为要考虑到全球化的因素，正好 TiDB 也可以开启 Follower Read，很期待这次的尝试！
 
 ## 二、准备知识
 
@@ -55,12 +55,9 @@ replication.location-labels: ["area","dc","rack","host"]
 #### 2.3.3 参数配置优化
 
 - 启用 TiKV gRPC 消息压缩。server.grpc-compression-type: gzip
-
-<!---->
-
 - 调整 PD balance 缓冲区大小，提高 PD 容忍度 schedule.tolerant-size-ratio: 20.0
 
-  > 调整 PD balance 缓冲区大小，提高 PD 容忍度，因为 PD 会根据节点情况计算出各个对象的 score 作为调度的依据，当两个 store 的 Leader 或 Region 的得分差距小于指定倍数的 Region size 时，PD 会认为此时 balance 达到均衡状态。 参考：<https://docs.pingcap.com/zh/tidb/v6.0/three-data-centers-in-two-cities-deployment#>两地三中心部署
+  > 调整 PD balance 缓冲区大小，提高 PD 容忍度，因为 PD 会根据节点情况计算出各个对象的 score 作为调度的依据，当两个 store 的 Leader 或 Region 的得分差距小于指定倍数的 Region size 时，PD 会认为此时 balance 达到均衡状态。 参考：[两地三中心部署](https://docs.pingcap.com/zh/tidb/v6.0/three-data-centers-in-two-cities-deployment)
 
 ### 2.4 安装集群
 
@@ -176,11 +173,15 @@ alertmanager_servers:
 
 #### 2.4.2 离线安装 TiDB v6.0
 
-> 参考 <https://tidb.net/blog/87a38392#>离线安装TiDBV6.0 <https://tidb.net/blog/af8080f7#Cluster111>
+> 参考 https://tidb.net/blog/87a38392
+> 
+> https://tidb.net/blog/af8080f7#Cluster111
 
 ```
-#离线安装： https://pingcap.com/zh/product-community/#TiDB 6.0.0-DMR
-#1）下载安装包 tidb-community-server-v6.0.0-linux-amd64.tar.gz 2）下载tookit tidb-community-toolkit-v6.0.0-linux-amd64.tar.gz
+# 离线安装：[历史版本中选择 v6.0.0-DMR](https://pingcap.com/zh/product-community/#%E5%8E%86%E5%8F%B2%E7%89%88%E6%9C%AC%E4%B8%8B%E8%BD%BD)
+
+# 1）下载安装包 tidb-community-server-v6.0.0-linux-amd64.tar.gz 
+# 2）下载tookit tidb-community-toolkit-v6.0.0-linux-amd64.tar.gz
 mkdir -p /usr/local0/webserver/tidb/
 cd /usr/local0/webserver/tidb/
 tar -zxvf tidb-community-toolkit-v6.0.0-linux-amd64.tar.gz
