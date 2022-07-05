@@ -176,14 +176,14 @@ kubectl edit tc basic -n TiDB-cluster
 
 6.0 版本下 TiFlash 新增特性如下：
 
-- 新增按库构建 TiFlash 副本功能。用户仅需使用一条 SQL 即可对某一个数据库中所有的表添加 TiFlash 副本，极大地节约了运维成本。[使用文档](https://docs.pingcap.com/zh/TiDB/v6.0/use-TiFlash#%25E6%258C%2589%25E5%25BA%2593%25E6%259E%2584%25E5%25BB%25BA-TiFlash-%25E5%2589%25AF%25E6%259C%25AC)
-- TiFlash MPP 引擎支持分区表的动态裁剪模式。[使用文档](https://docs.pingcap.com/zh/TiDB/v6.0/use-TiFlash#MPP-%25E6%25A8%25A1%25E5%25BC%258F%25E8%25AE%25BF%25E9%2597%25AE%25E5%2588%2586%25E5%258C%25BA%25E8%25A1%25A8)
+- 新增按库构建 TiFlash 副本功能。用户仅需使用一条 SQL 即可对某一个数据库中所有的表添加 TiFlash 副本，极大地节约了运维成本。[使用文档](https://docs.pingcap.com/zh/tidb/v6.0/use-tiflash#%E6%8C%89%E5%BA%93%E6%9E%84%E5%BB%BA-tiflash-%E5%89%AF%E6%9C%AC)
+- TiFlash MPP 引擎支持分区表的动态裁剪模式。[使用文档](https://docs.pingcap.com/zh/tidb/v6.0/use-tiflash#mpp-%E6%A8%A1%E5%BC%8F%E8%AE%BF%E9%97%AE%E5%88%86%E5%8C%BA%E8%A1%A8)
   在该模式下，TiDB 也可以使用 TiFlash MPP 引擎读取和计算分区表的数据，从而大大提升分区表的查询性能。
-- TiFlash 新增支持 zstd 压缩算法。[使用文档](https://docs.pingcap.com/zh/TiDB/v6.0/TiFlash-configuration#%25E9%2585%258D%25E7%25BD%25AE%25E6%2596%2587%25E4%25BB%25B6-TiFlashtoml)
+- TiFlash 新增支持 zstd 压缩算法。[使用文档](https://docs.pingcap.com/zh/tidb/v6.0/tiflash-configuration#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6-tiflashtoml)
   新增 profiles.default.dt\_compression\_method 和 profiles.default.dt\_compression\_level 两个参数，用户可根据对性能和容量的平衡，选择不同的压缩算法。
-- TiFlash 默认开启支持所有 I/O 的校验 (Checksum)。[使用文档](https://docs.pingcap.com/zh/TiDB/v6.0/use-TiFlash#%25E4%25BD%25BF%25E7%2594%25A8%25E6%2595%25B0%25E6%258D%25AE%25E6%25A0%25A1%25E9%25AA%258C)
+- TiFlash 默认开启支持所有 I/O 的校验 (Checksum)。[使用文档](https://docs.pingcap.com/zh/tidb/v6.0/use-tiflash#%E4%BD%BF%E7%94%A8%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C)
   此项功能曾作为实验特性在 v5.4 释出。除增强了数据的正确性安全性外，对用户使用不产生明显的直接影响。
-- TiFlash 引入异步 gRPC 和 Min-TSO 调度机制，更好的管理线程使用，防止线程数过高导致的系统崩溃。[使用文档](https://docs.pingcap.com/zh/TiDB/v6.0/monitor-TiFlash#coprocessor)
+- TiFlash 引入异步 gRPC 和 Min-TSO 调度机制，更好的管理线程使用，防止线程数过高导致的系统崩溃。[使用文档](https://docs.pingcap.com/zh/tidb/v6.0/monitor-tiflash#coprocessor)
 
 其中，按库构建 TiFlash 副本，TiFlash MPP 引擎支持分区表正好符合了作者的需求，此文中做一些评测，加入数据和效果展示，方便各位评估。
 
