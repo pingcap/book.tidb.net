@@ -53,7 +53,7 @@ hide_title: true
 
 一点一点来看，首先来看看普通表转换成缓存表的过程，使用的是 SQL 语句 `ALTER TABLE tbl_name CACHE`  。
 
-1. `ALTER TABLE tbl_name CACHE` 会被 `Parser` 解析转化成为 `ast` 树 `ast.AlterTableCache`；
+1. `ALTER TABLE tbl_name CACHE` 会被 `Parser` 解析转化成为 `ast` 树 `ast.AlterTableCache` ，详见[tidb/parser.y at v6.0.0 · pingcap/tidb (github.com)](https://github.com/pingcap/tidb/blob/v6.0.0/parser/parser.y#L2182-L2194)；
 
    ```yacas
    // 	Support caching or non-caching a table in memory for tidb, It can be found in the official Oracle document, see: https://docs.oracle.com/database/121/SQLRF/statements_3001.htm
@@ -80,7 +80,7 @@ hide_title: true
    ddl/ddl_api.go:3205			err = d.AlterTableCache(sctx, ident)
    ```
 
-3. 在`AlterTableCahe` 方法中，主要做的事情：
+3. 在 [`AlterTableCahe`](https://github.com/pingcap/tidb/blob/v6.0.0/ddl/ddl_api.go#L6924-L6975) 方法中，主要做的事情：
 
    - 获取表的元信息，然后根据表的元信息进行一系列判断；
 
@@ -98,7 +98,7 @@ hide_title: true
    - 根据表的元信息，判断表是否是视图或临时表，如是，则会报错；
    - 根据表的元信息，判断表是否为分区表，如是，则会报错；
 
-   ```go
+   ```go 
       // if a table is already in cache state, return directly
       // 如果表已经是缓存表，则直接返回，model.TableCacheStatusEnable
       if t.Meta().TableCacheStatusType == model.TableCacheStatusEnable {
@@ -120,6 +120,8 @@ hide_title: true
       }
    ```
 
+   
+
    - 计算表的大小，如果超过限制，则会报错；
 
    ```go
@@ -134,7 +136,7 @@ hide_title: true
 
    
 
-   计算表大小的主要逻辑
+   计算表大小的主要逻辑在 [`checkCacheTableSize`]([tidb/ddl_api.go at v6.0.0 · pingcap/tidb (github.com)](https://github.com/pingcap/tidb/blob/v6.0.0/ddl/ddl_api.go#L6977-L7008)) 中：
 
    ```go
    const cacheTableSizeLimit = 64 * (1 << 20) // 64M
@@ -170,7 +172,7 @@ hide_title: true
 
    
 
-   - 执行一个 SQL 语句，往 `mysql.table_cache_meta` 中插入一条数据，记录信息；
+   - 接着执行一个 SQL 语句，往 `mysql.table_cache_meta` 中插入一条数据，记录信息；
 
    ```GO
    ddlQuery, _ := ctx.Value(sessionctx.QueryString).(string)
@@ -204,7 +206,7 @@ hide_title: true
 
    
 
-4. 前面生成一个 `model.ActionAlterCacheTable` 类型的 `DDLjob`，接下来进入到该 `DDLjob` 的执行阶段，会根据类型调用 `onAlterCacheTable` 方法，这个方法中的主要逻辑
+4. 前面生成一个 `model.ActionAlterCacheTable` 类型的 `DDLjob`，接下来进入到该 `DDLjob` 的执行阶段，会根据类型调用 [`onAlterCacheTable`](https://github.com/pingcap/tidb/blob/v6.0.0/ddl/table.go#L1569-L1610) 方法，这个方法中的主要逻辑
 
    - 获取表元信息，进行一系列判断
 
@@ -264,8 +266,9 @@ hide_title: true
 
 走到这里，会发现转换过程已经结束了，而文档提到的最重要的一个机制，**lease**，在整个转换过程中并未出现，让人不禁好奇，缓存表最重要的租约时间，是在哪赋予给表的？此时表中的数据已经缓存到 tidb-server 内存当中了吗？不急，可以接着往下看。
 
-
 ![image](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-20220616183329620-1655462532116.png)
+
+
 
 
 ### 二、lock & lease
@@ -368,6 +371,7 @@ MySQL [test]> select * from mysql.table_cache_meta;
 关于续约的问题也迎刃而解了，**当租约过期之后，TiDB 是不会主动从 TiKV 中将对应的数据读取到 tidb-server 的内存中缓存起来的，当重新再读这张表的时候，就会被赋予一个新的 lease 期限，就相当于续约啦**。
 
 ```go
+// 具体详见 https://github.com/pingcap/tidb/blob/v6.0.0/table/tables/cache.go#L251-L275
 // 生成一个新 lease
 func (c *cachedTable) renewLease(ts uint64, data *cacheData, leaseDuration time.Duration) {
    defer func() { <-c.renewReadLease }()
@@ -404,10 +408,10 @@ func (c *cachedTable) renewLease(ts uint64, data *cacheData, leaseDuration time.
 
 其实，笔者对于配合缓存表推出的系统表`mysql.table_cache_meta` ，有几点想吐槽，
 
-- 第一，如果不翻看源码，还真不知道这个表的存在，后面看到[专栏 - 一篇文章说透缓存表 | TiDB 社区](https://tidb.net/blog/f663f0f5)才知道有这个表的存在；
+- 第一，如果不翻看源码，还真不知道这个表的存在，写这篇文章的时候官方文档对于这个表相关信息的 [PR](https://github.com/pingcap/docs-cn/pull/10310) 还没有 merge ，后面看到[专栏 - 一篇文章说透缓存表 | TiDB 社区](https://tidb.net/blog/f663f0f5)才知道有这个表的存在，后面文档完善了就能一睹其容貌咯；
 - 第二，这张表在使用体验上，并不是那么的美好，信息更新有滞后性，不准，比如说，test 缓存表的租约到期之后，这张表上显示的 test 表的 lock_type 仍为 `READ`，但实际上，test表 此时是能够直接插入数据的，并不会出现写阻塞，只有往 test 缓存表写进去一条数据，`table_cache_meta`表中关于 test 表的信息才会更新，`READ lock` 变为 `WRITE lock`；
 - 第三，如果将缓存表变为普通表，`mysql.table_cache_meta` 中的记录并不会被删除，是否有点不合理？个人感觉删除会好一些。
 
 也许这种表在设计之初就还没打算让用户知道。
 
-不过，作为一个在 v6.0.0 DMR 推出的新特性，其在解决小表读热点问题上的突出表现，有很多测试文章中已经得到了证明，这已经十分优秀了，纵使存在一点不足之处，相信在后面，会慢慢变得完善，完美。
+不过，作为一个在 TiDB v6.0.0 DMR 推出的新特性，其在解决小表读热点问题上的突出表现，有很多测试文章中已经得到了证明，这已经十分优秀了，纵使存在一点不足之处，相信在后面，会慢慢变得完善，完美。
