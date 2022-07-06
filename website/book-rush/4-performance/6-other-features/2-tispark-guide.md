@@ -14,7 +14,7 @@ Spark 是一款专为大规模数据处理而设计的计算引擎，而 TiSpark
 
 本文将介绍如何安装配置 TiSpark v2.5，并演示如何用 Spark 客户端对 TiDB 中的数据进行读、写、删操作，以及调用窗口函数。
 
-TiSpark v3.0.0 已于 6月15日正式发布，本文也将解读部分新功能。
+TiSpark v3.0.0 已于 6 月 15 日正式发布，本文也将解读部分新功能。
 
 ![1.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1-1655090475341.png)
 
@@ -101,7 +101,7 @@ source ~/.bashrc
 
 > 通过对接 Spark 的 Extension 接口，TiSpark 得以在不直接修改 Spark 源代码的前提下，深度订制 Spark SQL 的根本行为，包括加入算子，扩充语法，修改执行计划等等，让它看起来更像是一款 Spark 原生产品而非第三方扩展。
 
-TiSpark 的主要部件是 `tispark-assembly-x.x.x.jar` 这个 jar 包，获取方式有两种，一是直接使用 `tiup install tispark`，二是直接下载 Jar 包。此外，在实际Java项目开发中，可直接在 `pom.xml` 中引用 [#694149](https://asktug.com/t/topic/694149/3)。由于 TiSpark 2.5 尚未推送到 tiup mirror，故本文采用第二种方式。
+TiSpark 的主要部件是 `tispark-assembly-x.x.x.jar` 这个 Jar 包，获取方式有两种，一是直接使用 `tiup install tispark`，二是直接下载 Jar 包。此外，在实际Java项目开发中，可直接在 `pom.xml` 中引用 [#694149](https://asktug.com/t/topic/694149/3)。由于 TiSpark 2.5 尚未推送到 tiup mirror，故本文采用第二种方式。
 
 通过 `tiup list` 可查看 tiup mirror 远端的 spark/tispark 版本。
 
@@ -141,7 +141,7 @@ spark-shell --jars tispark-assembly-2.5.0.jar
 spark-shell
 ```
 
-启动 spark-shell 后，可以从 SparkContext WebUI 看到已经导入 TiSpark 的 jar 包。
+启动 spark-shell 后，可以从 SparkContext WebUI 看到已经导入 TiSpark 的 Jar 包。
 
 ![2.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/2-1655090518068.png)
 
@@ -461,7 +461,6 @@ TiDB-v6 [test] 17:27:21> select * from t1;
 ```
 
 
-
 ### 使用 spark-shell 进行数据删除
 
 这是 TiSpark v3.0.0 的新特性。接下来，演示如何使用 spark-shell 删除数据。
@@ -567,15 +566,15 @@ df.select("course", "mark", "name", functions.rank().over(w).alias("rank")).show
 
 到此，四个案例已全部演示完毕。
 
-### TiSpark v3.0.0 其他新功能
+## TiSpark v3.0.0 其他新功能
 
-#### TiSpark v3.0.0 支持 Spark 3.2
+### TiSpark v3.0.0 支持 Spark 3.2
 
 > 新特性 – 支持 Spark 3.2 [#2287](https://github.com/pingcap/tispark/pull/2287)
 
 解读：Spark 3.2.1 于 1月26日发版，是近期发布的最新稳定版本。
 
-#### TiSpark v3.0.0 支持遥测
+### TiSpark v3.0.0 支持遥测
 
 > 新特性 – 支持遥测以收集相关信息 [#2316](https://github.com/pingcap/tispark/issues/2316)
 
