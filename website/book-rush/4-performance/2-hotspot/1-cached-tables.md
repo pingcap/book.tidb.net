@@ -17,7 +17,7 @@ TiDB v6.0.0(DMR) 版本推出了缓存表的功能，第一次看到这个词的
 
 ## 二、缓存表的使用场景
 
-以下部分内容来自官方文档，详情见 [缓存表](https://docs.pingcap.com/zh/tidb/v6.0/cached-tables#%E7%BC%93%E5%AD%98%E8%A1%A8)&#x20;
+以下部分内容来自官方文档，详情见 [缓存表](https://docs.pingcap.com/zh/tidb/v6.0/cached-tables#%E7%BC%93%E5%AD%98%E8%A1%A8)
 
 > TiDB 缓存表功能适用于以下特点的表：
 
@@ -40,7 +40,7 @@ lease 代表租约，在对应的 lease 周期内，尤其是 WRITE 操作，只
   * 读取 WRITE lease 内的 snapshot 时，从 TiKV 读取
   * 写操作（事务提交时候）会检查事务提交的 commit ts 要属于当前 WRITE lease 范围内，那么保证了 TiDB Server 中缓存的数据基于 Read lease 的 snapshot 依然一致
 
-### 一、lease 说明
+### 1. lease 说明
 
 ```
 mysql> select tb.TABLE_SCHEMA, tb.TABLE_NAME, cache.* from mysql.table_cache_meta as cache inner join information_schema.TABLES as tb on cache.tid = tb.TIDB_TABLE_ID;
@@ -62,7 +62,7 @@ table_cache_meta 各个列信息：
 * lease：锁到期时间，是 tso 类型，代表当前 lock_type 的有效期，如果 lease 过期，锁将会无效
 * oldReadLease：只有加 INTEND 锁的时候才会更新此列，代表读操作的结束时间，到期后可以执行写操作
 
-### 二、写操作
+### 2. 写操作
 
 当数据量大于 64MB 时候，**禁止对表的 INSERT、UPDATE，允许 DELETE**。
 
