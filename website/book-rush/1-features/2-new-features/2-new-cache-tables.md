@@ -1,4 +1,11 @@
+---
+title: TiDB v6.0.0 DMR 源码阅读——缓存表
+hide_title: true
+---
+
 #  TiDB v6.0.0 DMR 源码阅读——缓存表
+
+> 作者简介 ：[漆锐(Cuteray)](https://tidb.net/u/CuteRay/answer), 刚入行的菜鸟DBA，请多指教。
 
 ## 引言
 
@@ -400,7 +407,7 @@ func (c *cachedTable) renewLease(ts uint64, data *cacheData, leaseDuration time.
 
 其实，笔者对于配合缓存表推出的系统表`mysql.table_cache_meta` ，有几点想吐槽，
 
-- 第一，如果不翻看源码，还真不知道这个表的存在，后面看到[专栏 - 一篇文章说透缓存表 |  `TiDB` 社区](https://tidb.net/blog/f663f0f5)才知道有这个表的存在；
+- 第一，如果不翻看源码，还真不知道这个表的存在，后面看到[专栏 - 一篇文章说透缓存表 |  TiDB 社区](https://tidb.net/blog/f663f0f5)才知道有这个表的存在；
 - 第二，这张表在使用体验上，并不是那么的美好，信息更新有滞后性，不准，比如说，test 缓存表的租约到期之后，这张表上显示的 test 表的 lock_type 仍为 `READ`，但实际上，test表 此时是能够直接插入数据的，并不会出现写阻塞，只有往 test 缓存表写进去一条数据，`table_cache_meta`表中关于 test 表的信息才会更新，`READ lock` 变为 `WRITE lock`；
 - 第三，如果将缓存表变为普通表，`mysql.table_cache_meta` 中的记录并不会被删除，是否有点不合理？个人感觉删除会好一些。
 
