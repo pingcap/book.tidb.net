@@ -53,7 +53,7 @@ hide_title: true
 
 一点一点来看，首先来看看普通表转换成缓存表的过程，使用的是 SQL 语句 `ALTER TABLE tbl_name CACHE`  。
 
-1. `ALTER TABLE tbl_name CACHE` 会被 `Parser` 解析转化成为 `ast` 树 `ast.AlterTableCache` ，详见[tidb/parser.y at v6.0.0 · pingcap/tidb (github.com)](https://github.com/pingcap/tidb/blob/v6.0.0/parser/parser.y#L2182-L2194)；
+1. `ALTER TABLE tbl_name CACHE` 会被 `Parser` 解析转化成为 `ast` 树 `ast.AlterTableCache` ，详见TiDB v6.0.0 源码中的 [parser/parser.y](https://github.com/pingcap/tidb/blob/v6.0.0/parser/parser.y#L2182-L2194) 文件；
 
    ```yacas
    // 	Support caching or non-caching a table in memory for tidb, It can be found in the official Oracle document, see: https://docs.oracle.com/database/121/SQLRF/statements_3001.htm
@@ -136,7 +136,7 @@ hide_title: true
 
    
 
-   计算表大小的主要逻辑在 [`checkCacheTableSize`]([tidb/ddl_api.go at v6.0.0 · pingcap/tidb (github.com)](https://github.com/pingcap/tidb/blob/v6.0.0/ddl/ddl_api.go#L6977-L7008)) 中：
+   计算表大小的主要逻辑在 [`checkCacheTableSize`](https://github.com/pingcap/tidb/blob/v6.0.0/ddl/ddl_api.go#L6977-L7008) 中：
 
    ```go
    const cacheTableSizeLimit = 64 * (1 << 20) // 64M
