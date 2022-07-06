@@ -5,7 +5,7 @@ hide_title: true
 
 # TiDB 和 C# 的简单 CRUD 应用程序
 
-> 作者：[hey-hoho](https://asktug.com/u/hey-hoho/summary), 不知名 CRUD 程序员，TiDB 社区技术布道师、版主，分布式技术爱好者。
+> 作者：[hey-hoho](https://asktug.com/u/hey-hoho/summary)，不知名 CRUD 程序员，TiDB 社区技术布道师、版主，分布式技术爱好者。
 
 本文演示如何使用 C# 语言实现对 TiDB 的基础增删改查操作，包含了 C# 中常用的几种数据库访问方式。
 
@@ -102,7 +102,7 @@ dc@dc-virtual-machine:~/dotnet/tidb-example-csharp$ dotnet run
 Hello, World!
 ```
 
-## 驱动程序和ORM
+## 驱动程序和 ORM
 
 ADO.NET 提供了开发者在 .NET 平台上对各种数据源的一致性访问标准，类似于 Java 的 jdbc，或者 Golang 的 sql/database 。在此基础上，我们通过实现了 ADO.NET 接口的驱动程序就能访问和操作不同的数据库，包括 SQL Server、PostgreSQL、MySQL、Oracle、Sqlite、Access 等等。
 
