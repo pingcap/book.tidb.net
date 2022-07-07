@@ -8,7 +8,7 @@ hide_title: true
 > 作者：[ShawnYan](https://tidb.net/u/ShawnYan/post/all), DBA, TiDB Fans.
 
 
-[TiDB v6.1.0 LTS](https://docs.pingcap.com/zh/tidb/stable/release-6.1.0) 已于6月13日发版，其中有一项关键特性为“MPP 实现窗口函数框架”。TiDB 中的窗口函数是在 TiDB 3.0 GA 版本引入，基本兼容 MySQL 8.0 所支持的窗口函数。
+[TiDB v6.1.0 LTS](https://docs.pingcap.com/zh/tidb/stable/release-6.1.0) 已于 6 月 13 日发版，其中有一项关键特性为“MPP 实现窗口函数框架”。TiDB 中的窗口函数是在 TiDB 3.0 GA 版本引入，基本兼容 MySQL 8.0 所支持的窗口函数。
 
 下面将演示本次发版引入 MPP 所支持的三个窗口函数，并扩展对比其他窗口函数在 TiDB 和 MariaDB 中的执行情况，最后以表格的形式展示几种常见数据库对窗口函数的支持情况。
 
@@ -18,7 +18,7 @@ hide_title: true
 
 窗口函数是在 SQL:2003 引入的，并在之后的 SQL 标准中不断增强。Wiki 中对窗口函数的表述为：
 
-> 在SQL中，窗口函数或分析函数是使用一个或多个行的值为每一行返回一个值的函数。（这与聚合函数不同，聚合函数为多行返回一个值。）窗口函数有一个OVER子句；任何没有OVER子句的函数都不是窗口函数，而是聚合函数或单行(标量)函数。
+> 在 SQL 中，窗口函数或分析函数是使用一个或多个行的值为每一行返回一个值的函数。（这与聚合函数不同，聚合函数为多行返回一个值。）窗口函数有一个 OVER 子句；任何没有 OVER 子句的函数都不是窗口函数，而是聚合函数或单行(标量)函数。
 
 注：在 Oracle 数据库中，窗口函数被称为分析函数（Analytic Functions）。
 
