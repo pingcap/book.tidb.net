@@ -5,13 +5,13 @@ hide_title: true
 
 # TiDB 冷热存储分离解决方案
 
-> 李文杰 （TUG 2019及2020 MVA） https://tidb.net/u/Jellybean/answer
+> [李文杰](https://tidb.net/u/Jellybean/answer)，TUG 2019 及 2020 MVA。
 
 ## 结论先行
 
 TiDB 6.0 的 Placement Rules in SQL 功能正式 GA，用户通过 SQL 配置数据在 TiKV 集群中的放置位置，可以对数据进行直接的管理，满足不同的业务场景需要。如：
 
-#### 1.冷热分离存储，降低存储成本
+### 1.冷热分离存储，降低存储成本
 
 - TiDB 6.0 版本正式支持数据冷热存储分离，可以降低 ssd 的使用成本。使用 Placement Rules in SQL 功能可以在同一个集群实现海量数据的冷热存储，将新的热数据存入 ssd，历史冷数据存入 hdd，降低历史归档数据存储成本
   - 将热数据从 ssd 迁移到 hdd，每小时可归档约 3000万行，总体来看效率还是比较高的
@@ -19,12 +19,12 @@ TiDB 6.0 的 Placement Rules in SQL 功能正式 GA，用户通过 SQL 配置数
   - 分离存储过程，ssd 和 hdd 用于归档的磁盘 io消耗都在 10%以内，集群访问qps表现平稳，对业务访问的影响较小
   - 在补写冷数据场景，每小时写入约 1500万行到 hdd，数据可正确地直接写入 hdd，不会经过 ssd
 
-#### 2.业务底层物理隔离，实现同一集群不同存储
+### 2.业务底层物理隔离，实现同一集群不同存储
 
 - 通过 Placement Rules in SQL 可以将不同数据库下的数据调度到不同的硬件节点上，**实现业务间数据的物理资源隔离，避免因资源争抢，硬件故障等问题造成的相互干扰**
 - 通过账号权限管理避免跨业务数据访问，**提升数据质量和数据安全**
 
-#### 3.合并 MySQL 业务，降低运维压力，提升管理效率
+### 3.合并 MySQL 业务，降低运维压力，提升管理效率
 
 - 使用少数 TiDB 集群替换众多的 MySQL 实例，根据不同业务底层设置不同的物理存储隔离需求，让数据库数量大大减少，原本的升级、备份、参数设置等日常运维工作将大幅缩减，在资源隔离和性价比上达到平衡，**大幅减少 DBA 日常的运维管理成本**
 
@@ -119,8 +119,6 @@ TiDB 6.0 的 Placement Rules in SQL 功能让用户通过 SQL 配置数据在集
 
 高级放置策略具体内容，请看官网介绍[https://docs.pingcap.com/zh/tidb/stable/placement-rules-in-sql#%E9%AB%98%E7%BA%A7%E6%94%BE%E7%BD%AE](https://docs.pingcap.com/zh/tidb/stable/placement-rules-in-sql#高级放置)。
 
-﻿
-
 ## 环境
 
 | 角色      | 机器数 | 内存 | 数据盘             | CPU                       | OS                                              |
@@ -136,7 +134,7 @@ TiDB 6.0 的 Placement Rules in SQL 功能让用户通过 SQL 配置数据在集
 
 1.部署集群并建立放置策略
 
-- 部署 TiDB v6.0.0 集群，具体参考[部署集群操作](https://docs.pingcap.com/zh/tidb/v6.0/production-deployment-using-tiup)﻿
+- 部署 TiDB v6.0.0 集群，具体参考[部署集群操作](https://docs.pingcap.com/zh/tidb/v6.0/production-deployment-using-tiup)
 
 - 创建数据落盘策略，以备使用
 
@@ -213,13 +211,13 @@ TiDB 6.0 的 Placement Rules in SQL 功能让用户通过 SQL 配置数据在集
 
 - 集群只有 3 个 ssd 的 TiKV 节点，启动 Flink 流往目标表导入数据，可以看到这 3 个 ssd 节点的 Region 数和空间使用在不断增长
 
-﻿![1650964998281.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650964998281-1652255376368.png)﻿﻿
+![1650964998281.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650964998281-1652255376368.png)
 
- ![1650965222072.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650965222072-1652255470197.png)﻿﻿
+![1650965222072.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650965222072-1652255470197.png)
 
 - 在原有基础上再扩容 3 个 hdd TiKV 实例
 
-﻿![1650965633758.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650965633758-1652255491471.png)﻿﻿
+![1650965633758.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650965633758-1652255491471.png)
 
 4.冷热分离
 
@@ -245,15 +243,15 @@ TiDB 6.0 的 Placement Rules in SQL 功能让用户通过 SQL 配置数据在集
 
 在应用冷数据归档的策略后，如下图可以看到调度规则里 2022-04-16 这一天的分区 Placement 由 ssd 变为了 hdd，即集群已经知晓最新的调度策略是将这一天的分区数据调度到 hdd 去，Scheduling_State 处于 PENDING 状态，表示 Follower 的 raft log 与 Leader 有较大差距，在这里可以理解为是正在处于调度的过程。
 
-﻿![1650341702179.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650341702179-1652255522063.png)﻿﻿
+![1650341702179.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650341702179-1652255522063.png)
 
-随着时间的推移，数据在不断从 ssd 迁移到 hdd 上。从集群 grafana 监控面板可以看到 ssd 节点上的 Region 数据在不断下降，直到降到接近于 0；相反，hdd 上的 Region 数不断上升，直到数据全部迁出 ssd 节点。110 万行数据从 ssd 迁移到 hdd，大约耗时 3min 。
+随着时间的推移，数据在不断从 ssd 迁移到 hdd 上。从集群 grafana 监控面板可以看到 ssd 节点上的 Region 数据在不断下降，直到降到接近于 0；相反，hdd 上的 Region 数不断上升，直到数据全部迁出 ssd 节点。110 万行数据从 ssd 迁移到 hdd，大约耗时 3min。
 
-﻿![1650342094048.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650342094048-1652255541662.png)﻿﻿
+![1650342094048.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650342094048-1652255541662.png)
 
 在数据全部迁入 hdd 节点后，查看调度进度，此时 Scheduling_State 处于 SCHEDULED 的完成调度状态：
 
-﻿![1650342133243.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650342133243-1652255556889.png)﻿﻿
+![1650342133243.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650342133243-1652255556889.png)
 
 结论：
 
@@ -269,7 +267,7 @@ TiDB 6.0 的 Placement Rules in SQL 功能让用户通过 SQL 配置数据在集
  alter table tidb_ssd_hdd_test.logoutrole_log partition p20220417 placement policy storeonhdd;
 ```
 
-﻿![1650970144694.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650970144694-1652255581080.png)﻿﻿
+![1650970144694.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650970144694-1652255581080.png)
 
 ssd 上的 Region 全部迁移到 hdd 上，ssd 空间被释放，hdd 空间使用逐渐增加，迁移过程中 ssd 和 hdd 的 io 消耗都在 5% 左右，内存和网络带宽使用不变、保持平稳。 约 6 千万行 130GB 数据从 ssd 迁移到 hdd，大概需要 2 个小时
 
@@ -282,17 +280,15 @@ ssd 上的 Region 全部迁移到 hdd 上，ssd 空间被释放，hdd 空间使�
 
 在没有外部流量访问时，将数据从 hdd 迁移回 ssd，从监控图可以看到，hdd 节点的 TiKV Leader 数、Region 数在此期间都在下降，分别从 850、2500 逐渐下降直到为 0，磁盘空间也从 62GB 下降为 0，表示数据在持续迁移出 hdd 节点；
 
-﻿![1652425488812.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1652425488812-1652676946070.png)﻿﻿
+![1652425488812.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1652425488812-1652676946070.png)
 
-﻿![1652425944226.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1652425944226-1652676921148.png)﻿﻿
+![1652425944226.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1652425944226-1652676921148.png)
 
 相反地，由于数据不断迁入到 ssd 中，ssd 节点的 TiKV Leader 数、Region 数在此期间都在上升，分别从 1500、4200 逐渐上升到 2200、6700，直到数据迁入完成，然后保持数量不变，ssd 的磁盘空间消耗也从 100GB 上升到 161GB。
 
 迁移的过程中，ssd 和 hdd 节点的 io 使用率都比较低，如下图：
 
-﻿![1652426155311.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1652426155311-1652677003022.png)﻿﻿
-
-﻿
+![1652426155311.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1652426155311-1652677003022.png)
 
 结论：
 
@@ -315,18 +311,18 @@ alter table tidb_ssd_hdd_test.logoutrole_log partition p20220418 placement polic
 - 在归档数据时，ssd 的 TiKV Region 数从 6300 下降到 3500 左右，当迁移完成后是净写入数据，此时 ssd 节点的 Region 数量又持续上升
 - hdd 节点的 Region 数从开始的 2600 上升到 6500 左右，随着数据迁移完成，hdd 的 Region 数不再增加，一直保持 6500 不变
 
-﻿![1650971789523.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650971789523-1652255605880.png)﻿﻿
+![1650971789523.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650971789523-1652255605880.png)
 
 从磁盘使用空间变化的角度来看：
 
 - 归档数据时，ssd 节点的磁盘使用空间从 152GB 下降到 88GB，当迁移完成后，此时是净写入数据，ssd 空间开始上升
 - 数据在不断写入到 hdd 节点，所以其使用空间从 61GB 上升到 154GB，随着数据迁移完成，一直保持不变
 
-﻿![1650593578630.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650593578630-1652255621039.png)﻿﻿
+![1650593578630.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650593578630-1652255621039.png)
 
-﻿![1650593565818.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650593565818-1652255636535.png)﻿﻿
+![1650593565818.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650593565818-1652255636535.png)
 
-﻿![1650593789799.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650593789799-1652255652551.png)﻿﻿
+![1650593789799.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650593789799-1652255652551.png)
 
 结论：
 
@@ -339,11 +335,11 @@ alter table tidb_ssd_hdd_test.logoutrole_log partition p20220418 placement polic
 
 - 2022-04-16 这一天的数据已经全部转存到 hdd 冷盘中。启动 Flink 流，继续对 2022-04-16 分区写入数据，这些只会写 hdd，不会写入 ssd。Flink 流补全冷数据，hdd 节点的 io 打满，ssd 节点的 io 使用率比较低
 
-﻿![1650969265594.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650969265594-1652255669705.png)﻿﻿
+![1650969265594.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650969265594-1652255669705.png)
 
 从下图可以看到，在补全冷数据的时候， hdd 节点的 Region 数在不断上升，hdd 节点的空间消耗也在不断增加，而 ssd 节点的空间使用和 Region 数均保持不变，说明数据并不会写入 ssd 中，符合预期。
 
-﻿![1650969430703.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650969430703-1652255687630.png)﻿﻿
+![1650969430703.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650969430703-1652255687630.png)
 
 
 结论：
@@ -359,7 +355,7 @@ alter table tidb_ssd_hdd_test.logoutrole_log partition p20220418 placement polic
 
 **举例说明，业务 A 和 B 共享资源，降低存储和管理成本，而业务 C 和 D 独占资源，提供最高的隔离性。由于多个业务共享一套 TiDB 集群，升级、备份、扩容、缩容等运维操作可以大幅减少，降低管理负担，提升效率**。
 
-﻿![1651723818212.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1651723818212-1652255709075.png)﻿﻿
+![1651723818212.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1651723818212-1652255709075.png)
 
 ```
 CREATE PLACEMENT POLICY 'shared_nodes' CONSTRAINTS = "[+region=shared_nodes]";
@@ -376,23 +372,23 @@ ALTER DATABASE d POLICY=business_d;
 
 ## 总结
 
-#### 1.冷热分离存储，降低存储成本
+### 1.冷热分离存储，降低存储成本
 
 -  Placement Rules in SQL 功能可以帮助我们降低使用 ssd 的成本，可以在同一个集群实现海量数据的冷热存储，将新的热数据存入 ssd，历史冷数据存入 hdd，降低历史归档数据存储成本。
   - 将热数据从 ssd 迁移到 hdd，每小时可归档约 3000 万行，总体来看效率还是比较高的
   - 分离存储过程，ssd 和 hdd 用于归档的 io 消耗都在 10% 以内，集群请求 qps 和延迟表现平稳，对业务访问的影响较小
   - 在补写冷数据到 hdd 场景，数据可正确地直接写入 hdd，不会经过 ssd。Flink补写冷数据时满 io 每秒写入约 4000 行，即每小时写入约 1500万行，也有不错的效率。
 
-#### 2.业务底层物理隔离，实现同一集群不同存储
+### 2.业务底层物理隔离，实现同一集群不同存储
 
 - 通过放置规则管理将不同数据库下的数据调度到不同的硬件节点上，**实现业务间数据的物理资源隔离，避免因资源争抢，硬件故障等问题造成的相互干扰**
 - 通过账号权限管理避免跨业务数据访问，**提升数据安全**。
 
-#### 3.合并 MySQL 业务，降低运维压力，提升管理效率
+### 3.合并 MySQL 业务，降低运维压力，提升管理效率
 
 - 使用少数 TiDB 集群替换大量的 MySQL 实例，根据不同业务底层设置不同的物理存储隔离需求，让数据库数量大大减少，原本的升级、备份、参数调整等日常运维工作将大幅缩减，**降低 DBA 日常的运维管理成本**。
 
-#### 4.放置策略应用操作步骤
+### 4.放置策略应用操作步骤
 
 - 对已有集群应用  Placement Rules in SQL 功能
 
