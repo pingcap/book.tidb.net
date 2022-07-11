@@ -201,4 +201,4 @@ stale read:
 
 ## 总结
 
-本次版本中 stale read + delete 让 tispark 具有更灵活的应用场景，经过验证 spark 3.2.1 跟 tidb 6.1.0 on k8s 通讯还有些问题仍需解决，另外一方面，也盼望着能兼容分区表的一些操作能发布出来，比如说导入数据之前能够 truncate 分区一类的操作。
+本次版本中 stale read + delete 让 TiSpark 具有更灵活的应用场景，经过验证 Spark 3.2.1 跟 TiDB 6.1.0 on K8s 通讯还有些问题仍需解决，另外一方面，也盼望着能兼容分区表的一些操作能发布出来，比如说导入数据之前能够 truncate 分区一类的操作。

@@ -8,25 +8,29 @@ hide_title: true
 ## 背景
 
 最近对国产操作系统很感兴趣，也有一些场景需要验证落地，官方支持银河麒麟 V10（X86，ARM），统信 UOS 等国产操作系统，但上述系统不是开源操作系统，使用上存在一些障碍，经过朋友推荐，选择华为的 openEular 进行验证测试。
+
 ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1655281386619.png)
 
 目前 openEular 的 LTS 版本主要是 2003 和 2203 两个版本，2003 是 gcc 7+ 和 python 2.X 的环境，2203 是 gcc 10+ 和 python 3.X 的环境，理论上讲 2003 更接近目前所使用的 CentOS 7，兄弟组用 2203 编译 Doris 也遇到一些问题，因此选择 openEular 2003 SP3 进行测试。本次测试主要验证功能，分为部署过程测试和基本 SQL 查询测试，不做性能测试。openEular 同时支持 X86 和 ARM 架构，TiDB 也支持上述两种架构，本次测试中采用 X86\_64 架构硬件设备进行测试。
+
 本文使用 TiDB 6.1 作为测试版本，验证结果不保证可复现在 6.X 之前的版本上。
 
 ## 阅读受益
 
 本文参照官方文档操作，验证 TiDB 运行在 openEular 上的可行性，为有选型需求的同学做一些参考。
+
 本文记录了整个部署过程中的标准输出，对于只是想了解 TiDB 部署安装过程的同学，有一定参考价值。
+
 经过本文的验证，在 openEular 部署使用 TiDB 与在 Centos 7 部署使用 TiDB 基本一致。部署过程中遇到的问题见最后的错误排查。
 
 ## 单机环境部署
 
-#### 部署环境
+### 部署环境
 
 openEular 2003 SP3
 4C8G Vmware 虚拟机 x86\_64 环境
 
-#### 系统组件准备
+### 系统组件准备
 
 由于系统的原因，需要提前安装以下组件：
 
@@ -34,7 +38,7 @@ openEular 2003 SP3
 yum -y install bc
 ```
 
-#### 集群拓扑
+### 集群拓扑
 
 最小规模的 TiDB 集群拓扑：
 
@@ -46,7 +50,7 @@ yum -y install bc
 | TiFlash | 1  | 192.168.180.140 | 默认配置 |
 | Monitor | 1  | 192.168.180.140 | 默认配置 |
 
-#### 部署过程
+### 部署过程
 
 1. 下载并安装 TiUP：
 
@@ -250,7 +254,7 @@ Total nodes: 8
 
 ## 测试 TiKV 和 TiFlash 查询
 
-#### 生成基础环境
+### 生成基础环境
 
 ```
 [root@ecs-5842 ~]## tiup install bench
@@ -299,7 +303,7 @@ Updating / installing...
    3:mysql-community-client-5.7.35-1.e################################################################## [100%]
 ```
 
-#### TiKV 查询
+### TiKV 查询
 
 ```
 [root@ecs-5842 ~]## mysql -h 192.168.0.141 -P 4000 -u root -p
@@ -362,7 +366,7 @@ mysql> SELECT
 10 rows in set (1.71 sec)
 ```
 
-#### TiFlash 查询
+### TiFlash 查询
 
 ```
 mysql> ALTER TABLE test.customer SET TIFLASH REPLICA 1;
@@ -431,7 +435,7 @@ mysql> SELECT
 
 ## 错误排查
 
-#### sudo 权限
+### sudo 权限
 
 当遇到如下错误时：
 
@@ -452,7 +456,7 @@ visudo
 tidb ALL=(ALL) NOPASSWD: ALL
 ```
 
-#### 内存问题
+### 内存问题
 
 当发现以下错误时：
 
