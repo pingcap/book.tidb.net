@@ -73,7 +73,7 @@ lldb "${args[@]}" | c++filt
 
 ![img](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/unnamed-1657533337853.png)
 
-## Aarch64
+### Aarch64
 
 在 Arm 世界里也存在平台向量化指令集支持参差不齐的问题。Arm V8目前已经细化出了 8 个版本：
 
@@ -453,7 +453,7 @@ TIFLASH_MULTIVERSIONED_VECTORIZATION(
 
 ## 面向编译器的优化
 
-LLVM提供了一个很好的自动向量化指南：[ Auto-Vectorization in LLVM - LLVM 15.0.0git documentation](https://llvm.org/docs/Vectorizers.html#loops-with-unknown-trip-count)
+LLVM 提供了一个很好的自动向量化指南：[ Auto-Vectorization in LLVM - LLVM 15.0.0git documentation](https://llvm.org/docs/Vectorizers.html#loops-with-unknown-trip-count)
 
 可以参考其中的章节了解哪些常见模式可以用于向量化。简单来说，我们可以思考循环的场景：能否简化不必要的控制流，能否减少不透明的函数呼叫等等。除此之外，还可以考虑，对于一些简单的函数定义，如果它会被大量连续呼叫，我们能否将函数定义在 header 中，让编译器看到并内联这些函数，进而提升向量化的空间。
 
