@@ -5,7 +5,7 @@ hide_title: true
 
 # TiFlash DeltaTree 存储引擎设计及实现分析 - Part 1
 
-TiFlash 是 TiDB 的分析引擎，是 TiDB HTAP 形态的关键组件。TiFlash 源码阅读系列文章将从源码层面介绍 TiFlash 的内部实现。希望读者在阅读这一系列文章后，能够对 TiFlash 内部原理有一个清晰的理解，更熟悉 TiFlash 各个流程及概念，甚至能对 TiFlash 进行源码级别的编程开发。在 [上一期源码阅读](2-tiflash-compute-overview.md)中，我们介绍了 TiFlash 的计算层。从本文开始，我们将对 TiFlash 各个组件的设计及实现进行详细分析。
+TiFlash 是 TiDB 的分析引擎，是 TiDB HTAP 形态的关键组件。TiFlash 源码阅读系列文章将从源码层面介绍 TiFlash 的内部实现。希望读者在阅读这一系列文章后，能够对 TiFlash 内部原理有一个清晰的理解，更熟悉 TiFlash 各个流程及概念，甚至能对 TiFlash 进行源码级别的编程开发。在[上一期源码阅读](2-tiflash-compute-overview.md)中，我们介绍了 TiFlash 的计算层。从本文开始，我们将对 TiFlash 各个组件的设计及实现进行详细分析。
 
 > 本文作者：施闻轩，TiFlash 资深研发工程师
 
@@ -479,7 +479,7 @@ DeltaTree 对外提供的写入接口中会做这些事情：
 
 此时，单次写入操作便已完成。详情可参见 `DeltaMergeStore::write(Block)`函数了解详细实现。
 
-需要注意的是，在前台写入路径上，**数据写入到内存** `**MemTableSet**`**中就写入完毕、可以返回了**，后续涉及磁盘 IO 的 Flush 及 Merge Delta 操作都是后台操作，不会对写入延迟产生直接影响。另外，由于 IO 发生在 Flush 阶段，而非写入阶段，因此这也起到了对于高频写入减少 IO 的效果。
+需要注意的是，在前台写入路径上，**数据写入到内存 `MemTableSet` 中就写入完毕、可以返回了**，后续涉及磁盘 IO 的 Flush 及 Merge Delta 操作都是后台操作，不会对写入延迟产生直接影响。另外，由于 IO 发生在 Flush 阶段，而非写入阶段，因此这也起到了对于高频写入减少 IO 的效果。
 
 > 既然写入返回时数据还没写入到磁盘上，那么此时掉电了怎么办？实际上由于 TiFlash 从 TiKV Raft log 同步数据，因此 **Raft log 即为 TiFlash 数据的 WAL**。在掉电后，从上次已经完成 Flush 操作的 Raft Apply 位置恢复数据即可。
 
@@ -542,27 +542,27 @@ Delta 层已持久化的增量更新数据与 Stable 层已持久化的、面向
 
 不同于 Delta 通过 PageStorage 在磁盘上存储数据，Stable 层直接将上述结构及数据存储在磁盘文件上，该存储格式被称为 `DMFile`。虽然名字中有个 file，但 `DMFile`实际是一个文件夹，其内部包含的文件如下所示：
 
-- **dmf_/pack：**
+- **dmf_<id\>/pack：**
 
 存储了每个 Pack 的信息，例如 pack 中实际有多少行等等。详细可参见 `PackStats`结构。
 
-- **dmf_/meta.txt：**
+- **dmf_<id\>/meta.txt：**
 
 记录了 DMFile 的格式（例如 V1、V2）等。
 
-- **dmf_/config：**
+- **dmf_<id\>/config：**
 
 记录了该 DMF 的一些配置信息，目前主要包含各个数据文件的 Checksum 方式等配置。详细可参见 `DMChecksumConfig`结构。
 
-- **dmf_/.dat**
+- **dmf_<id\>/.dat**
 
 压缩存储了 col_id 列的数据。默认情况下压缩方式是 LZ4，可通过 `dt_compression_method`参数进行配置。
 
-- **dmf_/.mrk**
+- **dmf_<id\>/.mrk**
 
 标记文件，存储了各个 Pack 在 .dat 文件中的 offset。在读取数据内容时，可以通过这个标记文件中记录的偏移信息，跳过并只读取特定 Pack 的数据。详细可参见 `MarkInCompressedFile`结构。
 
-- **dmf_/.idx**
+- **dmf_<id\>/.idx**
 
 索引文件，目前 DeltaTree 只支持 Min Max 索引，该文件会存储 col_id 列在各个 Pack 区间上的最大最小值。在查询时，一些列上的查询条件可通过这里的 Min Max 索引跳过不需要的 Pack，从而减少 IO。详细可参见 `MinMaxIndex`结构。
 
