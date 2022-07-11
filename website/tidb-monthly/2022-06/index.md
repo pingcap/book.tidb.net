@@ -1,7 +1,7 @@
 ---
 title: 2022 年 6 月刊
 hide_title: true
-sidebar_position: 9
+sidebar_position: 8
 ---
 
 # TiDB 社区技术月刊 - 2022 年 6 月
