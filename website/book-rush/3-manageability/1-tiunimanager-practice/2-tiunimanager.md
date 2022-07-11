@@ -67,7 +67,7 @@ TiDB Enterprise Manager 不仅提供对 TiDB 集群的全生命周期的可视�
 
 这里的解决方案是： `yum install openssl`
 
--  修复上面呢的问题后，现在又遇到了第二个问题，这次在错误日志中找到了问题
+-  修复上面的问题后，现在又遇到了第二个问题，这次在错误日志中找到了问题
 
 ![image_XFjIIukGkb.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image_XFjIIukGkb-1651927288672.png)
 
