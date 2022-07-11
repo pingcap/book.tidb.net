@@ -1,5 +1,5 @@
 ---
-title: TiDB 6.0 Placement Rules In SQL 使用实践
+title: TiDB 冷热存储分离解决方案
 hide_title: true
 ---
 
