@@ -5,6 +5,8 @@ hide_title: true
 
 # TiFlash 面向编译器的自动向量化加速
 
+> 作者：朱一帆
+
 ## 目录
 
 - SIMD 介绍
@@ -29,7 +31,7 @@ TiFlash 目前支持的架构是 x86-64 和 Aarch64，操作系统平台有 Linu
 
 - **x86-64-v3**: (close to Haswell) AVX, AVX2, BMI1, BMI2, F16C, FMA, LZCNT, MOVBE, XSAVE
 
-- **x86-64-v4**: AVX512F, AVX512BW, AVX512CD, AVX512DQ, AVX512VL 
+- **x86-64-v4**: AVX512F, AVX512BW, AVX512CD, AVX512DQ, AVX512VL
 
 每个层次上有不同的拓展指令集支持。现状是 TiFlash 在 x86-64 上编译的目标是 x86-64-v2，而目前绝大部分家用和服务器 CPU 均已支持 x86-64-v3。由于 Intel 目前面临大小核架构的更新，x86-64-v4 的支持相对混乱，但在服务器方面，比较新的型号均带有不同程度的 AVX512 支持。在 [AWS 的支持矩阵](https://aws.amazon.com/intel/)中我们可以看到第三代志强可拓展处理器等支持 AVX512 的型号已经被采用于生产环境。
 
@@ -37,26 +39,23 @@ x86-64 上不同 CPU 架构之前相同拓展指令集的开销也是不同的�
 
 如何选择 SSE，AVX/AVX2，AVX512？其实并不是技术越新，位宽越大，效果就一定越好。如，在 INTEL® ADVANCED VECTOR EXTENSIONS 的 2.8 章我们可以看到，混用传统 SSE 和 AVX 指令集会导致所谓的 SSE-AVX Transition Penalty:
 
-![img](https://pingcap.feishu.cn/space/api/box/stream/download/asynccode/?code=YzM5NjM2ZjkzMjY4MTMyMDlhZTFmNTIwOTBlMTg2MjVfRWt6SFAxczFDeHRqb3ZoOUM0b1YzNFRvd2VhWVRsekxfVG9rZW46Ym94Y25EbkxwV1U0RW9VelJidHVRbEROZWJkXzE2NTcyMzM2NDY6MTY1NzIzNzI0Nl9WNA)
+![img](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/unnamed-1657533338052.png)
 
-另一方面，AVX2，AVX512 都有相应的 Frequency Scaling 问题。Cloudflare 的文章 [On the dangers of Intel's frequency scaling](https://blog.cloudflare.com/on-the-dangers-of-intels-frequency-scaling/) 以及 [Gathering Intel on Intel AVX-512 Transitions](https://travisdowns.github.io/blog/2020/01/17/avxfreq1.html#256-bit-integer-simd-avx) 对这个问题都有分析。简单而言，AVX-512 在密集计算中可以提高性能，此时 CPU 频率下降，不过向量化本身极大的提升了速度。但是，如果在非密集场景下混用 AVX512 和普通指令，我们可以想象降频给整体性能带来的损失。  
+另一方面，AVX2，AVX512 都有相应的 Frequency Scaling 问题。Cloudflare 的文章 [On the dangers of Intel's frequency scaling](https://blog.cloudflare.com/on-the-dangers-of-intels-frequency-scaling/) 以及 [Gathering Intel on Intel AVX-512 Transitions](https://travisdowns.github.io/blog/2020/01/17/avxfreq1.html#256-bit-integer-simd-avx) 对这个问题都有分析。简单而言，AVX-512 在密集计算中可以提高性能，此时 CPU 频率下降，不过向量化本身极大的提升了速度。但是，如果在非密集场景下混用 AVX512 和普通指令，我们可以想象降频给整体性能带来的损失。
 
 在 Intel 平台上，SIMD指令集对应的是 XMM，YMM，ZMM 等寄存器，我们可以用 gdb 的 `disassmble` 指令来查看向量化的结果：
 
-```bash
+```Bash
 #!/usr/bin/env bash
 
-# GDB version
-args=(-batch -ex "file $1")   
-while IFS= read -r line;    
-do      
-	args+=("-ex" "disassemble '$line'")   
-done < <(nm --demangle $1 | grep $2 | cut -d\  -f3-)   
-gdb "${args[@]}" | c++filt      
-# bash ./this-script.sh tiflash xxx  
-```
+args=(-batch -ex "file $1")
+while IFS= read -r line; 
+do 
+    args+=("-ex" "disassemble '$line'")
+done < <(nm --demangle $1 | grep $2 | cut -d\  -f3-)
+gdb "${args[@]}" | c++filt
 
-```bash
+# bash ./this-script.sh tiflash xxx
 #!/usr/bin/env bash  
 
 # LLDB version
@@ -70,27 +69,27 @@ lldb "${args[@]}" | c++filt
 # bash ./this-script.sh tiflash xxx 
 ```
 
-![image-20220708063905187](C:\Users\Infni\AppData\Roaming\Typora\typora-user-images\image-20220708063905187.png)
+![img](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/unnamed-1657533337869.png)
 
-![image-20220708064225637](C:\Users\Infni\AppData\Roaming\Typora\typora-user-images\image-20220708064225637.png)
+![img](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/unnamed-1657533337853.png)
 
-### Aarch64
+## Aarch64
 
 在 Arm 世界里也存在平台向量化指令集支持参差不齐的问题。Arm V8目前已经细化出了 8 个版本：
 
-![img](https://pingcap.feishu.cn/space/api/box/stream/download/asynccode/?code=NjIwNzQwYjEzOTRhZDZhYmMyZjRlNTNmM2NjMGM1MjVfcEdadlZ0d1BsU1RmVmE2aTY4U2RNeWJUUHZnWWFFdlZfVG9rZW46Ym94Y24wUkFzNkZQZXZxRDdUQVdOSXRsVUdnXzE2NTcyMzM2NDY6MTY1NzIzNzI0Nl9WNA)
+![img](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/unnamed-1657533338066.png)
 
 在 SIMD 方面，Aarch64 主要有两个三个的指令集 ASIMD，SVE，SVE2。ASIMD 已经在广泛应用，事实上， GCC/Clang 会默认打开 ASIMD 支持。 在 Arm V8 中，SVE 一般不在 A Profile 中实现，而是用于 HPC 等的专业 CPU 中。在 Arm V9 中，SVE，SVE2 已经成为标配的拓展指令集。
 
 [ASIMD](https://developer.arm.com/documentation/dht0002/a/Introducing-NEON/What-is-SIMD-/ARM-SIMD-instructions) 描述的是定长向量化操作，作用于 64bit 和 128bit 的寄存器，功能上和 SSE 系列接近。[SVE](https://developer.arm.com/documentation/102476/0100/Introducing-SVE) 则是使用变长向量，Vendor 可以提供最高到 2048bit 的超宽寄存器。使用 Per-Lane Prediction 的方案，SVE 指令集建立了一种无需知道实际寄存器宽度的编程模型。
 
-![img](https://pingcap.feishu.cn/space/api/box/stream/download/asynccode/?code=NGMxZmExZTNjYzY1YmE1YmM2OGU4Y2E4MzlmNTkzOWRfOFRHWjdVNWhPNDQwbVlCeTNIc3ViaTZER3VlakpzSXFfVG9rZW46Ym94Y25VWGFTdVVYdENVVVM3bDR3RkFHN1dmXzE2NTcyMzM2NDY6MTY1NzIzNzI0Nl9WNA)
+![img](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/unnamed-1657533338009.png)
 
 在实际应用中，[AWS C7g](https://aws.amazon.com/ec2/instance-types/c7g/) (基于 AWS Graviton3) 已经开始支持 SVE 指令集，最高可达 256bit 宽度。而 ASIMD 则在鲲鹏，AWS Graviton2等 CPU 的实例上都有很好的实现。
 
 在 AARCH64 上，常见的 ASIMD 相关的寄存器是 q0-q15，它们有时也会以 v0-v15 加后缀的形式出现在 ASM 中。SVE 等则使用 z0-z15。
 
-![img](https://pingcap.feishu.cn/space/api/box/stream/download/asynccode/?code=ZDg0ZjIwYzBiMzk1MmMwOTQ1ZTgyNmRlN2EwNmZkNWZfNGF4OFdQYWVsU3ZlUjVrb1FzUEFDbzJ1dmlWNkhRRDVfVG9rZW46Ym94Y25Ddk1QYTA3NzlqQTJ1Z1JJOHRjdHNnXzE2NTcyMzM2NDY6MTY1NzIzNzI0Nl9WNA)
+![img](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/unnamed-1657533337889.png)
 
 ## SIMD 函数派发方案
 
@@ -147,13 +146,13 @@ void test4096(bool * __restrict a, const int * __restrict b)
 
 可以看到，函数入口就是检测功能，呼叫对应平台的实现：
 
-![img](https://pingcap.feishu.cn/space/api/box/stream/download/asynccode/?code=MzIwOGYwYTA0OWJhNmIxODc4Y2FlYzM4YmIyODE1NjJfcGtlVkxhbUQ4Q2J2R3NRdTNESjVLUlJwbnBFM2xRU0pfVG9rZW46Ym94Y25FQjBnM1Vtb2Q3VVJCOU84bzd5TDRlXzE2NTcyMzM2NDY6MTY1NzIzNzI0Nl9WNA)
+![img](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/unnamed-1657533338031.png)
 
 而具体的函数则有相应平台的向量化优化
 
-![img](https://pingcap.feishu.cn/space/api/box/stream/download/asynccode/?code=NDBlZDUwNjU0NTdjMTkwMWYzZjFjZjEyYjcxMWU3MmVfdVBOU2pQcHE0VEU0MkNSZ09ZZ1dvYmhXREtrV2d5SFVfVG9rZW46Ym94Y25RNXF6dzNseTJ5c0pGdDlXWnlDSVhkXzE2NTcyMzM2NDY6MTY1NzIzNzI0Nl9WNA)
+![img](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/unnamed-1657533338074.png)
 
-![img](https://pingcap.feishu.cn/space/api/box/stream/download/asynccode/?code=YjFmMTBlNWZmZDBkOTgzZTY1OTY2M2MyYmRkNTExODhfbHZHdjV3bm9ld2U0dDZqU1JPVndYSUxybW1Ud2hKRDNfVG9rZW46Ym94Y25uY3Z1ZVdnWFN6MzFUV21IUGFXN1lkXzE2NTcyMzM2NDY6MTY1NzIzNzI0Nl9WNA)
+![img](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/unnamed-1657533338021.png)
 
 实际上，对于这种同函数体的派发，TiFlash 已经提供了包装好的 macro，以上代码可以写为
 
@@ -176,7 +175,7 @@ TIFLASH_DECLARE_MULTITARGET_FUNCTION(
 
 在 Linux 上观察 Glibc 的符号表：
 
-![img](https://pingcap.feishu.cn/space/api/box/stream/download/asynccode/?code=YmFlNWQzNmI2ZWI4YzM0MDA3NmY0ODg3ZGIyMThiMmRfa29aM0NDbldZY0RVTXhyZmVrZnRRdmJ2WHpCS21MQ2FfVG9rZW46Ym94Y245SGVmUGlWd2h0QmJUZGV1VTRLMXFjXzE2NTcyMzM2NDY6MTY1NzIzNzI0Nl9WNA)
+![img](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/unnamed-1657533338084.png)
 
 我们可以看到，一些性能关键函数前被标记了`i` 符号。这表示这些函数是 indirect 函数：即程序可以提供一个函数的多种实现，然后在程序加载链接阶段由 `ld` 决定目标符号具体链接到哪个实现。Glibc 正是使用这个方案来决定一些关键函数如 memcpy/memcmp/memset 等的实现。
 
@@ -201,65 +200,66 @@ extern "C" void * test4096_resolver()
 1. ifunc 的 resolver 必须在当前 unit 内。如果 resolver 是 c++ 的函数，需要提供 mangle 后的名字。
 
 1. resolver 执行于进入 C 运行时和 C++ 运行时之前，不能用 TiFlash 的检测功能。在`x86_64` 平台，可以使用 `__builtin_cpu_supports`; 在 `aarch64` 上，可以使用以下方案：
-   1. ```C++
-      #include <sys/auxv.h>
-      #ifndef HWCAP2_SVE2
-      #define HWCAP2_SVE2 (1 << 1)
-      #endif
-      
-      #ifndef HWCAP_SVE
-      #define HWCAP_SVE (1 << 22)
-      #endif
-      
-      #ifndef AT_HWCAP2
-      #define AT_HWCAP2 26
-      #endif
-      
-      #ifndef AT_HWCAP
-      #define AT_HWCAP 16
-      #endif
-      
-      namespace detail
-      {
-      static inline bool sve2_supported()
-      {
-          auto hwcaps = getauxval(AT_HWCAP2);
-          return (hwcaps & HWCAP2_SVE2) != 0;
-      }
-      
-      static inline bool sve_supported()
-      {
-          auto hwcaps = getauxval(AT_HWCAP);
-          return (hwcaps & HWCAP_SVE) != 0;
-      }
-      } // namespace detail
-      ```
 
-   2.  另外一个有趣的例子是，如果你需要在 resolver 中读取函数变量，你可能需要手动初始化 environ 指针：
+   ```C++
+   #include <sys/auxv.h>
+   #ifndef HWCAP2_SVE2
+   #define HWCAP2_SVE2 (1 << 1)
+   #endif
+   
+   #ifndef HWCAP_SVE
+   #define HWCAP_SVE (1 << 22)
+   #endif
+   
+   #ifndef AT_HWCAP2
+   #define AT_HWCAP2 26
+   #endif
+   
+   #ifndef AT_HWCAP
+   #define AT_HWCAP 16
+   #endif
+   
+   namespace detail
+   {
+   static inline bool sve2_supported()
+   {
+       auto hwcaps = getauxval(AT_HWCAP2);
+       return (hwcaps & HWCAP2_SVE2) != 0;
+   }
+   
+   static inline bool sve_supported()
+   {
+       auto hwcaps = getauxval(AT_HWCAP);
+       return (hwcaps & HWCAP_SVE) != 0;
+   }
+   } // namespace detail
+   ```
 
-   3. ```C
-      extern char** environ;
-      extern char **_dl_argv;
-      
-      char** get_environ() {
-          int argc = *(int*)(_dl_argv - 1);
-          char **my_environ = (char**)(_dl_argv + argc + 1);
-          return my_environ;
-      }
-      
-      typeof(f1) * resolve_f() {
-          environ = get_environ();
-          const char *var = getenv("TOTO");
-          if (var && strcmp(var, "ok") == 0) {
-              return f2;
-          }
-          return f1;
-      }
-      
-      int f() __attribute__((ifunc("resolve_f")));
-      ```
+    另外一个有趣的例子是，如果你需要在 resolver 中读取函数变量，你可能需要手动初始化 environ 指针：
 
-## Function Multiversioning 派发
+   ```C
+   extern char** environ;
+   extern char **_dl_argv;
+   
+   char** get_environ() {
+       int argc = *(int*)(_dl_argv - 1);
+       char **my_environ = (char**)(_dl_argv + argc + 1);
+       return my_environ;
+   }
+   
+   typeof(f1) * resolve_f() {
+       environ = get_environ();
+       const char *var = getenv("TOTO");
+       if (var && strcmp(var, "ok") == 0) {
+           return f2;
+       }
+       return f1;
+   }
+   
+   int f() __attribute__((ifunc("resolve_f")));
+   ```
+
+### Function Multiversioning 派发
 
 在 `x86-64` 上，Clang/GCC 实际上提供了更便捷的 IFUNC 实现方案：
 
@@ -307,9 +307,9 @@ int main() {
 
 这里，我们不用区分函数名和提供 resolver，而是直接标记不同的 target，编译器会自动生成 ifunc 的实现。
 
-![img](https://pingcap.feishu.cn/space/api/box/stream/download/asynccode/?code=YTVmNDhhNzMyNmEyMjliNDE0ZjBhMzRlYzc5ZjBmYmJfcUJKMkhEb21GZEdqT1JTaThOYVNCYUJ5dHFJWTJOVXBfVG9rZW46Ym94Y243SFlITlhCSU5XZXlWTWVzR3N3dVBoXzE2NTcyMzM2NDY6MTY1NzIzNzI0Nl9WNA)
+![img](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/unnamed-1657533337841.png)
 
-## Macro 整合 
+### Macro 整合
 
 可以使用以下代码整合 x86-64 和 aarch64 上的基于 IFUNC 的方案：
 
@@ -453,17 +453,17 @@ TIFLASH_MULTIVERSIONED_VECTORIZATION(
 
 ## 面向编译器的优化
 
-LLVM 提供了一个很好的自动向量化指南：[ Auto-Vectorization in LLVM - LLVM 15.0.0git documentation](https://llvm.org/docs/Vectorizers.html#loops-with-unknown-trip-count)
+LLVM提供了一个很好的自动向量化指南：[ Auto-Vectorization in LLVM - LLVM 15.0.0git documentation](https://llvm.org/docs/Vectorizers.html#loops-with-unknown-trip-count)
 
 可以参考其中的章节了解哪些常见模式可以用于向量化。简单来说，我们可以思考循环的场景：能否简化不必要的控制流，能否减少不透明的函数呼叫等等。除此之外，还可以考虑，对于一些简单的函数定义，如果它会被大量连续呼叫，我们能否将函数定义在 header 中，让编译器看到并内联这些函数，进而提升向量化的空间。
 
 高德纳说过，premature optimization is the root of all evil（过早优化是万恶之源）。我们没有必要为了向量化就把一些非性能关键部分的循环重写成向量化友好的形式。结合 profiler 来决定进一步优化那些函数是一个比较好的选择。
 
-## 检查向量化条件
+### 检查向量化条件
 
 我们使用以下参数检查向量化过程：
 
--  `-Rpass-missed='.*vectorize.*'`检查编译器为什么没有成功向量化
+- `-Rpass-missed='.*vectorize.*'`检查编译器为什么没有成功向量化
 
 - `-Rpass='.*vectorize.*'`检查编译器进行了那些向量化
 
@@ -475,9 +475,9 @@ cat compile_commands.json | grep "/VersionFilterBlockInputStream.cpp"
 
 然后，在编译指令前添加 `-Rpass-missed='.*vectorize.*'`或者`-Rpass='.*vectorize.*'`来查看相关信息。
 
-![img](https://pingcap.feishu.cn/space/api/box/stream/download/asynccode/?code=ZTExZWUwOTNiYzk3NzA4MTlmYzcyZTJiZGYwNTQ5MTNfcWRKeWJDNWNGT0NOTWpVeFNkdnBYdUhEQnZpZ1ljSXdfVG9rZW46Ym94Y256QVRnb0xqcHdrOUhhZ1pCdUlLak1jXzE2NTcyMzM2NDY6MTY1NzIzNzI0Nl9WNA)
+![img](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/unnamed-1657533338113.png)
 
-![img](https://pingcap.feishu.cn/space/api/box/stream/download/asynccode/?code=ZDJkYTRlNDVjMTFjNTc2NDc3NTZhZjI5NGU4YWJhM2FfODNCMEs3RkwzeGloSzM4VGhFYnJGYUZsVDFscHpsM3FfVG9rZW46Ym94Y243Y0VWbkMxQWJoc21oenVpc2xWUkhkXzE2NTcyMzM2NDY6MTY1NzIzNzI0Nl9WNA)
+![img](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/unnamed-1657533338098.png)
 
 ### 循环展开 Pragma
 
@@ -552,7 +552,7 @@ void test2() {
 }
 ```
 
-![img](https://pingcap.feishu.cn/space/api/box/stream/download/asynccode/?code=MTZhYzVlMzQzNDI1ZWE1MDg3ZjMwZmI4YjJmNWEwY2JfRnRxSWZHNU5YeU9aZ2hSR3Vub2x5NlBOSEFhTjliM3pfVG9rZW46Ym94Y24wU1dpaEhwZWFpVDBHeDdQZ3VOV2NjXzE2NTcyMzM2NDY6MTY1NzIzNzI0Nl9WNA)
+![img](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/unnamed-1657533338090.png)
 
 事实上，在 Aarch64 上，TiFlash 中 getDelta 默认就没有向量化，而使用 hint 后则可以。
 
@@ -605,7 +605,7 @@ void test(char *x, char *y, char * z) {
 }
 ```
 
-比如在 Aarch64 上，vectorize_width(1) 意味着没有向量化，vectorize_width(8) 意味着用 64bit 寄存器，vectorize_width(16) 意味着用 128bit  寄存器。
+比如在 Aarch64 上，vectorize_width(1) 意味着没有向量化，vectorize_width(8) 意味着用 64bit 寄存器，vectorize_width(16) 意味着用 128bit 寄存器。
 
 除此之外，还可以用 vectorize_width(fixed) ， vectorize_width(scalable) 调整对定长和变长向量的倾向。
 
