@@ -1,3 +1,8 @@
+---
+title: TiSpark 3.0.0 新特性实践 
+hide_title: true
+---
+
 # TiSpark 3.0.0 新特性实践 
 
 ## 背景
