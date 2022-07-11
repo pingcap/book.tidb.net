@@ -1,3 +1,8 @@
+---
+title: TiDB 6.0 Placement Rules In SQL 使用实践
+hide_title: true
+---
+
 # TiDB 冷热存储分离解决方案
 
 > 李文杰 （TUG 2019及2020 MVA） https://tidb.net/u/Jellybean/answer
