@@ -1,3 +1,8 @@
+---
+title: TiDB 6.1 单机环境 On openEular 2003 SP3 
+hide_title: true
+---
+
 # TiDB 6.1 单机环境 On openEular 2003 SP3
 
 ## 背景
