@@ -245,15 +245,15 @@ TiDB 6.0 的 Placement Rules in SQL 功能让用户通过 SQL 配置数据在集
 
 在应用冷数据归档的策略后，如下图可以看到调度规则里 2022-04-16 这一天的分区 Placement 由 ssd 变为了 hdd，即集群已经知晓最新的调度策略是将这一天的分区数据调度到 hdd 去，Scheduling_State 处于 PENDING 状态，表示 Follower 的 raft log 与 Leader 有较大差距，在这里可以理解为是正在处于调度的过程。
 
-﻿![1650341702179.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650341702179-1652255522063.png)﻿﻿![img](file:///E:/gitlab/tidb_docs/tidb%E6%95%B0%E6%8D%AE%E6%9C%8D%E5%8A%A1/%E5%86%B7%E7%83%AD%E5%AD%98%E5%82%A8%E4%B8%93%E9%A2%98/assets/1650341702179.png?lastModify=1652232640)﻿﻿
+﻿![1650341702179.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650341702179-1652255522063.png)﻿﻿
 
 随着时间的推移，数据在不断从 ssd 迁移到 hdd 上。从集群 grafana 监控面板可以看到 ssd 节点上的 Region 数据在不断下降，直到降到接近于 0；相反，hdd 上的 Region 数不断上升，直到数据全部迁出 ssd 节点。110 万行数据从 ssd 迁移到 hdd，大约耗时 3min 。
 
-﻿![1650342094048.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650342094048-1652255541662.png)﻿﻿![img](file:///E:/gitlab/tidb_docs/tidb%E6%95%B0%E6%8D%AE%E6%9C%8D%E5%8A%A1/%E5%86%B7%E7%83%AD%E5%AD%98%E5%82%A8%E4%B8%93%E9%A2%98/assets/1650342094048.png?lastModify=1652232640)﻿﻿
+﻿![1650342094048.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650342094048-1652255541662.png)﻿﻿
 
 在数据全部迁入 hdd 节点后，查看调度进度，此时 Scheduling_State 处于 SCHEDULED 的完成调度状态：
 
-﻿![1650342133243.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650342133243-1652255556889.png)﻿﻿![img](file:///E:/gitlab/tidb_docs/tidb%E6%95%B0%E6%8D%AE%E6%9C%8D%E5%8A%A1/%E5%86%B7%E7%83%AD%E5%AD%98%E5%82%A8%E4%B8%93%E9%A2%98/assets/1650342133243.png?lastModify=1652232640)﻿﻿
+﻿![1650342133243.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650342133243-1652255556889.png)﻿﻿
 
 结论：
 
@@ -269,7 +269,7 @@ TiDB 6.0 的 Placement Rules in SQL 功能让用户通过 SQL 配置数据在集
  alter table tidb_ssd_hdd_test.logoutrole_log partition p20220417 placement policy storeonhdd;
 ```
 
-﻿![1650970144694.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650970144694-1652255581080.png)﻿﻿![img](file:///E:/gitlab/tidb_docs/tidb%E6%95%B0%E6%8D%AE%E6%9C%8D%E5%8A%A1/%E5%86%B7%E7%83%AD%E5%AD%98%E5%82%A8%E4%B8%93%E9%A2%98/assets/1650970144694.png?lastModify=1652232640)﻿﻿
+﻿![1650970144694.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650970144694-1652255581080.png)﻿﻿
 
 ssd 上的 Region 全部迁移到 hdd 上，ssd 空间被释放，hdd 空间使用逐渐增加，迁移过程中 ssd 和 hdd 的 io 消耗都在 5% 左右，内存和网络带宽使用不变、保持平稳。 约 6 千万行 130GB 数据从 ssd 迁移到 hdd，大概需要 2 个小时
 
@@ -317,7 +317,7 @@ alter table tidb_ssd_hdd_test.logoutrole_log partition p20220418 placement polic
 - 在归档数据时，ssd 的 TiKV Region 数从 6300 下降到 3500 左右，当迁移完成后是净写入数据，此时 ssd 节点的 Region 数量又持续上升
 - hdd 节点的 Region 数从开始的 2600 上升到 6500 左右，随着数据迁移完成，hdd 的 Region 数不再增加，一直保持 6500 不变
 
-﻿![1650971789523.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650971789523-1652255605880.png)﻿﻿![img](file:///E:/gitlab/tidb_docs/tidb%E6%95%B0%E6%8D%AE%E6%9C%8D%E5%8A%A1/%E5%86%B7%E7%83%AD%E5%AD%98%E5%82%A8%E4%B8%93%E9%A2%98/assets/1650971789523.png?lastModify=1652232640)﻿﻿
+﻿![1650971789523.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650971789523-1652255605880.png)﻿﻿
 
 从磁盘使用空间变化的角度来看：
 
@@ -328,9 +328,7 @@ alter table tidb_ssd_hdd_test.logoutrole_log partition p20220418 placement polic
 
 ﻿![1650593565818.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650593565818-1652255636535.png)﻿﻿
 
-﻿![1650593789799.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650593789799-1652255652551.png)﻿﻿![img](file:///E:/gitlab/tidb_docs/tidb%E6%95%B0%E6%8D%AE%E6%9C%8D%E5%8A%A1/%E5%86%B7%E7%83%AD%E5%AD%98%E5%82%A8%E4%B8%93%E9%A2%98/assets/1650593578630.png?lastModify=1652232640)﻿﻿
-
-﻿![img](file:///E:/gitlab/tidb_docs/tidb%E6%95%B0%E6%8D%AE%E6%9C%8D%E5%8A%A1/%E5%86%B7%E7%83%AD%E5%AD%98%E5%82%A8%E4%B8%93%E9%A2%98/assets/1650593565818.png?lastModify=1652232640)﻿﻿![img](file:///E:/gitlab/tidb_docs/tidb%E6%95%B0%E6%8D%AE%E6%9C%8D%E5%8A%A1/%E5%86%B7%E7%83%AD%E5%AD%98%E5%82%A8%E4%B8%93%E9%A2%98/assets/1650593789799.png?lastModify=1652232640)﻿﻿
+﻿![1650593789799.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650593789799-1652255652551.png)﻿﻿
 
 结论：
 
@@ -343,13 +341,12 @@ alter table tidb_ssd_hdd_test.logoutrole_log partition p20220418 placement polic
 
 - 2022-04-16 这一天的数据已经全部转存到 hdd 冷盘中。启动 Flink 流，继续对 2022-04-16 分区写入数据，这些只会写 hdd，不会写入 ssd。Flink 流补全冷数据，hdd 节点的 io 打满，ssd 节点的 io 使用率比较低
 
-﻿![1650969265594.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650969265594-1652255669705.png)﻿﻿![img](file:///E:/gitlab/tidb_docs/tidb%E6%95%B0%E6%8D%AE%E6%9C%8D%E5%8A%A1/%E5%86%B7%E7%83%AD%E5%AD%98%E5%82%A8%E4%B8%93%E9%A2%98/assets/1650969265594.png?lastModify=1652232640)﻿﻿
+﻿![1650969265594.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650969265594-1652255669705.png)﻿﻿
 
 从下图可以看到，在补全冷数据的时候， hdd 节点的 Region 数在不断上升，hdd 节点的空间消耗也在不断增加，而 ssd 节点的空间使用和 Region 数均保持不变，说明数据并不会写入 ssd 中，符合预期。
 
-﻿![1650969430703.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650969430703-1652255687630.png)﻿﻿![img](file:///E:/gitlab/tidb_docs/tidb%E6%95%B0%E6%8D%AE%E6%9C%8D%E5%8A%A1/%E5%86%B7%E7%83%AD%E5%AD%98%E5%82%A8%E4%B8%93%E9%A2%98/assets/1650969430703.png?lastModify=1652232640)﻿﻿
+﻿![1650969430703.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650969430703-1652255687630.png)﻿﻿
 
-﻿![img](file:///E:/gitlab/tidb_docs/tidb%E6%95%B0%E6%8D%AE%E6%9C%8D%E5%8A%A1/%E5%86%B7%E7%83%AD%E5%AD%98%E5%82%A8%E4%B8%93%E9%A2%98/assets/1650343731489.png?lastModify=1652232640)﻿﻿
 
 结论：
 
@@ -364,7 +361,7 @@ alter table tidb_ssd_hdd_test.logoutrole_log partition p20220418 placement polic
 
 **举例说明，业务 A 和 B 共享资源，降低存储和管理成本，而业务 C 和 D 独占资源，提供最高的隔离性。由于多个业务共享一套 TiDB 集群，升级、备份、扩容、缩容等运维操作可以大幅减少，降低管理负担，提升效率**。
 
-﻿![1651723818212.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1651723818212-1652255709075.png)﻿﻿![img](file:///E:/gitlab/tidb_docs/tidb%E6%95%B0%E6%8D%AE%E6%9C%8D%E5%8A%A1/%E5%86%B7%E7%83%AD%E5%AD%98%E5%82%A8%E4%B8%93%E9%A2%98/assets/1651723818212.png?lastModify=1652232640)﻿﻿
+﻿![1651723818212.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1651723818212-1652255709075.png)﻿﻿
 
 ```
 CREATE PLACEMENT POLICY 'shared_nodes' CONSTRAINTS = "[+region=shared_nodes]";
