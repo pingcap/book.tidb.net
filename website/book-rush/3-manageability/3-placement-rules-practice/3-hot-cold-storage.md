@@ -215,11 +215,13 @@ TiDB 6.0 的 Placement Rules in SQL 功能让用户通过 SQL 配置数据在集
 
 ﻿![1650964998281.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650964998281-1652255376368.png)﻿﻿
 
- ![1650965222072.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650965222072-1652255470197.png)﻿﻿![img](file:///E:/gitlab/tidb_docs/tidb%E6%95%B0%E6%8D%AE%E6%9C%8D%E5%8A%A1/%E5%86%B7%E7%83%AD%E5%AD%98%E5%82%A8%E4%B8%93%E9%A2%98/assets/1650965222072.png?lastModify=1652232640)﻿﻿
+ ![1650965222072.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650965222072-1652255470197.png)﻿﻿
+ ![img](file:///E:/gitlab/tidb_docs/tidb%E6%95%B0%E6%8D%AE%E6%9C%8D%E5%8A%A1/%E5%86%B7%E7%83%AD%E5%AD%98%E5%82%A8%E4%B8%93%E9%A2%98/assets/1650965222072.png?lastModify=1652232640)﻿﻿
 
 - 在原有基础上再扩容 3 个 hdd TiKV 实例
 
-﻿![1650965633758.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650965633758-1652255491471.png)﻿﻿![img](file:///E:/gitlab/tidb_docs/tidb%E6%95%B0%E6%8D%AE%E6%9C%8D%E5%8A%A1/%E5%86%B7%E7%83%AD%E5%AD%98%E5%82%A8%E4%B8%93%E9%A2%98/assets/1650965633758.png?lastModify=1652232640)﻿﻿
+﻿![1650965633758.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1650965633758-1652255491471.png)﻿﻿
+ ![img](file:///E:/gitlab/tidb_docs/tidb%E6%95%B0%E6%8D%AE%E6%9C%8D%E5%8A%A1/%E5%86%B7%E7%83%AD%E5%AD%98%E5%82%A8%E4%B8%93%E9%A2%98/assets/1650965633758.png?lastModify=1652232640)﻿﻿
 
 4.冷热分离
 
