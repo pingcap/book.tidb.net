@@ -310,8 +310,6 @@ alter table tidb_ssd_hdd_test.logoutrole_log partition p20220418 placement polic
 
 在归档过程，Flink 同时持续写入热数据，期间 ssd 节点的 io 接近 100%，hdd 的 io 消耗在 10% 以下，各节点 cpu 在 500% 以下，网络带宽在 200MB/s 以下，内存使用保持平稳。
 
-﻿![img](file:///E:/gitlab/tidb_docs/tidb%E6%95%B0%E6%8D%AE%E6%9C%8D%E5%8A%A1/%E5%86%B7%E7%83%AD%E5%AD%98%E5%82%A8%E4%B8%93%E9%A2%98/assets/1650594122114.png?lastModify=1652232640)﻿﻿
-
 从 Region 数变化的角度来看：
 
 - 在归档数据时，ssd 的 TiKV Region 数从 6300 下降到 3500 左右，当迁移完成后是净写入数据，此时 ssd 节点的 Region 数量又持续上升
