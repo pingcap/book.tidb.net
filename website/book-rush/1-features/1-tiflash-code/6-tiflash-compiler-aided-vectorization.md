@@ -56,6 +56,9 @@ done < <(nm --demangle $1 | grep $2 | cut -d\  -f3-)
 gdb "${args[@]}" | c++filt
 
 # bash ./this-script.sh tiflash xxx
+```
+
+```Bash
 #!/usr/bin/env bash  
 
 # LLDB version
