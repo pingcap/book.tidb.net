@@ -3,7 +3,7 @@ title: TiDB v6.0.0 DMR 源码阅读——缓存表
 hide_title: true
 ---
 
-#  TiDB v6.0.0 DMR 源码阅读——缓存表
+# TiDB v6.0.0 DMR 源码阅读——缓存表
 
 > 作者简介：[漆锐(Cuteray)](https://tidb.net/u/CuteRay/answer)，刚入行的菜鸟DBA，请多指教。
 
