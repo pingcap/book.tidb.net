@@ -5,6 +5,8 @@ hide_title: true
 
 # TiFlash 6.0 on K8s 扩容与新特性实践
 
+> 作者：[数据小黑](https://tidb.net/u/%E6%95%B0%E6%8D%AE%E5%B0%8F%E9%BB%91/post/all)，Senior Architect，TiDB Fans。
+
 ## 概述
 
 TiFlash 的升级与扩缩容已经有很多同学实践了，随着 TiDB 的普及，这方面也不适合连篇累牍的描述，但是在这次测试 6.0 on K8s 的过程中也确实遇到了一些坎坷。本文首先讲解 TiFlash 6.0 on K8s 扩容的注意事项，然后描述在新扩容的机器上的一些新特性实践。此次发布的分区表动态裁剪等特性都在 6.1 GA 了，且 6.1 是 LTS 版本，生产环境建议直接升级 6.1 使用。

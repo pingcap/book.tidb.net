@@ -5,11 +5,11 @@ hide_title: true
 
 # TiSpark 3.0.0 新特性实践 
 
+> 作者：[数据小黑](https://tidb.net/u/%E6%95%B0%E6%8D%AE%E5%B0%8F%E9%BB%91/post/all)，Senior Architect，TiDB Fans。
+
 ## 背景
 
 TiSpark 3.0.0 于 6 月 15 号发布了，新的版本中提到了很多期望已久的功能，本文对几个新特性做了对比测试，验证新版本的特性是否符合线上要求。本文基础运行环境为 Spark On Kubernetes，Spark 镜像打包时，已包含 TiSpark 必要的依赖。
-
-## 阅读收益
 
 ## TiSpark 3.0.0 兼容性更改与新特性解析
 
