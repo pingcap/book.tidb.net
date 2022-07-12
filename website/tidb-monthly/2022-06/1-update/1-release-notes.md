@@ -394,5 +394,3 @@ TiDB 版本：6.1.0
     - 修复 TiDB Lightning panic 时 PD 配置未正确恢复的问题 [#31733](https://github.com/pingcap/tidb/issues/31733)
     - 修复由 `auto_increment` 列的数据越界导致 local 模式导入失败的问题 [#29737](https://github.com/pingcap/tidb/issues/27937)
     - 修复 `auto_random`、`auto_increment` 列为空时 local 模式导入失败的问题 [#34208](https://github.com/pingcap/tidb/issues/34208)
-
-[TiDB 6.1.0 Release Notes](https://github.com/pingcap/docs-cn/blob/release-6.1/releases/release-6.1.0.md) 更新于 2022/7/6 13:21:02: [fix 404 link in release notes (#10368) (#10372)](https://github.com/pingcap/docs-cn/commit/de70fe52ace950fdb0168ca5eeeb02a89b31499d)
