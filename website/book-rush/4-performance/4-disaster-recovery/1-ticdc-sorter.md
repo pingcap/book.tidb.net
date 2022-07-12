@@ -18,8 +18,9 @@ TiCDC 处理 TiDB 增量数据同步时，需要经过 `CDCKVClient` 拉取 TiKV
 TiCDC 的 CDC 任务的逻辑单元是 Changefeed，用户可以通过 cdc cli 或者 OpenAPI 向 TiCDC 提交 Changefeed 任务，TiCDC 集群中的 Owner 会处理对 Changefeed 任务进行解析，将其拆解为针对每张数据表的 TablePipeline 交给各个 Proessor 处理。Processor 内部会首先由 Puller 通过连接到 TiKV 集群的 CDCKVClient 拉取 TiKV Change Log（RawKVEntry）并根据 OpType 简单转换成 PolymorphicEvent，交给 Sorter 进行排序，排序完成后再由 Mounter 对消息进行解析，然后交给 Sink 发送给下游数据源。
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
+
 <center>
-    <img src={useBaseUrl('https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/tablepipeline处理流程\(1\)-1657260852358.png')} width="80%" />
+    <img src={useBaseUrl('https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/tablepipeline%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B(1)-1657260852358.png')} width="80%" />
 </center>
 
 Sorter 的排序实现逻辑被封装在 `EventSorter` 接口中：
