@@ -3,15 +3,15 @@ title: 带你全面了解compaction 的13个问题
 hide_title: true
 ---
 
-# 带你全面了解compaction 的13个问题
+# 带你全面了解 compaction 的13个问题
 
-**h5n1** 发表于  **2022-06-29**
+**[h5n1](https://tidb.net/u/h5n1/answer)** 发表于  **2022-06-29**
 
-# 1 概述
+## 1 概述
 
 ​    TiKV 底层存储引擎使用 RocksDB ，RocksDB 是一个基于 LSM tree 的单机嵌入式数据库， 对于LSM Tree 来说compaction是个非常重要的操作，本文对TiKV中涉及的compaction相关内容进行了整理总结。
 
-# 2 为什么需要 compaction ?
+## 2 为什么需要 compaction ?
 
 ​                                          ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1656491850788.png)  
 
@@ -23,7 +23,7 @@ hide_title: true
 
 ​    因此通过 compaction 操作将数据下层进行合并、清理已标记删除的数据降低空间放大、读放大的影响。但是compaction 又带来了写放大的问题，因此不同的数据库根据需要使用不同的compact 策略，以达到读、写、空间最优的平衡。Compaction属于资源密集型操作，需要读写大量的数据并进行排序，消耗较多的IO、CPU资源。
 
-# 3 Compaction做什么？
+## 3 Compaction做什么？
 
 ​    RocksDB的compaction 包含2方面：一是memtable写满后flush到磁盘，这是一种特殊的compacttion，也称为minor compaction。二是从L0 层开始往下层合并数据，也被称为major compaction，也是常说的compaction。
 
@@ -35,7 +35,7 @@ hide_title: true
 
 ​    3、写入：将排序好的数据写入到Ln+1层sst文件，更新元数据信息。
 
-# 4 Compaction有哪些常见算法？
+## 4 Compaction有哪些常见算法？
 
 ​    以下几种算法是学术性的理论算法，不同的数据库在具体实现时会有优化调整
 
@@ -63,7 +63,7 @@ hide_title: true
 
 ​    在TiKV 内可使用compaction-style参数修改每个CF的compaction 算法，支持的选项值包括0- level compaction(默认)、1-universal compaction 、2- FIFO，而Level总层数可通过参数num-levels控制，默认为7层。
 
-# 5 ColumnFamily和SST file的关系？
+## 5 ColumnFamily和SST file的关系？
 
 ​    RocksDB内使用Column Family(CF) 来进行数据的逻辑隔离，CF内可以使用不同的key，每个CF使用不同的memtable和sst文件，所有的 CF 共享WAL、Manifest。每个 CF 的memtable flush时都会切换WAL，其他的CF也开始使用新的WAL，旧的WAL要保证里面所有CF的数据都被flush后才能删除。  
 
@@ -75,7 +75,7 @@ hide_title: true
 
 ​    在TiDB中存在2个rocksdb实例,一个用于存储实际的用户数据，称为kv db，另一个用于存储raft log，叫做raft db(6.1.0版本开始raft db 默认被raft egine取代)。kv db 有4个CF：default、write、lock、raft ，raft db只有一个default CF。
 
-# 6 什么时候触发compaction ?
+## 6 什么时候触发compaction ?
 
 ​    RocksDB的 compaction 由后台线程 BGWorkCompaction 进行调度。该线程的触发一般有手动触发和自动触发两种情况：
 
@@ -109,7 +109,7 @@ L1层：Ln层总大小(不包含正在compact的文件)和max-bytes-for-level-ba
 
  
 
-# 7 Compaction时选择那些文件?
+## 7 Compaction时选择那些文件?
 
 ​    当选定需要compaction的Ln层后便需要决定需要向下层合并哪些文件，在选择需要合并的文件时主要考虑2方面：文件优先级和范围边界。
 
@@ -145,7 +145,7 @@ L1层：Ln层总大小(不包含正在compact的文件)和max-bytes-for-level-ba
 
 ​    为了限制每次compaction的量大小，RocksDB支持通过max_compaction_bytes参数限制每轮compact的大小，该参数仅限制input level的大小，TiKV内支持该参数配置
 
-# 8 L0 层文件堆积后如何处理？
+## 8 L0 层文件堆积后如何处理？
 
 ​    当有大量数据写入时，如果L0 到 L1 的compaction速度来不及处理会导致L0层文件逐渐累积增多，通过subcompact并行方式可提升L0层compact速度。当L0层文件数量达到一定数量后则会引起write stall，文件数量达到level0-slowdown-writes-trigger 后 会降低写入速度，当达到level0-stop-writes-trigger后则完全停止写入。
 
@@ -153,7 +153,7 @@ L1层：Ln层总大小(不包含正在compact的文件)和max-bytes-for-level-ba
 
 
 
-# 9 如何设置compaction并发线程数？
+## 9 如何设置compaction并发线程数？
 
 - **Flush & Compaction**
 
@@ -187,13 +187,13 @@ L1层：Ln层总大小(不包含正在compact的文件)和max-bytes-for-level-ba
 
    除了L0 -> L1 compact时可使用subcompaction外，在manual compaction(leveled compction)时L1+层也使用subcompaction以加快速度。
 
-# 10 SST文件什么时候删除？
+## 10 SST文件什么时候删除？
 
 ​    RocksDB使用version来表示数据库的当前状态（即某一时刻sst文件的集合），每当增加或删除一个sst file时都会对Manifest增加一条version edit记录。当执行查询或修改时会引用当前version，同时会对该version下的sst file设置reference count。
 
 ​    Compact完成后会在output level生成新的文件，同时需要删除旧的Input 文件，如果仍有其他操作在compact后仍未执行完成，则在compact后不能立即将需要的文件删除，等到sst file的reference count降为0后才能将文件真正的删除。
 
-# 11 Compaction Guard
+## 11 Compaction Guard
 
 ​    如前面介绍，在compact选择文件时由于key范围重叠，因此会扩展选定的sst 文件，以包含进所有需要的Key，由此会造成的问题是需要额外读写一些多余的key，同时由于一个sst file里可能包含有多个不同的key，在对某段范围key删除后不方便直接删除sst file。
 
@@ -205,7 +205,7 @@ Comapction Guard 是根据key将sst文件分隔成一个个具有指定边界的
 
 ​                             ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1656492018114.png)
 
-# 12 TiDB内有哪些场景触发Compaction?
+## 12 TiDB内有哪些场景触发Compaction?
 
 ​    和RocksDB类似TiDB内也有自动和手动compaction，不过无论是自动还手动都是通过调用RockDB的manual compaction函数在RocksDB内产生一次手动compact。
 
@@ -224,9 +224,7 @@ tikv-ctl  --host  tikv_ip:port  compact -d kv -c default
 tikv-ctl  --host  tikv_ip:port compact -d kv -c write --bottommost force
 ```
 
- 
-
-# 13 WriteStall有哪些触发场景
+## 13 WriteStall有哪些触发场景
 
 ​    当RocksDB的flush或compact 速度落后于数据写入速度就会增加空间放大和读放大，可能导致磁盘空间被撑满或严重的读性能下降，为此则需要限制数据写入速度或者完全停止写入，这个限制就是write stall， write stall触发原因有：1、 memtable数量过多 2、L0文件数量过多 3、 待compact的数据量过多。
 
@@ -264,7 +262,7 @@ tikv-ctl  --host  tikv_ip:port compact -d kv -c write --bottommost force
 
 ​    5.2版本开始，tidb优化流控机制，在scheduler层进行流控代替rocksdb的wrtie stall机制，可以避免 write stall 机制卡住 Raftstore 或 Apply 线程导致的次生问题，该功能通过storage.flow-control控制是否开启流量控制机制。开启后，TiKV 会自动关闭 KV DB 的 write stall 机制，还会关闭 RaftDB 中除 memtable 以外的 write stall 机制，除此之外还可以使用memtables-threshold、l0-files-threshold、soft-pending-compaction-bytes-limit、hard-pending-compaction-bytes-limit等参数来进行控制。
 
-# 14 GC 和 Compaction有哪些关联？
+## 14 GC 和 Compaction有哪些关联？
 
 ​    为防止系统中存在大量历史版本数据影响系统性能，TiKV会定期进行GC清理已经过期的历史版本，每隔tidb_gc_run_interval时间就发起一次GC，GC过程主要清理3个步骤，1、resolve lock 清理锁，实际调用使用RockDB的 delete将记录设置为tombstone 。2、truncate/drop table或Index后的sst文件清理，直接使用物理删除sst文件方式。 3、MVCC版本清理，使用RockDB的delete将记录设置为tombstone ，（GC相关原理可参考 ：TiDB GC 之原理浅析https://tidb.net/blog/ed740c2c）。
 
@@ -276,7 +274,7 @@ tikv-ctl  --host  tikv_ip:port compact -d kv -c write --bottommost force
 
 ​    GC时CPU监控可通过TiKV Detail -> Thread CPU -> GC Worker CPU面板查看，GC运行的相关监控可通过 TiKV Detail -> GC 相关面板查看。
 
-# 15 总结
+## 15 总结
 
 ​    对于TiKV和RockDB都在不断完善compaction机制，以期降低LSM Tree带来的读放大、写放大以及空间放大问题，进一步提升系统性能。同时TiKV中提供了丰富的监控指标用于监控GC 、Compaction等，方便用户掌握相关运行情况、排查write stall等问题原因。
 

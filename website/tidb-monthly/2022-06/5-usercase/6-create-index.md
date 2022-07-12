@@ -5,7 +5,7 @@ hide_title: true
 
 # 你踩过这些坑吗？谨慎在时间类型列上创建索引
 
-**Zeratulll** 发表于  **2022-06-10**
+**[Zeratulll](https://tidb.net/u/Zeratulll/answer)** 发表于  **2022-06-10**
 
 MySQL中，一般情况下我们不需要关注有序数据的写入在Innodb的Btree上是否存在热点，因为它能承担的吞吐量是比较大的，在单机的范畴内不太容易达到瓶颈。
 
@@ -17,7 +17,7 @@ MySQL中，一般情况下我们不需要关注有序数据的写入在Innodb的
 
 本文将从TiDB的原理来解答上述问题。如果你是内核开发者，也有助于帮助读者进一步理解分布式数据库中数据的编码与分布。
 
-# 问题
+## 问题
 
 一个有趣的问题，考虑下面四张表（结构上的主要差异在于主键是AUTO_INCREMENT或者AUTO_RANDOM，gmt_create列是date类型或者datetime类型）：
 
@@ -52,46 +52,6 @@ KEY idx_gmt_create (gmt_create)
 
 问题是：这四张表存在哪几个热点？
 
-.
-
-.
-
-.
-
-.
-
-.
-
-.
-
-.
-
-.
-
-.
-
-.
-
-.
-
-.
-
-.
-
-.
-
-.
-
-.
-
-.
-
-.
-
-.
-
-.
-
 答案是：一共存在5个热点（你答对了吗？）
 
 orders1中存在的热点：gmt_create索引、主键； orders2中存在的热点：gmt_create索引、主键； orders3中存在的热点：gmt_create索引； orders4不存在热点。
@@ -100,9 +60,9 @@ orders1中存在的热点：gmt_create索引、主键； orders2中存在的热�
 
 ![no-alt](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/%E7%83%AD%E7%82%B9-1654844983422.jpg) 
 
-# 解读
+## 解读
 
-## AUTO_INCREMENT的热点
+### AUTO_INCREMENT的热点
 
 orders1和orders2的主键上存在热点。这个的原因大家都知道的，因为TiDB的数据是按照有序的range进行划分的，主键自增，会导致写入都发生在做最后的range上，因此最后的range会是热点。这个在TiDB的文档中也有描述，这里就不再赘述了：
 
@@ -114,7 +74,7 @@ orders1和orders2的主键上存在热点。这个的原因大家都知道的，
 
 order3和orders4的主键不存在热点，因为使用AUTO_RANDOM来生成主键，将主键做了随机化。这样的代价也是有的，主键失去了宏观上的有序性（因为TiDB的AUTO_INCREMENT是按TiDB Server分段的，所以不能说是“有序”）。
 
-## DATE与DATETIME
+### DATE与DATETIME
 
 再来看idx_gmt_create。
 
@@ -143,13 +103,13 @@ Key: {gmt_create}_{id}
 
 **注意：实际上，当日期发生切换的时候（例如每天的0点0分0秒），orders4会在短时间内出现热点（这个时间长短取决于你的流量多久能写满几百兆，将这一天数据分裂到多个range内），这个热点将表现成系统在0点的剧烈抖动，想象下双十一零点出现这种抖动吧！**
 
-## 优化的可能性
+### 优化的可能性
 
 TiDB可以考虑修改DATETIME/TIMESTAMP类型的编码方式（或者提供一些额外的选项）。例如对于Key的部分，截断到小时，后面使用随机数进行补齐（充当了上文中随机主键的作用），将未截断的数据保存在value中或者key的结尾。
 
 这样能很好的将连续写入的时间数据进行打散，相应的代价是，查询代价会变大（无论查询条件多么精确，都需要查出至少一小时的数据），需要过滤一些无用的数据。
 
-# 结论
+## 结论
 
 兼容性其实包含功能兼容性与性能兼容性，TiDB虽然功能上与MySQL的兼容性做的不错，但性能上的差异点还是比较多的。
 

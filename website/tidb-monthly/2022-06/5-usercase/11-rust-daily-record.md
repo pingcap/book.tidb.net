@@ -5,7 +5,7 @@ hide_title: true
 
 # 文盘Rust -- 给程序加个日志
 
-**jiashiwen** 发表于  **2022-07-04**
+**[jiashiwen](https://tidb.net/u/jiashiwen/answer)** 发表于  **2022-07-04**
 
 notice"Rust is a trademark of the Mozilla Foundation in the US and other countries."
 

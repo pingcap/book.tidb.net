@@ -5,7 +5,7 @@ hide_title: true
 
 # TiDB v6.0.0 DMR 源码阅读——缓存表
 
-> ** CuteRay** 发表于  **2022-06-17**
+> **[CuteRay](https://tidb.net/u/CuteRay/answer)** 发表于  **2022-06-17**
 
 ## 引言
 

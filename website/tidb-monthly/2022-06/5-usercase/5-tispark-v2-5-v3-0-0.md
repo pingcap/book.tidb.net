@@ -5,9 +5,9 @@ hide_title: true
 
 # TiSpark v2.5 开发入门实践及 TiSpark v3.0.0 新功能解读
 
-**ShawnYan** 发表于  **2022-06-13**
+**[ShawnYan](https://tidb.net/u/ShawnYan/answer)** 发表于  **2022-06-13**
 
-# 背景
+## 背景
 
 Spark 是一款专为大规模数据处理而设计的计算引擎，而 TiSpark 是基于 Spark 非侵入式的强化插件，可以很好的兼容 TiDB，并对 TiDB 中的数据进行处理分析。TiSpark 集成了 mysql-connector-java，可以从 TiKV 和 TiFlash 读取数据。并且，TiSpark 实现了 TiKV 的 Java 客户端，可以写入数据到 TiKV，而不用经过 TiDB Server。
 
@@ -17,9 +17,9 @@ TiSpark v3.0.0 已于 6月15日正式发布，本文也将解读部分新功能�
 
 ![1.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1-1655090475341.png)
 
-# TiSpark 安装
+## TiSpark 安装
 
-## 版本信息
+### 版本信息
 
 TiSpark 需要配合 Spark 使用，而 Spark 是基于 Scala 开发的，Scala 依赖 JDK，故需要安装如下组件。
 
@@ -35,9 +35,9 @@ TiSpark 需要配合 Spark 使用，而 Spark 是基于 Scala 开发的，Scala 
 >
 > TiSpark 2.5.0
 
-## 组件安装
+### 组件安装
 
-### TiDB
+#### TiDB
 
 本文使用的是 TiDB 6.0，安装步骤略，查看数据库版本如下。
 
@@ -56,7 +56,7 @@ Check Table Before Drop: false
 1 row in set (0.001 sec)
 ```
 
-### JDK
+#### JDK
 
 安装过程省略，直接查看 JDK 版本信息。
 
@@ -67,7 +67,7 @@ OpenJDK Runtime Environment (build 1.8.0_302-b08)
 OpenJDK 64-Bit Server VM (build 25.302-b08, mixed mode)
 ```
 
-### Scala
+#### Scala
 
 直接从 Scala 官网下载 2.12 版本的 RPM 包，并进行安装。
 
@@ -83,7 +83,7 @@ scala -version
 Scala code runner version 2.12.15 -- Copyright 2002-2021, LAMP/EPFL and Lightbend, Inc.
 ```
 
-### Spark
+#### Spark
 
 从官网下载 Spark 3.0，解压后导入环境变量后，即可使用。
 
@@ -96,7 +96,7 @@ export PATH=$PATH:~/spark-3.0.3-bin-hadoop2.7/bin
 source ~/.bashrc
 ```
 
-### TiSpark
+#### TiSpark
 
 > 通过对接 Spark 的 Extension 接口，TiSpark 得以在不直接修改 Spark 源代码的前提下，深度订制 Spark SQL 的根本行为，包括加入算子，扩充语法，修改执行计划等等，让它看起来更像是一款 Spark 原生产品而非第三方扩展。
 
@@ -144,7 +144,7 @@ spark-shell
 
 ![2.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/2-1655090518068.png)
 
-#### TiSpark v3.0.0 启用 Jar 包新命名规则
+##### TiSpark v3.0.0 启用 Jar 包新命名规则
 
 > TiSpark 的 Jar 包有了新的命名规则： tispark-assembly-{spark_version}_{scala_version}-{$tispark_verison} [#2370](https://github.com/pingcap/tispark/pull/2370)
 
@@ -161,9 +161,8 @@ wget https://github.com/pingcap/tispark/releases/download/v3.0.0/tispark-assembl
 mv tispark-assembly-3.0_2.12-3.0.0.jar spark-3.0.3-bin-hadoop2.7/jars/
 ```
 
-###  
 
-## TiSpark 版本说明
+### TiSpark 版本说明
 
 下表为 TiSpark、Spark、Scala 的版本对应表，并标注了是否需要 pytispark。本文中的示例使用 TiSpark 2.5.0 和 TiSpark 3.0.0，故直接使用 pyspark 即可，推荐各位读者使用最新版本。
 
@@ -189,9 +188,9 @@ mv tispark-assembly-3.0_2.12-3.0.0.jar spark-3.0.3-bin-hadoop2.7/jars/
 - Spark 2.3 之后推出了 extension ，TiSpark 抛弃了上述 hack 的方式转而使用 extension。理论上我们无需适配即可使用所有原生的 Spark 工具。但实际上，我们仍可能需 pytispark 来解决 SPARK-25003 带来的问题。需要明确的是，虽然同样是用了 pytispark ，但使用的目的是不一样的。
 - Spark 3.0 之后, SPARK-25003 已被解决，我们可以放心大胆的直接使用 pyspark 了。但由于 This session stuff logic is a bit convoluted and many session changes were made. I wouldn’t backport it from 3.0 to 2.x unless it’s quite serious one. 该 fix 并没有 back port 到 2.3 以及 2.4 版本。如果你想使用 pyspark 与 tispark, 建议使用 spark 3.0 及以上版本。
 
-# TiSpark 开发实践
+## TiSpark 开发实践
 
-## TiSpark v2.5 相关配置
+### TiSpark v2.5 相关配置
 
 TiSpark 依赖于 PD 组件，所以在 Spark 的配置文件中，需要配置 PD 地址。本例中，将配置信息写入到 spark/conf 路径下的 `spark-defaults.conf` 文件。
 
@@ -218,7 +217,7 @@ spark.sql.catalog.tidb_catalog.pd.addresses 192.168.8.101:2379
 
 ![3.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/3-1655090526272.png)
 
-### TiSpark v3.0.0 相关配置
+#### TiSpark v3.0.0 相关配置
 
 > 不再支持不使用 catalog 的方式。现在你必须配置 catalog 并使用 tidb_catalog [#2252](https://github.com/pingcap/tispark/pull/2252)
 
@@ -231,11 +230,11 @@ spark.tispark.pd.addresses  ${your_pd_adress}
 
 环境准备好之后，接下来将演示如何进行数据读取和写入。
 
-## 使用 PySpark 进行数据读取
+### 使用 PySpark 进行数据读取
 
 首先演示如何使用 PySpark 读取 TiDB 中的数据。PySpark 是 Python 编写的 Spark 接口，可以调用 Python API 对 Spark 程序进行读写操作，并且可以进行数据分析。
 
-### 安装 PySpark
+#### 安装 PySpark
 
 这里主要介绍两种 pyspark 的安装方式：
 
@@ -276,7 +275,7 @@ Successfully installed py4j-0.10.9.3 pyspark-3.2.1
 
 由此也可看出，PySpark 是借助 Py4j 实现 Python 调用 Java 来驱动 Spark 应用程序，其本质主要还是 JVM runtime，Java 到 Python 的结果返回是通过本地 Socket 完成。
 
-### 启动 PySpark
+#### 启动 PySpark
 
 启动 PySpark 时，可通过 `spark.driver.host` 配置项指定 IP，启动后，可通过该 IP 访问 WebUI 页面，在页面上可以直观的看到 Spark 配置项及计算结果。
 
@@ -284,7 +283,7 @@ Successfully installed py4j-0.10.9.3 pyspark-3.2.1
 pyspark --conf spark.driver.host='192.168.8.101'
 ```
 
-### 查看 PySpark 版本信息
+#### 查看 PySpark 版本信息
 
 在交互式客户端查看 PySpark 的版本信息：
 
@@ -297,7 +296,7 @@ pyspark 3.0.3
 ('pyspark', '3.0.3')
 ```
 
-### 使用 PySpark 通过 JDBC 读取数据
+#### 使用 PySpark 通过 JDBC 读取数据
 
 本例将演示如何通过 JDBC 读取 TiDB 中的数据。
 
@@ -356,17 +355,17 @@ df=spark.read.format("jdbc").options(url=url,
 +---+-----+
 ```
 
-## 使用 spark-shell 进行数据写入
+### 使用 spark-shell 进行数据写入
 
 接下来，演示如何使用 spark-shell 写入数据到 TiDB。
 
-### 启动 spark-shell
+#### 启动 spark-shell
 
 ```
 spark-shell --conf spark.driver.host='192.168.8.101'
 ```
 
-### 查看 spark-shell 信息
+#### 查看 spark-shell 信息
 
 查看 spark 和 tispark 版本信息。
 
@@ -388,7 +387,7 @@ TimeZone: Asia/Shanghai])
 
 从以上信息可知，当前 TiSpark 的代码取自分支 `release-2.5`，由此可快速定位到对应版本的源码：https://github.com/pingcap/tispark/commit/e48b484f7f8e5a3b70cdd8294fecfdb92fcdd411
 
-### 使用 spark-shell 写入数据
+#### 使用 spark-shell 写入数据
 
 1. 定义 SparkConf，配置 pd/tidb 地址和端口。
 
@@ -462,7 +461,7 @@ TiDB-v6 [test] 17:27:21> select * from t1;
 
 
 
-### 使用 spark-shell 进行数据删除
+#### 使用 spark-shell 进行数据删除
 
 这是 TiSpark v3.0.0 的新特性。接下来，演示如何使用 spark-shell 删除数据。
 
@@ -520,7 +519,7 @@ org.apache.spark.sql.AnalysisException: Delete by condition with subquery is not
 
 1. 不支持分区表，不支持悲观事务。
 
-### 使用 PySpark 演示窗口函数
+#### 使用 PySpark 演示窗口函数
 
 本例已 `rank()` 函数为例，其他窗口函数类似。
 
@@ -567,15 +566,15 @@ df.select("course", "mark", "name", functions.rank().over(w).alias("rank")).show
 
 到此，四个案例已全部演示完毕。
 
-## TiSpark v3.0.0 其他新功能
+### TiSpark v3.0.0 其他新功能
 
-### TiSpark v3.0.0 支持 Spark 3.2
+#### TiSpark v3.0.0 支持 Spark 3.2
 
 > 新特性 – 支持 Spark 3.2 [#2287](https://github.com/pingcap/tispark/pull/2287)
 
 解读：Spark 3.2.1 于 1月26日发版，是近期发布的最新稳定版本。
 
-### TiSpark v3.0.0 支持遥测
+#### TiSpark v3.0.0 支持遥测
 
 > 新特性 – 支持遥测以收集相关信息 [#2316](https://github.com/pingcap/tispark/issues/2316)
 
@@ -596,7 +595,7 @@ core/src/main/scala/com/pingcap/tispark/telemetry/TelemetryRule.scala
 log4j.logger.com.pingcap.tispark=WARN
 ```
 
-## 总结
+### 总结
 
 1. TiSpark 已支持从 TiKV 和 TiFlash 读取数据，并通过自定义插件的形式增强了数据处理能力和计算下推能力。并且支持绕过 TiDB Server 直接写入数据到 TiKV，大大提升了数据批量写入的效率。
 2. TiSpark 对 TiDB 6.0 的支持尚未得到完全测试 ([#2238](https://github.com/pingcap/tispark/pull/2238))，建议使用 TiSpark 3.0.0 + TiDB 5.4 的版本搭配。
@@ -607,7 +606,7 @@ log4j.logger.com.pingcap.tispark=WARN
 
 
 
-# 参考链接
+## 参考链接
 
 - [TiSpark 源码](https://github.com/pingcap/tispark)
 - [TiSpark 用户指南](https://docs.pingcap.com/zh/tidb/stable/tispark-overview)

@@ -5,7 +5,7 @@ hide_title: true
 
 # TiCDC canal_json的实际应用
 
-**Jiawei** 发表于  **2022-06-02**
+**[Jiawei](https://tidb.net/u/Jiawei/answer)** 发表于  **2022-06-02**
 
 ## 背景知识
 

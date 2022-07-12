@@ -1,9 +1,9 @@
 ---
-title: clustered_index 的表，删除列之后 tiflash crash 问题
+title: clustered_index 的表，删除列之后 TiFlash Crash 问题
 hide_title: true
 ---
 
-# clustered_index 的表，删除列之后 tiflash crash 问题
+# clustered_index 的表，删除列之后 TiFlash Crash 问题
 
 > Junshen Huang
 

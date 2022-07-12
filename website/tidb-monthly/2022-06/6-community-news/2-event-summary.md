@@ -5,22 +5,22 @@ hide_title: true
 
 # 6 月精彩活动回顾
 
-## [【活动回顾 & 资料下载】TiDB Application Development Practices](https://asktug.com/t/topic/694076/44)
+## [【活动回顾 & 资料下载】TiDB Application Development Practices](https://asktug.com/t/topic/694076)
 
 6月18日，由 **DolphinScheduler 联合** **TiDB** **社区** 共同举办的Meetup开播~，非常有幸邀请到了数位来自阿里云、国内跨境电商巨头 SHEIN、TiDB 社区等企业的资深大数据工程师与开发者。他们将从数据仓库、数据调度、应用开发、技术外延等话题探讨 **Apache DolphinScheduler 与 TiDB** 两个开源项目的开发实践。
 
-资料下载 & 回顾：https://asktug.com/t/topic/694076/2
+资料下载 & 回顾：https://asktug.com/t/topic/694076
 
 
 ## [【资料下载】源码解读 | TiFlash 中常用算子的设计与实现 （中奖信息公布~）](https://asktug.com/t/topic/694732)
 
-6 月 30 日，由 PingCAP 资深研发工程师 齐智 同学给大家分享了《TiFlash 中常用算子的设计与实现》，通过本期内容你会对 TiFlash 算子的各个阶段有一定的了解，在听完之后明白算子代码的设计逻辑，能够进一步独立阅读代码或者做简单的 issue。
+6 月 30 日，由 PingCAP 资深研发工程师 齐智 同学给大家分享了 **《TiFlash 中常用算子的设计与实现》**，通过本期内容你会对 TiFlash 算子的各个阶段有一定的了解，在听完之后明白算子代码的设计逻辑，能够进一步独立阅读代码或者做简单的 issue。
 
 资料下载 & 回顾：https://asktug.com/t/topic/694732
 
 
 
-## [【活动回顾 & 资料下载】TiFlash DDL 模块设计及实现解析，源码带货人中奖公示啦！](https://asktug.com/t/topic/693914/21)
+## [【活动回顾 & 资料下载】TiFlash DDL 模块设计及实现解析，源码带货人中奖公示啦！](https://asktug.com/t/topic/693914)
 
 由 PingCAP TiFlash 研发工程师 洪韫妍 同学给大家分享了 **《TiFlash** **DDL** **模块设计及实现解析》** ，通过本期内容你可以了解 TiFlash DDL 模块的设计思想和代码实现方式。
 

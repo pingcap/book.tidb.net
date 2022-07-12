@@ -5,7 +5,7 @@ hide_title: true
 
 # TiDB 之 TiCDC6.0 初体验
 
-**JiekeXu** 发表于  **2022-06-30**
+**[JiekeXu](https://tidb.net/u/JiekeXu/answer)** 发表于  **2022-06-30**
 
 TiCDC 是一款 TiDB 增量数据同步工具，通过拉取上游 TiKV 的数据变更日志，具有将数据还原到与上游任意时刻一致的能力，同时提供开放数据协议(TiCDC Open Protocol)，支持其他系统订阅数据变更，TiCDC 可以将数据解析为有序的行级变更数据输出到下游。
 

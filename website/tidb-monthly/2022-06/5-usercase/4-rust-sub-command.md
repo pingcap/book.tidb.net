@@ -5,7 +5,7 @@ hide_title: true
 
 # 文盘Rust -- 子命令提示，提高用户体验
 
-**jiashiwen** 发表于  **2022-06-01**
+**[jiashiwen](https://tidb.net/u/jiashiwen/answer)** 发表于  **2022-06-01**
 
 notice"Rust is a trademark of the Mozilla Foundation in the US and other countries."
 

@@ -5,19 +5,19 @@ hide_title: true
 
 # TiSpark 3.0.0 新特性实践
 
-**数据小黑** 发表于  **2022-06-21**
+**[数据小黑](https://tidb.net/u/%E6%95%B0%E6%8D%AE%E5%B0%8F%E9%BB%91/answer)** 发表于  **2022-06-21**
 
-# 背景
+## 背景
 
 TiSpark 3.0.0 于 6 月 15 号发布了，新的版本中提到了很多期望已久的功能，本文对几个新特性做了对比测试，验证新版本的特性是否符合线上要求。本文基础运行环境为 Spark On kubernetes，Spark 镜像打包时，已包含 TiSpark 必要的依赖。
 
-# 阅读收益
+## 阅读收益
 
-# TiSpark 3.0.0 兼容性更改与新特性解析
+## TiSpark 3.0.0 兼容性更改与新特性解析
 
 下面的兼容性更改与新特性摘自官方：
 
-## 兼容性更改
+### 兼容性更改
 
 - TiSpark without catalog plugin is no more supported. You must configure catalog configs and use tidb_catalog now
 
@@ -59,7 +59,7 @@ TiSpark 3.0.0 于 6 月 15 号发布了，新的版本中提到了很多期望�
 
   - 此特性把 scala_version 版本号体现在版本命名中，版本包命名由 tispark-assembly-3.0-2.5.1.jar 变化成了 tispark-assembly-3.0_2.12-3.0.0.jar。
 
-## 新功能
+### 新功能
 
 - Support DELETE statement
 
@@ -94,11 +94,11 @@ TiSpark 3.0.0 于 6 月 15 号发布了，新的版本中提到了很多期望�
 
   - 支持 TLS 并具备动态更新证书的能力
 
-# 特性评测
+## 特性评测
 
 我们有个 tidb 实验环境，是在 k8s 里面的，这个环境配套了一个 spark on k8s 环境。这次测试是在 spark on k8s+tidb on k8s 中测试的。
 
-## 非 catalog plugin 的配置运行情况
+### 非 catalog plugin 的配置运行情况
 
 基于 spark 3.0.3 on k8s 测试非 catalog plugin 的配置运行情况。 因为以前的项目都是基于 maven 的，本次已经在 maven 项目下进行测试，首先修改项目依赖：
 
@@ -141,7 +141,7 @@ com.pingcap.tikv.exception.TiInternalException: TiSpark must work with TiCatalog
 
 代码中加了个检查，在没有配置 Catalog 的情况下，检查报错，提示 TiSpark must work with TiCatalog。
 
-# Spark 3.0.3 + stale read + delete 特性测试
+## Spark 3.0.3 + stale read + delete 特性测试
 
 实际运行时，建议最低使用 TiSpark 3.0.1 ，这个版本的已知问题比较少，各个 Spark 版本下也都测试通过。
 
@@ -215,6 +215,6 @@ stale read:
 
 由以上查询结果可知，数据能够执行删除，删除后正常查询是查询不到的，使用 stale read，利用删除之前的时间戳能够查询到数据，置空时间戳后，恢复普通查询，数据能够查询到。
 
-# 总结
+## 总结
 
 本次版本中 stale read + delete 让 tispark 具有更灵活的应用场景，经过验证 spark 3.2.1 跟 tidb 6.1.0 on k8s 通讯还有些问题仍需解决，另外一方面，也盼望着能兼容分区表的一些操作能发布出来，比如说导入数据之前能够 truncate 分区一类的操作。
