@@ -13,7 +13,7 @@ hide_title: true
 
 - TiSpark 的 Jar 包有了新的明白规则： `tispark-assembly-{$spark_version}_{$scala_version}-{$tispark_verison}` [#2370](https://github.com/pingcap/tispark/pull/2370)
 
-​## 新特性
+## 新特性
 
 - 支持删除语句 [#2276](https://github.com/pingcap/tispark/pull/2276)
 

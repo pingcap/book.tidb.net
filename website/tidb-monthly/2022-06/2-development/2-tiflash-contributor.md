@@ -3,7 +3,7 @@ title: 【十分钟成为 TiFlash Contributor】TiFlash 函数下推必知必会
 hide_title: true
 ---
 
-# [【十分钟成为 TiFlash Contributor】TiFlash 函数下推必知必会](https://asktug.com/t/topic/694214)
+# 【十分钟成为 TiFlash Contributor】TiFlash 函数下推必知必会
 
 
 > 作者：黄海升，TiFlash 研发工程师
@@ -18,7 +18,7 @@ TiFlash 作为 TiDB HTAP 体系的重要一环，会接收并执行 TiDB 下推�
 
 
 
-[![image](https://asktug.com/uploads/default/optimized/4X/e/b/0/eb07d741b30b4de20e488574de19541e923d3299_2_565x500.png)image.png679×600 69.5 KB](https://asktug.com/uploads/default/original/4X/e/b/0/eb07d741b30b4de20e488574de19541e923d3299.png)
+![image](https://asktug.com/uploads/default/original/4X/e/b/0/eb07d741b30b4de20e488574de19541e923d3299.png)
 
 
 
@@ -51,7 +51,7 @@ TiDB 对函数的标识是 `tipb::ScalarFuncSig` ，而 TiFlash 使用 `func_nam
 
 
 
-[![image](https://asktug.com/uploads/default/optimized/4X/2/f/0/2f090f8398eb33ca4ea563b8d4639b89d7008fc3_2_690x176.png)image.png1280×328 226 KB](https://asktug.com/uploads/default/original/4X/2/f/0/2f090f8398eb33ca4ea563b8d4639b89d7008fc3.png)
+![image](https://asktug.com/uploads/default/original/4X/2/f/0/2f090f8398eb33ca4ea563b8d4639b89d7008fc3.png)
 
 
 
@@ -74,7 +74,7 @@ TiDB 对函数的标识是 `tipb::ScalarFuncSig` ，而 TiFlash 使用 `func_nam
 
 
 
-[![image](https://asktug.com/uploads/default/optimized/4X/7/0/d/70df790ddcff47573debb0e256cdd8e339a29b16_2_690x342.png)image.png954×473 87.3 KB](https://asktug.com/uploads/default/original/4X/7/0/d/70df790ddcff47573debb0e256cdd8e339a29b16.png)
+![image](https://asktug.com/uploads/default/original/4X/7/0/d/70df790ddcff47573debb0e256cdd8e339a29b16.png)
 
 
 
@@ -338,12 +338,12 @@ TiFlash 中的函数实现中，有一个可以重载的函数：[useDefaultImpl
 
 ## 限量马克杯获取流程
 
-[![image](https://asktug.com/uploads/default/optimized/4X/4/8/2/48204d1d955efa0b090d28051d39e1783464fe61_2_690x431.jpeg)image.jpg1280×800 177 KB](https://asktug.com/uploads/default/original/4X/4/8/2/48204d1d955efa0b090d28051d39e1783464fe61.jpeg)
+![image](https://asktug.com/uploads/default/original/4X/4/8/2/48204d1d955efa0b090d28051d39e1783464fe61.jpeg)
 
 
 任何一个新加入集体的小伙伴都将收到我们充满诚意的礼物，成为 New TiFlash Contributor 即可获赠限量版马克杯，很荣幸能够认识你，也很高兴能和你一起坚定地走得更远。获取流程如下：
 
-1. 认领 issue，issue 列表：[https://github.com/pingcap/tiflash/issues/5092 3](https://github.com/pingcap/tiflash/issues/5092)；
+1. 认领 issue，issue 列表：[https://github.com/pingcap/tiflash/issues/5092](https://github.com/pingcap/tiflash/issues/5092)；
 2. 提交 PR；
 3. PR 提交之后，请耐心等待维护者进行 Review；
 4. 代码提交后 CI 会执行测试，需要保证所有的单元测试是可以通过的。期间可能有其它的提交会与当前 PR 冲突，这时需要修复冲突；
