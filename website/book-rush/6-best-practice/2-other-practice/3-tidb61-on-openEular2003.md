@@ -5,6 +5,8 @@ hide_title: true
 
 # TiDB 6.1 单机环境 On openEular 2003 SP3
 
+> 作者：[数据小黑](https://tidb.net/u/%E6%95%B0%E6%8D%AE%E5%B0%8F%E9%BB%91/post/all)，Senior Architect，TiDB Fans。
+
 ## 背景
 
 最近对国产操作系统很感兴趣，也有一些场景需要验证落地，官方支持银河麒麟 V10（X86，ARM），统信 UOS 等国产操作系统，但上述系统不是开源操作系统，使用上存在一些障碍，经过朋友推荐，选择华为的 openEular 进行验证测试。
