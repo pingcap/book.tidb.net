@@ -118,7 +118,7 @@ TiFlash 和 TiDB 的向量化函数实现上存在不同点，参与过 TiDB 贡
     - const, vector
     - const, const
 
-以上两点让 TiFlash 的函数开发有一定的难度，和 TiDB 的函数开发差别会相当大。可以参考下 Function 目录下其他函数的实现，比如 `FunctionSubStringIndex` 。 **在开发函数的时候大家应该会有很多体会 ![:slight_smile:](https://asktug.com/images/emoji/apple/slight_smile.png?v=9)**
+以上两点让 TiFlash 的函数开发有一定的难度，和 TiDB 的函数开发差别会相当大。可以参考下 Function 目录下其他函数的实现，比如 `FunctionSubStringIndex` 。 **在开发函数的时候大家应该会有很多体会**
 
 #### 可以参考的函数实现
 
@@ -199,7 +199,7 @@ set tidb_isolation_read_engines='tiflash';
 explain select xxxfunc(a) from t;
 ```
 
-如果函数被下推到了 TiFlash，那 explain 的结果可以看到包含该函数的 Projection 算子在 TiFlash 侧。explain sql 可以反复执行多几次，因为 TiFlash 副本建立需要一些时间，但是不会太长。如果很长一段时间都看不到函数下推了，那么应该就是真的有问题。![:slight_smile:](https://asktug.com/images/emoji/apple/slight_smile.png?v=9)
+如果函数被下推到了 TiFlash，那 explain 的结果可以看到包含该函数的 Projection 算子在 TiFlash 侧。explain sql 可以反复执行多几次，因为 TiFlash 副本建立需要一些时间，但是不会太长。如果很长一段时间都看不到函数下推了，那么应该就是真的有问题。
 
 explain sql 执行成功之后，可以把 explain 去掉，实际执行下 sql 看效果。
 
