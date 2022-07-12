@@ -5,7 +5,7 @@ hide_title: true
 
 # TiSpark 3.0.0 新特性实践 
 
-> 作者：[数据小黑](https://tidb.net/u/%E6%95%B0%E6%8D%AE%E5%B0%8F%E9%BB%91/post/all)，Senior Architect，TiDB 狂热爱好者。
+> 作者：[数据小黑](https://tidb.net/u/%E6%95%B0%E6%8D%AE%E5%B0%8F%E9%BB%91/post/all)，Senior Architect，TiDB Fans。
 
 ## 背景
 
