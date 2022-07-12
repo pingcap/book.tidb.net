@@ -8,7 +8,7 @@ sidebar_position: 8
 
 ## 推荐语
 
-本期 TiDB 社区技术月刊分为【产品动态】、【开发适配】、【原理 & 特性解读】、【故障排查 & 诊断】、【用户实践】、【社区动态】、【TiDB 能力认证】七大模板。其中包括近期发布的 5.4.1 版本更新，社区用户的 6.0 尝鲜应用，TiFlash 源码解读、TiDB 查询优化及调优、应用开发适配等精彩内容！
+本期 TiDB 社区技术月刊分为【产品动态】、【开发适配】、【原理 & 特性解读】、【故障排查 & 诊断】、【用户实践】、【社区动态】、【TiDB 能力认证】七大模板。其中包括近期 TiDB 和 TiSpark 的 2 个版本更新，社区用户的 6.0 尝鲜应用，TiFlash 源码解读、TiDB 查询优化及调优、应用开发适配等精彩内容！
 
 ## 目录
 
@@ -18,6 +18,7 @@ sidebar_position: 8
   - [TiDB v6.1.0 Release Notes](1-update/1-release-notes.md)
   - [TiSpark 3.0.0](1-update/2-tispark-3-0-0.md)
   - [TiSpark 3.0.1](1-update/3-tispark-3-0-1.md)
+  - [TiDB 5.4.2 Release Notes](1-update/4-5-4-2-release.md)
 
 - [开发适配](2-development/index.md)
   - [应用开发者专属的 TiDB 使用指南发布啦！丨TiDB Community](2-development/1-user-guide.md)
@@ -66,6 +67,6 @@ sidebar_position: 8
 
 ## 感谢
 
-感谢所有贡献内容的作者（按文章收录顺序排列）：黄海升，朱一帆，洪韫妍，CuteRay，Junshen Huang，Dongpo Liu，Ann_ann，俺也一样，代晓磊_Mars，Liuhaoao，Jiawei，jiashiwen，ShawnYan，Zeratulll，数据小黑，JiekeXu，h5n1
+感谢所有贡献内容的作者（按文章收录顺序排列）：[黄海升](https://github.com/SeaRise)，[朱一帆](https://github.com/SchrodingerZhu)，[洪韫妍](https://github.com/hongyunyan)，[CuteRay](https://tidb.net/u/CuteRay/answer)，[Junshen Huang](https://github.com/JaySon-Huang)，[Dongpo Liu](https://github.com/hi-rustin)，[Ann_ann](https://tidb.net/u/Ann_ann/answer)，[俺也一样](https://tidb.net/u/%E4%BF%BA%E4%B9%9F%E4%B8%80%E6%A0%B7/answer)，[代晓磊_Mars](https://tidb.net/u/%E4%BB%A3%E6%99%93%E7%A3%8A_Mars/answer)，[Liuhaoao](https://tidb.net/u/Liuhaoao/answer)，[Jiawei](https://tidb.net/u/Jiawei/answer)，[jiashiwen](https://tidb.net/u/jiashiwen/answer)，[ShawnYan](https://tidb.net/u/ShawnYan/answer)，[Zeratulll](https://tidb.net/u/Zeratulll/answer)，[数据小黑](https://tidb.net/u/%E6%95%B0%E6%8D%AE%E5%B0%8F%E9%BB%91/answer)，[JiekeXu](https://tidb.net/u/JiekeXu/answer)，[h5n1](https://tidb.net/u/h5n1/answer)
 
 感谢本期月刊的内容编辑：[Xiaolu Zhou](https://github.com/luzizhuo)，[ShawnYan](https://tidb.net/u/ShawnYan/post/all)
