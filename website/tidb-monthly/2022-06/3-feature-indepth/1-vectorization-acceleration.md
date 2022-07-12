@@ -16,6 +16,8 @@ hide_title: true
 
 - 面向编译器的优化
 
+- 向量化 Pragma
+
 ## SIMD 介绍
 
 SIMD 是重要的重要的程序加速手段。CMU DB 组在 Advanced Database Systems 中有专门的两个章节（[vectorization-1](https://15721.courses.cs.cmu.edu/spring2020/slides/15-vectorization1.pdf), [vectorization-2](https://15721.courses.cs.cmu.edu/spring2020/slides/16-vectorization2.pdf)）介绍 SIMD 向量化在数据库中的应用，可见其对现代数据库系统的重要性。本文章简要介绍一些在 TiFlash 中使用编译器进行自动向量化所需要的入门知识。
