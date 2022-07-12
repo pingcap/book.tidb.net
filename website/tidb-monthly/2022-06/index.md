@@ -68,4 +68,4 @@ sidebar_position: 8
 
 感谢所有贡献内容的作者（按文章收录顺序排列）：黄海升，朱一帆，洪韫妍，CuteRay，Junshen Huang，Dongpo Liu，Ann_ann，俺也一样，代晓磊_Mars，Liuhaoao，Jiawei，jiashiwen，ShawnYan，Zeratulll，数据小黑，JiekeXu，h5n1
 
-感谢本期月刊的内容编辑：[ShawnYan](https://tidb.net/u/ShawnYan/post/all)，[Xiaolu Zhou](https://github.com/luzizhuo)
+感谢本期月刊的内容编辑：[Xiaolu Zhou](https://github.com/luzizhuo)，[ShawnYan](https://tidb.net/u/ShawnYan/post/all)
