@@ -130,7 +130,7 @@ Schema Syncer 这个模块是由 `TiDBSchemaSyncer` 这个类来负责的。它�
 
 对于周围涉及到调用 Schema Syncer 的模块，Read，Write，BootStrap 这三个模块都是直接的调用 `TiDBSchemaSyncer::syncSchema`。而 Background Sync Thread 则是通过 `SchemaSyncService` 来负责，在 TiFlash Server 启动的最开始阶段，把 `syncSchema` 这个函数塞到 background thread pool里面去，保持大概每隔10s调用一次，来实现定期更新。
 
-### **Schema on Data Write**
+### Schema on Data Write
 
 我们先来了解一下，写的过程本身需要处理的情况。我们有一个要写入的行格式的数据，需要把他每一列内容进行解析处理，写入列存引擎中。另外我们节点中有 local schema copy 来帮助解析。但是，这行要写入的数据和我们的 schema copy 在时间上的先后顺序是不确定的。因为我们的数据是通过 raft log / raft snapshot 的形式发送过来的，是一个异步的过程。schema copy 则是定期来进行更新的，也可以看作是一个异步的过程，**所以对应的 schema 版本和 这行写入的数据 在 TiDB 上发生的先后顺序我们是不知道的**。写操作就是要在这样的场景下，正确的解析数据进行写入。
 
@@ -170,7 +170,7 @@ Schema Syncer 这个模块是由 `TiDBSchemaSyncer` 这个类来负责的。它�
 
 以上就是写数据过程的整体的思路，如果想了解具体的代码细节，可以搜索一下 `writeRegionDataToStorage` 这个函数。另外我们的行转列的过程是依赖 `RegionBlockReader` 这个类来实现的，这个类依赖的 schema 信息就是我们前面提到的 `decoding_schema_snapshot`。在行转列的过程中，`RegionBlockReader` 在拿 `decoding_schema_snapshot` 的时候会先检查 `decoding_schema_snapshot` 是否跟最新的 `tidb_table_info` 版本是对齐的，如果没对齐，就会触发`decoding_schema_snapshot` 的更新，具体逻辑可以参考`getSchemaSnapshotAndBlockForDecoding` 这个函数。
 
-### **Schema on Data Read**
+### Schema on Data Read
 
 和写不太一样的是，在开始内部的读流程之前，我们需要先校验 schema version。我们上层发送的请求中，会带有 schema version 信息（Query_Version)。读请求校验需要满足的要求则是，**待读的表本地的 schema 信息和读请求里面的 schema version 对应的信息保持一致的**。
 
@@ -188,7 +188,7 @@ TiFlash 负责拉取 schema 的 `TiDBSchemaSyncer` 会记录整体的 schema ver
 
 在校验结束后，负责读的模块根据我们对应表的 `tidb_table_info` 去建立 stream 进行读取。Schema 相关的流程，我们可以在`InterpreterSelectQuery.cpp`的 `getAndLockStorageWithSchemaVersion` 以及`DAGStorageInterpreter.cpp` 的 `getAndLockStorages` 中进行进一步的了解。 `InterpreterSelectQuery.cpp` 和 `DAGStorageInterpreter.cpp` 都是来负责对 TiFlash 进行读表的操作，前者是负责 clickhouse client 连接下读取的流程，后者则是 TiDB 支路中读取的流程。
 
-## **Special Case**
+## Special Case
 
 最后我们看一个例子，来了解一下 Drop Table 和 Recover Table 相关的情况。
 
