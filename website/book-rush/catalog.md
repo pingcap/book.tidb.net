@@ -74,6 +74,7 @@ sidebar_position: 0.5
   - [TiDB 6.1 新特性解读 | TiDB 6.1 MPP 实现窗口函数框架](4-performance/3-mpp-engine/2-mpp-window-functions.md)
 
 - ### [4.4 TiDB 6.0 容灾能力体验](4-performance/4-disaster-recovery/index.md)
+  - [TiCDC 6.0 原理之 Sorter 演进](4-performance/4-disaster-recovery/1-ticdc-sorter.md)
 
 - ### [4.5 TiKV 节点重启后 leader 平衡加速](4-performance/5-tikv-restart/index.md)
   - [TiDB 6.0 体验：TiKV 重启后 leader 均衡加速](4-performance/5-tikv-restart/1-leader-transfer-speedup.md)
