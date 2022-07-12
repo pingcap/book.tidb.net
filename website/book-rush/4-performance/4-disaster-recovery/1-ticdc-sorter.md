@@ -53,7 +53,7 @@ Memory Sorter 用两个 Go Slice 分别将未排序的数据变更事件和 Reso
    1. Start TS 相同，DELETE 事件排在 PUT 事件前面
 
 <center>
-    <img src={useBaseUrl('https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/sort1-1656381637600.png')} width="80%" />
+    <img src={useBaseUrl('https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/sort1-1656381637600.png')} width="65%" />
 </center>
 
 排序完成后，从 `resolvedTsGroup` 中取最后一个作为 maxResolvedTs，然后开始执行 Merge 操作。将上一次排好序的事件与本次排好序的事件做二路归并排序，如果事件的 Commited / Resolved TS 小于 maxResolvedTs，则直接发送到下游，剩余事件重新缓存到内存中，等待下一个 Resolved TS 事件的到来。
@@ -73,7 +73,7 @@ Unified Sorter 在初始化时，会开启多个 `heapSorter` 实例（通过 `s
 `heapSorter` 实例借助内部 heap 对事件进行排序（排序规则与 Memory Sorter 相同），当遇到 Resolved 事件或 heap 内存超过阈值时，会执行一次 Flush 操作，对整个 Heap 做一次 Dump。Flush 操作由全局单例 backEndPool 统一管理存储资源，并由全局单例 `heapSorterIOPool` 统一管理计算资源。
 
 <center>
-    <img src={useBaseUrl('https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/unified1-1656381489439.png')} width="80%" />
+    <img src={useBaseUrl('https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/unified1-1656381489439.png')} width="70%" />
 </center>
 
 `backEndPool` 提供了基于内存的 `memoryBackEnd` 和基于文件系统的 `fileBackEnd` 两种存储实现，当内存空间足够时，优先使用 `memoryBackEnd，`而当内存空间不足时，会新建一个文件，使用该文件作为 `fileBackEnd` 写入排好序的事件消息。文件名的格式为： `${指定路径名}/sort-pid-${counter}.tmp`，如 `/data/sort-10501-1.tmp`。写入完成后会将 `flushTask` 发送至 Merger 等待进一步处理。
@@ -81,7 +81,7 @@ Unified Sorter 在初始化时，会开启多个 `heapSorter` 实例（通过 `s
 经过这一步操作，事件在内存 Heap 进行堆排序，再刷出到内存或文件，形成一个个的静态 Heap（这里没有用持久化 Heap 来表述）。在 Merge 阶段，Merger 会再创建一个内存 Heap，对当前有效的 `flushTask` 进行多路归并排序后，将事件消息 Output 到下游。
 
 <center>
-    <img src={useBaseUrl('https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/unified2-1656381515771.png')} width="80%" />
+    <img src={useBaseUrl('https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/unified2-1656381515771.png')} width="65%" />
 </center>
 
 相比 Memory Sorter，Unified Sorter 解决了排序事件全部缓存在内存中，有可能引起OOM的问题，但仍然存在计算资源与表数量成线性关系的问题，资源利用率不高。
