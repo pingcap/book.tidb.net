@@ -5,7 +5,7 @@ hide_title: true
 
 # TiDB 和 Python 的简单 CRUD 应用程序
 
-> 作者：[ShawnYan](https://tidb.net/u/ShawnYan/post/all), DBA, TiDB Fans.
+> 作者：[ShawnYan](https://tidb.net/u/ShawnYan/post/all), DBA, TUG MOA.
 
 本文将介绍如何使用 Python 对 TiDB 进行应用开发，并做简单的 CRUD 演示。
 

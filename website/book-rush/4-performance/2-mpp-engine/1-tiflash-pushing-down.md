@@ -5,7 +5,7 @@ hide_title: true
 
 # TiDB 6.0 新特性解读 | TiFlash 新增算子和函数下推
 
-> 作者：[ShawnYan](https://tidb.net/u/ShawnYan/post/all), DBA, TiDB Fans.
+> 作者：[ShawnYan](https://tidb.net/u/ShawnYan/post/all), DBA, TUG MOA.
 
 TiDB 6.0 对 TiFlash 的功能做了进一步增强，其中新增支持了 12 个函数和 2 个算子下推到 TiFlash 层的 MPP 引擎进行计算。
 
