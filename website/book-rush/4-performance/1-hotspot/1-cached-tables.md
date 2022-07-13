@@ -134,17 +134,17 @@ Query OK, 0 rows affected (5.32 sec)
 
 ```markdown
 server_configs:
-tidb:
-log.slow-threshold: 300
-new_collations_enabled_on_first_bootstrap: true
+  tidb:
+    log.slow-threshold: 300
+    new_collations_enabled_on_first_bootstrap: true
 
-tikv:
-readpool.coprocessor.use-unified-pool: true
-readpool.storage.use-unified-pool: false
-pd:
-replication.enable-placement-rules: true
-    replication.location-labels:
-    - host
+  tikv:
+    readpool.coprocessor.use-unified-pool: true
+    readpool.storage.use-unified-pool: false
+
+  pd:
+    replication.enable-placement-rules: true
+    replication.location-labels: ["host"]
 ```
 
 由于硬件条件受限，只有 2 台普通性能的云主机混合部署的集群（实际上和单机部署也差不多了）。单机 CPU 核数较少且 TiDB Server 没有做负载均衡所以并发无法调整太高。以下测试均使用一个 TiDB Server 节点进行压测，因此不用特别关注本次测试的测试数据，可能会跟其他测试结果有所出入，不代表最佳性能实践和部署，测试结果仅限参考。
