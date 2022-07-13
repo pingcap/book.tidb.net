@@ -5,7 +5,7 @@ hide_title: true
 
 # TiDB 6.1 新特性解读 | TiDB 6.1 MPP 实现窗口函数框架
 
-> 作者：[ShawnYan](https://tidb.net/u/ShawnYan/post/all), DBA, TiDB Fans.
+> 作者：[ShawnYan](https://tidb.net/u/ShawnYan/post/all), DBA, TUG MOA.
 
 
 [TiDB v6.1.0 LTS](https://docs.pingcap.com/zh/tidb/stable/release-6.1.0) 已于 6 月 13 日发版，其中有一项关键特性为“MPP 实现窗口函数框架”。TiDB 中的窗口函数是在 TiDB 3.0 GA 版本引入，基本兼容 MySQL 8.0 所支持的窗口函数。

@@ -5,7 +5,7 @@ hide_title: true
 
 # TiDB 6.0 离线包变更
 
-> 作者：[ShawnYan](https://tidb.net/u/ShawnYan/post/all), DBA, TiDB Fans.
+> 作者：[ShawnYan](https://tidb.net/u/ShawnYan/post/all), DBA, TUG MOA.
 
 ## 背景
 
