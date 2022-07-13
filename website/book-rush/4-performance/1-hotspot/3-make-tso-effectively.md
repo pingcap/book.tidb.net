@@ -60,7 +60,7 @@ Read-Commited 隔离级别需要在悲观事务模式下，在悲观事务中每
 
 ## 5. Local TSO
 
-在多数据中心场景下 PD leader 位于某个数据中心内，数据中心间的延迟会造成 TSO 请求延迟增加，如果能够在数据中心内完成 TSO 请求和分配则可以大大降低 TSO 请求延迟。基于此 tidb 引入了 Local TSO (实验功能)，PD 中设计 2 个 TSO allocator 角色：local tso allocator 和 global tso allocator，相应的事务也被分成了本地事务 local transaction 和全局事务 global transaction 两种。
+在多数据中心场景下 PD leader 位于某个数据中心内，数据中心间的延迟会造成 TSO 请求延迟增加，如果能够在数据中心内完成 TSO 请求和分配则可以大大降低 TSO 请求延迟。基于此 tidb 引入了 Local TSO（隐藏特性），PD 中设计 2 个 TSO allocator 角色：local tso allocator 和 global tso allocator，相应的事务也被分成了本地事务 local transaction 和全局事务 global transaction 两种。
 
 - **Local TSO**
 
@@ -129,7 +129,7 @@ Alter table new_order PARTITION p0  PLACEMENT POLICY dc1_leaders;
 
 ### 6.4 Local TSO
 
-Local TSO 作为实验功能尚需完善，TPCC 测试中当开启该功能后出现大量报主键重复错误。
+Local TSO 作为隐藏特性尚需完善，TPCC 测试中当开启该功能后出现大量报主键重复错误。
 
 ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1653987345480.png)
 
@@ -141,4 +141,4 @@ Local TSO 作为实验功能尚需完善，TPCC 测试中当开启该功能后�
 
 2. RC Read TSO 优化适合于读多写少的场景，如果数据冲突严重反而会造成性能下降。
 
-3. Local TSO 作为 TiDB 分布式授时方案从理论上能够解决因数据中心间的延迟造成的 TSO 延迟，不过目前实验功能尚有一些问题。
+3. Local TSO 作为 TiDB 分布式授时方案从理论上能够解决因数据中心间的延迟造成的 TSO 延迟，不过目前作为隐藏特性尚有一些问题。
