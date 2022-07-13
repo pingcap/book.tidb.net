@@ -94,8 +94,8 @@ sidebar_position: 0.5
 
 ### [第五章：TiDB 6.0 测评](5-benchmark/index.md)
 
-- [TiDB 6.0.0 与 5.1.4 对比测试](5-benchmark/1-other-version/1-tidb-sysbench-v6-0-0-v5-1-4.md)
-- [TiKV 节点重启后业务恢复速度（leader 平衡速度）v6.0 vs v5.1.2 对比测试](5-benchmark/1-other-version/2-tikv-business-recovery.md)
+- [TiDB 6.0.0 与 5.1.4 对比测试](5-benchmark/1-tidb-sysbench-v6-0-0-v5-1-4.md)
+- [TiKV 节点重启后业务恢复速度（leader 平衡速度）v6.0 vs v5.1.2 对比测试](5-benchmark/2-tikv-business-recovery.md)
 
 ### [第六章：TiDB 6.0 最佳实践](6-best-practice/index.md)
 
@@ -113,7 +113,7 @@ sidebar_position: 0.5
 #### [6.3 其他最佳实践](6-best-practice/3-other-practice/index.md)
 
 - [TiDB Lightning 在数据迁移中的应用与错误处理实践](6-best-practice/3-other-practice/1-tidb-lightning.md)
-- [基于 TiDB v6.0 部署两地三中心](6-best-practice/2-other-practice/3-two-cities-three-datacenters.md)
+- [基于 TiDB v6.0 部署两地三中心](6-best-practice/3-other-practice/2-two-cities-three-datacenters.md)
 - [TiDB 6.1 单机环境 On openEular 2003 SP3](6-best-practice/3-other-practice/3-tidb61-on-openEular2003.md)
 - [分布式数据库 TiDB 6.0 集群保姆级安装手册](6-best-practice/3-other-practice/4-TiDB-6-0-installation.md)
 
