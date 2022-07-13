@@ -40,7 +40,7 @@ sidebar_position: 0.5
 
 #### [3.1 TiUniManager（原 TiEM） 体验](3-manageability/1-tiunimanager-practice/index.md)
 
-- [如何让 TiDB 集群管理“更省心”？TiuniManager（原 TiEM）使用教程来了](3-manageability/1-tiunimanager-practice/1-tiunimanager-course.md)
+- [如何让 TiDB 集群管理“更省心”？TiUniManager（原 TiEM）使用教程来了](3-manageability/1-tiunimanager-practice/1-tiunimanager-course.md)
 - [TiDB 生态工具 -- TiUniManager（原 TiEM）v1.0.0 体验](3-manageability/1-tiunimanager-practice/2-tiunimanager.md)
 - [TiUniManager（原 TiEM）初体验](3-manageability/1-tiunimanager-practice/3-experience-tiunimanager.md)
 
