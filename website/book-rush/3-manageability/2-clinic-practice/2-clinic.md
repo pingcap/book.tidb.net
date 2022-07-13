@@ -49,7 +49,7 @@ Clinic 目前支持 TiUP 部署的 v4.0 以上的 TiDB 本地集群和 TiDB Clou
 
 ## 三、体验目标
 
-1. 体验 Clinic 基于 TiD v6.0.0 离线安装版
+1. 体验 Clinic 基于 TiDB v6.0.0 离线安装版
 2. 体验 远程协助快速定位集群问题
 
 ### 3.1 安装 TiDB 集群（这里不再详细说明）
