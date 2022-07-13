@@ -1,5 +1,5 @@
 ---
-title: TiDB 6.0.0 与 5.1.4 对比测试
+title: TiDB Sysbench 性能对比测试报告 - v5.1.4 对比 v6.0.0 DMR
 hide_title: true
 ---
 
