@@ -94,7 +94,7 @@ sidebar_position: 0.5
 
 ### [第五章：TiDB 6.0 测评](5-benchmark/index.md)
 
-- [TiDB 6.0.0 与 5.1.4 对比测试](5-benchmark/1-tidb-sysbench-v6-0-0-v5-1-4.md)
+- [TiDB Sysbench 性能对比测试报告 - v5.1.4 对比 v6.0.0 DMR](5-benchmark/1-tidb-sysbench-v6-0-0-v5-1-4.md)
 - [TiKV 节点重启后业务恢复速度（leader 平衡速度）v6.0 vs v5.1.2 对比测试](5-benchmark/2-tikv-business-recovery.md)
 
 ### [第六章：TiDB 6.0 最佳实践](6-best-practice/index.md)
