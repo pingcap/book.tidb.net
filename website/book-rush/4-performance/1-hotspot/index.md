@@ -1,9 +1,9 @@
 ---
-title: 2. TiDB 6.0 热点场景优化体验
+title: 1. TiDB 6.0 热点场景优化体验
 hide_title: true
 ---
 
-# 2. TiDB 6.0 热点场景优化体验
+# 1. TiDB 6.0 热点场景优化体验
 
 - 热点小表缓存
 

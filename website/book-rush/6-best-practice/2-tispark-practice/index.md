@@ -1,9 +1,9 @@
 ---
-title: 6. TiDB 6.0 其他特性体验
+title: 2. Tispark 最佳实践
 hide_title: true
 ---
 
-# 6. TiDB 6.0 其他特性体验
+# 2. Tispark 最佳实践
 
 前面的目录中并没有一一列出 6.0 所有新增特性，其他特性详见 TiDB 6.0 Release 文档：https://docs.pingcap.com/zh/tidb/v6.0/release-6.0.0-dmr
 
