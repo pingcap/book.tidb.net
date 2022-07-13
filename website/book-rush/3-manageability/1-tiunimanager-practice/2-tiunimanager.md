@@ -20,7 +20,7 @@ TiEM 看介绍是企业版独有的功能，咱公司使用的社区版就没办
 
 这里解释一下为什么有两个名字：   -- 2022.6.20
 
-TiEM 已于近日开源，改名为 TiUniManager(https://github.com/pingcap/tiunimanager)，所以后续社区版的 TiDB 集群可以用 TiUniManager 来管理。
+TiEM 已于近日开源，改名为 [TiUniManager](https://github.com/pingcap/tiunimanager)，所以后续社区版的 TiDB 集群可以用 TiUniManager 来管理。
 
 不过我的文章写的比较早，所以我的文章都是叫 TiEM，这个名字和 TiUniManager 等同，请读者同学们了解。
 
