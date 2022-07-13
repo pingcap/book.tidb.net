@@ -62,7 +62,7 @@ Memory Sorter 用两个 Go Slice 分别将未排序的数据变更事件和 Reso
     <img src={useBaseUrl('https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/sort2-1656381650830.png')} width="80%" />
 </center>
 
-由于 Memory Sorter 完全使用内存来存储等待排序的事件，当上游出现大量数据写入，而此时如果下游写入速度较慢，导致 Memory Sorter 的 Output 环节出现消息堆积时，会导致数据在 Memory Sorter 的内存中堆积，而在缺少 Back Pressure 机制的情况下，容易引发 OOM。此外，TiCDC 的增量扫环节如果有大量 Unresolved 数据堆积在 Memory Sorter，也易引发OOM。另一方面，Memory Sorter 是 table 级别的，每个 Changefeed 中的每个 TablePipeline 都需要创建一个 Sorter 实例，而 Sorter 内部又会开启多个 Goroutine 进行排序，当表数量较多时，Goroutine 数量也会成倍增多，给 Go Runtime 调度带来压力.
+由于 Memory Sorter 完全使用内存来存储等待排序的事件，当上游出现大量数据写入，而此时如果下游写入速度较慢，导致 Memory Sorter 的 Output 环节出现消息堆积时，会导致数据在 Memory Sorter 的内存中堆积，而在缺少 Back Pressure 机制的情况下，容易引发 OOM。此外，TiCDC 的增量扫环节如果有大量 Unresolved 数据堆积在 Memory Sorter，也易引发OOM。另一方面，Memory Sorter 是 table 级别的，每个 Changefeed 中的每个 TablePipeline 都需要创建一个 Sorter 实例，而 Sorter 内部又会开启多个 Goroutine 进行排序，当表数量较多时，Goroutine 数量也会成倍增多，给 Go Runtime 调度带来压力。
 
 ### Unified Sorter
 
@@ -108,7 +108,7 @@ DB Sorter 由以下核心模块组成：
     <img src={useBaseUrl('https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/20220627194955-1656380709070.png')} width="80%" />
 </center>
 
-采用这样的 Key 编码方式是与之前提到的事件排序规则密切相关，Commited / Resolved TS 在最前，Start TS 其次，最后是事件类型。此外，由于 DBActor 并不是每张表独享的，因此还需要为每张表划分一个 Namespace，Key 编码的 Unique ID 和 Table ID 就唯一确定了当前 DBActor 中这张表对应的 Namespace.
+采用这样的 Key 编码方式是与之前提到的事件排序规则密切相关，Commited / Resolved TS 在最前，Start TS 其次，最后是事件类型。此外，由于 DBActor 并不是每张表独享的，因此还需要为每张表划分一个 Namespace，Key 编码的 Unique ID 和 Table ID 就唯一确定了当前 DBActor 中这张表对应的 Namespace。
 
 整个排序处理流程与 Unified Sorter 比较相似但略有不同，主要区别在于 DB Sorter 会将同一张表的所有事件消息路由到同一个 DB 实例上，这样就不再需要在 Output 之前进行多路归并排序了。
 
