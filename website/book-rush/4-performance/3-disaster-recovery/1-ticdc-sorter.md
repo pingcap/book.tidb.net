@@ -122,7 +122,7 @@ DB Sorter 解决了 Unified Sorter 排序时的资源使用与表数量成线性
 
 1. [db sorter design doc](https://github.com/pingcap/tiflow/blob/master/docs/design/2022-03-16-ticdc-db-sorter.md)
 1. [sorter issue](https://github.com/pingcap/tiflow/issues/2698)
-1. [5.3 sorter doc](https://docs.pingcap.com/zh/tidb/v5.3/manage-ticdc)
+1. [Unified Sorter]([https://docs.pingcap.com/zh/tidb/v5.3/manage-ticdc](https://docs.pingcap.com/zh/tidb/v6.0/manage-ticdc#unified-sorter-%E5%8A%9F%E8%83%BD))
 1. [TiDB 6.0 Book Rush 文章构思指南](https://tidb.net/book/book-rush/event-guide/article-guide)
 1. [TiCDC系列分享-02-剖析同步模型与基本架构](https://tidb.net/blog/9568ace1)
 1. [TiCDC简介](https://docs.pingcap.com/zh/tidb/stable/ticdc-overview#ticdc-%E7%AE%80%E4%BB%8B)
