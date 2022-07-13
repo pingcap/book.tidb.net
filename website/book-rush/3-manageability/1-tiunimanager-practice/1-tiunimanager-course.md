@@ -1,9 +1,9 @@
 ---
-title: 如何让 TiDB 集群管理“更省心”？TiuniManager（原 TiEM）使用教程来了
+title: 如何让 TiDB 集群管理“更省心”？TiUniManager（原 TiEM）使用教程来了
 hide_title: true
 ---
 
-# 如何让 TiDB 集群管理“更省心”？TiuniManager（原 TiEM）使用教程来了
+# 如何让 TiDB 集群管理“更省心”？TiUniManager（原 TiEM）使用教程来了
 
 > 作者：周鹏，PingCAP 产品经理
 
