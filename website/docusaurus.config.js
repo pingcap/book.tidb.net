@@ -51,8 +51,22 @@ const config = {
             to: "/tidb-monthly/",
             from: "/",
           },
+          // book-rush redirect
+          {
+            to: "/book-rush/features/",
+            from: "/book-rush/features/other-features/",
+          },
+          {
+            to: "/book-rush/performance/",
+            from: "/book-rush/performance/data-consistency/",
+          },
+          {
+            to: "/book-rush/benchmark/",
+            from: "/book-rush/benchmark/other-database/",
+          },
         ],
         createRedirects(existingPath) {
+          // book-rush redirect
           if (
             existingPath.includes(
               "/book-rush/manageability/tiunimanager-practice"
@@ -63,6 +77,24 @@ const config = {
               existingPath.replace(
                 "/book-rush/manageability/tiunimanager-practice",
                 "/book-rush/manageability/tiem-practice"
+              ),
+            ];
+          }
+          if (existingPath.includes("/book-rush/benchmark/")) {
+            return [
+              existingPath.replace(
+                "/book-rush/benchmark/",
+                "/book-rush/benchmark/other-version/"
+              ),
+            ];
+          }
+          if (
+            existingPath.includes("/book-rush/best-practice/tispark-practice/")
+          ) {
+            return [
+              existingPath.replace(
+                "/book-rush/best-practice/tispark-practice/",
+                "/book-rush/performance/other-features/"
               ),
             ];
           }
