@@ -19,12 +19,9 @@ TiDB 社区技术月刊建立的初心是为了让社区的小伙伴们能通过
 - 投稿方式：进入 [TiDB 社区专栏](https://tidb.net/blog)撰写文章，发布时请选择【故障排查/诊断】标签
 - 文章要求：1）原创作品    2）内容详细建议图文并茂   
 - 范文参考：
-
-[专栏 - 【故障解读】v5.1.1-调整变量 tidb_isolation_read_engines 影响 tiflash SQL 执行计划 | TiDB 社区](https://tidb.net/blog/audits/75631274)
-
-[专栏 - 【故障解读】v5.3.0 BR 备份报错并且耗时比升级前更长 | TiDB 社区](https://tidb.net/blog/audits/2da37b0a)
-
-[专栏 - TiDB v5.1.2 - TiCDC 不同步，checkpointTs 不推进的问题排查 | TiDB 社区](https://tidb.net/blog/audits/4a934bb8)
+  - [专栏 - 【故障解读】v5.1.1-调整变量 tidb_isolation_read_engines 影响 tiflash SQL 执行计划 | TiDB 社区](https://tidb.net/blog/audits/75631274)
+  - [专栏 - 【故障解读】v5.3.0 BR 备份报错并且耗时比升级前更长 | TiDB 社区](https://tidb.net/blog/audits/2da37b0a)
+  - [专栏 - TiDB v5.1.2 - TiCDC 不同步，checkpointTs 不推进的问题排查 | TiDB 社区](https://tidb.net/blog/audits/4a934bb8)
 
 
 
