@@ -864,7 +864,7 @@ tiup cluster start jiekexu-tidb
 tiup cluster stop jiekexu-tidb
 ```
 
-### ![图片.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/图片-1655650569472.png)
+![图片.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/图片-1655650569472.png)
 
 ### 13、命令行连接到 TiDB 集群
 
