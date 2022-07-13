@@ -117,7 +117,7 @@ TiDB 6.0 的 Placement Rules in SQL 功能让用户通过 SQL 配置数据在集
  
 ```
 
-高级放置策略具体内容，请看官网介绍[https://docs.pingcap.com/zh/tidb/stable/placement-rules-in-sql#%E9%AB%98%E7%BA%A7%E6%94%BE%E7%BD%AE](https://docs.pingcap.com/zh/tidb/stable/placement-rules-in-sql#高级放置)。
+高级放置策略具体内容，请看官网介绍：[高级放置选项](https://docs.pingcap.com/zh/tidb/v6.0/placement-rules-in-sql#%E9%AB%98%E7%BA%A7%E6%94%BE%E7%BD%AE%E9%80%89%E9%A1%B9)。
 
 ## 环境
 
