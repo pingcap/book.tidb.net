@@ -1,9 +1,9 @@
 ---
-title: TiDB 5.4.2 Release Notes
+title: TiDB v5.4.2 Release Notes
 hide_title: true
 ---
 
-# TiDB 5.4.2 Release Notes
+# TiDB v5.4.2 Release Notes
 
 发版日期：2022 年 7 月 8 日
 

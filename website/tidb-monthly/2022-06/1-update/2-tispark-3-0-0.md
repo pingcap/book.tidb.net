@@ -1,9 +1,9 @@
 ---
-title: TiSpark 3.0.0
+title: TiSpark v3.0.0 主要更新
 hide_title: true
 ---
 
-# TiSpark 3.0.0 主要更新
+# TiSpark v3.0.0 主要更新
 
 **TiSpark v3.0.0 版本**于 2022 年 06 月 15日 正式发布。**主要变更如下：**
 
@@ -56,7 +56,7 @@ hide_title: true
 
 ## 更多信息
 
-更多发布信息，请查看 [TiSpark release notes](https://github.com/pingcap/tispark/releases/tag/v3.0.0)
+更多发布信息，请查看 [TiSpark Release Notes](https://github.com/pingcap/tispark/releases/tag/v3.0.0)
 
 相关文档地址：https://github.com/pingcap/tispark#readme
 
