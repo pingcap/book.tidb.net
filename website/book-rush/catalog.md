@@ -101,7 +101,7 @@ sidebar_position: 0.5
 
 #### [6.1 HTAP 最佳实践](6-best-practice/1-htap-practice/index.md)
 
-- [TiFlash 6.0 on K8s 扩容与新特性实践](6-best-practice/1-htap-practice/1-tiflash-6.0-on-K8s.md)
+- [TiFlash 6.0 on K8s 扩容与新特性实践](6-best-practice/1-htap-practice/1-tiflash-6-0-on-k8s.md)
 
 #### [6.2 TiSpark 最佳实践](6-best-practice/2-tispark-practice/index.md)
 
