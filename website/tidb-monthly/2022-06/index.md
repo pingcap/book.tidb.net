@@ -69,4 +69,4 @@ sidebar_position: 8
 
 感谢所有贡献内容的作者（按文章收录顺序排列）：[黄海升](https://github.com/SeaRise)，[朱一帆](https://github.com/SchrodingerZhu)，[洪韫妍](https://github.com/hongyunyan)，[CuteRay](https://tidb.net/u/CuteRay/answer)，[Junshen Huang](https://github.com/JaySon-Huang)，[Dongpo Liu](https://github.com/hi-rustin)，[Ann_ann](https://tidb.net/u/Ann_ann/answer)，[俺也一样](https://tidb.net/u/%E4%BF%BA%E4%B9%9F%E4%B8%80%E6%A0%B7/answer)，[代晓磊_Mars](https://tidb.net/u/%E4%BB%A3%E6%99%93%E7%A3%8A_Mars/answer)，[Liuhaoao](https://tidb.net/u/Liuhaoao/answer)，[Jiawei](https://tidb.net/u/Jiawei/answer)，[jiashiwen](https://tidb.net/u/jiashiwen/answer)，[ShawnYan](https://tidb.net/u/ShawnYan/answer)，[Zeratulll](https://tidb.net/u/Zeratulll/answer)，[数据小黑](https://tidb.net/u/%E6%95%B0%E6%8D%AE%E5%B0%8F%E9%BB%91/answer)，[JiekeXu](https://tidb.net/u/JiekeXu/answer)，[h5n1](https://tidb.net/u/h5n1/answer)
 
-感谢本期月刊的内容编辑：[Xiaolu Zhou](https://github.com/luzizhuo)，[ShawnYan](https://tidb.net/u/ShawnYan/post/all)
+感谢本期月刊的内容编辑：[Xiaolu Zhou](https://github.com/luzizhuo)，[ShawnYan](https://tidb.net/u/ShawnYan/post/all)，[Zaiyun Zhao](https://tidb.net/u/Zavier/answer)
