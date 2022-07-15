@@ -16,9 +16,9 @@ sidebar_position: 8
 
 - [产品更新](1-update/index.md)
   - [TiDB v6.1.0 Release Notes](1-update/1-release-notes.md)
-  - [TiSpark 3.0.0](1-update/2-tispark-3-0-0.md)
-  - [TiSpark 3.0.1](1-update/3-tispark-3-0-1.md)
-  - [TiDB 5.4.2 Release Notes](1-update/4-5-4-2-release.md)
+  - [TiSpark v3.0.0 主要更新](1-update/2-tispark-3-0-0.md)
+  - [TiSpark v3.0.1 主要更新](1-update/3-tispark-3-0-1.md)
+  - [TiDB v5.4.2 Release Notes](1-update/4-5-4-2-release.md)
 
 - [开发适配](2-development/index.md)
   - [应用开发者专属的 TiDB 使用指南发布啦！丨TiDB Community](2-development/1-user-guide.md)
