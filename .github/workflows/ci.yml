@@ -36,18 +36,30 @@ jobs:
     name: Deploy Website
     steps:
       - name: Preview
-        run: |
-          curl \
-          -f -L -XPUT \
-          -H 'Content-Type: application/json' \
-          -H "Authorization: token ${{ secrets.PREVIEW_UPDATER_TOKEN }}" \
-          -d "{\"image\":\"${{ secrets.DOCKER_REGISTRY }}/tidb-community-book:${{ github.sha }}\"}" \
-          "${{ secrets.UK8S_IMG_UPDATER_URL }}/community-book-preview"
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            curl \
+            -f -L -XPUT \
+            -H 'Content-Type: application/json' \
+            -H "Authorization: token ${{ secrets.PREVIEW_UPDATER_TOKEN }}" \
+            -d "{\"image\":\"${{ secrets.DOCKER_REGISTRY }}/tidb-community-book:${{ github.sha }}\"}" \
+            "${{ secrets.UK8S_IMG_UPDATER_URL }}/community-book-preview"
       - name: Prodution
-        run: |
-          curl \
-          -f -L -XPUT \
-          -H 'Content-Type: application/json' \
-          -H "Authorization: token ${{ secrets.PROD_UPDATER_TOKEN }}" \
-          -d "{\"image\":\"${{ secrets.DOCKER_REGISTRY }}/tidb-community-book:${{ github.sha }}\"}" \
-          "${{ secrets.UK8S_IMG_UPDATER_URL }}/community-book"
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            curl \
+            -f -L -XPUT \
+            -H 'Content-Type: application/json' \
+            -H "Authorization: token ${{ secrets.PROD_UPDATER_TOKEN }}" \
+            -d "{\"image\":\"${{ secrets.DOCKER_REGISTRY }}/tidb-community-book:${{ github.sha }}\"}" \
+            "${{ secrets.UK8S_IMG_UPDATER_URL }}/community-book"
