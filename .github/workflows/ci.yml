@@ -35,23 +35,19 @@ jobs:
     runs-on: ubuntu-latest
     name: Deploy Website
     steps:
-      - name: Update preview
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.PREVIEW_HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.KEY }}
-          port: ${{ secrets.PORT }}
-          script: |
-            kubectl rollout restart deployment/community-book-preview
-      - name: Update prod
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.KEY }}
-          port: ${{ secrets.PORT }}
-          script: |
-            cd /data/tidb-book/
-            docker-compose pull
-            docker-compose up -d --remove-orphans
+      - name: Preview
+        run: |
+          curl \
+          -f -L -XPUT \
+          -H 'Content-Type: application/json' \
+          -H "Authorization: token ${{ secrets.PREVIEW_UPDATER_TOKEN }}" \
+          -d "{\"image\":\"${{ secrets.DOCKER_REGISTRY }}/tidb-community-book:${{ github.sha }}\"}" \
+          "${{ secrets.UK8S_IMG_UPDATER_URL }}/community-book-preview"
+      - name: Prodution
+        run: |
+          curl \
+          -f -L -XPUT \
+          -H 'Content-Type: application/json' \
+          -H "Authorization: token ${{ secrets.PROD_UPDATER_TOKEN }}" \
+          -d "{\"image\":\"${{ secrets.DOCKER_REGISTRY }}/tidb-community-book:${{ github.sha }}\"}" \
+          "${{ secrets.UK8S_IMG_UPDATER_URL }}/community-book"
