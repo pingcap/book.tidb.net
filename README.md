@@ -4,9 +4,6 @@ TiDB 社区电子书 [tidb.net/book](https://tidb.net/book)
 
 ## License
 
-`book.tidb.net` is [MIT Licensed](./LICENSE.md).
+`book.tidb.net` is [MIT Licensed](./LICENSE).
 
-All ebook content (such as `.md` files under `/website/book-rush`, `/website/db-selection` and `/website/tidb-monthly` folders) is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
-
-You should have received a copy of the license along with this
-work. If not, see <http://creativecommons.org/licenses/by-nc-sa/4.0/>.
+All ebook content (such as `.md` files under `/website/book-rush`, `/website/db-selection` and `/website/tidb-monthly` folders) is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](./LICENSE-content).
