@@ -28,7 +28,7 @@ jobs:
           context: .
           push: true
           tags: |
-            ${{ secrets.DOCKER_REGISTRY }}/tidb-community-book:latest
+            ${{ secrets.DOCKER_REGISTRY }}/tidb-community-book:${{ github.sha }}
 
   deploy:
     needs: build
