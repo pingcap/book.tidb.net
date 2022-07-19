@@ -86,7 +86,8 @@ sidebar_position: 0.5
 
 #### [4.3 TiDB 6.0 容灾能力体验](4-performance/3-disaster-recovery/index.md)
 
-- [TiCDC 6.0 原理之 Sorter 演进](4-performance/3-disaster-recovery/1-ticdc-sorter.md)
+- [TiCDC 架构和数据同步链路解析](4-performance/3-disaster-recovery/1-ticdc-arch-and-data-replicating.md)
+- [TiCDC 6.0 原理之 Sorter 演进](4-performance/3-disaster-recovery/2-ticdc-sorter.md)
 
 #### [4.4 TiKV 节点重启后 leader 平衡加速](4-performance/4-tikv-restart/index.md)
 
