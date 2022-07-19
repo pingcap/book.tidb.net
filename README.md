@@ -2,22 +2,8 @@
 
 TiDB 社区电子书 [tidb.net/book](https://tidb.net/book)
 
-## Structure
+## License
 
-```
-.
-├── Dockerfile
-├── README.md
-└── website                   // website built with Docusaurus
-    ├── README.md
-    ├── babel.config.js
-    ├── book-rush-6-x         // Book Rush 6.x content
-    ├── docusaurus.config.js
-    ├── monthly               // Monthly content
-    ├── package.json
-    ├── sidebars.js
-    ├── src
-    ├── static
-    ├── tsconfig.json
-    └── yarn.lock
-```
+`book.tidb.net` is [MIT Licensed](./LICENSE).
+
+All ebook content (such as `.md` files under `/website/book-rush`, `/website/db-selection` and `/website/tidb-monthly` folders) is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](./LICENSE-content).
