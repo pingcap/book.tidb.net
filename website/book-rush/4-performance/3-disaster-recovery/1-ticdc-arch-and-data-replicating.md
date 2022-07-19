@@ -5,6 +5,8 @@ hide_title: true
 
 # TiCDC 架构和数据同步链路解析
 
+> 作者简介：[hi-rustin](https://github.com/hi-rustin)，PingCAP 研发工程师。
+
 [TiCDC] 是 [TiDB] 生态中的一个数据同步工具，它通过拉取 [TiKV] 的变更日志实现数据的增量同步。它除了可以将 TiDB 的数据同步至 [MySQL] 兼容的数据库之外，还提供了同步至 [Kafka] 的能力，支持 [canal] 和 [avro] 多种开放消息协议供其他系统订阅数据变更。
 
 ## 基本概念
