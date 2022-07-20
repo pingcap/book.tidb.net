@@ -2,7 +2,7 @@
 sidebar_position: 0.5
 ---
 
-# TiDB 6.x 电子书 目录
+# TiDB 6.x in Action 目录
 
 ### [第一章：TiDB 6.0 原理和特性](1-features/index.md)
 
