@@ -2,31 +2,16 @@
 sidebar_position: 0
 ---
 
-# TiDB 6.0 Book Rush！
+# TiDB 6.x in Action
 
-TiDB 6.0 Book Rush 活动火热进行中，面向社区征集 TiDB 6.0 的体验者和写作者，只要你有计划试用或正在试用 TiDB 6.0，都可以报名参加本次活动。你将有机会和同期试用的小伙伴一起体验 TiDB 6.0 的最新特性，交流试用心得，最后将试用经验写成文章，会永久地留在 TiDB 的里程碑中，成为更多人学习 TiDB 的宝贵资料。当然还有丰富的周边奖励和积分等你拿！
+![](https://img2.pingcap.com/forms/8/1/81c4b49710686bd115c3ec65205a3ce0ee1c229e.jpeg)
+![](https://img2.pingcap.com/forms/c/a/cad3fccff49628f81d1995a976a68f62565e76ce.jpeg)
 
-TiDB 6.0 Book Rush 将分为 TiDB 6.0 原理和特性，TiDB Developer 体验指南，TiDB 6.0 可管理性，TiDB 6.0 内核优化与性能提升，TiDB 6.0 测评，TiDB 6.0 使用实践 6 大内容模块。我们已经初拟了[电子书大纲](https://tidb.net/book/book-rush/)，你可以根据兴趣和需求来认领要创作的部分。
+## TiDB 6.0 Book Rush Reviewer
 
-## 快速报名入口
+在此，特别感谢参与本电子书 Review 的老师：[陈超](https://tidb.net/u/%E5%95%A6%E5%95%A6%E5%95%A6%E5%95%A6%E5%95%A6)、[严少安](https://tidb.net/u/ShawnYan)、[尹裕皓](https://tidb.net/u/g7%E5%B0%B9%E8%A3%95%E7%9A%93)、[张俊亭](https://tidb.net/u/dba-kit)、[张田](https://tidb.net/u/%E6%95%B0%E6%8D%AE%E5%B0%8F%E9%BB%91)、[姚维](https://tidb.net/u/wink)、[陈畅亮](https://tidb.net/u/%E5%90%AC%E9%A3%8E%E5%90%B9%E9%9B%A8)、[陈霜](https://tidb.net/u/crazycs520-PingCAP/answer)、[霍昊](https://tidb.net/u/sykp241095)、[李仲舒](https://tidb.net/u/lucien)、[戚铮](https://tidb.net/u/qizheng)、[苏志鹏](https://tidb.net/u/jansu-dev)、[王琦智](https://tidb.net/u/Icemap)、乔丹、陈焕生、邵希茜、宋昱颖。
 
-https://forms.pingcap.com/f/BookRush
-
-## 活动详情
-
-[TiDB 6.0 Book Rush！一起来分布式创作 6.0 的使用手册吧！](7-event-guide/1-event-detail.md)
-
-## 文章构思指南
-
-[TiDB 6.0 Book Rush 文章构思指南](7-event-guide/2-article-guide.md)
-
-## 贡献指南
-
-[TiDB 6.0 Book Rush 贡献指南](7-event-guide/3-contribute-guide.md)
-
-## TiDB 6.0 Release 文档
-
-https://docs.pingcap.com/zh/tidb/v6.0/release-6.0.0-dmr
+非常感谢以上老师，在两个月中兢兢业业，非常认真负责地对每一篇文章提出优化建议，我们铭记每一份为社区贡献的力量！
 
 ## License
 
