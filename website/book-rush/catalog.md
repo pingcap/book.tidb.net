@@ -4,7 +4,7 @@ sidebar_position: 0.5
 
 # TiDB 6.x in Action 目录
 
-### [第一章：TiDB 6.0 原理和特性](1-features/index.md)
+### [第一章：TiDB 6.x 原理和特性](1-features/index.md)
 
 #### [1.1 TiFlash 源码解读](1-features/1-tiflash-code/index.md)
 
@@ -36,7 +36,7 @@ sidebar_position: 0.5
 - [TiDB 和 Python 的简单 CRUD 应用程序](2-developer-guide/3-simple-crud/3-sample-application-python.md)
 - [TiDB 和 C# 的简单 CRUD 应用程序](2-developer-guide/3-simple-crud/4-sample-application-csharp.md)
 
-### [第三章：TiDB 6.0 可管理性](3-manageability/index.md)
+### [第三章：TiDB 6.x 可管理性](3-manageability/index.md)
 
 #### [3.1 TiUniManager（原 TiEM） 体验](3-manageability/1-tiunimanager-practice/index.md)
 
@@ -71,7 +71,7 @@ sidebar_position: 0.5
 
 - [TiDB 6.0 离线包变更](3-manageability/6-other-features/1-offline-package.md)
 
-### [第四章：TiDB 6.0 内核优化与性能提升](4-performance/index.md)
+### [第四章：TiDB 6.x 内核优化与性能提升](4-performance/index.md)
 
 #### [4.1 TiDB 6.0 热点场景优化体验](4-performance/1-hotspot/index.md)
 
@@ -93,12 +93,12 @@ sidebar_position: 0.5
 
 - [TiDB 6.0 体验：TiKV 重启后 leader 均衡加速](4-performance/4-tikv-restart/1-leader-transfer-speedup.md)
 
-### [第五章：TiDB 6.0 测评](5-benchmark/index.md)
+### [第五章：TiDB 6.x 测评](5-benchmark/index.md)
 
 - [TiDB Sysbench 性能对比测试报告 - v5.1.4 对比 v6.0.0 DMR](5-benchmark/1-tidb-sysbench-v6-0-0-v5-1-4.md)
 - [TiKV 节点重启后业务恢复速度（leader 平衡速度）v6.0 vs v5.1.2 对比测试](5-benchmark/2-tikv-business-recovery.md)
 
-### [第六章：TiDB 6.0 最佳实践](6-best-practice/index.md)
+### [第六章：TiDB 6.x 最佳实践](6-best-practice/index.md)
 
 #### [6.1 HTAP 最佳实践](6-best-practice/1-htap-practice/index.md)
 
