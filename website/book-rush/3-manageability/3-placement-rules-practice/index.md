@@ -31,6 +31,6 @@ Placement Rules in SQL 特性用于通过 SQL 接口配置数据在 TiKV 集群�
 
 ## 章节目录
 
-- [TiDB 6.0 的元功能：Placement Rules in SQL 是什么？](1-pr-in-sql.md) By Eason
+- [TiDB 6.0 的元功能：Placement Rules in SQL 是什么？](1-pr-in-sql.md) By [Eason](https://github.com/easonn7)
 - [TiDB 6.0 Placement Rules In SQL 使用实践](2-placement-rules.md) By [吴永健](https://tidb.net/u/banana_jian)
 - [TiDB 冷热存储分离解决方案](3-hot-cold-storage.md) By [李文杰](https://tidb.net/u/Jellybean/answer)

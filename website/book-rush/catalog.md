@@ -8,11 +8,11 @@ sidebar_position: 0.5
 
 #### [1.1 TiFlash 源码解读](1-features/1-tiflash-code/index.md)
 
-- [TiFlash 存储层概览](1-features/1-tiflash-code/1-tiflash-storage-overview.md) By 黄俊深
-- [TiFlash 计算层概览](1-features/1-tiflash-code/2-tiflash-compute-overview.md) By 徐飞
-- [TiFlash DeltaTree 存储引擎设计及实现分析 - Part 1](1-features/1-tiflash-code/3-tiflash-deltatree.md) By 施闻轩
-- [TiFlash DDL 模块设计及实现分析](1-features/1-tiflash-code/5-tiflash-ddl-module.md) By 洪韫妍
-- [TiFlash 面向编译器的自动向量化加速](1-features/1-tiflash-code/6-tiflash-compiler-aided-vectorization.md) By 朱一帆
+- [TiFlash 存储层概览](1-features/1-tiflash-code/1-tiflash-storage-overview.md) By [黄俊深](https://github.com/JaySon-Huang)
+- [TiFlash 计算层概览](1-features/1-tiflash-code/2-tiflash-compute-overview.md) By [徐飞](https://github.com/windtalker)
+- [TiFlash DeltaTree 存储引擎设计及实现分析 - Part 1](1-features/1-tiflash-code/3-tiflash-deltatree.md) By [施闻轩](https://github.com/breezewish)
+- [TiFlash DDL 模块设计及实现分析](1-features/1-tiflash-code/5-tiflash-ddl-module.md) By [洪韫妍](https://github.com/hongyunyan)
+- [TiFlash 面向编译器的自动向量化加速](1-features/1-tiflash-code/6-tiflash-compiler-aided-vectorization.md) By [朱一帆](https://github.com/SchrodingerZhu)
 
 #### [1.2 TiDB 6.0 新特性解读](1-features/2-new-features/index.md)
 
@@ -23,16 +23,16 @@ sidebar_position: 0.5
 
 #### [2.1 TiDB Cloud DevTier 搭建](2-developer-guide/1-cloud-devtier/index.md)
 
-- [使用 TiDB Cloud (DevTier) 构建 TiDB 集群](2-developer-guide/1-cloud-devtier/1-build-cluster-in-cloud.md) By 王琦智
+- [使用 TiDB Cloud (DevTier) 构建 TiDB 集群](2-developer-guide/1-cloud-devtier/1-build-cluster-in-cloud.md) By [王琦智](https://github.com/Icemap)
 
 #### [2.2 TiDB Demo Application](2-developer-guide/2-demo-app/index.md)
 
-- [使用 Spring Boot 构建 TiDB 应用程序](2-developer-guide/2-demo-app/1-sample-application-spring-boot.md) By 王琦智
+- [使用 Spring Boot 构建 TiDB 应用程序](2-developer-guide/2-demo-app/1-sample-application-spring-boot.md) By [王琦智](https://github.com/Icemap)
 
 #### [2.3 Simple CRUD 指南](2-developer-guide/3-simple-crud/index.md)
 
-- [TiDB 和 Java 的简单 CRUD 应用程序](2-developer-guide/3-simple-crud/1-sample-application-java.md) By 王琦智
-- [TiDB 和 Golang 的简单 CRUD 应用程序](2-developer-guide/3-simple-crud/2-sample-application-golang.md) By 王琦智
+- [TiDB 和 Java 的简单 CRUD 应用程序](2-developer-guide/3-simple-crud/1-sample-application-java.md) By [王琦智](https://github.com/Icemap)
+- [TiDB 和 Golang 的简单 CRUD 应用程序](2-developer-guide/3-simple-crud/2-sample-application-golang.md) By [王琦智](https://github.com/Icemap)
 - [TiDB 和 Python 的简单 CRUD 应用程序](2-developer-guide/3-simple-crud/3-sample-application-python.md) By [严少安](https://tidb.net/u/ShawnYan/post/all)
 - [TiDB 和 C# 的简单 CRUD 应用程序](2-developer-guide/3-simple-crud/4-sample-application-csharp.md) By [何傲](https://asktug.com/u/hey-hoho/summary)
 
@@ -40,27 +40,27 @@ sidebar_position: 0.5
 
 #### [3.1 TiUniManager（原 TiEM） 体验](3-manageability/1-tiunimanager-practice/index.md)
 
-- [如何让 TiDB 集群管理“更省心”？TiUniManager（原 TiEM）使用教程来了](3-manageability/1-tiunimanager-practice/1-tiunimanager-course.md) By 周鹏
+- [如何让 TiDB 集群管理“更省心”？TiUniManager（原 TiEM）使用教程来了](3-manageability/1-tiunimanager-practice/1-tiunimanager-course.md) By [周鹏](https://github.com/zhoubasten)
 - [TiDB 生态工具 -- TiUniManager（原 TiEM）v1.0.0 体验](3-manageability/1-tiunimanager-practice/2-tiunimanager.md) By [尹裕皓](https://tidb.net/u/G7尹裕皓/answer)
 - [TiUniManager（原 TiEM）初体验](3-manageability/1-tiunimanager-practice/3-experience-tiunimanager.md) By [江坤](https://tidb.net/u/pupillord/answer)
 
 #### [3.2 Clinic 体验](3-manageability/2-clinic-practice/index.md)
 
-- [PingCAP Clinic 服务：贯穿云上云下的 TiDB 集群诊断服务](3-manageability/2-clinic-practice/1-clinic-tidb-cloud.md) By 乔丹
+- [PingCAP Clinic 服务：贯穿云上云下的 TiDB 集群诊断服务](3-manageability/2-clinic-practice/1-clinic-tidb-cloud.md) By [乔丹](https://github.com/qqqdan)
 - [体验 TiDB v6.0.0 之 Clinic](3-manageability/2-clinic-practice/2-clinic.md) By [张朋](https://tidb.net/u/边城元元/post/all)
 - [TiDB 6.0 新特性漫谈之 Clinic](3-manageability/2-clinic-practice/3-experience-clinic.md) By [代晓磊](https://tidb.net/u/%E4%BB%A3%E6%99%93%E7%A3%8A_Mars/answer)
 
 #### [3.3 Placement Rules 体验](3-manageability/3-placement-rules-practice/index.md)
 
-- [TiDB 6.0 的元功能：Placement Rules in SQL 是什么？](3-manageability/3-placement-rules-practice/1-pr-in-sql.md) By Eason
+- [TiDB 6.0 的元功能：Placement Rules in SQL 是什么？](3-manageability/3-placement-rules-practice/1-pr-in-sql.md) By [Eason](https://github.com/easonn7)
 - [TiDB 6.0 Placement Rules In SQL 使用实践](3-manageability/3-placement-rules-practice/2-placement-rules.md) By [吴永健](https://tidb.net/u/banana_jian)
 - [TiDB 冷热存储分离解决方案](3-manageability/3-placement-rules-practice/3-hot-cold-storage.md) By [李文杰](https://tidb.net/u/Jellybean/answer)
 
 #### [3.4 TiDB 可观测性 & 性能优化实践](3-manageability/4-observability-performance-tuning/index.md)
 
-- [TiDB 性能优化概述](3-manageability/4-observability-performance-tuning/1-performance-tuning-overview.md) By 邵希茜，陈焕生，宋昱颖
-- [TiDB 性能分析和优化方法](3-manageability/4-observability-performance-tuning/2-performance-tuning-methods.md) By 邵希茜，陈焕生，宋昱颖
-- [OLTP 负载性能优化实践](3-manageability/4-observability-performance-tuning/3-performance-tuning-practices.md) By 邵希茜，陈焕生，宋昱颖
+- [TiDB 性能优化概述](3-manageability/4-observability-performance-tuning/1-performance-tuning-overview.md) By [陈焕生](https://github.com/dbsid)，[邵希茜](https://github.com/shaoxiqian)，[宋昱颖](https://github.com/Yui-Song)
+- [TiDB 性能分析和优化方法](3-manageability/4-observability-performance-tuning/2-performance-tuning-methods.md) By [陈焕生](https://github.com/dbsid)，[邵希茜](https://github.com/shaoxiqian)，[宋昱颖](https://github.com/Yui-Song)
+- [OLTP 负载性能优化实践](3-manageability/4-observability-performance-tuning/3-performance-tuning-practices.md) By [陈焕生](https://github.com/dbsid)，[邵希茜](https://github.com/shaoxiqian)，[宋昱颖](https://github.com/Yui-Song)
 - [多并发下线程创建、释放的阻塞问题](3-manageability/4-observability-performance-tuning/4-high-concurrency-thread.md) By [Woody](https://github.com/bestwoody)
 
 #### [3.5 DM WebUI 体验](3-manageability/5-dm-webui/index.md)
@@ -124,7 +124,7 @@ sidebar_position: 0.5
 
 ### TiDB 6.0 in Action Reviewer
 
-在此，特别感谢参与本电子书 Review 的老师：[陈超](https://tidb.net/u/%E5%95%A6%E5%95%A6%E5%95%A6%E5%95%A6%E5%95%A6)、[严少安](https://tidb.net/u/ShawnYan)、[尹裕皓](https://tidb.net/u/g7%E5%B0%B9%E8%A3%95%E7%9A%93)、[张俊亭](https://tidb.net/u/dba-kit)、[张田](https://tidb.net/u/%E6%95%B0%E6%8D%AE%E5%B0%8F%E9%BB%91)、[姚维](https://tidb.net/u/wink)、[陈畅亮](https://tidb.net/u/%E5%90%AC%E9%A3%8E%E5%90%B9%E9%9B%A8)、[陈霜](https://tidb.net/u/crazycs520-PingCAP/answer)、[霍昊](https://tidb.net/u/sykp241095)、[李仲舒](https://tidb.net/u/lucien)、[戚铮](https://tidb.net/u/qizheng)、[苏志鹏](https://tidb.net/u/jansu-dev)、[王琦智](https://tidb.net/u/Icemap)、乔丹、陈焕生、邵希茜、宋昱颖、[毛康力](https://tidb.net/u/tiancaiamao)。
+在此，特别感谢参与本电子书 Review 的老师：[陈超](https://tidb.net/u/%E5%95%A6%E5%95%A6%E5%95%A6%E5%95%A6%E5%95%A6)、[严少安](https://tidb.net/u/ShawnYan)、[尹裕皓](https://tidb.net/u/g7%E5%B0%B9%E8%A3%95%E7%9A%93)、[张俊亭](https://tidb.net/u/dba-kit)、[张田](https://tidb.net/u/%E6%95%B0%E6%8D%AE%E5%B0%8F%E9%BB%91)、[姚维](https://tidb.net/u/wink)、[陈畅亮](https://tidb.net/u/%E5%90%AC%E9%A3%8E%E5%90%B9%E9%9B%A8)、[陈霜](https://tidb.net/u/crazycs520-PingCAP/answer)、[霍昊](https://tidb.net/u/sykp241095)、[李仲舒](https://tidb.net/u/lucien)、[戚铮](https://tidb.net/u/qizheng)、[苏志鹏](https://tidb.net/u/jansu-dev)、[王琦智](https://tidb.net/u/Icemap)、[乔丹](https://github.com/qqqdan)、[陈焕生](https://github.com/dbsid)、[邵希茜](https://github.com/shaoxiqian)、[宋昱颖](https://github.com/Yui-Song)、[毛康力](https://tidb.net/u/tiancaiamao)。
 
 非常感谢以上老师，在两个月中兢兢业业，非常认真负责地对每一篇文章提出优化建议，我们铭记每一份为社区贡献的力量！
 

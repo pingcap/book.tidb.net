@@ -11,7 +11,7 @@ TiUniManager 可帮助 DBA 避免因人工操作失误导致的数据库故障�
 
 自 v1.0.2 版本起，TiUniManager 正式开放源码，详见 GitHub 仓库 [tiunimanager](https://github.com/pingcap/tiunimanager)。
 
-- [如何让 TiDB 集群管理“更省心”？TiUniManager（原 TiEM）使用教程来了](1-tiunimanager-course.md) By 周鹏
+- [如何让 TiDB 集群管理“更省心”？TiUniManager（原 TiEM）使用教程来了](1-tiunimanager-course.md) By [周鹏](https://github.com/zhoubasten)
 - [TiDB 生态工具 -- TiUniManager（原 TiEM）v1.0.0 体验](2-tiunimanager.md) By [尹裕皓](https://tidb.net/u/G7尹裕皓/answer)
 - [TiUniManager（原 TiEM）初体验](3-experience-tiunimanager.md) By [江坤](https://tidb.net/u/pupillord/answer)
 

@@ -40,7 +40,7 @@ Top SQL 功能功能默认关闭。启用后，通过 Top SQL 提供的各个 Ti
 
 ## 章节目录
 
-- [TiDB 性能优化概述](1-performance-tuning-overview.md) By 邵希茜，陈焕生，宋昱颖
-- [TiDB 性能分析和优化方法](2-performance-tuning-methods.md) By 邵希茜，陈焕生，宋昱颖
-- [OLTP 负载性能优化实践](3-performance-tuning-practices.md) By 邵希茜，陈焕生，宋昱颖
+- [TiDB 性能优化概述](1-performance-tuning-overview.md) By [陈焕生](https://github.com/dbsid)，[邵希茜](https://github.com/shaoxiqian)，[宋昱颖](https://github.com/Yui-Song)
+- [TiDB 性能分析和优化方法](2-performance-tuning-methods.md) By [陈焕生](https://github.com/dbsid)，[邵希茜](https://github.com/shaoxiqian)，[宋昱颖](https://github.com/Yui-Song)
+- [OLTP 负载性能优化实践](3-performance-tuning-practices.md) By [陈焕生](https://github.com/dbsid)，[邵希茜](https://github.com/shaoxiqian)，[宋昱颖](https://github.com/Yui-Song)
 - [多并发下线程创建、释放的阻塞问题](4-high-concurrency-thread.md) By [Woody](https://github.com/bestwoody)

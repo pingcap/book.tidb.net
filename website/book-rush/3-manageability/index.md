@@ -9,27 +9,27 @@ hide_title: true
 
 ### [3.1 TiUniManager（原 TiEM） 体验](1-tiunimanager-practice/index.md)
 
-- [如何让 TiDB 集群管理“更省心”？TiUniManager（原 TiEM）使用教程来了](1-tiunimanager-practice/1-tiunimanager-course.md) By 周鹏
+- [如何让 TiDB 集群管理“更省心”？TiUniManager（原 TiEM）使用教程来了](1-tiunimanager-practice/1-tiunimanager-course.md) By [周鹏](https://github.com/zhoubasten)
 - [TiDB 生态工具 -- TiUniManager（原 TiEM）v1.0.0 体验](1-tiunimanager-practice/2-tiunimanager.md) By [尹裕皓](https://tidb.net/u/G7尹裕皓/answer)
 - [TiUniManager（原 TiEM）初体验](1-tiunimanager-practice/3-experience-tiunimanager.md) By [江坤](https://tidb.net/u/pupillord/answer)
 
 ### [3.2 Clinic 体验](2-clinic-practice/index.md)
 
-- [PingCAP Clinic 服务：贯穿云上云下的 TiDB 集群诊断服务](2-clinic-practice/1-clinic-tidb-cloud.md) By 乔丹
+- [PingCAP Clinic 服务：贯穿云上云下的 TiDB 集群诊断服务](2-clinic-practice/1-clinic-tidb-cloud.md) By [乔丹](https://github.com/qqqdan)
 - [体验 TiDB v6.0.0 之 Clinic](2-clinic-practice/2-clinic.md) By [张朋](https://tidb.net/u/边城元元/post/all)
 - [TiDB 6.0 新特性漫谈之 Clinic](2-clinic-practice/3-experience-clinic.md) By [代晓磊](https://tidb.net/u/%E4%BB%A3%E6%99%93%E7%A3%8A_Mars/answer)
 
 ### [3.3 Placement Rules 体验](3-placement-rules-practice/index.md)
 
-- [TiDB 6.0 的元功能：Placement Rules in SQL 是什么？](3-placement-rules-practice/1-pr-in-sql.md) By Eason
+- [TiDB 6.0 的元功能：Placement Rules in SQL 是什么？](3-placement-rules-practice/1-pr-in-sql.md) By [Eason](https://github.com/easonn7)
 - [TiDB 6.0 Placement Rules In SQL 使用实践](3-placement-rules-practice/2-placement-rules.md) By [吴永健](https://tidb.net/u/banana_jian)
 - [TiDB 冷热存储分离解决方案](3-placement-rules-practice/3-hot-cold-storage.md) By [李文杰](https://tidb.net/u/Jellybean/answer)
 
 ### [3.4 TiDB 可观测性 & 性能优化实践](4-observability-performance-tuning/index.md)
 
-- [TiDB 性能优化概述](4-observability-performance-tuning/1-performance-tuning-overview.md) By 邵希茜，陈焕生，宋昱颖
-- [TiDB 性能分析和优化方法](4-observability-performance-tuning/2-performance-tuning-methods.md) By 邵希茜，陈焕生，宋昱颖
-- [OLTP 负载性能优化实践](4-observability-performance-tuning/3-performance-tuning-practices.md) By 邵希茜，陈焕生，宋昱颖
+- [TiDB 性能优化概述](4-observability-performance-tuning/1-performance-tuning-overview.md) By [陈焕生](https://github.com/dbsid)，[邵希茜](https://github.com/shaoxiqian)，[宋昱颖](https://github.com/Yui-Song)
+- [TiDB 性能分析和优化方法](4-observability-performance-tuning/2-performance-tuning-methods.md) By [陈焕生](https://github.com/dbsid)，[邵希茜](https://github.com/shaoxiqian)，[宋昱颖](https://github.com/Yui-Song)
+- [OLTP 负载性能优化实践](4-observability-performance-tuning/3-performance-tuning-practices.md) By [陈焕生](https://github.com/dbsid)，[邵希茜](https://github.com/shaoxiqian)，[宋昱颖](https://github.com/Yui-Song)
 - [多并发下线程创建、释放的阻塞问题](4-observability-performance-tuning/4-high-concurrency-thread.md) By [Woody](https://github.com/bestwoody)
 
 ### [3.5 DM WebUI 体验](5-dm-webui/index.md)

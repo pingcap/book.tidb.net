@@ -4,7 +4,7 @@ sidebar_position: 0
 
 # TiDB 6.x in Action
 
-![](https://img2.pingcap.com/forms/8/1/81c4b49710686bd115c3ec65205a3ce0ee1c229e.jpeg)
+![](https://img2.pingcap.com/forms/7/f/7fe7c1ae72cd03929e8d4a5ed296114745bd09a4.jpeg)
 ![](https://img2.pingcap.com/forms/c/a/cad3fccff49628f81d1995a976a68f62565e76ce.jpeg)
 
 #### License
