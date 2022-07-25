@@ -5,6 +5,6 @@ hide_title: true
 
 # 2. Tispark 最佳实践
 
-前面的目录中并没有一一列出 6.0 所有新增特性，其他特性详见 TiDB 6.0 Release 文档：https://docs.pingcap.com/zh/tidb/v6.0/release-6.0.0-dmr
-
-在此目录下，你可以撰写其他 6.0 新特性体验和实践相关的文章。
+- [体验 TiSpark 基于 TiDB v6.0 (DMR) 最小实践](1-tispark.md) By [张朋](https://tidb.net/u/边城元元/post/all)
+- [TiSpark v2.5 开发入门实践及 TiSpark v3.0.0 新功能解读](2-tispark-guide.md) By [严少安](https://tidb.net/u/ShawnYan/post/all)
+- [TiSpark 3.0.0 新特性实践](3-tispark-3-in-action.md) By [张田](https://tidb.net/u/%E6%95%B0%E6%8D%AE%E5%B0%8F%E9%BB%91/post/all)

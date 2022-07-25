@@ -23,4 +23,6 @@ DM WebUI 是一个 TiDB Data Migration (DM) 迁移任务管理界面，方便用
 
   [用户文档](https://docs.pingcap.com/zh/tidb/v6.0/dm-webui-guide)
 
-在此目录下，你可以撰写针对 DM WebUI 体验和实践相关的文章。
+## 章节目录
+
+- [体验 TiDB v6.0.0 之 TiDB 的数据迁移工具 DM-WebUI](1-dm-webui.md) By [张朋](https://tidb.net/u/边城元元/post/all)

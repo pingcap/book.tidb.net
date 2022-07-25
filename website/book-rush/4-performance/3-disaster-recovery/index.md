@@ -11,6 +11,7 @@ TiCDC 对于增量数据的提取、排序、加载、投递等多个处理流�
 
 另外，为了降低数据复制过程中对上游集群的性能影响，保证数据复制过程中业务无感知， TiCDC 增加了对于主集群事务日志扫描的限流功能。在绝大多数情况下，确保TiCDC 对于上游集群的 QPS、 SQL 语句平均响应时间的影响不超过 5%。
 
+## 章节目录
 
-
-在此目录下，你可以撰写针对这些特性的体验和实践文章。
+- [TiCDC 架构和数据同步链路解析](1-ticdc-arch-and-data-replicating.md) By [刘东坡](https://github.com/hi-rustin)
+- [TiCDC 6.0 原理之 Sorter 演进](2-ticdc-sorter.md) By [eastfisher](https://tidb.net/u/eastfisher/answer)

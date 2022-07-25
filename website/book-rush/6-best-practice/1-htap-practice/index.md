@@ -49,4 +49,6 @@ TiDB 5.0 是其分析引擎架构初步成型的版本，这个版本中我们�
 
 
 
-在这一章节中，你可以从 TiDB 6.0 整体出发，结合业务场景，总结 HTAP 最佳实践。
+## 章节目录
+
+- [TiFlash 6.0 on K8s 扩容与新特性实践](1-tiflash-6-0-on-k8s.md) By [张田](https://tidb.net/u/%E6%95%B0%E6%8D%AE%E5%B0%8F%E9%BB%91/post/all)
