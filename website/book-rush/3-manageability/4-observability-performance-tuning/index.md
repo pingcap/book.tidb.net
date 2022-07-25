@@ -24,7 +24,6 @@ Top SQL 功能功能默认关闭。启用后，通过 Top SQL 提供的各个 Ti
 [用户文档](https://docs.pingcap.com/zh/tidb/v6.0/top-sql)
 
 
-
 ### 持续性能分析
 
 持续性能分析 (Continuous Profiling) 功能集成于 TiDB Dashboard，在 TiDB v6.0.0 中正式发布。该功能默认关闭，启用该功能后，集群将以极低的开销自动收集各 TiDB、TiKV 及 PD 实例每时每刻的性能数据。通过这些历史性能数据，技术专家可以在事后回溯、分析该集群任意时刻（如曾经出现过高内存占用）的问题根因，无需等待问题复现，从而有助于缩短故障诊断时间。
@@ -39,6 +38,9 @@ Top SQL 功能功能默认关闭。启用后，通过 Top SQL 提供的各个 Ti
 
 
 
-## 投稿指引
+## 章节目录
 
-在此目录下，你可以撰写 TiDB 可观测性和 TiDB 性能优化相关的实践文章。
+- [TiDB 性能优化概述](1-performance-tuning-overview.md) By 邵希茜，陈焕生，宋昱颖
+- [TiDB 性能分析和优化方法](2-performance-tuning-methods.md) By 邵希茜，陈焕生，宋昱颖
+- [OLTP 负载性能优化实践](3-performance-tuning-practices.md) By 邵希茜，陈焕生，宋昱颖
+- [多并发下线程创建、释放的阻塞问题](4-high-concurrency-thread.md) By [Woody](https://github.com/bestwoody)

@@ -20,5 +20,7 @@ hide_title: true
   [用户文档](https://docs.pingcap.com/zh/tidb/v6.0/use-tiflash#tiflash-支持的计算下推)
 
 
+## 章节目录
 
-在此目录下，你可以撰写针对这些特性的体验和实践文章。
+- [TiDB 6.0 新特性解读 | TiFlash 新增算子和函数下推](1-tiflash-pushing-down.md) By [严少安](https://tidb.net/u/ShawnYan/post/all) 
+- [TiDB 6.1 新特性解读 | TiDB 6.1 MPP 实现窗口函数框架](2-mpp-window-functions.md) By [严少安](https://tidb.net/u/ShawnYan/post/all)
