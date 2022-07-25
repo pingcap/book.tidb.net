@@ -11,7 +11,7 @@ TiDB 社区在不断完善面向 Developer 人群的适配和文档，这份文�
 
 - [使用 TiDB Cloud (DevTier) 构建 TiDB 集群](1-cloud-devtier/1-build-cluster-in-cloud.md) By [王琦智](https://github.com/Icemap)
 
-### [2.2 TiDB Demo Application](2-developer-guide/2-demo-app/index.md)
+### [2.2 TiDB Demo Application](2-demo-app/index.md)
 
 - [使用 Spring Boot 构建 TiDB 应用程序](2-demo-app/1-sample-application-spring-boot.md) By [王琦智](https://github.com/Icemap)
 
