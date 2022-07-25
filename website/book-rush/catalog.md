@@ -118,11 +118,11 @@ sidebar_position: 0.5
 - [TiDB 6.1 单机环境 On openEular 2003 SP3](6-best-practice/3-other-practice/3-tidb61-on-openEular2003.md) By [张田](https://tidb.net/u/%E6%95%B0%E6%8D%AE%E5%B0%8F%E9%BB%91/post/all)
 - [分布式数据库 TiDB 6.0 集群保姆级安装手册](6-best-practice/3-other-practice/4-TiDB-6-0-installation.md) By [徐小强](https://tidb.net/u/jiekexu/post/all)
 
-### TiDB 6.0 Book Rush 作者
+### TiDB 6.0 in Action 作者
 
-感谢《TiDB 6.0 Book Rush》的作者，感谢你们的笔耕不辍，让更多的人在使用 TiDB 6.x 的时候已经有了前车之鉴，TiDB 的使用之路走得更顺畅！
+感谢《TiDB 6.0 in Action》的作者，感谢你们的笔耕不辍，让更多的人在使用 TiDB 6.x 的时候已经有了前车之鉴，TiDB 的使用之路走得更顺畅！
 
-### TiDB 6.0 Book Rush Reviewer
+### TiDB 6.0 in Action Reviewer
 
 在此，特别感谢参与本电子书 Review 的老师：[陈超](https://tidb.net/u/%E5%95%A6%E5%95%A6%E5%95%A6%E5%95%A6%E5%95%A6)、[严少安](https://tidb.net/u/ShawnYan)、[尹裕皓](https://tidb.net/u/g7%E5%B0%B9%E8%A3%95%E7%9A%93)、[张俊亭](https://tidb.net/u/dba-kit)、[张田](https://tidb.net/u/%E6%95%B0%E6%8D%AE%E5%B0%8F%E9%BB%91)、[姚维](https://tidb.net/u/wink)、[陈畅亮](https://tidb.net/u/%E5%90%AC%E9%A3%8E%E5%90%B9%E9%9B%A8)、[陈霜](https://tidb.net/u/crazycs520-PingCAP/answer)、[霍昊](https://tidb.net/u/sykp241095)、[李仲舒](https://tidb.net/u/lucien)、[戚铮](https://tidb.net/u/qizheng)、[苏志鹏](https://tidb.net/u/jansu-dev)、[王琦智](https://tidb.net/u/Icemap)、乔丹、陈焕生、邵希茜、宋昱颖。
 
