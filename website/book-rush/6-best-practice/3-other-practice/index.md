@@ -11,4 +11,3 @@ hide_title: true
 - [基于 TiDB v6.0 部署两地三中心](2-two-cities-three-datacenters.md) By [张朋](https://tidb.net/u/边城元元/post/all)
 - [TiDB 6.1 单机环境 On openEular 2003 SP3](3-tidb61-on-openEular2003.md) By [张田](https://tidb.net/u/%E6%95%B0%E6%8D%AE%E5%B0%8F%E9%BB%91/post/all)
 - [分布式数据库 TiDB 6.0 集群保姆级安装手册](4-TiDB-6-0-installation.md) By [徐小强](https://tidb.net/u/jiekexu/post/all)
-在这一章节中，你可以从 TiDB 6.0 整体出发，结合业务场景，总结 HTAP 最佳实践。
