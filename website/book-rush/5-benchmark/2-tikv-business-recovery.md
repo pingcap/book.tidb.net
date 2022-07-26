@@ -52,7 +52,7 @@ server_configs:
 
 ### TiDB v6.0 拓扑文件参数配置
 
-只比 TiDB v5.1.2 拓扑文件中多了 tikv : storage.reserve-space: 0MB 的参数配置，可以忽略这个参数的设置，这是一个BUG，后续官方会修复，如果您使用时没有出现这个BUG就不用设置，官方可能已修复,如果想看为什么要设置 storage.reserve-space: 0MB 的详情，请看https://asktug.com/t/topic/665348/28。
+只比 TiDB v5.1.2 拓扑文件中多了 tikv : storage.reserve-space: 0MB 的参数配置，可以忽略这个参数的设置，这是一个BUG，后续官方会修复，如果您使用时没有出现这个BUG就不用设置，官方可能已修复,如果想看为什么要设置 storage.reserve-space: 0MB 的详情，请看 [asktug 问题帖](https://asktug.com/t/topic/665348)。
 
 ## 4. TiUP 部署 TiDB v5.1.2 和 TiDB v6.0.0
 
