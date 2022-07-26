@@ -409,7 +409,7 @@ tiup cluster display cluster111
 
 ```shell
 # 手动启动 tispark节点
-tiup cluster start cluster111 -N 10.0.2.15:707,10.0.2.15:7078
+tiup cluster start cluster111 -N 10.0.2.15:7077,10.0.2.15:7078
 ```
 
 ## 五、测试
