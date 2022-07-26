@@ -132,7 +132,7 @@ v6.0.0 对比 v5.1.4，Point Select 性能提升了 5.055%。
 
 v6.0.0 对比 v5.1.4，Update Non-index 性能提升了 1.72%。
 
-![image (1).png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image (1)-1653576160906.png)
+![image (1).png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image%20(1)-1653576160906.png)
 
 ### 5.3 Update Index 性能
 
@@ -147,7 +147,7 @@ v6.0.0 对比 v5.1.4，Update Non-index 性能提升了 1.72%。
 
 v6.0.0 对比 v5.1.4，Update Index 性能提升了 4.5%。
 
-![image (2).png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image (2)-1653576170121.png)
+![image (2).png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image%20(2)-1653576170121.png)
 
 ### 5.4 Read Write 性能
 
@@ -167,7 +167,7 @@ oltp read write 场景测试时使用的压测线程数和前面三种场景有�
 
 v6.0.0 对比 v5.1.4，Read Write 性能提升了 2.67%。
 
-![image (3).png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image (3)-1653576179608.png)
+![image (3).png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image%20(3)-1653576179608.png)
 
 ## 6. 测试中遇到的问题和建议
 
