@@ -392,5 +392,14 @@ Select Many Rows: [{'DB': 'bookshop', 'TABLE': 'books', 'REGION_ID': 4028065, 'T
 
 ## 扩展阅读
 
-- [TiDB 应用开发专区&开发者手册&干货合集](https://asktug.com/t/topic/664974) @Billmay
-- [TiDB 6.0 Book Rush！一起来分布式创作 6.0 的使用手册吧！](https://asktug.com/t/topic/663914) @luzizhuo
+- 来自 PingCAP Education 原厂，适合[开发人员的课程](https://pingcap.com/zh/courses-catalog/back-end-developer)：
+
+  - [DEV COURSE 1：TiDB 的架构与特点](https://learn.pingcap.com/learner/course/600003)
+  - [DEV COURSE 2：在 TiDB 上学习 SQL 语句](https://learn.pingcap.com/learner/course/1050001)
+  - [DEV COURSE 3：TiDB 特有功能与事务控制](https://learn.pingcap.com/learner/course/750002)
+  - [DEV COURSE 4：使用 Connector/J](https://learn.pingcap.com/learner/course/840002)
+  - [DEV COURSE 5：在 TiDB 上开发应用的最佳实践](https://learn.pingcap.com/learner/course/780002)
+
+
+- [TiDB 应用开发专区&开发者手册&干货合集](https://asktug.com/t/topic/664974) @[Billmay](https://asktug.com/u/billmay/summary)
+- [TiDB 6.0 Book Rush！一起来分布式创作 6.0 的使用手册吧！](https://asktug.com/t/topic/663914) @[luzizhuo](https://asktug.com/u/luzizhuo/summary)
