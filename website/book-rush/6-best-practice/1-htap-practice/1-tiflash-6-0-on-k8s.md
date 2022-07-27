@@ -225,19 +225,7 @@ SELECT * FROM INFORMATION_SCHEMA.TIFLASH_REPLICA WHERE TABLE_SCHEMA = 'TESTDB';
 
 全部的表都建立了 TiFlash 副本。
 
-此时新建一张表：
-
-```
-CREATE TABLE ADCM_P2 LIKE ADCM_P;
-```
-
-再次通过：
-
-```
-SELECT * FROM INFORMATION_SCHEMA.TIFLASH_REPLICA WHERE TABLE_SCHEMA = 'TESTDB';
-```
-
-查询， TiFlash 表增加了一张，数量为 24 张，新建的表也创建了 TiFlash 副本。[官方文档](https://docs.pingcap.com/zh/tidb/stable/use-tiflash) 提示如下：
+[官方文档](https://docs.pingcap.com/zh/tidb/stable/use-tiflash) 提示如下：
 
 - 按库构建 TiFlash 副本命令实际是为用户执行一系列 DDL 操作，对资源要求比较高。如果在执行过程中出现中断，已经执行成功的操作不会回退，未执行的操作不会继续执行。
 - 从按库构建 TiFlash 副本命令执行开始到该库中所有表都已同步完成之前，不建议执行和该库相关的 TiFlash 副本数量设置或其他 DDL 操作，否则最终状态可能非预期。非预期场景包括：
@@ -246,7 +234,7 @@ SELECT * FROM INFORMATION_SCHEMA.TIFLASH_REPLICA WHERE TABLE_SCHEMA = 'TESTDB';
   - 在命令执行到结束期间，如果为该库下的表添加索引，则该命令可能陷入等待，直到添加索引完成。
 - 按库构建 TiFlash 副本命令会跳过系统表、视图、临时表以及包含了 TiFlash 不支持字符集的表。
 
-在实际操作过程中，要考虑以上提示信息。其中在按库构建 TiFlash 副本命令执行到结束期间，如果在目标库下创建表，则可能会对这些新增表创建 TiFlash 副本，存在不确定性；全部同步执行之后，再创建表，则确定会为这些新增表创建 TiFlash 副本。
+在实际操作过程中，要考虑以上提示信息。其中在按库构建 TiFlash 副本命令执行到结束期间，如果在目标库下创建表，则可能会对这些新增表创建 TiFlash 副本，存在不确定性；全部同步执行之后，再创建表，如果是 create table 的形式，则不会自动为新表创建 TiFlash 副本，如果是 create table like 的形式，则因为 TiFlash 本身机制的原因，会自动创建 TiFlash 副本。
 
 ## TiFlash MPP 引擎支持分区表的动态裁剪模式
 
