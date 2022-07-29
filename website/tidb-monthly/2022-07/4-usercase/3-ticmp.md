@@ -3,7 +3,7 @@ title: Ticmp - 更快的让应用从 MySQL 迁移到 TiDB - TiDB 社区技术月
 sidebar_label: Ticmp - 更快的让应用从 MySQL 迁移到 TiDB
 hide_title: true
 description: 本文主要介绍如何能更快的让客户知道他们自己的业务在哪些功能上面会有 MySQL 和 TiDB 不一致的地方，我们就能更快的去调整 TiDB 的行为或者去更改客户业务。
-keywords: TiDB, MySQL, Corteza, ticmp
+keywords: [TiDB, MySQL, Corteza, ticmp]
 ---
 
 # Ticmp - 更快的让应用从 MySQL 迁移到 TiDB

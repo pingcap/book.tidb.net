@@ -3,7 +3,7 @@ title: TiDB 在多点数字化零售场景下的应用 - TiDB 社区技术月刊
 sidebar_label: TiDB 在多点数字化零售场景下的应用
 hide_title: true
 description: 本文根据多点 DMALL 数据库团队负责人冯光普在 TUG 企业行成都站的分享整理而成，介绍了在数字化零售场景下，TiDB 在多点的使用情况、核心业务场景支撑、价值分析、及经验总结。
-keywords: TiDB, DMALL, DMALL OS, 数字化零售方案, TP, HTAP
+keywords: [TiDB, DMALL, DMALL OS, 数字化零售方案, TP, HTAP]
 ---
 
 # TiDB 在多点数字化零售场景下的应用

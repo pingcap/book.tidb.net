@@ -3,7 +3,7 @@ title: TiCDC 架构和数据同步链路解析 - TiDB 社区技术月刊
 sidebar_label: TiCDC 架构和数据同步链路解析
 hide_title: true
 description: 本文将详细介绍 TiCDC 架构和数据同步链路解析。
-keywords: TiDB, TiCDC, TiKV, 两阶段提交, StartTs, CommitTs, Change Data Capture, 数据同步链路
+keywords: [TiDB, TiCDC, TiKV, 两阶段提交, StartTs, CommitTs, Change Data Capture, 数据同步链路]
 ---
 
 # TiCDC 架构和数据同步链路解析

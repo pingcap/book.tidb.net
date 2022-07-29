@@ -3,7 +3,7 @@ title: TiFlash 源码阅读（五） DeltaTree 存储引擎设计及实现分析
 sidebar_label: TiFlash 源码阅读（五） DeltaTree 存储引擎设计及实现分析 - Part 2
 hide_title: true
 description: TiFlash 源码阅读系列文章将从源码层面介绍 TiFlash 的内部实现，希望读者在阅读这一系列文章后，能够对 TiFlash 内部原理有一个清晰的理解，更熟悉 TiFlash 各个流程及概念，甚至能对 TiFlash 进行源码级别的编程开发。
-keywords: TiDB, TiFlash, DeltaTree, Delta, Stable, MemTable, Scan, MVCC 
+keywords: [TiDB, TiFlash, DeltaTree, Delta, Stable, MemTable, Scan, MVCC] 
 ---
 
 # TiFlash 源码阅读（五） DeltaTree 存储引擎设计及实现分析 - Part 2

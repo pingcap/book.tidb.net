@@ -3,7 +3,7 @@ title: tidb-dm报警DM_sync_process_exists_with_error排查 - TiDB 社区技术�
 sidebar_label: tidb-dm报警DM_sync_process_exists_with_error排查
 hide_title: true
 description: 本文主要介绍关于 tidb-dm 报警 DM_sync_process_exists_with_error 排查。
-keywords: TiDB, dm sync process exists with error, mysql, tikv, pd, cluster tidb, invalid connection
+keywords: [TiDB, dm sync process exists with error, mysql, tikv, pd, cluster tidb, invalid connection]
 ---
 
 # tidb-dm报警DM_sync_process_exists_with_error排查

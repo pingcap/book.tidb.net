@@ -1,6 +1,9 @@
 ---
-title: 认证介绍 & 考试安排
+title: 认证介绍 & 考试安排 - TiDB 社区技术月刊
 hide_title: true
+sidebar_label: 认证介绍 & 考试安排
+description: 认证介绍 & 考试安排
+keywords: [认证, PCTA, PCTP]
 ---
 
 # 认证介绍 & 考试安排
@@ -15,21 +18,19 @@ hide_title: true
 
 ## PCTA 考试安排
 
-- [【即将开启报名】PingCAP 认证 TiDB 数据库专员 V6 考试（2022-07-21）](https://learn.pingcap.com/learner/exam-market/detail/1350003)
-  - 进入考试时间: 2022-07-21 20:00至2022-07-21 20:30
-  - 报名时间: 2022-07-02 00:00至2022-07-18 00:00
-- [【即将开启报名】PingCAP 认证 TiDB 数据库专员 V5 考试（2022-07-21）](https://learn.pingcap.com/learner/exam-market/detail/1530003)
-  - 进入考试时间: 2022-07-21 20:00至2022-07-21 20:30
-  - 报名时间: 2022-07-02 00:00至2022-07-18 00:00
+- [PingCAP 认证 TiDB 数据库专员 V6 考试限时免费季，8 月份考试已开放报名](https://learn.pingcap.com/learner/exam-market/detail/1350003)
+  - 北京时间 2022 年 7 月 1 日至 2022 年 9 月 30 日，**限时免费**
+  - 北京时间 2022 年 10 月 1 日起，恢复原价（699 元/人/次），原价恢复后学员可通过社区积分兑换或联系 PingCAP 教育合作伙伴购买。
+- [PingCAP 认证 TiDB 数据库专员 V5 考试的最后机会，8 月份考试已开放报名](https://learn.pingcap.com/learner/exam-market/detail/1530003)
+  - 北京时间 2022年9月30日之前，仍可以免费参加 PCTA V5 认证考试，并获取 PCTA V5 版证书；
+  - 北京时间 2022年10月1日之后，考生仅可以报考 PCTA V6 认证考试，PCTA V5 认证考试同时下架不再接受报考。
 
 ## PCTP 考试安排
 
-- [【报名中】PingCAP 认证 TiDB 数据库专家 V5 考试（2022-07-13）](https://learn.pingcap.com/learner/exam-market/detail/1410002)
-  - 进入考试时间: 2022-07-13 19:30至2022-07-13 19:45
-  - 报名时间: 2022-06-11 00:00 至 2022-07-11 00:00
-- [【即将开始报名】PingCAP 认证 TiDB 数据库专家 V5 考试（2022-08-17）](https://learn.pingcap.com/learner/exam-market/detail/1470002)
+- [【报名中】PingCAP 认证 TiDB 数据库专家 V5 考试（2022-08-17）](https://learn.pingcap.com/learner/exam-market/detail/1470002)
   - 进入考试时间: 2022-08-17 19:30至2022-08-17 19:45
   - 报名时间: 2022-07-11 00:00至2022-08-15 00:00
-- [【即将开始报名】PingCAP 认证 TiDB 数据库专家 V5 考试（2022-09-14）](https://learn.pingcap.com/learner/exam-market/detail/1530001)
+- [【报名中】PingCAP 认证 TiDB 数据库专家 V5 考试（2022-09-14）](https://learn.pingcap.com/learner/exam-market/detail/1530001)
   - 进入考试时间: 2022-09-14 19:30至2022-09-14 19:45
   - 报名时间: 2022-08-12 00:00至2022-09-12 00:00
+- **[👉 获得 PCTP 考试兑换码](https://asktug.com/t/topic/513290)**

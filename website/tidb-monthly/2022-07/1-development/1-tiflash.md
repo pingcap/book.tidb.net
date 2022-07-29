@@ -3,7 +3,7 @@ title: 手把手教你实现 TiFlash 向量化函数丨十分钟成为 TiFlash C
 sidebar_label: 手把手教你实现 TiFlash 向量化函数丨十分钟成为 TiFlash Contributor
 hide_title: true
 description: 在本篇，我们会沿着用户旅程，手把手教你具体怎么在 TiFlash 里实现一个向量化函数
-keywords: TiDB, TiFlash, IFunction, DataType, Column, Unit Test, Contribute
+keywords: [TiDB, TiFlash, IFunction, DataType, Column, Unit Test, Contribute]
 ---
 
 # 手把手教你实现 TiFlash 向量化函数丨十分钟成为 TiFlash Contributor

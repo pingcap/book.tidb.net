@@ -3,7 +3,7 @@ title: TiKV & TiFlash 加速复杂业务查询 - TiDB 社区技术月刊
 sidebar_label: TiKV & TiFlash 加速复杂业务查询
 hide_title: true
 description: 本文主要介绍 TiDB 数据库的 TiKV 和 TiFlash 的组合如何解决互联网公司或传统公司的 CRM 系统中客户的筛选功能上的一些痛点。
-keywords: TiDB, TiKV, TiFlash, CRM, 复杂查询
+keywords: [TiDB, TiKV, TiFlash, CRM, 复杂查询]
 ---
 
 # TiKV & TiFlash 加速复杂业务查询

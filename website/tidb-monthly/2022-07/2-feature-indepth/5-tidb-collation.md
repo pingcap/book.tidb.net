@@ -3,7 +3,7 @@ title: TiDB 6.0 新特性解读 | Collation 规则 - TiDB 社区技术月刊
 sidebar_label: TiDB 6.0 新特性解读 | Collation 规则
 hide_title: true
 description: 本文将深入解读 Collation 规则在 TiDB 6.0 中的变更和应用。
-keywords: TiDB, collation, Book Rush, Collation Bug
+keywords: [TiDB, collation, Book Rush, Collation Bug]
 ---
 
 # TiDB 6.0 新特性解读 | Collation 规则

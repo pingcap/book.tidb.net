@@ -3,7 +3,7 @@ title: TiCDC 6.0 原理之 Sorter 演进 - TiDB 社区技术月刊
 sidebar_label: TiCDC 6.0 原理之 Sorter 演进
 hide_title: true
 description: 本文主要介绍 Sorter 模块的基本原理和演进过程。
-keywords: TiDB, TiCDC, TiKV, Sorter, Memory Sorter, Unified Sorter, DB Sorter
+keywords: [TiDB, TiCDC, TiKV, Sorter, Memory Sorter, Unified Sorter, DB Sorter]
 ---
 
 # TiCDC 6.0 原理之 Sorter 演进

@@ -3,7 +3,7 @@ title: TiDB 在长银五八消费金融核心系统适配经验分享 - TiDB 社
 sidebar_label: TiDB 在长银五八消费金融核心系统适配经验分享
 hide_title: true
 description: 本文介绍了一些实践经验，包括功能测试总结、兼容性问题、参数调试三个模块。
-keywords: TiDB, 功能测试, 兼容性, 参数调试, mem quota query,txn total size limit
+keywords: [TiDB, 功能测试, 兼容性, 参数调试, mem quota query,txn total size limit]
 ---
 
 # TiDB 在长银五八消费金融核心系统适配经验分享

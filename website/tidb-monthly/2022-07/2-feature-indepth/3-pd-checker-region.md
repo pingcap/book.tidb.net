@@ -3,7 +3,7 @@ title: PD 源码分析- Checker: region 健康卫士 - TiDB 社区技术月刊
 sidebar_label: PD 源码分析- Checker: region 健康卫士
 hide_title: true
 description: 本文主要介绍关于 PD 作为整个集群的大脑，时刻关注集群的状态，当集群出现非健康状态时产生新的 operator(调度单元) 指导 tikv 进行修复。
-keywords: TiDB, PD, TiKV, operator, region, CheckRegion
+keywords: [TiDB, PD, TiKV, operator, region, CheckRegion]
 ---
 
 # PD 源码分析- Checker: region 健康卫士

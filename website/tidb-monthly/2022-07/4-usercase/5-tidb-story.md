@@ -3,7 +3,7 @@ title: 命里有时终须有--记与TiDB的一次次擦肩而过 - TiDB 社区�
 sidebar_label: 命里有时终须有--记与TiDB的一次次擦肩而过
 hide_title: true
 description: 本文将介绍我与 TiDB 的一些故事，包括认识、了解、研究、与深度参与社区。
-keywords: TiDB, PingCAP, 社区, 故事
+keywords: [TiDB, PingCAP, 社区, 故事]
 ---
 
 # 命里有时终须有--记与TiDB的一次次擦肩而过

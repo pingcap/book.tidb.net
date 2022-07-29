@@ -3,7 +3,7 @@ title: 黄东旭：TiDB的优势是什么？ - TiDB 社区技术月刊
 sidebar_label: 黄东旭：TiDB的优势是什么？
 hide_title: true
 description: 分布式实验室特约记者 Marico 采访了 PingCAP 联合创始人兼 CTO 黄东旭，从 PingCAP 明星级产品优势、如何保障开源产品的活力等方面进行了交流。
-keywords: TiDB, PingCAP, 黄东旭, Marico, TiKV, ChaosMesh, CNCF
+keywords: [TiDB, PingCAP, 黄东旭, Marico, TiKV, ChaosMesh, CNCF]
 ---
 
 # 黄东旭：TiDB的优势是什么？

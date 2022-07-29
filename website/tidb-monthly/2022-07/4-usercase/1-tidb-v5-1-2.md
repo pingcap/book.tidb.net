@@ -3,7 +3,7 @@ title: 麒麟v10上部署TiDBv5.1.2生产环境的最佳实践 - TiDB 社区技�
 sidebar_label: 麒麟v10上部署TiDBv5.1.2生产环境的最佳实践
 hide_title: true
 description: 本文主要介绍关于在麒麟v10上部署TiDBv5.1.2生产环境中需要注意的事项以及部署架构。
-keywords: TiDB, 生产环境, 麒麟v10, PoC, 海光 CPU, numa
+keywords: [TiDB, 生产环境, 麒麟v10, PoC, 海光 CPU, numa]
 ---
 
 # 麒麟v10上部署TiDBv5.1.2生产环境的最佳实践

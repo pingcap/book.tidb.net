@@ -3,7 +3,7 @@ title: TiKV主要内存结构和OOM排查总结 - TiDB 社区技术月刊
 sidebar_label: TiKV主要内存结构和OOM排查总结
 hide_title: true
 description: 本文主要介绍 TiKV 主要内存结构和 OOM 排查总结。
-keywords: TiDB, TiKV, block cache, write buffer, raftstore, coprocessor task, cdc  component, BR, OOM, TiKV Detail
+keywords: [TiDB, TiKV, block cache, write buffer, raftstore, coprocessor task, cdc  component, BR, OOM, TiKV Detail]
 ---
 
 # TiKV主要内存结构和OOM排查总结

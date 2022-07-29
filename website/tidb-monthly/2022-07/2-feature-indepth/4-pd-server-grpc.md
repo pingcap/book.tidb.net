@@ -3,7 +3,7 @@ title: PD-Server GRPC 接口图解 - TiDB 社区技术月刊
 sidebar_label: PD-Server GRPC 接口图解
 hide_title: true
 description: 本文主要介绍 PD-Server GRPC 的接口图解。
-keywords: TiDB, PD, GRPC, HTTP restful API, GetMemebers, TSO, Raft Cluster, GC, GlobalConfig
+keywords: [TiDB, PD, GRPC, HTTP restful API, GetMemebers, TSO, Raft Cluster, GC, GlobalConfig]
 ---
 
 # PD-Server GRPC 接口图解
