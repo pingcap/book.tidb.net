@@ -8,7 +8,7 @@ keywords: [TiDB, TiFlash, IFunction, DataType, Column, Unit Test, Contribute]
 
 # 手把手教你实现 TiFlash 向量化函数丨十分钟成为 TiFlash Contributor
 
->**作者**：黄海升，TiFlash 研发工程师
+> **作者**：黄海升，TiFlash 研发工程师
 
 TiFlash 自 [开源 ](https://pingcap.com/zh/blog/tiflash-is-open-sourced)以来得到了社区的广泛关注，很多小伙伴通过源码阅读的活动学习 TiFlash 背后的设计原理，也有许多小伙伴跃跃欲试，希望能参与到 TiFlash 的贡献中来，十分钟成为 TiFlash Contributor 系列应运而生，我们将**从原理到实践，与大家分享关于 TiFlash 的一切！**
 
@@ -43,7 +43,7 @@ TiDB planner 在执行算子下推到 TiFlash 的逻辑时，会依赖这个方�
 test case 的名字可以形如 `Test${func_name}PushDownToTiFlash`，形式大致如下
 
 ```plain
-func Test${func_name}PushDownToTiFlash(t *testing.T) {        
+func Test${func_name}PushDownToTiFlash(t *testing.T) {
         store, clean := testkit.CreateMockStore(t)
         defer clean()
         tk := testkit.NewTestKit(t, store)
@@ -66,7 +66,7 @@ func Test${func_name}PushDownToTiFlash(t *testing.T) {
                         }
                 }
         }
-        
+
         tk.MustQuery("explain select ${func}(a) from t;").Check(testkit.Rows(${plan}))
 }
 ```
@@ -101,7 +101,7 @@ class IFunction
 {
 public:
     virtual String getName() const = 0;
-    
+
     virtual size_t getNumberOfArguments() const = 0;
 
     virtual DataTypePtr getReturnTypeImpl(const DataTypes & /*arguments*/) const;
@@ -128,7 +128,7 @@ public:
 
   负责向量化函数的执行逻辑，这也是一个向量化函数的主体部分。一个 TiFlash 向量化函数够不够"向量化"，够不够快也就看这里了。
 
-  - FunctionLength::executeImpl 
+  - FunctionLength::executeImpl
 
     的行为如下图所示，简单来说：
 
@@ -144,12 +144,12 @@ public:
     {
         // 1.read str_column from block
         const IColumn * str_column = block.getByPosition(arguments[0]).column.get();
-        
+
         // 2.create len_column
         int val_num = str_column->size();
         auto len_column = ColumnInt64::create();
         len_column->reserve(val_num);
-        
+
         // 3.foreach str_column and compute
         Field str_field;
         for (int i = 0; i < val_num; ++i)
@@ -176,9 +176,9 @@ public:
     virtual String getName() const;
 
     virtual TypeIndex getTypeId();
-    
+
     virtual MutableColumnPtr createColumn() const;
-    
+
     ColumnPtr createColumnConst(size_t size, const Field & field) const;
 }
 ```
@@ -221,7 +221,7 @@ Column 是计算过程中列数据存放的容器。
 
 ```c++
 for (size_t i = 0; i < column.size(); ++i)
-    T data = column[i].get<T>();  
+    T data = column[i].get<T>();
 ```
 
 Column 有两种类型
@@ -315,16 +315,16 @@ void executeImpl(Column<Type1> arg1, Column<Type2> arg2, ...);
         bool is_type_valid = getType(block.getByPosition(arguments[0]).type, [&](const auto & type, bool) {
             using Type = std::decay_t<decltype(type)>;
             using FieldType = typename Type::FieldType;
-  
+
             executeImpl<FieldType>(block, arguments);
-                        
+
             return true;
         });
-  
+
         if (!is_type_valid)
             throw Exception(fmt::format("argument of function {} is invalid.", getName()));
     }
-  
+
     template <typename F>
     static bool getType(DataTypePtr type, F && f)
     {
@@ -361,7 +361,7 @@ void executeImpl(Column<Type1> arg1, Column<Type2> arg2, ...);
 - distinct 聚合函数 [dbms/src/Flash/Coprocessor/DAGUtils.cpp ](https://github.com/pingcap/tiflash/blob/0df17c6ea5a1d7f18fe1709916dbfa98b7ed24ef/dbms/src/Flash/Coprocessor/DAGUtils.cpp)中的 [distinct_agg_func_map](https://github.com/pingcap/tiflash/blob/fdab3f52572abd84e7b00106a20cd2a18554fdec/dbms/src/Flash/Coprocessor/DAGUtils.cpp#L68-L71)
 - 标量函数 [dbms/src/Flash/Coprocessor/DAGUtils.cpp ](https://github.com/pingcap/tiflash/blob/0df17c6ea5a1d7f18fe1709916dbfa98b7ed24ef/dbms/src/Flash/Coprocessor/DAGUtils.cpp)中的 [scalar_func_map](https://github.com/pingcap/tiflash/blob/fdab3f52572abd84e7b00106a20cd2a18554fdec/dbms/src/Flash/Coprocessor/DAGUtils.cpp#L73-L678)
 
-2.然后根据函数的实现逻辑，我们可以选择
+  2.然后根据函数的实现逻辑，我们可以选择
 
 - 复用原有 TiFlash 函数的逻辑，
   - 对类似 `ifNull(arg1, arg2) = if(isNull(arg1), arg2, arg1)`这种情况，我们可以考虑复用原有 TiFlash 函数的逻辑。
@@ -401,7 +401,7 @@ And the unit-test executables are at `$BUILD/dbms/gtests_dbms`, `$BUILD/libs/lib
 测试的相关脚本在 [/tests ](https://github.com/pingcap/tiflash/tree/73e708cd22b935ca240a236a87e261aabddd770e/tests)目录下。
 
 1. 首先如 [TiFlash 函数下推必知必会 ](https://pingcap.com/zh/blog/10-minutes-become-a-tiflash-contributor)中所述，起一个带有自己 build 好的 TiDB 和 TiFlash 的集群。
-2. 然后修改 [/tests/_env.sh ](https://github.com/pingcap/tiflash/blob/73e708cd22b935ca240a236a87e261aabddd770e/tests/_env.sh)里的 TiFlash 和 TiDB 的相关端口配置。
+2. 然后修改 [/tests/\_env.sh ](https://github.com/pingcap/tiflash/blob/73e708cd22b935ca240a236a87e261aabddd770e/tests/_env.sh)里的 TiFlash 和 TiDB 的相关端口配置。
 3. 最后调用 [/tests/run-test.sh ](https://github.com/pingcap/tiflash/blob/73e708cd22b935ca240a236a87e261aabddd770e/tests/run-test.sh)把测试跑起来，如 `./run_test.sh $Build/tests/fullstack-test/expr/format.test`。
 
 ## How To Contribute

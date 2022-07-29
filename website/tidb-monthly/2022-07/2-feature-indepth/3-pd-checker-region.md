@@ -1,12 +1,12 @@
 ---
-title: PD 源码分析- Checker: region 健康卫士 - TiDB 社区技术月刊
-sidebar_label: PD 源码分析- Checker: region 健康卫士
+title: PD 源码分析- Checker-region 健康卫士 - TiDB 社区技术月刊
+sidebar_label: PD 源码分析- Checker-region 健康卫士
 hide_title: true
 description: 本文主要介绍关于 PD 作为整个集群的大脑，时刻关注集群的状态，当集群出现非健康状态时产生新的 operator(调度单元) 指导 tikv 进行修复。
 keywords: [TiDB, PD, TiKV, operator, region, CheckRegion]
 ---
 
-# PD 源码分析- Checker: region 健康卫士
+# PD 源码分析- Checker-region 健康卫士
 
 > **作者**：Aunt-Shirly
 
@@ -18,7 +18,6 @@ PD 中负责这部分逻辑的在 checkController 中， 其主要工作为，�
 - 当 region 太大时，触发分裂。
 - 当 Region 不符合当前的[副本定义规则](https://docs.pingcap.com/zh/tidb/dev/configure-placement-rules)(placementrule) 时，生成对应调度
 - 当前 region 过小时，尝试合并。
-
 
 ## Check 执行主流程
 
@@ -56,8 +55,6 @@ PD 中负责这部分逻辑的在 checkController 中， 其主要工作为，�
        - 更新 region label 相关统计信息
        - 如果正好扫完了所有 region(len(key)=0), 上报处理完整个集群的使用时间。
 
-
-
 ### [CheckRegion](https://github.com/tikv/pd/blob/3b3ff6973da682b04970df60c3fd3984aa14a761/server/schedule/checker/checker_controller.go#L74)
 
 CheckRegion 主要用于检查当前 region 是否需要新的 operator，当前版本检查流程如下(其中 红点为诊断需要关注的地方)：
@@ -82,7 +79,7 @@ CheckRegion 主要用于检查当前 region 是否需要新的 operator，当前
 
 - 如果当前 region 被标记了 scheduleDisabled 停止调度 label, 返回 nil, 不需要新 operator
 
-#### SplitChecker 
+#### SplitChecker
 
 检查当前 region 是否过大，如果过大，则生成对应 operator 指导进行分裂。详细过程如下：
 
@@ -112,12 +109,12 @@ Plancement rule 启用时，检查当前 region 在该 plancementrule 下是否�
   - 如果系统刚启动或者 merge-checker 新添加，过一段时间才开始工作，返回 nil
   - 更新当前 splitCache 里面的 TTL
   - 检查当前 region 是否符合 merge 条件
-    - 如果 splitCache 里面有当前 region, 即当前 region 刚 split 过，不做merge，return nil
+    - 如果 splitCache 里面有当前 region, 即当前 region 刚 split 过，不做 merge，return nil
     - 如果 region approximate size 为 0，即 PD 还未收集到该 region 的信息，不做 merge, 返回 nil
     - 检查 region 的 size 和 key 个数，如果比较大，不做 merge, 返回 nil
     - 如果当前 region 不处于一个健康状态，如有 pending peer,或 down peer, 不做 merge, 返回 nil
     - 如果当前 region 有副本缺失，不做 merge, 返回 nil
-    - 如果当前 region 为热点region，返回 nil
+    - 如果当前 region 为热点 region，返回 nil
   - 选取该 region 临近的两个 region prev & next
     - 优先检查 next 是否符合 merge 到当前 region 的条件
     - 如果 next 不符合，配置允许向前 merge, 检查 prev 是否符合条件
@@ -128,4 +125,3 @@ Plancement rule 启用时，检查当前 region 在该 plancementrule 下是否�
   - 创建 merge operator
   - 更新统计信息
   - 返回 merge operators
-

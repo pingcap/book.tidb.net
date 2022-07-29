@@ -1,6 +1,6 @@
 ---
-title: [Critical bug] Redo log 功能在某些场景下存在正确性问题 - TiDB 社区技术月刊
-sidebar_label: [Critical bug] Redo log 功能在某些场景下存在正确性问题
+title: Critical bug - Redo log 功能在某些场景下存在正确性问题 - TiDB 社区技术月刊
+sidebar_label: Critical bug - Redo log 功能在某些场景下存在正确性问题
 hide_title: true
 description: 本文介绍如何解决 Redo log 功能在某些场景下存在正确性问题。
 keywords: [TiDB, Redo log, meta, TiCDC]
