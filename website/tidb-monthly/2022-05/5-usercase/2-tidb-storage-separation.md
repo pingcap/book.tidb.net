@@ -119,7 +119,7 @@ TiDB 6.0正式提供了数据放置框架（Placement Rules in SQL ）功能，�
 
 高级放置策略具体内容，请看官网介绍：[高级放置选项](https://docs.pingcap.com/zh/tidb/v6.0/placement-rules-in-sql#%E9%AB%98%E7%BA%A7%E6%94%BE%E7%BD%AE%E9%80%89%E9%A1%B9)。
 
-﻿
+
 
 ## 环境
 
@@ -136,7 +136,7 @@ TiDB 6.0正式提供了数据放置框架（Placement Rules in SQL ）功能，�
 
 1.部署集群并建立放置策略
 
-- 部署TiDB v6.0.0集群，具体参考[部署集群操作](https://docs.pingcap.com/zh/tidb/v6.0/production-deployment-using-tiup)﻿
+- 部署TiDB v6.0.0集群，具体参考[部署集群操作](https://docs.pingcap.com/zh/tidb/v6.0/production-deployment-using-tiup)
 
 - 创建数据落盘策略，以备使用
 

@@ -29,7 +29,7 @@ hide_title: true
 explain analyze SQL;
 ```
 
-﻿![1.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1-1652602896518.png)﻿﻿
+![1.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1-1652602896518.png)
 
 可以看到`operator info`这列里出现了`stats:pseudo`，这就代表 paycore_orderinfo 这张表需要重新收集下统计信息。
 
@@ -43,7 +43,7 @@ analyze table paycore_orderinfo;
 
 收集完统计信息后，我们再跑下sql：
 
-﻿![1.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1-1652602921434.png)﻿﻿
+![1.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1-1652602921434.png)
 
 可以看到原本是扫描了paycore_orderinfo全表，现在用到create_time索引了，执行时间从7秒减少到0.15秒。
 
@@ -61,13 +61,13 @@ select query, query_time, stats from information_schema.slow_query where is_inte
 
 因为整个SQL比较复杂，就截取当中的一小段，先看下这条SQL在MySQL下的执行计划：
 
-﻿![1.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1-1652602944392.png)﻿﻿
+![1.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1-1652602944392.png)
 
 可以看到整个SQL的执行计划还是较好的，运行速度也很快。
 
 相同的SQL放到TiDB中执行，执行计划如下：
 
-﻿![1.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1-1652602983618.png)﻿﻿
+![1.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1-1652602983618.png)
 
 在MySQL里t表用到了primary key，而在TiDB中，t表则使用了idx_ta_ack_2(ta_no)这个索引，导致实际影响的行数actRows达到了200多万行，最终整个SQL执行失败，报错为:
 
@@ -99,7 +99,7 @@ WHERE
 
 执行计划如下：
 
-﻿![1.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1-1652603014216.png)﻿﻿
+![1.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1-1652603014216.png)
 
 t表用回了primary key，跑起来的耗时也比MySQL快了不少。
 
@@ -111,11 +111,11 @@ t表用回了primary key，跑起来的耗时也比MySQL快了不少。
 
 先看下MySQL中的执行计划：
 
-﻿![1.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1-1652603038315.png)﻿﻿
+![1.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1-1652603038315.png)
 
 TiDB中的执行计划：
 
-﻿![1.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1-1652603060232.png)﻿﻿
+![1.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1-1652603060232.png)
 
 可以看到g表是`TableFullScan`，这样整个SQL的执行时间就变得很长。
 
@@ -123,7 +123,7 @@ TiDB中的执行计划：
 
 为了让g表能正常的走到索引关联，这边在SQL里加了hint，加完hint的执行计划如下：
 
-﻿![1.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1-1652603087997.png)﻿﻿
+![1.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1-1652603087997.png)
 
 SQL执行时间也恢复了正常。
 

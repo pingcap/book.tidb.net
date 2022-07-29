@@ -841,7 +841,7 @@ spark.tispark.pd.addresses 10.0.2.15:2379
 # 执行 spark.sql("select ti_version()").collect
 ```
 
-![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1653925848979.png)﻿
+![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1653925848979.png)
 
 #### 6.4.2 启动 Spark-sql 的方式
 

@@ -23,7 +23,7 @@ hide_title: true
 
 习惯性的看下集群 SQL 99 响应时间，升高非常明显
 
-﻿![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652149197642.png)﻿﻿
+![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652149197642.png)
 
 查看 show processlist ，看到大量不同表的，各种各样的 insert 语句，执行很慢
 
@@ -35,11 +35,11 @@ hide_title: true
 
 分析集群基础监控，发现有一台服务器的 CPU 资源使用很高，而且明显高于其它服务器。其它指标，比如内存、网卡流量、IO Util 等均正常。
 
-﻿![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652149210149.png)﻿﻿
+![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652149210149.png)
 
 到这里怀疑是热点导致的这台服务器 CPU 资源明显高于其它服务器，继续看下 raft store cpu 监控，判断是读热点还是写热点
 
-﻿![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652149221643.png)﻿﻿
+![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652149221643.png)
 
 从上图 raft store cpu 监控看到，有2个tikv实例的raft store cpu 明显高于其它 tikv 实例，且这2台 tikv 实例在同一台服务器上，一个是 store 1 (192.168.1.1:20180)，一个是 store 2 (192.168.1.1:20181)
 
@@ -67,7 +67,7 @@ scheduler add evict-leader-scheduler 命令很不错，几年来多次救集群�
 
 虽然写入慢的问题解决了，但是为什么突然变慢这个问题一直困扰着我，然后反复看集群监控，集群日志，操作系统日志，硬件日志等信息，这里将分析结论记录在此，正确性仅供参考。下面主要列一些分析过程中的重点信息：
 
-﻿![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652149235904.png)﻿﻿
+![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652149235904.png)
 
 从上图看到，大概 12:30 ，store 1 (192.168.1.1:20180) 上的 region leader 发生了大量切换，导致 9000 个 leader 瞬间变为 0 了。
 
@@ -75,11 +75,11 @@ scheduler add evict-leader-scheduler 命令很不错，几年来多次救集群�
 
 grep 'from=1' pd-2022-05-05T17-02-15.373.log | grep '2022/05/02 12:30:' | wc -l
 
-﻿![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652149250419.png)﻿﻿
+![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652149250419.png)
 
 到这里，严重怀疑是 192.168.1.1 这台服务器或者这台服务器上的 TiKV 出现了什么问题，接下来重点分析这台服务器。
 
-﻿![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652149303841.png)﻿﻿
+![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652149303841.png)
 
 从上图磁盘监控看到，在 IOPS 降低的情况下，写入延时竟然增加了，平均达到1.48ms。事后对这块盘使用 fio 工具进行了测试，在 IOPS 达到 8K 的情况下，写入延迟不到 50 us，说明平时磁盘是 OK 的。
 
@@ -128,6 +128,6 @@ grep 'from=1' pd-2022-05-05T17-02-15.373.log | grep '2022/05/02 12:30:' | wc -l
 
 【参考文档】
 
-﻿[https://docs.pingcap.com/zh/tidb/v5.1/massive-regions-best-practices#raftstore-%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B](https://docs.pingcap.com/zh/tidb/v5.1/massive-regions-best-practices#raftstore-的工作流程)﻿
+[https://docs.pingcap.com/zh/tidb/v5.1/massive-regions-best-practices#raftstore-%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B](https://docs.pingcap.com/zh/tidb/v5.1/massive-regions-best-practices#raftstore-的工作流程)
 
-﻿https://asktug.com/t/topic/68072
+https://asktug.com/t/topic/68072

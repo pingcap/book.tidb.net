@@ -21,10 +21,10 @@ hide_title: true
 
 你可以使用以下方式快速搭建一个TiDB测试集群：
 
-- ﻿[使用TiDB Cloud免费创建在线集群](https://docs.pingcap.com/zh/tidb/dev/dev-guide-build-cluster-in-cloud)﻿
-- ﻿[使用TiUP部署本地测试集群](https://docs.pingcap.com/zh/tidb/dev/quick-start-with-tidb)﻿
-- ﻿[使用TiUP部署标准TiDB集群](https://docs.pingcap.com/zh/tidb/dev/production-deployment-using-tiup)﻿
-- ﻿[使用 TiDB Operator在Kubernetes中部署TiDB集群](https://docs.pingcap.com/zh/tidb-in-kubernetes/stable/get-started)﻿
+- [使用TiDB Cloud免费创建在线集群](https://docs.pingcap.com/zh/tidb/dev/dev-guide-build-cluster-in-cloud)
+- [使用TiUP部署本地测试集群](https://docs.pingcap.com/zh/tidb/dev/quick-start-with-tidb)
+- [使用TiUP部署标准TiDB集群](https://docs.pingcap.com/zh/tidb/dev/production-deployment-using-tiup)
+- [使用 TiDB Operator在Kubernetes中部署TiDB集群](https://docs.pingcap.com/zh/tidb-in-kubernetes/stable/get-started)
 
 本文仅用于代码演示，在单机环境使用TiUP Playground搭建了一套最基础的测试集群：
 
@@ -104,11 +104,11 @@ Hello, World!
 
 ## 使用Oracle Connector/NET
 
-﻿[Connector/NET](https://github.com/mysql/mysql-connector-net)是MySQL官方提供的符合标准ADO.NET体系的数据库访问驱动，由于TiDB高度兼容MySQL协议，所以市面上MySQL能使用的驱动基本都能用在TiDB上面。
+[Connector/NET](https://github.com/mysql/mysql-connector-net)是MySQL官方提供的符合标准ADO.NET体系的数据库访问驱动，由于TiDB高度兼容MySQL协议，所以市面上MySQL能使用的驱动基本都能用在TiDB上面。
 
 ADO.NET体系结构（图片来自微软官网）：
 
-﻿![ado-1-bpuedev11.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/ado-1-bpuedev11-1653317474073.png)﻿﻿
+![ado-1-bpuedev11.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/ado-1-bpuedev11-1653317474073.png)
 
 如果要以ADO.NET接口方式访问TiDB，首先安装驱动程序包：
 
@@ -215,9 +215,9 @@ book id 888888 not found.
 
 更多API用法可以参考官方文档：
 
-> ﻿https://dev.mysql.com/doc/connector-net/en/connector-net-programming.html﻿
+> https://dev.mysql.com/doc/connector-net/en/connector-net-programming.html
 >
-> ﻿https://dev.mysql.com/doc/connector-net/en/connector-net-tutorials.html`
+> https://dev.mysql.com/doc/connector-net/en/connector-net-tutorials.html`
 >
 > 注意：对于这种数据库IO类型请求，建议使用API的异步同名方法提高程序处理效率，例如`ExecuteNonQueryAsync`。
 
@@ -243,7 +243,7 @@ book id 888888 not found.
 
 ## 使用MySqlConnector
 
-﻿[MySqlConnector](https://github.com/mysql-net/MySqlConnector/)也是广泛使用的一种实现了ADO.NET接口的MySQL驱动，它提供了比`MySql.Data`更好的异步性能，很多ORM框架底层都是依赖于MySqlConnector实现对MySQL的访问。
+[MySqlConnector](https://github.com/mysql-net/MySqlConnector/)也是广泛使用的一种实现了ADO.NET接口的MySQL驱动，它提供了比`MySql.Data`更好的异步性能，很多ORM框架底层都是依赖于MySqlConnector实现对MySQL的访问。
 
 首先在项目中安装依赖包：
 
@@ -293,7 +293,7 @@ Check Table Before Drop: false
 
 > 【注意】
 >
-> 有些参数在`MySqlConnector`已经禁用了，更多差异和新增功能参考官网文档：https://mysqlconnector.net/connection-options/﻿
+> 有些参数在`MySqlConnector`已经禁用了，更多差异和新增功能参考官网文档：https://mysqlconnector.net/connection-options/
 
 除了可以使用连接字符串，`MySqlConnector`还支持Builder对象模式，连接串里的参数都能在`MySqlConnectionStringBuilder`找到对应的字段，例如：
 
@@ -447,9 +447,9 @@ for (int i = 1; i <= 1000; i++)
 }
 ```
 
-﻿![企业微信截图_20220519171121.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20220519171121-1653317790597.png)﻿﻿
+![企业微信截图_20220519171121.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20220519171121-1653317790597.png)
 
-更多用法可以参考官网文档：https://mysqlconnector.net/﻿
+更多用法可以参考官网文档：https://mysqlconnector.net/
 
 ## 使用Entity Framework
 
@@ -457,8 +457,8 @@ Entity Framework (EF)是.NET领域最知名的跨平台数据库访问ORM框架�
 
 它支持丰富的数据访问驱动，基于这个特性我们可以使用一套统一的API接口访问各种类型的数据库，比如Sqlite、SQL Server、MySQL、PostgreSQL、Spanner等等。在MySQL协议上，广泛使用的驱动有两个：
 
-- ﻿[Pomelo.EntityFrameworkCore.MySql](https://github.com/PomeloFoundation/Pomelo.EntityFrameworkCore.MySql)﻿
-- ﻿[MySql.EntityFrameworkCore](https://www.nuget.org/packages/MySql.EntityFrameworkCore)﻿
+- [Pomelo.EntityFrameworkCore.MySql](https://github.com/PomeloFoundation/Pomelo.EntityFrameworkCore.MySql)
+- [MySql.EntityFrameworkCore](https://www.nuget.org/packages/MySql.EntityFrameworkCore)
 
 在使用之前先安装Entity Framework的基础包：
 
@@ -623,7 +623,7 @@ user id 888888 not found.
 
 `Pomelo.EntityFrameworkCore.MySql`的文档地址：
 
-> ﻿https://github.com/PomeloFoundation/Pomelo.EntityFrameworkCore.MySql/wiki﻿
+> https://github.com/PomeloFoundation/Pomelo.EntityFrameworkCore.MySql/wiki
 
 ### MySql.EntityFrameworkCore
 
@@ -654,11 +654,11 @@ protected override void OnConfiguring(DbContextOptionsBuilder options)
 
 `MySql.EntityFrameworkCore`的文档地址：
 
-> ﻿https://dev.mysql.com/doc/connector-net/en/connector-net-entity-framework.html﻿
+> https://dev.mysql.com/doc/connector-net/en/connector-net-entity-framework.html
 
 总体来说，使用`Entity Framework`操作TiDB并没有什么特殊的地方，有使用经验的开发者几乎不用任何学习成本就能快速上手。
 
-`Entity Framework`更多用法可以参考官网文档：https://docs.microsoft.com/en-us/ef/core/﻿
+`Entity Framework`更多用法可以参考官网文档：https://docs.microsoft.com/en-us/ef/core/
 
 ## 使用Dapper
 
@@ -784,7 +784,7 @@ public async Task TestTransaction()
 
 `Dapper`会缓存每一次查询语句，因此推荐的做法是使用参数化方式进行传参，一方面能提高SQL执行效率，另一方面可以减少内存占用。
 
-更多用法可以参考官方文档：https://github.com/DapperLib/Dapper﻿
+更多用法可以参考官方文档：https://github.com/DapperLib/Dapper
 
 ## 最佳实践
 
@@ -834,6 +834,6 @@ public async Task TestWithDapper()
 
 推荐阅读：
 
-- ﻿[TiDB与MySQL兼容性对比](https://docs.pingcap.com/zh/tidb/dev/mysql-compatibility)﻿
-- ﻿[TiDB SQL开发规范](https://docs.pingcap.com/zh/tidb/dev/dev-guide-sql-development-specification)﻿
-- ﻿[TiDB性能调优最佳实践](https://docs.pingcap.com/zh/tidb/dev/dev-guide-optimize-sql-best-practices)
+- [TiDB与MySQL兼容性对比](https://docs.pingcap.com/zh/tidb/dev/mysql-compatibility)
+- [TiDB SQL开发规范](https://docs.pingcap.com/zh/tidb/dev/dev-guide-sql-development-specification)
+- [TiDB性能调优最佳实践](https://docs.pingcap.com/zh/tidb/dev/dev-guide-optimize-sql-best-practices)

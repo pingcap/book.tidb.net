@@ -38,7 +38,7 @@ TiDB的多活一直是各个将TiDB用到核心场景的互联网公司都在努
 
 这些对于所有核心tidb都放在同一个机房的公司，如果机房孤岛或者其他灾害问题，业务无法及时恢复。所以说TiDB集群的主备集群需求是重要的需求。TiCDC作为TiDB生态中重要的一环，通过ticdc cluster实时拉取tikv的changelog并且应用到下游集群，从而实现了同城/跨城的主备集群数据同步，有了主备集群，一是可以将部分不需要太实时的读取流量切到备用集群，来缓解主TIDB集群的读取压力。二是一旦核心机房有问题，备用集群就可以立即接管服务，因为经过了ticdc这层同步中间件，所以RPO受主库写入情况，以及ticdc sink速度的限制，存在 RPO！=0的情况，RTO肯定是能做到小于30s的，因为这个只是探测和切换的时间是由自动脚本或者监控来控制，所以可以实现主集群不可用时的及时切换。
 
-﻿![ticdc.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/ticdc-1653891008228.png)﻿﻿
+![ticdc.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/ticdc-1653891008228.png)
 
 PS：本文主要讲基于Placement-rule的多中心方案，所以这种“异步复制”的ticdc工具就不展开讲了，如果大家有想对TiCDC更加深入的了解，去年我写过一篇：[TiCDC应用场景解析](http://mp.weixin.qq.com/s?__biz=MzkyNzI2NzgxOA==&mid=2247483700&idx=1&sn=12ff42897db37da8ed4c2298445b30d7&chksm=c22befb1f55c66a77b6f422ebf8f1ce16cc2627a58243e1c5b38f4c2398af5638d51a42e469e&scene=21#wechat_redirect) 的文章，大家可以跳转详细看看。
 
@@ -50,7 +50,7 @@ PS：本文主要讲基于Placement-rule的多中心方案，所以这种“异�
 
 部署架构
 
-﻿![two-dc-replication-1.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/two-dc-replication-1-1653891033627.png)﻿﻿
+![two-dc-replication-1.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/two-dc-replication-1-1653891033627.png)
 
 通过查看上面的集群部署架构图：
 
@@ -76,7 +76,7 @@ PS：本文主要讲基于Placement-rule的多中心方案，所以这种“异�
 
 简易架构图 
 
-﻿![deploy-3dc.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/deploy-3dc-1653891052330.png)﻿﻿
+![deploy-3dc.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/deploy-3dc-1653891052330.png)
 
 通过查看上面的集群部署架构图：
 
@@ -96,7 +96,7 @@ PS：本文主要讲基于Placement-rule的多中心方案，所以这种“异�
 
 下图为集群部署架构图，具体如下：
 
-﻿![three-data-centers-in-two-cities-deployment-02.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/three-data-centers-in-two-cities-deployment-02-1653891069715.png)﻿﻿
+![three-data-centers-in-two-cities-deployment-02.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/three-data-centers-in-two-cities-deployment-02-1653891069715.png)
 
 通过查看上面的集群部署架构图：
 

@@ -21,11 +21,11 @@ hide_title: true
 
 #### 1.针对新表的数据插入，我们可以在创建表结构的时候，增加两个参数：
 
-- ﻿[SHARD_ROW_ID_BITS](https://docs.pingcap.com/zh/tidb/stable/shard-row-id-bits#shard_row_id_bits)﻿
-- ﻿![image-20220519163159336](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/NRbDCoyBrLePs1k-1653387639812.png)﻿﻿
-- ﻿[pre_split_regions](https://docs.pingcap.com/zh/tidb/stable/sql-statement-split-region#pre_split_regions)﻿
+- [SHARD_ROW_ID_BITS](https://docs.pingcap.com/zh/tidb/stable/shard-row-id-bits#shard_row_id_bits)
+- ![image-20220519163159336](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/NRbDCoyBrLePs1k-1653387639812.png)
+- [pre_split_regions](https://docs.pingcap.com/zh/tidb/stable/sql-statement-split-region#pre_split_regions)
 
-﻿![image-20220519163503935](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/3D4XscfNW58ILuR-1653387639949.png)﻿﻿
+![image-20220519163503935](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/3D4XscfNW58ILuR-1653387639949.png)
 
 示例：
 
@@ -39,7 +39,7 @@ CREATE TABLE `t1` (
 
 我们可以使用 [split-table-region](https://docs.pingcap.com/zh/tidb/stable/sql-statement-split-region#split-table-region) 的方法来处理写热点的问题。
 
-﻿![image-20220519165122848](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/Ezy53xDlM27afet-1653387639781.png)﻿﻿
+![image-20220519165122848](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/Ezy53xDlM27afet-1653387639781.png)
 
 需要注意的是，建表语句增加了 shard_row_id_bits 和 pre_split_regions 参数后，需要尽快开始向目标表导入数据，不然分割的空 region 可能会被 merge，导致出现写热点的问题。
 
@@ -74,7 +74,7 @@ Mysql 中的常规批量导入方式，可以指定十六进制分隔符，TiDB 
 
 这次测试我准备了四个不同数据量的 csv 文件，文件大小在 100MB 到 11GB ：
 
-﻿![image-20220523154741457](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/CeOnjlmB6YswhEb-1653387639779.png)﻿﻿
+![image-20220523154741457](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/CeOnjlmB6YswhEb-1653387639779.png)
 
 表结构为：
 
@@ -91,7 +91,7 @@ CREATE TABLE `sbtest` (
 
 ### 3.TiDB 集群准备
 
-﻿![image-20220523155441149](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/gkTUZhYbHlfQ3DB-1653387639984.png)﻿﻿
+![image-20220523155441149](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/gkTUZhYbHlfQ3DB-1653387639984.png)
 
 每台机器配置都是 8 vCore，32G内存，千兆带宽。配置有限，所有测试都在这个集群环境中进行测试。
 
@@ -104,7 +104,7 @@ CREATE TABLE `sbtest` (
 | 1000W | 1811.8（秒）   | 463.42（秒）  | 190.71（秒）      | 978.6（秒）      |
 | 6000W | 11041.87（秒） | 2831.83（秒） | 1908.05（秒）     | 6081.39（秒）    |
 
-﻿![image-20220524165449991](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/ZUyxjrNeALdu17t-1653387639812.png)﻿﻿
+![image-20220524165449991](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/ZUyxjrNeALdu17t-1653387639812.png)
 
 ### 5. 测试结果分析
 
@@ -133,5 +133,5 @@ CREATE TABLE `sbtest` (
 3. 针对需要用到 Lightning 的功能，而且是增量数据导入的话，建议使用 Lightning 的 tidb 模式。
 4. Navicat 只推荐给初学者导入少量数据使用。
 
-﻿![image-20220524164506759](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/e7Cg2EbIqdlyxQX-1653387639951.png)﻿﻿
+![image-20220524164506759](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/e7Cg2EbIqdlyxQX-1653387639951.png)
 

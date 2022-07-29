@@ -105,7 +105,7 @@ FROM  dual
 
 3. 等待数据插入完成后，查看 Grafana 监控，所需要监控图表路径是:  PD -> Statistics-balance -> Store leader count，等待各个 TiKV leader 平均后，重启其中一台 TiKV，通过 Grafana 监控图表中 Store leader count表格看 leader 平衡时间，如下图:
 
-﻿![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1655133225848.png)﻿﻿
+![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1655133225848.png)
 
 横坐标代表时间，纵坐标是leader的个数，不同颜色的线代表不同的tikv实例。
 
@@ -119,7 +119,7 @@ tikv 是作为一个进程服务在节点上,所以可以通过 systemctl 管理
 
 ### 对比数据图
 
- ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1654686734357.png)﻿ 
+ ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1654686734357.png) 
 
 从表中对比数据得到:
 
