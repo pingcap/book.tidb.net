@@ -8,7 +8,7 @@ keywords: [TiDB, Redo log, meta, TiCDC]
 
 # [Critical bug] Redo log 功能在某些场景下存在正确性问题
 
-> **作者**：宇博
+> **作者**：Yu Bo
 
 ## Issue
 
