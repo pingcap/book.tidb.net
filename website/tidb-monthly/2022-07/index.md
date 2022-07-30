@@ -27,10 +27,10 @@ sidebar_position: 7
   - [TiKV 主要内存结构和 OOM 排查总结](3-trouble-shooting/2-tikv-oom.md)
   - [tidb-dm 报警 DM_sync_process_exists_with_error 排查](3-trouble-shooting/3-tidb-dm.md)
 - 用户实践
-  - [麒麟 v10 上部署 TiDBv5.1.2 生产环境的最佳实践](4-usercase/1-tidb-v5-1-2.md1-tidb-v5-1-2.md)
+  - [麒麟 v10 上部署 TiDBv5.1.2 生产环境的最佳实践](4-usercase/1-tidb-v5-1-2.md)
   - [TiKV & TiFlash 加速复杂业务查询](4-usercase/2-tikv-tiflash.md)
   - [Ticmp - 更快的让应用从 MySQL 迁移到 TiDB](4-usercase/3-ticmp.md)
-  - [黄东旭：TiDB 的优势是什么？](4-usercase/4-huang-tidb.md)
+  - [黄东旭：TiDB 的优势是什么？](4-usercase/4-tidb-advantage.md)
   - [命里有时终须有--记与 TiDB 的一次次擦肩而过](4-usercase/5-tidb-story.md)
   - [TiDB 在长银五八消费金融核心系统适配经验分享](4-usercase/6-tidb-experience-sharing.md)
   - [TiDB 在多点数字化零售场景下的应用](4-usercase/7-tidb-dmall.md)
