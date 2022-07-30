@@ -16,11 +16,11 @@ keywords: [TiDB, Meetup, 7月, 回顾, 特性, Book Rush, 天津, 石家庄, 济
 
 详情：4月下旬社区开启了地区组织者计划，依靠社区小伙伴的力量，我们走进了天津、石家庄、济南、武汉，有分享 MySQL 与 TiDB 原理的，还有来教大家如何做好一场 TiDB POC 测试，也有小伙伴分享了对 TiDB 开发的一些展望和期待，除了 TiDB，地区技术交流也吸纳了如 Clickhouse、Databend、Greenplum、Oracle 等相关分享。
 
-![TiDB 地区 Meetup 回顾](https://img2.pingcap.com/forms/e/e/eea7c420d99b9b382b6f4010bd7c9efa31af9718.jpeg)
+![TiDB-Meetup](https://img2.pingcap.com/forms/e/e/eea7c420d99b9b382b6f4010bd7c9efa31af9718.jpeg)
 
 ## [TiKV 6.1 新特性预览 | Meetup No.150](https://mp.weixin.qq.com/s/1a9x67SfWgtTaTugFzlLzA)
 
-[视频回顾](介绍 TiKV 6.1 新特性预览，深度为大家解析 新一代日志引擎 Raft Engine 和集群在线恢复功能两大新特性。)
+[视频回顾](https://www.bilibili.com/video/BV1wa411p7Wo)
 
 在 150 期 Infra Meetup 直播间，我们邀请了两位来自 PingCAP 的研发工程师，从技术层面深入解析 TiKV 6.1 新特性。
 
