@@ -27,10 +27,10 @@ keywords: [认证, PCTA, PCTP]
 
 ## PCTP 考试安排
 
-- [【报名中】PingCAP 认证 TiDB 数据库专家 V5 考试（2022-08-17）](https://learn.pingcap.com/learner/exam-market/detail/1470002)
+- [【报名中】PingCAP 认证 TiDB 数据库专家 V5 考试（2022-08-17）](https://learn.pingcap.com/learner/exam-market/list?category=PCTA)
   - 进入考试时间: 2022-08-17 19:30至2022-08-17 19:45
   - 报名时间: 2022-07-11 00:00至2022-08-15 00:00
-- [【报名中】PingCAP 认证 TiDB 数据库专家 V5 考试（2022-09-14）](https://learn.pingcap.com/learner/exam-market/detail/1530001)
+- [【报名中】PingCAP 认证 TiDB 数据库专家 V5 考试（2022-09-14）](https://learn.pingcap.com/learner/exam-market/list?category=PCTA)
   - 进入考试时间: 2022-09-14 19:30至2022-09-14 19:45
   - 报名时间: 2022-08-12 00:00至2022-09-12 00:00
 - **[👉 获得 PCTP 考试兑换码](https://asktug.com/t/topic/513290)**
