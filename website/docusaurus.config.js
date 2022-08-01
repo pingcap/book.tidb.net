@@ -167,7 +167,7 @@ const config = {
           {
             to: "/book-rush",
             position: "left",
-            label: "🔥 Book Rush",
+            label: "🔥 TiDB 6.x in Action",
           },
           {
             to: "/db-selection",
