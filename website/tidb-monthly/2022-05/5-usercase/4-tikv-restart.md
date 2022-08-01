@@ -27,7 +27,7 @@ hide_title: true
 
 (5)  leader根据operator step完成调度处理，处理完成后或超时后，pd从运行队列中移除相关operator。
 
-﻿![xiDHBmvOjZ.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/xiDHBmvOjZ-1652434271835.png)﻿﻿
+![xiDHBmvOjZ.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/xiDHBmvOjZ-1652434271835.png)
 
 ​      为控制调度速度，PD提供了相关参数进行限制，balance-leader的调度速度由leader-schedule-limit参数限制(默认值4)，调度执行时会首先判断是否允创建operator，当前runningOperator队列中相应类型的operator数量小于limit参数限制时才允许调度产生operator,之后将产生的Operator加入到等待队列。
 
@@ -73,29 +73,29 @@ hide_title: true
 
 n **默认值**
 
-​                                         ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652431043722.png)﻿    
+​                                         ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652431043722.png)    
 
-﻿![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652431053692.png)﻿﻿
+![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652431053692.png)
 
 n **旧版本**
 
 ​    6.0版本前leader-scheduler没有batch选项，通过设置选项值为1模拟。                                                                                                      
 
-​                             ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652431107149.png)﻿﻿
+​                             ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652431107149.png)
 
-﻿![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652431116948.png)﻿﻿
+![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652431116948.png)
 
 n **较高值**
 
-​             ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652431127744.png)﻿﻿
+​             ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652431127744.png)
 
-﻿![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652431158583.png)﻿﻿
+![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652431158583.png)
 
 n **最低值：**
 
-​                            ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652431173046.png)﻿      
+​                            ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652431173046.png)      
 
-﻿![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652431189587.png)﻿﻿
+![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652431189587.png)
 
 ​     12:40 启动tikv后一直未发生调度，12:46 调整leader-schedule-limit=2仍未发生调度，12:50调整schedule-limit=1、max-waiting-operator=2后开始调度。
 

@@ -37,7 +37,7 @@ Triggering condition:
 - v5.0.7
 - v4.0.17
 
-﻿
+
 
 ## Root Cause
 
@@ -61,7 +61,7 @@ select count(*) from T;
 commit;
 ```
 
-﻿
+
 
 ## Resolution
 

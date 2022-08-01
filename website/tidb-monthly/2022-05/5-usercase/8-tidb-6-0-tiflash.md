@@ -94,7 +94,7 @@ tiup cluster deploy cluster111 ./cluster111-full.yaml --user root -p
 tiup cluster start cluster111
 ```
 
-﻿![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652685013834.png)﻿﻿
+![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652685013834.png)
 
 ### 2.2 创建库表
 
@@ -249,7 +249,7 @@ CREATE TABLE `m_cust_label` (
 
 ```
 
-﻿![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652685026789.png)﻿﻿
+![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652685026789.png)
 
 ### 2.3 初始化数据种子表
 
@@ -430,7 +430,7 @@ c10 94648   3
 select ORG_ID,count(*) as ct from m_cust_org GROUP BY ORG_ID ORDER BY ct desc limit 10;
 ```
 
-﻿![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652685042079.png)﻿﻿
+![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652685042079.png)
 
 #### 3.1.3 开启TiFlash
 
@@ -444,7 +444,7 @@ select * from information_schema.TIFLASH_SEGMENTS;
 select * from information_schema.TIFLASH_TABLES;
 ```
 
-﻿![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652685049064.png)﻿﻿
+![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652685049064.png)
 
 progress=1 表示同步完成！
 
@@ -465,7 +465,7 @@ left join m_cust_org c on a.cust_id=c.cust_id
 left join m_cust_data d on a.cust_id=d.cust_id;
 ```
 
-﻿![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652685060408.png)﻿﻿
+![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652685060408.png)
 
 指定使用了Tiflash的列扫，
 
@@ -482,7 +482,7 @@ left join m_cust_org c on a.cust_id=c.cust_id
 left join m_cust_data d on a.cust_id=d.cust_id;
 ```
 
-﻿![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652685067643.png)﻿﻿
+![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652685067643.png)
 
 在不确定组合的情况下无法使tikv加索引如果数据量较大的话tiflash的列扫更优有事。
 
@@ -499,7 +499,7 @@ left join m_cust_org c on a.cust_id=c.cust_id
 left join m_cust_data d on a.cust_id=d.cust_id;
 ```
 
-﻿![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652685075402.png)﻿﻿
+![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652685075402.png)
 
 #### 3.2.3 异表包含宽表字段
 
@@ -514,7 +514,7 @@ left join m_cust_org c on a.cust_id=c.cust_id
 left join m_cust_data d on a.cust_id=d.cust_id
 ```
 
-﻿![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652685082560.png)﻿﻿
+![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652685082560.png)
 
 利用了Tiflash的列扫和Tikv的索引优势。
 
@@ -532,7 +532,7 @@ left join m_cust_org c on a.cust_id=c.cust_id
 left join m_cust_data d on a.cust_id=d.cust_id
 ```
 
-﻿![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652685090307.png)﻿﻿
+![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652685090307.png)
 
 ```
 -- 2、直接join的方式
@@ -543,7 +543,7 @@ left join m_cust_org c on b.cust_id=c.cust_id
 left join m_cust_data d on b.cust_id=d.cust_id where d.asset BETWEEN 10 and 100 and c.ORG_ID in('8716','7162') ORDER BY b.cust_id desc limit 100
 ```
 
-﻿![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652685095694.png)﻿﻿
+![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652685095694.png)
 
 在测试环境中这2个的速度差不多，从执行计划来看的话 先查cust_id的效率高一些！
 
@@ -568,4 +568,3 @@ left join m_cust_data d on b.cust_id=d.cust_id where d.asset BETWEEN 10 and 100 
 - 2、where，order，limit 只是筛选出主键， 根据主键再join出需要的字段。
 - 3、不走tiflash的字段,可以考虑走tikv的索引
 
-﻿

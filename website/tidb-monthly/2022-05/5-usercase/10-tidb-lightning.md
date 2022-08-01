@@ -25,13 +25,13 @@ hide_title: true
 
 说明：TiDB Lightning的导入速度可达到传统导入 SQL 导入方式的至少 3 倍，甚至更多；
 
-﻿
+
 
 # 二、TiDB Lightning应用
 
 从上游MyCAT分片集群迁移到TiDB集群，具体的迁移架构如下：
 
-﻿![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652435797945.png)﻿﻿
+![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1652435797945.png)
 
 **备注**：
 
@@ -45,7 +45,7 @@ hide_title: true
 
 （3）LOAD 方式导入数据无法保证原子性导入的问题；具体表现为由于TiKV 写入过慢报错 LockNotFound 事务锁被清除，在上游是大数据量分片的场景中，可能出现 LOAD 进去 部分数据后导入失败，无法支持断点续传，此时需要反向 delete 掉已导入的数据，delete的代价非常高。
 
-﻿
+
 
 我们对Dumpling和TiDB Lightning工具命令用Python做了上层的包装，每次操作可以从一个分片节点将数据迁移到TiDB集群；
 
@@ -55,15 +55,15 @@ hide_title: true
 
 下面简单介绍下TiDB Lightning如何把将数据导入到目标集群中。目前，TiDB Lightning 支持以下后端：
 
-- ﻿[Local-backend](https://docs.pingcap.com/zh/tidb/stable/tidb-lightning-backends#tidb-lightning-local-backend)﻿
+- [Local-backend](https://docs.pingcap.com/zh/tidb/stable/tidb-lightning-backends#tidb-lightning-local-backend)
 
 ​       tidb-lightning 先将数据编码成键值对并排序存储在本地临时目录，然后将这些键值对以 SST 文件的形式上传到各个 TiKV 节点，然后由 TiKV 将这些 SST 文件 Ingest 到集群中。和 Importer-backend 原理相同，不过不依赖额外的 tikv-importer 组件
 
-- ﻿[Importer-backend](https://docs.pingcap.com/zh/tidb/stable/tidb-lightning-backends#tidb-lightning-importer-backend)﻿
+- [Importer-backend](https://docs.pingcap.com/zh/tidb/stable/tidb-lightning-backends#tidb-lightning-importer-backend)
 
 ​       tidb-lightning 先将 SQL 或 CSV 数据编码成键值对，由 tikv-importer 对写入的键值对进行排序，然后把这些键值对 Ingest 到 TiKV 节点中。
 
-- ﻿[TiDB-backend](https://docs.pingcap.com/zh/tidb/stable/tidb-lightning-backends#tidb-lightning-tidb-backend)﻿
+- [TiDB-backend](https://docs.pingcap.com/zh/tidb/stable/tidb-lightning-backends#tidb-lightning-tidb-backend)
 
 ​       tidb-lightning 先将数据编码成 INSERT 语句，然后直接在 TiDB 节点上运行这些 SQL 语句进行数据导入。
 
@@ -323,7 +323,7 @@ raw_handle: 0x7480000000000000BB5F728000000000000002
 2 rows in set (0.00 sec)
 ```
 
-更多相关内容可参考官方文档：https://docs.pingcap.com/zh/tidb/v6.0/tidb-lightning-error-resolution﻿
+更多相关内容可参考官方文档：https://docs.pingcap.com/zh/tidb/v6.0/tidb-lightning-error-resolution
 
 # 四、小结
 

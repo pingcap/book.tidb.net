@@ -13,22 +13,22 @@ hide_title: true
 
    TiCDC 提供 OpenAPI 功能，用户可以通过 OpenAPI 对 TiCDC 集群进行查询和运维操作。通过 OpenAPI 可以完成如下 TiCDC 集群的运维操作：
 
-- ﻿[获取 TiCDC 节点状态信息](https://docs.pingcap.com/zh/tidb/v6.0/ticdc-open-api#获取-ticdc-节点状态信息)﻿
-- ﻿[检查 TiCDC 集群的健康状态](https://docs.pingcap.com/zh/tidb/v6.0/ticdc-open-api#检查-ticdc-集群的健康状态)﻿
-- ﻿[创建同步任务](https://docs.pingcap.com/zh/tidb/v6.0/ticdc-open-api#创建同步任务)﻿
-- ﻿[删除同步任务](https://docs.pingcap.com/zh/tidb/v6.0/ticdc-open-api#删除同步任务)﻿
-- ﻿[更新同步任务配置](https://docs.pingcap.com/zh/tidb/v6.0/ticdc-open-api#更新同步任务配置)﻿
-- ﻿[查询同步任务列表](https://docs.pingcap.com/zh/tidb/v6.0/ticdc-open-api#查询同步任务列表)﻿
-- ﻿[查询特定同步任务](https://docs.pingcap.com/zh/tidb/v6.0/ticdc-open-api#查询特定同步任务)﻿
-- ﻿[暂停同步任务](https://docs.pingcap.com/zh/tidb/v6.0/ticdc-open-api#暂停同步任务)﻿
-- ﻿[恢复同步任务](https://docs.pingcap.com/zh/tidb/v6.0/ticdc-open-api#恢复同步任务)﻿
-- ﻿[查询同步子任务列表](https://docs.pingcap.com/zh/tidb/v6.0/ticdc-open-api#查询同步子任务列表)﻿
-- ﻿[查询特定同步子任务](https://docs.pingcap.com/zh/tidb/v6.0/ticdc-open-api#查询特定同步子任务)﻿
-- ﻿[查询 TiCDC 服务进程列表](https://docs.pingcap.com/zh/tidb/v6.0/ticdc-open-api#查询-ticdc-服务进程列表)﻿
-- ﻿[驱逐 owner 节点](https://docs.pingcap.com/zh/tidb/v6.0/ticdc-open-api#驱逐-owner-节点)﻿
-- ﻿[手动触发表的负载均衡](https://docs.pingcap.com/zh/tidb/v6.0/ticdc-open-api#手动触发表的负载均衡)﻿
-- ﻿[手动调度表到其他节点](https://docs.pingcap.com/zh/tidb/v6.0/ticdc-open-api#手动调度表到其他节点)﻿
-- ﻿[动态调整 TiCDC Server 日志级别](https://docs.pingcap.com/zh/tidb/v6.0/ticdc-open-api#动态调整-ticdc-server-日志级别)﻿
+- [获取 TiCDC 节点状态信息](https://docs.pingcap.com/zh/tidb/v6.0/ticdc-open-api#获取-ticdc-节点状态信息)
+- [检查 TiCDC 集群的健康状态](https://docs.pingcap.com/zh/tidb/v6.0/ticdc-open-api#检查-ticdc-集群的健康状态)
+- [创建同步任务](https://docs.pingcap.com/zh/tidb/v6.0/ticdc-open-api#创建同步任务)
+- [删除同步任务](https://docs.pingcap.com/zh/tidb/v6.0/ticdc-open-api#删除同步任务)
+- [更新同步任务配置](https://docs.pingcap.com/zh/tidb/v6.0/ticdc-open-api#更新同步任务配置)
+- [查询同步任务列表](https://docs.pingcap.com/zh/tidb/v6.0/ticdc-open-api#查询同步任务列表)
+- [查询特定同步任务](https://docs.pingcap.com/zh/tidb/v6.0/ticdc-open-api#查询特定同步任务)
+- [暂停同步任务](https://docs.pingcap.com/zh/tidb/v6.0/ticdc-open-api#暂停同步任务)
+- [恢复同步任务](https://docs.pingcap.com/zh/tidb/v6.0/ticdc-open-api#恢复同步任务)
+- [查询同步子任务列表](https://docs.pingcap.com/zh/tidb/v6.0/ticdc-open-api#查询同步子任务列表)
+- [查询特定同步子任务](https://docs.pingcap.com/zh/tidb/v6.0/ticdc-open-api#查询特定同步子任务)
+- [查询 TiCDC 服务进程列表](https://docs.pingcap.com/zh/tidb/v6.0/ticdc-open-api#查询-ticdc-服务进程列表)
+- [驱逐 owner 节点](https://docs.pingcap.com/zh/tidb/v6.0/ticdc-open-api#驱逐-owner-节点)
+- [手动触发表的负载均衡](https://docs.pingcap.com/zh/tidb/v6.0/ticdc-open-api#手动触发表的负载均衡)
+- [手动调度表到其他节点](https://docs.pingcap.com/zh/tidb/v6.0/ticdc-open-api#手动调度表到其他节点)
+- [动态调整 TiCDC Server 日志级别](https://docs.pingcap.com/zh/tidb/v6.0/ticdc-open-api#动态调整-ticdc-server-日志级别)
 
 具体参见官方文档 [TiCDC Open API](https://docs.pingcap.com/zh/tidb/v6.0/ticdc-open-api)。在业务系统中主要需要实现查询同步任务列表、查询特定同步任务、创建/删除/暂停/恢复同步任务。下文的内容主要围绕这几个接口的具体实现展开。
 
@@ -275,9 +275,9 @@ public class TicdcController extends BaseController {
 
 代码写的比较简单，出于简化考虑，没有进行Service分层设计。编译通过后启动，通过ApiPost测试一下新增的ticdc API接口，以调用获取同步任务列表为例，若服务端正常响应，输出信息如下图：
 
- ![no-alt](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/changefeeds-1652871396833.png)﻿ 
+ ![no-alt](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/changefeeds-1652871396833.png) 
 
-﻿
+
 
 
 
@@ -758,17 +758,17 @@ export default {
 
 - 查询同步列表 点击查询同步按钮列表，显示目前TiCDC节点中配置的同步任务列表。界面刷新后显示同步任务列表如下：
 
- ![no-alt](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/CDC-1652871632328.png)﻿ 
+ ![no-alt](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/CDC-1652871632328.png) 
 
 点击查看任务显示同步任务详细信息窗口：
 
- ![no-alt](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/feedinfo-1652871963745.png)﻿ 
+ ![no-alt](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/feedinfo-1652871963745.png) 
 
-﻿
+
 
 - 暂停/恢复/创建/删除任务的测试见如下动图：
 
- ![no-alt](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/95fba8f906fafa56e50261effd19875f8606a11e-1652872180176.gif)﻿ 
+ ![no-alt](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/95fba8f906fafa56e50261effd19875f8606a11e-1652872180176.gif) 
 
 好了，TiCDC Open API和业务系统的集成实践就到此结束了，希望能给感兴趣的同学提供些许参考。感谢你的阅读！
 
