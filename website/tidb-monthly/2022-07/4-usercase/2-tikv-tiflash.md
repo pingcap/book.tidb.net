@@ -22,13 +22,13 @@ keywords: [TiDB, TiKV, TiFlash, CRM, 复杂查询]
 
 TiDB 数据库的 TiKV 和 TiFlash 的组合理论上解决了上面的几个痛点。
 
-### 一、TiKV 行存 与 TiFlash 列存混合使用
+## 一、TiKV 行存 与 TiFlash 列存混合使用
 
 TiDB 中 query 执行的示意图，可以看到在 TiDB 中一个 query 的执行会被分成两部分，一部分在 TiDB 执行，一部分下推给存储层（ TiFlash/TiKV ）执行。
 
 ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1657792339094.png)
 
-#### 1.1 混用原理
+### 1.1 混用原理
 
 | 1    | TiDB 的行列混合并不是传统设计上的行存列存二选一， 而是 TiDB 可以在同一张表同时拥有行存和列存，且两者永远保持数据强一致（而非最终一致）。 |
 | ---- | ------------------------------------------------------------ |
@@ -37,19 +37,19 @@ TiDB 中 query 执行的示意图，可以看到在 TiDB 中一个 query 的执�
 
 ​     
 
-#### 1.2 混用优化
+### 1.2 混用优化
 
 ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1657792559953.png)
 
 
 
-### 二、标签系统高级筛选
+## 二、标签系统高级筛选
 
 通过标签（从宽表里不确定字段）和窄表特定字段组合查询客户并分页
 
 ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1657792574052.png)
 
-#### 2.1 Read from TiKV
+### 2.1 Read from TiKV
 
 ```sql
 SELECT 
@@ -77,7 +77,7 @@ FROM
 
 4G,2c 虚拟机 300 万数据，首次执行 48 s  二次执行 0.7s
 
-#### 2.2 Read From TiKV & TiFlash
+### 2.2 Read From TiKV & TiFlash
 
 ```sql
  SELECT 
@@ -104,7 +104,7 @@ FROM
 
 4G,2c 虚拟机 300 万数据，首次执行 3s  二次执行 0.3s
 
-#### 2.3 TiFlash & MPP
+### 2.3 TiFlash & MPP
 
 **控制是否选择 MPP 模式**
 
@@ -144,7 +144,7 @@ FROM
 
 使用 MPP 模式来执行查询后基本秒开，4G 2c 虚拟机 300 万数据，首次执行 1s  二次执行 0.15s
 
-#### 2.4 SPM 固定执行计划
+### 2.4 SPM 固定执行计划
 
 ```sql
 CREATE GLOBAL|SESSION  BINDING for	<BindableStmt > USING <BindableStmt2>
@@ -156,15 +156,15 @@ show warnings; -- 通过执行 show warnings 了解该 SQL 语句使用了哪一
 
 ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1657792594037.png)
 
-[三、标签下价值机构排名](https://tidb.net/blog/34dcd203#三、标签下价值机构排名)
+## 三、标签下价值机构排名
 
-#### 3.1 根据选中的属性（多值）
+### 3.1 根据选中的属性（多值）
 
 使用这些值最多的排名前 3 的机构，并统计出总额
 
 ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1657792611578.png)
 
-#### 3.2 执行计划
+### 3.2 执行计划
 
 table:c 走 TiFlash ；table:a, table:b 走 TiKV ，同时使用了列存和行存的优势。
 
@@ -174,7 +174,7 @@ table:c 走 TiFlash ；table:a, table:b 走 TiKV ，同时使用了列存和行�
 
 ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1657792633981.png)
 
-[四、总结](https://tidb.net/blog/34dcd203#四、总结)
+## 四、总结
 
 使用 TiKV 和 TiFlash 可以加速复杂查询，下面简单增加了使用使用场景。
 

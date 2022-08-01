@@ -8,14 +8,14 @@ sidebar_position: 7
 
 ## 推荐语
 
-本期 TiDB 社区技术月刊分为【开发适配】、【原理 & 特性解读】、【故障排查 & 诊断】、【用户实践】、【社区动态】、【TiDB 能力认证】六大模板。其中包括近期 TiDB 和 TiSpark 的 2 个版本更新，社区用户的 6.0 尝鲜应用，TiFlash 源码解读、TiDB 查询优化及调优、应用开发适配等精彩内容！
+本期 TiDB 社区技术月刊分为【开发适配】、【原理 & 特性解读】、【故障排查 & 诊断】、【用户实践】、【社区动态】、【TiDB 能力认证】六大模板。其中包括 《TiDB 6.x in Action》发布，TiFlash 开发适配手把手教学、源码解析持续更新，TiDB 优化调优等精彩内容！
 
 ## 目录
 
 > 手机端查看，点击左上角即可展开目录结构。
 
 - 开发适配
-  - [手把手教你实现 TiFlash 向量化函数丨十分钟成为 TiFlash Contributor - TiDB 社区技术月刊](1-development/1-tiflash.md)
+  - [手把手教你实现 TiFlash 向量化函数丨十分钟成为 TiFlash Contributor](1-development/1-tiflash.md)
 - 原理 & 特性解读
   - [TiFlash 源码阅读（五） DeltaTree 存储引擎设计及实现分析 - Part 2](2-feature-indepth/1-tiflash-deltatree.md)
   - [TiCDC 6.0 原理之 Sorter 演进](2-feature-indepth/2-ticdc-sorter.md)

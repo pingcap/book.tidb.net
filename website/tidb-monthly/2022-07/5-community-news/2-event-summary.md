@@ -32,8 +32,8 @@ TiDB 作为一个兼容 MySQL 的分布式数据库，从最开始就支持完�
 
 在提交模型上，TiDB 在 v4.0 支持了大事务，v5.0 支持了 Async Commit 和 1PC 来降低分布式事务的延迟；另一方面，TiDB 在 v3.0.8 支持了悲观事务来优化冲突场景的性能和稳定性，在 v4.0 上对悲观锁做了 pipelined 优化降低悲观锁的延迟，在 v6.0 发布了内存悲观锁又进一步降低了悲观锁的写入开销。本次 meetup 将分享 TiDB 在这两条路线做的演进、原理以及他们所解决的问题。
 
-## TiFlash 源码阅读：DeltaTree Index 的设计和实现
+## [TiFlash 源码阅读：DeltaTree Index 的设计和实现](https://asktug.com/t/topic/812956)
 
 [视频回顾](https://www.bilibili.com/video/BV1dV4y1L74v)
 
-本次分享对 TiFlash 存储层核心数据结构 DeltaTree Index 的作用以及相关的实现原理进行详细解读。
+本次 PingCAP 研发工程师李德竹分享了对 TiFlash 存储层核心数据结构 DeltaTree Index 的作用以及相关的实现原理。
