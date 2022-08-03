@@ -359,8 +359,6 @@ PARTITION p_sz VALUES IN ('sz') PLACEMENT POLICY=policy_sz
 
 ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651214122983.png)
 
-![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1651214129042.png)
-
 ### 9. 设置数据库级别的 PLACEMENT POLICY
 
 > 更改默认的放置选项，但更改不影响已有的表
