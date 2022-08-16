@@ -326,7 +326,7 @@ allow_embedding = true
 
 ![image_XedFPGdwB6.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image_XedFPGdwB6-1651932124073.png)
 
-结果还是一样的报错，我分别用了tiup安装和直接下载安装包，两种方法都没有效果。因为时间关系我就暂时不体验了，应该就是 dumpling 和 lightling 的功能做了包装，这个能可视化的操作还是很爽的。
+结果还是一样的报错，我分别用了tiup安装和直接下载安装包，两种方法都没有效果。因为时间关系我就暂时不体验了，应该就是 dumpling 和 lightning 的功能做了包装，这个能可视化的操作还是很爽的。
 
 ### 系统管理功能 
 
