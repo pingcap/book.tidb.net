@@ -112,7 +112,7 @@ pushgateway 作为独立组件一直保留，但是对于 Grafana 监控系统�
 
 `binlogctl` 和 `etcdctl` 是 server 包里 `ctl` (`ctl-v6.0.0-linux-amd64.tar.gz`) 组件里的两个可执行文件，这次更新是将这两个文件单独放置到 toolkit 包中，以配合 TiDB Binlog 和 PD Recover 工具一同使用。
 
-同样的，TiDB 适配版的 `mydumper` 放到 toolkit 包中，是为了配合 TiDB Lighting 进行数据备份。
+同样的，TiDB 适配版的 `mydumper` 放到 toolkit 包中，是为了配合 TiDB Lightning 进行数据备份。
 
 ## 总结
 
