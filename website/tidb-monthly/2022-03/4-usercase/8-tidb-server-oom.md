@@ -278,4 +278,4 @@ cgclassify -g memory:/tidb `ps -ef | grep tidb-server | grep -v grep | awk '{pri
 ANALYZE TABLE test.A PARTITION prt_20210101;
 ```
 
-lighting 在导数据之后，会有 analyze 的语句执行，但表比较大，重试三次都是失败。计划在每次导数据之后，定时设置一个 analyze，对有变动的分区执行 analyze。
+Lightning 在导数据之后，会有 analyze 的语句执行，但表比较大，重试三次都是失败。计划在每次导数据之后，定时设置一个 analyze，对有变动的分区执行 analyze。
