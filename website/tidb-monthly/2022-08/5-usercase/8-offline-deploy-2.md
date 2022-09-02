@@ -1,18 +1,12 @@
-
 ---
 title: 离线部署系列文章之二：TiDB 集群升级（5.3.0->5.4.2）&缩扩容 TiDB Server、PD、TiKV、TiFlash - TiDB 社区技术月刊
 sidebar_label: 离线部署系列文章之二：TiDB 集群升级（5.3.0->5.4.2）&缩扩容 TiDB Server、PD、TiKV、TiFlash
 hide_title: true
 description: 本文主要介绍 TiDB 集群升级（5.3.0->5.4.2）&缩扩容 TiDB Server、PD、TiKV、TiFlash。
 keywords: [TiDB, 集群升级, TiDB v5.3.0, TiDB v5.4.2, TiDB Server, PD, TiKV, TiFlash]
-
 ---
 
-
-
 # 离线部署系列文章之二：TiDB集群升级（5.3.0->5.4.2）&缩扩容 TiDB Server、PD、TiKV、TiFlash
-
-
 
 > 作者：OnTheRoad
 
@@ -28,7 +22,7 @@ keywords: [TiDB, 集群升级, TiDB v5.3.0, TiDB v5.4.2, TiDB Server, PD, TiKV, 
 ## 3. TiDB集群升级
 ### 3.1. 升级至 5.4.x 版本
 
-升级文档可参考官网链接： https://docs.pingcap.com/zh/tidb/v5.4/upgrade-tidb-using-tiup﻿
+升级文档可参考官网链接： https://docs.pingcap.com/zh/tidb/v5.4/upgrade-tidb-using-tiup
 
 #### 3.1.1. 5.4.x 关键特性
 
@@ -68,7 +62,7 @@ keywords: [TiDB, 集群升级, TiDB v5.3.0, TiDB v5.4.2, TiDB Server, PD, TiKV, 
 
 可参考 `1.5.1. 部署TiUP组件`，部署新版 TiUP 离线镜像。上传到中控机。在执行 `local_install.sh` 后，TiUP 会执行 `tiup mirror set tidb-community-server-$version-linux-amd64` 指定新版离线镜像源。
 
-离线镜像包下载地址 https://pingcap.com/zh/product-community﻿
+离线镜像包下载地址 https://pingcap.com/zh/product-community
 
 ```
 ~]$ id

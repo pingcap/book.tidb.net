@@ -45,9 +45,9 @@ keywords: [TiDB, HTAP, 数据库, Raft]
 
 如果大家对 TiDB 的论文还没有详细的读过，可以参考以下内容补补课：
 
-- TiDB 论文 - https://www.doc88.com/p-99599860907503.html﻿
-- 论文解读1 - https://blog.csdn.net/wangxin201492/article/details/119902840﻿
-- 论文解读2 - https://developer.aliyun.com/article/802291﻿
+- TiDB 论文 - https://www.doc88.com/p-99599860907503.html
+- 论文解读1 - https://blog.csdn.net/wangxin201492/article/details/119902840
+- 论文解读2 - https://developer.aliyun.com/article/802291
 
 从我的观点出发，我主要想从以下几个方面进行分享。
 

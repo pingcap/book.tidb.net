@@ -405,7 +405,7 @@ private def pruneFilterProject(
 
 TiSpark 目前能够支持谓词下推，聚合下推，limit 下推，order by 下推，但有些类型无法下推，其支持情况如下表：
 
-﻿![46dd2a452e3340d1f02a347f624af822.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/46dd2a452e3340d1f02a347f624af822-1660183933833.png)﻿﻿
+![46dd2a452e3340d1f02a347f624af822.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/46dd2a452e3340d1f02a347f624af822-1660183933833.png)
 
 > 目前 2022/07/11：
 >

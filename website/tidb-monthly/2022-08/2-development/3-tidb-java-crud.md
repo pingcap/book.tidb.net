@@ -603,7 +603,7 @@ mysql --host 127.0.0.1 --port 4000 -u root<src/main/resources/dbinit.sql
 
 
 
-### [第 3 步第 2 部分：TiDB Cloud 更改参数](https://tidb.net/blog/2e652000#第 3 步：运行代码  /第 3 步第 2 部分：TiDB Cloud 更改参数 )[](https://tidb.net/blog/2e652000#第-3-步第-2-部分tidb-cloud-更改参数)﻿
+### [第 3 步第 2 部分：TiDB Cloud 更改参数](https://tidb.net/blog/2e652000#第 3 步：运行代码  /第 3 步第 2 部分：TiDB Cloud 更改参数 )[](https://tidb.net/blog/2e652000#第-3-步第-2-部分tidb-cloud-更改参数)
 
 - 使用 JDBC
 - 使用 Mybatis（推荐）

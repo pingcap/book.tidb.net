@@ -1155,7 +1155,7 @@ mysql> FLUSH PRIVILEGES;
 > - ‘admin’@'192.168.3.1_'表示admin用户可以从IP为192.168.3.10~192.168.3.19的主机，连接数据库服务器
 > - ‘admin’@'192.168.3._4’表示admin用户可以从IP为192.168.3.14/24/34/44/54/64/74/84/94的主机，连接数据库服务器
 
-关于TiDB用户权限管理，可参考官方文档[https://docs.pingcap.com/zh/tidb/stable/privilege-management#%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86](https://docs.pingcap.com/zh/tidb/stable/privilege-management#权限管理)﻿
+关于TiDB用户权限管理，可参考官方文档[https://docs.pingcap.com/zh/tidb/stable/privilege-management#%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86](https://docs.pingcap.com/zh/tidb/stable/privilege-management#权限管理)
 
 #### 2.7.3. 忘记密码
 

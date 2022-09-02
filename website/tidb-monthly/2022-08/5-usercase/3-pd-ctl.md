@@ -19,7 +19,7 @@ keywords: [TiDB, PD Control,  JSON]
 
 在介绍 pd-ctl 的命令行选项 --jq之前，首先了解一下 Linux 中的命令行工具 jq。jq 是一个命令行的 JSON 文本格式化工具。jq 将给定的 Filter（过滤器）应用于其输入的 JSON 文本中，并将执行结果以 JSON 格式返回到标准输出中。
 
-官方文档链接：https://stedolan.github.io/jq/manual/﻿
+官方文档链接：https://stedolan.github.io/jq/manual/
 
 ### 1.2. jq 安装
 

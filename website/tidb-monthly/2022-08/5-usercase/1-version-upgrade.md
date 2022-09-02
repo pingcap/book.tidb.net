@@ -1,4 +1,4 @@
-\---
+---
 
 title: 实战-记录一次大版本升级 - TiDB 社区技术月刊
 
@@ -10,14 +10,12 @@ description: 本文主要介绍如何从 TiDB v4.0.13 升级到 TiDB v5.4.0 GA �
 
 keywords: [TiDB, TiDB v4.0.13, TiDB v5.4.0 GA, 版本升级]
 
-\---
-
+---
 
 
 # 实战-记录一次大版本升级
 
 > 作者：magongyong
-
 
 
 ## 一. 背景
@@ -42,7 +40,6 @@ keywords: [TiDB, TiDB v4.0.13, TiDB v5.4.0 GA, 版本升级]
 - TiDB v5.4.0是大版本5.4的第一个版本，可能会存在bug，后期需要通过小版本升级修复bug list，比如升级到5.4.1。
 - 为保证升级期间对业务影响最小，采用集群替换方式，保证一个集群升级出现问题，另一个能随时接管业务。
 
-﻿
 
 ## 四. 官方说明
 
@@ -130,7 +127,7 @@ keywords: [TiDB, TiDB v4.0.13, TiDB v5.4.0 GA, 版本升级]
 - 优化持续性能分析（实验特性）
 - TiSpark 支持用户认证与鉴权
 
-﻿
+
 
 ### 2、版本兼容性
 
@@ -142,13 +139,13 @@ keywords: [TiDB, TiDB v4.0.13, TiDB v5.4.0 GA, 版本升级]
 
 此处内容过多，省略
 
-﻿
+
 
 ### 3、github issue
 
-﻿https://github.com/pingcap/tidb/issues?page=2&q=is%3Aopen+is%3Aissue+label%3Aaffects-5.4﻿
+https://github.com/pingcap/tidb/issues?page=2&q=is%3Aopen+is%3Aissue+label%3Aaffects-5.4
 
-﻿
+
 
 ## 五. 升级流程
 
@@ -159,27 +156,27 @@ keywords: [TiDB, TiDB v4.0.13, TiDB v5.4.0 GA, 版本升级]
 5. 将旧集群做成新集群的从集群，用于随时回退。
 6. 稳定运行一个月，下线旧集群。
 
-﻿
+
 
 ## 六. 服务器规划
 
 ### 1、新版本集群
 
-﻿![图片.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/%E5%9B%BE%E7%89%87-1658891567312.png)﻿﻿
+![图片.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/%E5%9B%BE%E7%89%87-1658891567312.png)
 
-﻿
+
 
 ### 2、旧版本集群
 
-﻿![图片.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/%E5%9B%BE%E7%89%87-1658891734974.png)﻿﻿
+![图片.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/%E5%9B%BE%E7%89%87-1658891734974.png)
 
-﻿
+
 
 ## 七. 测试报告
 
 ### 1、sysbench混合性能测试，读写比3:1
 
-﻿![图片.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/%E5%9B%BE%E7%89%87-1658891904370.png)﻿列说明：
+![图片.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/%E5%9B%BE%E7%89%87-1658891904370.png)列说明：
 
 第1列：并发数
 
@@ -189,19 +186,19 @@ keywords: [TiDB, TiDB v4.0.13, TiDB v5.4.0 GA, 版本升级]
 
 第4列：5.4.0版本，新集群服务器，tps
 
-﻿
+
 
 ### 2、TiFlash单个sql查询测试
 
 **测试结果：**
 
-﻿![图片.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/%E5%9B%BE%E7%89%87-1658892243682.png)﻿﻿
+![图片.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/%E5%9B%BE%E7%89%87-1658892243682.png)
 
 ### 3、TiKV单个sql查询测试
 
 **测试结果：**
 
-﻿![图片.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/%E5%9B%BE%E7%89%87-1658892326889.png)﻿﻿
+![图片.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/%E5%9B%BE%E7%89%87-1658892326889.png)
 
 
 
@@ -222,13 +219,13 @@ keywords: [TiDB, TiDB v4.0.13, TiDB v5.4.0 GA, 版本升级]
 13. 新集群部署binlog drainer，同步到原集群，保证随时可回退到原集群，先找到切换时间点的tso，根据此tso部署drainer。
 14. 业务相关的操作，比如业务回归测试等，至此，切换完成。
 
-﻿
+
 
 ## 九. 回退
 
 将域名切回至原集群即可
 
-﻿
+
 
 ## 十. 经验总结
 

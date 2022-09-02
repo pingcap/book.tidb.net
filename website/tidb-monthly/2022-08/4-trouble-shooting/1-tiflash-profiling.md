@@ -14,7 +14,7 @@ keywords: [TiFlash, Profiling, TiDB,  errno, pprof-rs]
 
 TiFlash 在运行中偶尔出现某些系统调用（诸如 `write()`）返回非法的 errno，由于程序无法处理非法 errno，所以最终会导致进程崩溃。由于仅在开启 Profiling 期间复现出该问题，因此怀疑与 Profiling 相关。
 
-Github issue: https://github.com/pingcap/tiflash/issues/5687﻿
+Github issue: https://github.com/pingcap/tiflash/issues/5687
 
 ## Root Cause
 

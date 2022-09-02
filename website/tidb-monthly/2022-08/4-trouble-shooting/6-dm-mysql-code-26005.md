@@ -146,7 +146,7 @@ MySQL 8.0 权限表结构与之前的版本不同，以 mysql.user 举例，差�
 
 ## TiDB 忽略授权语句执行报错
 
-可以参加 PR ：https://github.com/pingcap/parser/pull/1319﻿
+可以参加 PR ：https://github.com/pingcap/parser/pull/1319
 
 这里未做尝试
 

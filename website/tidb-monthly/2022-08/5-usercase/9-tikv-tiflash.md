@@ -1,17 +1,10 @@
-\---
-
+---
 title: TiKV & TiFlash 加速复杂业务查询丨TiFlash 应用实践 - TiDB 社区技术月刊
-
 sidebar_label: TiKV & TiFlash 加速复杂业务查询丨TiFlash 应用实践
-
 hide_title: true
-
 description: 复杂业务查询对于传统的关系型数据库来说是一种考验，而通过 TiKV 行存与 TiFlash 的列存结合使用就能很好地应对。本文根据 TUG 用户边城元元在 TiDB 社区技术交流石家庄站的分享整理，详细介绍了 TiKV & TiFlash 加速复杂业务查询的原理及实践方案。
-
 keywords: [TiDB, TiKV, TiFlash, CRM]
-
-\---
-
+---
 
 
 # TiKV & TiFlash 加速复杂业务查询丨TiFlash 应用实践

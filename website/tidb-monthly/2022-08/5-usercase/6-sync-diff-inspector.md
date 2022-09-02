@@ -621,4 +621,4 @@ sync_diff_inspector是TiDB团队为了方便用户在MySQL数据迁移到TiDB后
 
 ## 参考
 
-> ﻿https://docs.pingcap.com/zh/tidb/stable/sync-diff-inspector-overview
+> https://docs.pingcap.com/zh/tidb/stable/sync-diff-inspector-overview

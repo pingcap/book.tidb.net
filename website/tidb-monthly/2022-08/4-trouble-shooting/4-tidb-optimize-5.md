@@ -185,7 +185,7 @@ MySQL [db_stat]> explain select * from table:t_like_list where person_id='153553
 select a.a_id, a.b_id,uqm.p_id from a join hsq on a.b_id=hsq.id join uqm on a.a_id=uqm.id;
 ```
 
-﻿![7.jpg](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/7_a3c23a297c-1660024666366.jpg)﻿﻿
+![7.jpg](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/7_a3c23a297c-1660024666366.jpg)
 
 **SQL2**
 
