@@ -2,7 +2,7 @@
 title: TiDB 论文引发的 HTAP 数据库再思考 - TiDB 社区技术月刊
 sidebar_label: TiDB 论文引发的 HTAP 数据库再思考
 hide_title: true
-description: 我最近又在仔细研读 TiDB 的论文《TiDB: A Raft-based HTAP Database》，空余时间也有看到圈里大家针对 HTAP 的不同理解，我希望能够有机会再跟大家分享一下我对这两种不同的 HTAP 演进方式的理解，无论是 TiDB 还是 GP，都是很好的产品，希望大家也都能用的开心。
+description: 我最近又在仔细研读 TiDB 的论文《TiDB A Raft-based HTAP Database》，空余时间也有看到圈里大家针对 HTAP 的不同理解，我希望能够有机会再跟大家分享一下我对这两种不同的 HTAP 演进方式的理解，无论是 TiDB 还是 GP，都是很好的产品，希望大家也都能用的开心。
 keywords: [TiDB, HTAP, 数据库, Raft]
 ---
 

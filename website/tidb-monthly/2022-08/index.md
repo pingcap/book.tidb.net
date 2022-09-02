@@ -51,7 +51,7 @@ sidebar_position: 8
   - [社区活动预告](6-community-news/1-upcoming-events.md)
   - [8 月精彩活动回顾](6-community-news/2-event-summary.md)
   - [8 月社区荣誉成员](6-community-news/3-mva-202208.md)
-  - [Contributor 动态](6-community-news/4-Contributors.md)
+  - [Contributor 动态](6-community-news/4-contributors.md)
   - 我和 TiDB 的故事
     - [我和 TiDB 的故事 | 学tidb半年，社区治好了我的精神内耗](6-community-news/5-tidb-story/1-tidb-half-year.md)
     - [我和 TiDB 的故事 | 横看成岭侧成峰 ](6-community-news/5-tidb-story/2-when-viewed-in-face-may-look-like-a-range.md)
