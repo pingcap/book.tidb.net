@@ -15,8 +15,9 @@ sidebar_position: 6
 > 手机端查看，点击左上角即可展开目录结构。
 
 - 产品更新
-  - [TiDB 6.2.0 Release Notes](1-update/1-tidb-6-2-0.md)
-  - [TiDB Operator 1.3.7 Release Notes](1-update/2-tidb-operator-1-3-7.md)
+  - [TiDB 6.1.1 Release Notes](1-update/1-tidb-6-1-1.md)
+  - [TiDB 6.2.0 Release Notes](1-update/2-tidb-6-2-0.md)
+  - [TiDB Operator 1.3.7 Release Notes](1-update/3-tidb-operator-1-3-7.md)
 - 开发适配
   - [如何在 TiDB Cloud 上使用 Databricks 进行数据分析 | TiDB Cloud 使用指南](2-development/1-tidb-cloud-databricks.md)
   - [TiDB 和 Golang 的简单 CRUD 应用程序](2-development/2-tidb-golang-crud.md)
@@ -64,6 +65,6 @@ sidebar_position: 6
 
 ## 感谢
 
-感谢所有贡献内容的作者（按文章收录顺序排列）：[吴强](https://github.com/Daemonxiao)、[王琦智](https://github.com/Icemap)、[YY-ha ](https://tidb.net/u/YY-ha/answer)、[施闻轩](https://github.com/breezewish)、[李德竹](http://lidezhu) 、[骆融臻](https://github.com/CalvinNeo)、[施宇航](https://github.com/shiyuhang0)、[黄东旭](https://github.com/c4pt0r)、[Yexiang Zhang](https://github.com/mornyx)、[Yiding Cui](https://github.com/winoros)、[Woody](https://github.com/bestwoody)、[Yu Dong](https://github.com/yudongusa)、[seiang](https://tidb.net/u/seiang/answer)、[MrSylar](https://tidb.net/u/MrSylar/answer)、[magongyong](https://tidb.net/u/magongyong/answer)、[dba_360-顾大伟](https://tidb.net/u/dba_360-顾大伟/answer)、[OnTheRoad](https://tidb.net/u/OnTheRoad/answer)、[GreenGuan](https://tidb.net/u/GreenGuan/answer)、[banana_jian](https://tidb.net/u/banana_jian/answer)、[边城元元](https://tidb.net/u/边城元元/answer)、[Harbin70KG](https://tidb.net/u/Harbin70KG/answer)、[ShawnYan](https://tidb.net/u/ShawnYan/answer)、[h5n1](https://tidb.net/u/h5n1/answer)、[G7尹裕皓](https://tidb.net/u/G7尹裕皓/answer)、[xuexiaogang](https://tidb.net/u/xuexiaogang/answer)
+感谢所有贡献内容的作者（按文章收录顺序排列）：[吴强](https://github.com/Daemonxiao)、[王琦智](https://github.com/Icemap)、[YY-ha ](https://tidb.net/u/YY-ha/answer)、[施闻轩](https://github.com/breezewish)、[李德竹](https://github.com/lidezhu) 、[骆融臻](https://github.com/CalvinNeo)、[施宇航](https://github.com/shiyuhang0)、[黄东旭](https://github.com/c4pt0r)、[Yexiang Zhang](https://github.com/mornyx)、[Yiding Cui](https://github.com/winoros)、[Woody](https://github.com/bestwoody)、[Yu Dong](https://github.com/yudongusa)、[seiang](https://tidb.net/u/seiang/answer)、[MrSylar](https://tidb.net/u/MrSylar/answer)、[magongyong](https://tidb.net/u/magongyong/answer)、[dba_360-顾大伟](https://tidb.net/u/dba_360-顾大伟/answer)、[OnTheRoad](https://tidb.net/u/OnTheRoad/answer)、[GreenGuan](https://tidb.net/u/GreenGuan/answer)、[banana_jian](https://tidb.net/u/banana_jian/answer)、[边城元元](https://tidb.net/u/边城元元/answer)、[Harbin70KG](https://tidb.net/u/Harbin70KG/answer)、[ShawnYan](https://tidb.net/u/ShawnYan/answer)、[h5n1](https://tidb.net/u/h5n1/answer)、[G7尹裕皓](https://tidb.net/u/G7尹裕皓/answer)、[xuexiaogang](https://tidb.net/u/xuexiaogang/answer)
 
-感谢本期月刊的内容编辑：[CandicePan](https://github.com/Candicepan)，[Xiaolu Zhou](https://github.com/luzizhuo)，[ShawnYan](https://tidb.net/u/ShawnYan/post/all)，
+感谢本期月刊的内容编辑：[CandicePan](https://github.com/Candicepan)，[Xiaolu Zhou](https://github.com/luzizhuo)，[ShawnYan](https://tidb.net/u/ShawnYan/post/all)

@@ -1,4 +1,4 @@
 # TiDB 能力认证
 
-- [考试安排](1-pcta-pctp.md)
-- [课程介绍与推荐](2-tidb-course.md)
+- [认证介绍 & 考试安排](1-pcta-pctp.md)
+- [TiDB 标准课程推荐](2-tidb-course.md)
