@@ -60,8 +60,8 @@ sidebar_position: 6
     - [我和 TiDB 的故事 | 缘份在，那就终是能相遇的](6-community-news/5-tidb-story/4-fate-in-will-meet.md)
     - [我和 TiDB 的故事 | TiDB 对我不离不弃，我亦如此 | TiDB 社区](6-community-news/5-tidb-story/5-tidb-never-give-up.md)
 - TiDB 能力认证
-  - [考试安排](7-tidb-certification/1-pcta-pctp.md)
-  - [课程介绍与推荐](7-tidb-certification/2-tidb-course.md)
+  - [认证介绍 & 考试安排](7-tidb-certification/1-pcta-pctp.md)
+  - [TiDB 标准课程推荐](7-tidb-certification/2-tidb-course.md)
 
 ## 感谢
 

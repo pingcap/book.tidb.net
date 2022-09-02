@@ -14,7 +14,7 @@ keywords: [TiDB,TiDB 社区故事, 社区, 用户]
 
 这是我加入 TiDB 社区的第 293 天。
 
-[1.jpg](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1-1659612618998.jpg)
+![1.jpg](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1-1659612618998.jpg)
 
 入行 IT 多年，救火数次，原本打算抱着 MySQL 从一而终，却忘了最大的确定就是不确定性。
 
