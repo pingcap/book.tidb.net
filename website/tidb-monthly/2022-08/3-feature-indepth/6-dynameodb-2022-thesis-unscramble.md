@@ -2,7 +2,7 @@
 title: DynamoDB 2022 论文解读 - TiDB 社区技术月刊
 sidebar_label: DynamoDB 2022 论文解读
 hide_title: true
-description: 本文是 PingCAP 联合创始人兼 CTO 黄东旭对论文 Amazon DynamoDB: A Scalable, Predictably Performant, and Fully Managed NoSQL Database Service 的解读，同时也对比了 TiDB 的一些设计。
+description: 本文是 PingCAP 联合创始人兼 CTO 黄东旭对论文 Amazon DynamoDB - A Scalable, Predictably Performant, and Fully Managed NoSQL Database Service 的解读，同时也对比了 TiDB 的一些设计。
 keywords: [DynamoDB 2022, 论文解读, TiDB, Scalable, Database]
 ---
 
