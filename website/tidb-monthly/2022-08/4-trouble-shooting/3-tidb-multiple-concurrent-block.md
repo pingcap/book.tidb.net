@@ -1,6 +1,6 @@
 ---
 title: 多并发下线程创建、释放的阻塞问题 - TiDB 社区技术月刊
-sidebar_label: TiFlash 在开启 Profiling 以后偶发崩溃
+sidebar_label: 多并发下线程创建、释放的阻塞问题
 hide_title: true
 description: 本文介绍解决 TiDB 在多并发下线程创建、释放的阻塞问题。
 keywords: [TiDB, 多并发, 线程,  释放, TiFlash]
