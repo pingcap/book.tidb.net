@@ -9,7 +9,9 @@ keywords: [TiDB, 数据迁移, HBase, Pinterest]
 # TiDB 在 Pinterest丨从 HBase 到 TiDB：我们如何实现零停机在线数据迁移
 
 > 作者：Ankita Girish Wagh
+> 
 > 译者：核子可乐
+> 
 > 策划：InfoQ 王一鹏
 
 > Pinterest，是一款流行的应用程序，可以让用户利用其平台作为个人创意及项目工作所需的视觉探索工具，同时也有人把它视为一个图片分享类的社交网站，用户可以按主题分类添加和管理自己的图片收藏，并与好友分享。

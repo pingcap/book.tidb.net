@@ -8,7 +8,7 @@ keywords: [TiDB, TiUniManager, 运维, DBA]
 
 # TiUniManager部署和使用感受
 
-> 作者：gary
+> 作者：[gary](https://tidb.net/u/gary/answer)
 
 原创[安装 & 部署](https://tidb.net/blog/tag/install-and-deploy)[集群管理](https://tidb.net/blog/tag/cluster-management)[6.x 实践](https://tidb.net/blog/tag/6.x-practice)
 

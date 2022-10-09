@@ -8,7 +8,7 @@ keywords: [TiDB, TiCDC, 集群, 数据校验]
 
 # 基于 TiCDC 同步的主从集群数据校验
 
-> 作者：eastfisher
+> 作者：[eastfisher](https://tidb.net/u/eastfisher/answer)
 
 ## 背景
 

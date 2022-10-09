@@ -8,7 +8,7 @@ keywords: [TiDB, 跨版本升级, TiDB v3.0.10, TiDB v5.3.0]
 
 # 《TiDB跨版本升级》 --流程概述
 
-> 作者：Ming
+> 作者：[Ming](https://tidb.net/u/Ming/answer)
 
 ## 升级背景
 

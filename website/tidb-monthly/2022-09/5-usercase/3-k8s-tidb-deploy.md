@@ -6,7 +6,7 @@ description: 随着 Kubernetes（K8s） 的全面成熟，越来越多的组织�
 keywords: [TiDB, k8s, 部署, 基础设施层]
 ---
 
-# k8s Tidb实践-部署篇
+# K8s TiDB 实践-部署篇
 
 > 作者：[dba_360-顾大伟](https://tidb.net/u/dba_360-%E9%A1%BE%E5%A4%A7%E4%BC%9F/answer)
 

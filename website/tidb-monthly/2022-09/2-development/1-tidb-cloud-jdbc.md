@@ -12,7 +12,7 @@ keywords: [TiDB Cloud, JDBC, JDK 17, JDBC driver]
 
 TiDB Cloud 使用了 [TiDB 默认的配置](https://docs.pingcap.com/tidb/dev/enable-tls-between-clients-and-servers#supported-tls-versions)，支持 TLSv1.1，TLSv1.2，TLSv1.3。当我们在使用 MySQL Connector/J 连接 TiDB Cloud 的时候，能否连接成功取决于 JDK 版本和 JDBC driver 的版本。我们用最新的 JDK 17 来测试。
 
-![no-alt](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1280X1280-1662392093313.png)﻿
+![no-alt](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/1280X1280-1662392093313.png)
 
 ## JDBC 8.0.26
 
