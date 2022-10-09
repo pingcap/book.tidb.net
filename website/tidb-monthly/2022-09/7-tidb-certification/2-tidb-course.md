@@ -31,20 +31,20 @@ keywords: [课程, TiDB]
 **课程难度：**初级
 
 
-### [【限时免费】使用 Connector/J TiDB v6](https://learn.pingcap.com/learner/course/840002?utm_source=community-monthly)**
+### [【限时免费】使用 Connector/J TiDB v6](https://learn.pingcap.com/learner/course/840002?utm_source=community-monthly)
 
 **课程简介：**本课程指导您通过Java程序实现读写操作的一系列概念和动手操作最佳实践。 它侧重于 JDBC Connector/J 驱动程序视角，让学员准备好面对任何基于 Connector/J 构建的 ORM 框架。在学习本课程前，您应当已经具有一定的 Java 编程和 SQL 使用经验 。 
 
 **课程难度：**中级
 
 
-### [【限时免费】TiDB 特有功能与事务控制 TiDB v6](https://learn.pingcap.com/learner/course/750002?utm_source=community-monthly)**
+### [【限时免费】TiDB 特有功能与事务控制 TiDB v6](https://learn.pingcap.com/learner/course/750002?utm_source=community-monthly)
 
 **课程简介**：本课程提供了可用于应用程序的 TiDB 独特功能，如 AUTO_RANDOM、AUTO_INCREMENT 特别注意事项、全局临时表、如何使用 TiFlash 启用 HTAP 以及放置策略等。在学习本课程前，您应当已经熟悉 SQL 查询，了解 MySQL 兼容 RDBMS 上 DML 和 DDL 的基本知识。
 
 **课程难度：**中级
 
-### [【限时免费】在 TiDB 上开发应用的最佳实践 TiDB v6](https://learn.pingcap.com/learner/course/780002?utm_source=community-monthly)**
+### [【限时免费】在 TiDB 上开发应用的最佳实践 TiDB v6](https://learn.pingcap.com/learner/course/780002?utm_source=community-monthly)
 
 **课程简介：**本课程总结了关于在TiDB上开发的指导原则和最佳实践。在学习本课程前，您应当已经具有 SQL 使用和后端应用程序编程经验。
 

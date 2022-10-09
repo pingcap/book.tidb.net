@@ -10,8 +10,6 @@ keywords: [TiDB, TiUniManager, 运维, DBA]
 
 > 作者：[gary](https://tidb.net/u/gary/answer)
 
-原创[安装 & 部署](https://tidb.net/blog/tag/install-and-deploy)[集群管理](https://tidb.net/blog/tag/cluster-management)[6.x 实践](https://tidb.net/blog/tag/6.x-practice)
-
 ## 前言
 
 TiUniManager是6.x推出的新功能，为分布式数据库 TiDB 打造的管控平台软件和数据库运维管理平台，主要为 TiDB 提供数据库集群管理功能、主机管理功能和平台管理功能，涵盖了数据库运维人员 (DBA) 在 TiDB 上进行的常用运维操作，帮助 DBA 对 TiDB 进行自动化、自助化和可视化管理。简化运维上的命令行上管理的繁琐步骤，实现图形化一键操作完成对 TiDB 的部署运维相关工作。

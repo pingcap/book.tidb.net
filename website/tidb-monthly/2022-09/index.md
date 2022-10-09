@@ -8,7 +8,7 @@ sidebar_position: 5
 
 ## 推荐语
 
-本期 TiDB 社区技术月刊分为【产品更新】、【开发适配】、【原理 & 特性解读】、【故障排查 & 诊断】、【用户实践】、【社区动态】、【TiDB 能力认证】七大模板。其中包括 TiDB 6.3.0、TiSpark 3.1.0 等发布，JDBC 链接 TiDB Cloud 解读， K8s 和 TiDB 实践案例分享，TiFlash 源码解析持续更新，以及 TiDB Hackathon 2022 比赛火热进行中等精彩内容！
+本期 TiDB 社区技术月刊分为【产品更新】、【开发适配】、【原理 & 特性解读】、【故障排查 & 诊断】、【用户实践】、【社区动态】、【TiDB 能力认证】七大模板。其中包括 TiDB 6.3.0、TiSpark 3.1.0 等发布，JDBC 连接 TiDB Cloud 解读， K8s 和 TiDB 实践案例分享，TiFlash 源码解析持续更新，以及 TiDB Hackathon 2022 比赛火热进行中等精彩内容！
 
 ## 目录
 
@@ -18,10 +18,10 @@ sidebar_position: 5
   - [TiDB 6.3.0 Release Notes](1-update/1-tidb-6-3-0.md)
   - [TiDB 6.1.1 Release Notes](1-update/2-tidb-6-1-1.md)
   - [TiDB 5.3.3 Release Note](1-update/3-tidb-5-3-3.md)
-  - [TiUP v1.11.0 Release Notes](1-update/4-tiup-1-11-0.md)
-  - [TiSpark v3.1.0 Release Notes](1-update/5-tispark-3-1-0.md)
-  - [TiSpark v3.0.2 Release Notes](1-update/6-tispark-3-0-2.md)
-  - [TiSpark v2.5.2 Release Notes](1-update/7-tispark-2-5-2.md)
+  - [TiUP 1.11.0 Release Notes](1-update/4-tiup-1-11-0.md)
+  - [TiSpark 3.1.0 Release Notes](1-update/5-tispark-3-1-0.md)
+  - [TiSpark 3.0.2 Release Notes](1-update/6-tispark-3-0-2.md)
+  - [TiSpark 2.5.2 Release Notes](1-update/7-tispark-2-5-2.md)
   - [TiDB Operator 1.3.8 Release Notes](1-update/8-tidb-operator-1-3-8.md)
 - 开发适配
   - [使用 JDBC 连接 TiDB Cloud](2-development/1-tidb-cloud-jdbc.md)
