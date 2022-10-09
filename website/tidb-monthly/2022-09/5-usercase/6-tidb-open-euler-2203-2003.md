@@ -2,7 +2,7 @@
 title: TiDB部署--openEuler2203/2003 单机部署TiDB 6.1.1 - TiDB 社区技术月刊
 sidebar_label:  TiDB部署--openEuler2203/2003 单机部署TiDB 6.1.1
 hide_title: true
-description: 
+description: TiDB 6.1.1 版本发布之后，已经支持在正式环境下将tidb部署到麒麟V10系统。本文在openEuler系统运行TiDB，进行了新版本的安装测试。给大家提供参考。
 keywords: [TiDB, 监控, 多集群, 大屏]
 ---
 
