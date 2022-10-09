@@ -18,20 +18,24 @@ TiDB Cloud 使用了 [TiDB 默认的配置](https://docs.pingcap.com/tidb/dev/en
 
 使用默认的 connection uri
 
-> jdbc:mysql://<host>:4000/test?user=root&password=<password>
+```
+jdbc:mysql://<host>:4000/test?user=root&password=<password>
+```
 
 连接 TiDB Cloud 会报
 
-> Caused by: javax.net.ssl.SSLHandshakeException: No appropriate protocol (protocol is disabled or cipher suites are inappropriate)
-> at java.base/sun.security.ssl.HandshakeContext.<init>(HandshakeContext.java:172)
-> at java.base/sun.security.ssl.ClientHandshakeContext.<init>(ClientHandshakeContext.java:103)
-> at java.base/sun.security.ssl.TransportContext.kickstart(TransportContext.java:240)
-> at java.base/sun.security.ssl.SSLSocketImpl.startHandshake(SSLSocketImpl.java:443)
-> at java.base/sun.security.ssl.SSLSocketImpl.startHandshake(SSLSocketImpl.java:421)
-> at com.mysql.cj.protocol.ExportControlled.performTlsHandshake(ExportControlled.java:320)
-> at com.mysql.cj.protocol.StandardSocketFactory.performTlsHandshake(StandardSocketFactory.java:194)
-> at com.mysql.cj.protocol.a.NativeSocketConnection.performTlsHandshake(NativeSocketConnection.java:101)
-> at com.mysql.cj.protocol.a.NativeProtocol.negotiateSSLConnection(NativeProtocol.java:308)
+```
+Caused by: javax.net.ssl.SSLHandshakeException: No appropriate protocol (protocol is disabled or cipher suites are inappropriate)
+at java.base/sun.security.ssl.HandshakeContext.<init>(HandshakeContext.java:172)
+at java.base/sun.security.ssl.ClientHandshakeContext.<init>(ClientHandshakeContext.java:103)
+at java.base/sun.security.ssl.TransportContext.kickstart(TransportContext.java:240)
+at java.base/sun.security.ssl.SSLSocketImpl.startHandshake(SSLSocketImpl.java:443)
+at java.base/sun.security.ssl.SSLSocketImpl.startHandshake(SSLSocketImpl.java:421)
+at com.mysql.cj.protocol.ExportControlled.performTlsHandshake(ExportControlled.java:320)
+at com.mysql.cj.protocol.StandardSocketFactory.performTlsHandshake(StandardSocketFactory.java:194)
+at com.mysql.cj.protocol.a.NativeSocketConnection.performTlsHandshake(NativeSocketConnection.java:101)
+at com.mysql.cj.protocol.a.NativeProtocol.negotiateSSLConnection(NativeProtocol.java:308)
+```
 
 跟踪调用路径发现产生该错误的原因是因为 JDBC driver 对低版本的 MySQL server 只会使用 TLSv1 和 TLSv1.1，虽然 TiDB Cloud 支持 TLSv1.1，但是[高版本的 JDK 不支持使用 TLSv1.1](https://aws.amazon.com/cn/blogs/opensource/tls-1-0-1-1-changes-in-openjdk-and-amazon-corretto/)，所以失败。我们看下路径上关键的代码。
 
