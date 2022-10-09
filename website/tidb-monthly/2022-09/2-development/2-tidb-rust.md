@@ -1,5 +1,5 @@
 ---
-title:文盘Rust -- 如何把配置文件打包到二进制文件里 - TiDB 社区技术月刊
+title: 文盘Rust -- 如何把配置文件打包到二进制文件里 - TiDB 社区技术月刊
 sidebar_label: 文盘Rust -- 如何把配置文件打包到二进制文件里
 hide_title: true
 description: 在实际开发中，经常会遇到各种不同的配置文件。本文将展示如何把配置文件打包到二进制文件里。
