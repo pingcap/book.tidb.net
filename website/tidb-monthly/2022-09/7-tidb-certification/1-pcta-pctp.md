@@ -12,7 +12,7 @@ keywords: [认证, PCTA, PCTP]
 
 **PingCAP 认证 TiDB 数据库专员**：PingCAP 认证 TiDB 数据库专员（简称 PCTA）是 PingCAP 对于数据库从业者安装部署及日常运维分布式关系型数据库能力的认证，要求数据库从业者熟练掌握 TiDB 架构原理、安装部署、周边工具等基础知识。
 
-**PingCAP 认证 TiDB 数据库管理专家**：PingCAP 认证 TiDB 数据库专家（简称 PCTP）是 PingCAP 对于数据库从业者管理大型分布式关系型数据库 TiDB 集群能力的认证，要求数据库从业者熟练掌握 TiDB 的深度原理及高级 Feature、性能调优、SQL 优化、Trouble Shooting 等进阶内容。 要获得 PCTP 认证，必须先获得 PCTA 认证。
+**PingCAP 认证 TiDB 数据库管理专家**：PingCAP 认证 TiDB 数据库管理专家（简称 PCTP - DBA）是 PingCAP 对于数据库从业者管理大型分布式关系型数据库 TiDB 集群能力的认证，要求数据库从业者熟练掌握 TiDB 的深度原理及高级 Feature、性能调优、SQL 优化、Trouble Shooting 等进阶内容。 要获得 PCTP 认证，必须先获得 PCTA 认证。
 
 **PingCAP 认证 SQL 开发专家**：PingCAP 认证 SQL 开发专家（简称 PCSD）是 PingCAP 针对运用 TiDB SQL、利用 TiDB 独特的功能提升应用的扩展性和鲁棒性、SQL 优化的能力认证。
 

@@ -10,7 +10,7 @@ keywords: [TiSpark, Release Notes, 2.5.2, 兼容性变更, 错误修复]
 
 发版日期：2022 年 9 月 5 日
 
-TiSpark 版本：2.5.1
+TiSpark 版本：2.5.2
 
 ## Compatibility Changes
 
