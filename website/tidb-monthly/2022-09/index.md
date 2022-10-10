@@ -54,6 +54,7 @@ sidebar_position: 5
 - 社区动态
   - [社区活动预告](6-community-news/1-upcoming-events.md)
   - [9 月精彩活动回顾](6-community-news/2-event-summary.md)
+  - [9 月社区荣誉成员](6-community-news/3-mva-202209.md)
   - [Contributor 动态](6-community-news/4-contributors.md)
 - TiDB 能力认证
   - [认证介绍 & 考试安排](7-tidb-certification/1-pcta-pctp.md)
