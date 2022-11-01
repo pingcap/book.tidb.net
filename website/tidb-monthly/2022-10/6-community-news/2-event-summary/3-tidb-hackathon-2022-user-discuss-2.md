@@ -3,7 +3,7 @@ title: 单刷 3 届 Hackathon，朝着理想中的数据库出发 - TiDB Hackath
 sidebar_label: 单刷 3 届 Hackathon，朝着理想中的数据库出发 - TiDB Hackathon 赛前选手访谈
 hide_title: true
 description: 今天与大家见面的参赛选手是目前在南京邮电大学读研三的陆涣冰同学，其实他的专业方向本来是卫星通信，但内心却十分热爱计算机底层技术，业余时间基本 all in 在开源分布式数据库上。
-keywords: [TiDB, Hackathon, 访谈, 参赛]]
+keywords: [TiDB, Hackathon, 访谈, 参赛]
 ---
 
 # 单刷 3 届 Hackathon，朝着理想中的数据库出发｜TiDB Hackathon 赛前选手访谈
