@@ -28,7 +28,7 @@ sidebar_position: 4
   - [TiKV 源码阅读三部曲（二）读流程](3-feature-indepth/2-tikv-code-two.md)
   - [一条select 语句在TiDB Server层都发生了什么](3-feature-indepth/3-tselect-tidb-server.md)
   - [如何给TiDB集群的prometheus更换端口](3-feature-indepth/4-tidb-prometheus.md)
-  - [消除两个开源项目之间长达4年的分叉](3-feature-indepth/5-4-years-md-eliminate-split-ends)
+  - [消除两个开源项目之间长达4年的分叉](3-feature-indepth/5-4-years-md-eliminate-split-ends.md)
 
 - 故障排查 & 调优 
   - [TiKV缩容下线异常处理的三板斧](4-trouble-shooting/1-tikv-store.md)
