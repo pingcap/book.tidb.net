@@ -24,7 +24,7 @@ TiKV/TiFlash 缩容是TiDB运维中经常执行的操作，由于系统本身或
 
 在了解store状态转换过程前，先了解2个基本概念。
 
-peer：region是一个虚拟的逻辑概念，每个region分配一个id是region\_id，一个region下默认有3个副本，每个副本叫做peer，各分配一个peer\_id，每个peer位于不同的tikv实例。
+peer：region是一个虚拟的逻辑概念，每个region分配一个id是 region_id，一个region下默认有3个副本，每个副本叫做peer，各分配一个peer_id，每个peer位于不同的tikv实例。
 
 store: 指的是TiDB集群中的1个TiKV或TiFlash实例
 
@@ -44,7 +44,7 @@ store的生命周期中包含有多种状态：
 
 - **Offline**
 
-当对某个 TiKV 缩容后，该 TiKV 会变为 Offline 状态，该状态只是 TiKV 下线的中间状态，处于该状态的 TiKV 会进行 leader 的    transfter 和 region balance ，当 leader\_count/region\_count  均显示 transfter 或 balance 完毕后，该 TiKV 会由 Offline 转为 Tombstone。在 Offline 状态时，TiKV仍能提供服务、进行GC等操作，**禁止**关闭该 TiKV 服务以及其所在的物理服务器或删除数据文件。
+当对某个 TiKV 缩容后，该 TiKV 会变为 Offline 状态，该状态只是 TiKV 下线的中间状态，处于该状态的 TiKV 会进行 leader 的    transfter 和 region balance ，当 leader_count/region_count  均显示 transfter 或 balance 完毕后，该 TiKV 会由 Offline 转为 Tombstone。在 Offline 状态时，TiKV仍能提供服务、进行GC等操作，**禁止**关闭该 TiKV 服务以及其所在的物理服务器或删除数据文件。
 
 -   **Tombstone**
 
@@ -52,11 +52,11 @@ store的生命周期中包含有多种状态：
 
 TiKV 节点的状态可通过以下三种方式查询：
 
-（1）使用tiup cluster display cluster\_name 命令
+（1）使用tiup cluster display cluster_name 命令
 
-（2）使用pd-ctl –u pd\_addr store命令
+（2）使用pd-ctl –u pd_addr store命令
 
-（3）查询information\_schema.tikv\_store\_status
+（3）查询information_schema.tikv_store_status
 
 ## 3   TiKV下线流程
 
@@ -66,17 +66,17 @@ Tikv 下线为异步过程，其状态过程会经历UP、Offline、Tombstone 3�
 
 Tikv 下线过程中最耗时的就是在offline阶段的leader和region转移过程，也是最容易出问题的阶段，为了使下线过程更加可控，建议下线tikv节点前先手动转移。
 
-使用pd-ctl store weight \<store\_id> \<leader\_weight> \<region\_weight> 设置待下线节点的leader\_weight/ region\_weight 为0。
+使用`pd-ctl store weight <store_id> <leader_weight> <region_weight> `设置待下线节点的`leader_weight/region_weight` 为0。
 
-对于leader转移也可以使用 pd-ctl scheduler add evict-leader-scheduler store\_id  添加evict调度方式驱逐待下线store上的Leader。
+对于leader转移也可以使用 `pd-ctl scheduler add evict-leader-scheduler store_id`  添加evict调度方式驱逐待下线store上的Leader。
 
-使用pd-ctl store或information\_schema.tikv\_store\_status检查待下线节点leader\_count、region\_count。
+使用`pd-ctl store`或`information_schema.tikv_store_status`检查待下线节点leader_count、region_count。
 
-**注意**：设置leader\_weight/ region\_weight为0并不能保证全部的laeder/region都能转移完。若果有少量的遗留可使用第后面章节中的手动添加调度方式进行转移
+**注意**：设置`leader_weight/ region_weight`为0并不能保证全部的laeder/region都能转移完。若果有少量的遗留可使用第后面章节中的手动添加调度方式进行转移
 
 **（2）开始缩容**
 
-缩容命令使用tiup cluster scale-in cluster\_name –N xxx方式，该命令会调用PD API开始下线流程，之后tikv状态变为offline，进行leader和region转移，当全部转移完成后tikv就会转为tombstone状态。
+缩容命令使用`tiup cluster scale-in cluster_name –N xxx`方式，该命令会调用PD API开始下线流程，之后tikv状态变为offline，进行leader和region转移，当全部转移完成后tikv就会转为tombstone状态。
 
 在store未转换为tombstone状态前**禁止**使用--force选项强制缩容，强制缩容只是不等的leader/region转移完成就将tikv节点从集群中移除，虽然tiup cluster display已无法看到下线的节点但region信息依然残留，此时store处于offline状态、region无法完成转移。--force仅适用于tikv节点完全宕机或数据目录被删除的极端情况。
 
@@ -86,7 +86,7 @@ Tikv 下线过程中最耗时的就是在offline阶段的leader和region转移�
 
 **（3）调整下线速度**
 
-通过pd-ctl config set 命令可以增大leader-schedule-limit、replica-schedule-limit、region-schedule-limit等参数增加leader/region的调度速度，加快下线过程，上述命令是用于控制PD侧调度命令的产生速度，实际的执行还收tikv侧的消费速度限制，通过pd-ctl store limit \<store\_id> \<limit> 增加消费速度。
+通过pd-ctl config set 命令可以增大leader-schedule-limit、replica-schedule-limit、region-schedule-limit等参数增加leader/region的调度速度，加快下线过程，上述命令是用于控制PD侧调度命令的产生速度，实际的执行还收tikv侧的消费速度限制，通过`pd-ctl store limit <store_id> <limit> `增加消费速度。
 
 **（4）清理tombstone节点**
 
@@ -167,7 +167,7 @@ region默认为3副本，当有2个tikv实例出现故障时则会有region出�
 
 (2)    停止待下线节点上region涉及的所有的tikv实例，一般情况涉及region数量较多需要停止所有tikv实例。
 
-可使用如下命令查找故障节点上多数副本失败的region(if里指定store\_id列表):
+可使用如下命令查找故障节点上多数副本失败的region(if里指定store_id列表):
 
 ```markdown
 pd-ctl   region --jq='.regions[] | {id: .id, peer_stores: [.peers[].store_id] | select(length as $total | map(if .==( 4,5,7) then . else empty end) | length>=$total-length)}'
@@ -179,7 +179,7 @@ pd-ctl   region --jq='.regions[] | {id: .id, peer_stores: [.peers[].store_id] 
 tikv-ctl --db /data/v5.0.3/tikv/data/db unsafe-recover remove-fail-stores -s 3 -r 1001,1002
 ```
 
-当问题tikv上仅有少量region时可以使用上述命令，并且仅需关闭region涉及的tikv并执行。其中-s 为待下线的问题store\_id，-r为该store上的region。如果想要移除store上的region可使用--all-regions 选项
+当问题tikv上仅有少量region时可以使用上述命令，并且仅需关闭region涉及的tikv并执行。其中-s 为待下线的问题store_id，-r为该store上的region。如果想要移除store上的region可使用--all-regions 选项
 
 ```markdown
 tikv-ctl --db /data/v5.0.3/tikv/data/db unsafe-recover remove-fail-stores -s 4,5,7 --all-regions
@@ -213,7 +213,7 @@ tikv-ctl --db /data/v5.0.3/tikv/data/db unsafe-recover remove-fail-stores -s 4,5
 pd-ctl region --jq='.regions[] | {id: .id, peer_stores: [.peers[].store_id] | select(length==1) } '
 ```
 
-多副本失败恢复也适用于仅1个tikv实例故障时的处理，缺点是需要停止所有tikv实例影响系统可用性，**因此6.x版TiDB支持在线的多副本失败自动处理，详细过程可参考官方文档：https\://docs.pingcap.com/zh/tidb/stable/online-unsafe-recovery**
+多副本失败恢复也适用于仅1个tikv实例故障时的处理，缺点是需要停止所有tikv实例影响系统可用性，**因此6.x版TiDB支持在线的多副本失败自动处理，详细过程可参考[官方文档](https://docs.pingcap.com/zh/tidb/stable/online-unsafe-recovery)**
 
 更多关于多副本失败恢复的过程文章可在asktug搜索。
 
@@ -223,7 +223,7 @@ pd-ctl region --jq='.regions[] | {id: .id, peer_stores: [.peers[].store_id] | se
 
 (1)    副本全部丢失，执行了多副本失败恢复
 
-检查副本全部丢失的region，if内指定故障tikv的store\_id
+检查副本全部丢失的region，if内指定故障tikv的store_id
 
 ```markdown
 pd-ctl region --jq='.regions[] | {id: .id, peer_stores: [.peers[].store_id] | select(length as $total |map(if .==(4,5,7) then . else empty end)|length>$total-length)}' |sort
@@ -231,7 +231,7 @@ pd-ctl region --jq='.regions[] | {id: .id, peer_stores: [.peers[].store_id] | se
 
 (2)    少量region无数据且无法选主，未对集群做任何处理
 
-使用curl [http://tidb\_ip:10080/regions/{region\_id}](http://tidb_ip:10080/regions/%7bregion_id%7d) 检查该region上的对象信息，如果frames 字段为空的话则说明该region为无数据的空region，重建无影响，否则会丢失数据。
+使用curl [http://tidb_ip:10080/regions/{region_id}](http://tidb_ip:10080/regions/%7bregion_id%7d) 检查该region上的对象信息，如果frames 字段为空的话则说明该region为无数据的空region，重建无影响，否则会丢失数据。
 
 (3)    重建region
 
@@ -245,7 +245,7 @@ pd-ctl region --jq='.regions[] | {id: .id, peer_stores: [.peers[].store_id] | se
 
 (4)    重启tikv
 
-如果之前unsafe-recover后store状态仍为offline，重启后正常tikv会成为tombstone状态(有时需要pd-ctl直接指定下线store\_id查看)，然后remove-tombstone即可。
+如果之前unsafe-recover后store状态仍为offline，重启后正常tikv会成为tombstone状态(有时需要pd-ctl直接指定下线store_id查看)，然后remove-tombstone即可。
 
 除了使用recreate-region重建外，也可以尝试tombstone region方式：
 
