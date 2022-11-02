@@ -1,6 +1,6 @@
 ---
 title: TiKV 源码阅读三部曲（二）读流程 - TiDB 社区技术月刊
-sidebar_label: TiKV 源码阅读三部曲（一）重要模块
+sidebar_label: TiKV 源码阅读三部曲（二）读流程
 hide_title: true
 description: 本文将主要介绍 TiKV 中一条读请求的全链路流程。
 keywords: [TiDB, TiKV, 全链路流程, 读请求]
