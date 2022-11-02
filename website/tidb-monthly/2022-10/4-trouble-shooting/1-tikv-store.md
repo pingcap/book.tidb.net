@@ -6,7 +6,7 @@ description: 本文介绍TiKV缩容过程中常见处理方式，适用于4.X或
 keywords: [TiKV, 扩缩容, TiDB, 缩容]
 ---
 
-# TiDB分布式事务—写写冲突
+# TiKV缩容下线异常处理的三板斧
 
 > 作者：[h5n1](https://tidb.net/u/h5n1/answer)
 

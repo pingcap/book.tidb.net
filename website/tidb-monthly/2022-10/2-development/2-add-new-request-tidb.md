@@ -298,4 +298,4 @@ Query OK, 0 rows affected (0.00 sec)
 
 本文的代码示例： https://github.com/pingcap/tidb/pull/37936/files
 
-本文通过“照葫芦画瓢” 的方式，教你如何在 TiDB 中新增一个功能，但也忽略了一些细节，例如权限检查，添加完备的测试等等，希望能对读者有所帮助。如果想要了解更多的知识背景和细节，推荐阅读 [TiDB Development Guide ](https://pingcap.github.io/tidb-dev-guide/)和 [TiDB 源码阅读 ](https://cn.pingcap.com/blog/?tag=TiDB 源码阅读)博客。
+本文通过“照葫芦画瓢” 的方式，教你如何在 TiDB 中新增一个功能，但也忽略了一些细节，例如权限检查，添加完备的测试等等，希望能对读者有所帮助。如果想要了解更多的知识背景和细节，推荐阅读 [TiDB Development Guide](https://pingcap.github.io/tidb-dev-guide/) 和 [TiDB 源码阅读](https://cn.pingcap.com/blog/?tag=TiDB) 源码阅读博客。
