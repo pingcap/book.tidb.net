@@ -43,7 +43,7 @@ keywords: [认证, PCTA, PCTP]
 
 ## PingCAP 认证 SQL 应用开发专家（简称 PCSD）考试
 
-![2.png](https://img2.pingcap.com/forms/9/6/96618e759328d258af574c82f4931e696a615b23.png)
+![4.png](https://img2.pingcap.com/forms/4/5/452a086398efb2a71e889405d842706270f93299.png)
 
 > PingCAP 认证 SQL 开发专家（简称 PCSD）是 PingCAP 针对运用 TiDB SQL、利用 TiDB 独特的功能提升应用的扩展性和鲁棒性、SQL 优化的能力认证。
 
