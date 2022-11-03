@@ -108,3 +108,5 @@ dist
 
 # JetBrains
 .idea
+
+.DS_Store
