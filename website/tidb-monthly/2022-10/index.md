@@ -60,4 +60,4 @@ sidebar_position: 4
 
 感谢所有贡献内容的作者（按文章收录顺序排列）：[hey-hoho](https://tidb.net/u/hey-hoho/answer)、[陈霜](https://github.com/crazycs520)、[谭新宇](https://github.com/OneSizeFitsQuorum)、[Ming](https://tidb.net/u/Ming/answer)、[Hacker_loCdZ5zu](https://tidb.net/u/Hacker_loCdZ5zu/answer)**、**[AnotherCalvinNeo](https://tidb.net/u/AnotherCalvinNeo/answer)、[h5n1](https://tidb.net/u/h5n1/answer)、[Jinpeng Zhang](http://github.com/zhangjinpeng1987)、[OnTheRoad](https://tidb.net/u/OnTheRoad/answer)、[Hacker_小峰](https://tidb.net/u/Hacker_小峰/answer)
 
-感谢本期月刊的内容编辑：[CandicePan](https://github.com/Candicepan)，[Xiaolu Zhou](https://github.com/luzizhuo)，[ShawnYan](https://tidb.net/u/ShawnYan/post/all)，[Yan Yan](https://tidb.net/u/YY-ha/answer)，[Linlin Wang](https://github.com/Soline324)、张慧颖
+感谢本期月刊的内容编辑：[CandicePan](https://github.com/Candicepan)，[Xiaolu Zhou](https://github.com/luzizhuo)，[ShawnYan](https://tidb.net/u/ShawnYan/post/all)，[Yan Yan](https://tidb.net/u/YY-ha/answer)，[Linlin Wang](https://github.com/Soline324)、[张慧颖](https://tidb.net/u/hazelll/answer)
