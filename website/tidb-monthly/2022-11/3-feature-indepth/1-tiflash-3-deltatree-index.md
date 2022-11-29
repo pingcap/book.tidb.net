@@ -11,7 +11,7 @@ keywords: [TiDB , TiFlash, 源码解读, DeltaTree Index]
 > 作者：李德竹  TiFlash 研发工程师
 
 
-> TiFlash 是 TiDB 的分析引擎，是 TiDB HTAP 形态的关键组件，TiFlash 源码阅读系列文章将从源码层面介绍 TiFlash 的内部实现。在前面的源码分析中对 TiFlash 的计算层和存储层都进行了深入的分析，其中 [TiFlash DeltaTree 存储引擎设计及实现分析 (Part 1)](/2022-05/feature-indepth/tiflash-3)  [TiFlash DeltaTree 存储引擎设计及实现分析 (Part 2)](/2022-08/feature-indepth/tiflash-deltatree-storage-engine) 对 TiFlash 存储层的读写流程进行了完整的梳理，本文将在这两篇文章的基础上对 DeltaTree Index 在读取时的作用以及如何维护 DeltaTree Index 进行讲解。
+> TiFlash 是 TiDB 的分析引擎，是 TiDB HTAP 形态的关键组件，TiFlash 源码阅读系列文章将从源码层面介绍 TiFlash 的内部实现。在前面的源码分析中对 TiFlash 的计算层和存储层都进行了深入的分析，其中 [TiFlash DeltaTree 存储引擎设计及实现分析 (Part 1)](/website/tidb-monthly/2022-05/3-feature-indepth/2-tiflash-3.md)  [TiFlash DeltaTree 存储引擎设计及实现分析 (Part 2)](/website/tidb-monthly/2022-08/3-feature-indepth/2-tiflash-deltatree-storage-engine.md) 对 TiFlash 存储层的读写流程进行了完整的梳理，本文将在这两篇文章的基础上对 DeltaTree Index 在读取时的作用以及如何维护 DeltaTree Index 进行讲解。
 
 ## **背景**
 
