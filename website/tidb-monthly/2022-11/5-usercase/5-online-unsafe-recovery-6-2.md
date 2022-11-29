@@ -50,7 +50,7 @@ tikv 6.2.0 release
 
 ### 1、模拟主生产故障，整个集群down
 
-使用tiup cluster stop <cluster-name>命令，将整个集群关闭。
+使用 `tiup cluster stop <cluster-name>`命令，将整个集群关闭
 
 ![](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/unnamed-1666683621861.png)
 
@@ -68,25 +68,25 @@ tikv 6.2.0 release
 
 若想单独启动一个pd，需要修改pd的启动脚本。
 
-在同城应急的pd部署目录，修改run_pd.sh脚本，添加 force-new-cluster: true
+在同城应急的pd部署目录，修改run_pd.sh脚本，添加 `force-new-cluster: true`
 
 ### 4、启动同城应急的pd
 
 手动启动一个pd节点：
 
-$ nohup sh run_pd.sh &
+`$ nohup sh run_pd.sh &`
 
 ![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1666685683840.png)
 
 ### 5、启动同城应急的tikv
 
-使用tiup cluster start \<cluster-name> -N xx.xx.xx.xx:20160命令启动某个tikv节点
+使用`tiup cluster start <cluster-name> -N xx.xx.xx.xx:20160`命令启动某个tikv节点
 
 启动172.16.11.120:20160节点：
 
 ![](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/unnamed-1666683622534.png)
 
-使用tiup cluster display <cluster-name>命令查看集群状态：
+使用`tiup cluster display <cluster-name>`命令查看集群状态：
 
 ![](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/unnamed-1666683622981.png)
 
