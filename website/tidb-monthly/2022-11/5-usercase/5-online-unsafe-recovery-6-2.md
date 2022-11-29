@@ -3,7 +3,7 @@ title: 使用Online unsafe recovery恢复v6.2同城应急集群 - TiDB 社区技
 sidebar_label: 使用Online unsafe recovery恢复v6.2同城应急集群
 hide_title: true
 description: 本文将详细介绍如何使用Online unsafe recovery恢复v6.2同城应急集群
-keywords: [TiDB, 6.2.0, Online unsafe recovery, TiKV]
+keywords: [TiDB, TiDB 6.2.0, Online unsafe recovery, TiKV]
 ---
 
 # 使用Online unsafe recovery恢复v6.2同城应急集群
@@ -33,8 +33,8 @@ tikv 6.2.0 release
 
 同城应急拓扑为：
 
--  1个pd节点
--  1个tikv节点（1个learner副本）
+- 1个pd节点
+- 1个tikv节点（1个learner副本）
 
 
 整个集群拓扑如下图所示：
