@@ -39,7 +39,7 @@ mysql在进行mvcc控制的时候，读取历史的版本，依赖的是：事�
 
 在这篇文章中，就讲到了历史版本过多的一些排查方式，比较全面
 
-[一次TiDB GC阻塞引发的性能问题分析](/4-trouble-shooting/3-tidb-gc-block.md)
+[一次TiDB GC阻塞引发的性能问题分析](4-trouble-shooting/3-tidb-gc-block.md)
 
 文章中比较直观的描述了历史版本数据过多时，对于sql执行直接的影响：
 
