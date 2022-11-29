@@ -11,11 +11,11 @@ keywords: [TiDB, TiFlash, 源码解读, DeltaTree Index]
 > 作者：李德竹，TiFlash 研发工程师
 
 
-> TiFlash 是 TiDB 的分析引擎，是 TiDB HTAP 形态的关键组件，TiFlash 源码阅读系列文章将从源码层面介绍 TiFlash 的内部实现。在前面的源码分析中对 TiFlash 的计算层和存储层都进行了深入的分析，其中 [TiFlash DeltaTree 存储引擎设计及实现分析 (Part 1)](tidb-monthly/2022-05/3-feature-indepth/2-tiflash-3.md) 和 [TiFlash DeltaTree 存储引擎设计及实现分析 (Part 2)](tidb-monthly/2022-08/3-feature-indepth/2-tiflash-deltatree-storage-engine) 对 TiFlash 存储层的读写流程进行了完整的梳理，本文将在这两篇文章的基础上对 DeltaTree Index 在读取时的作用以及如何维护 DeltaTree Index 进行讲解。
+> TiFlash 是 TiDB 的分析引擎，是 TiDB HTAP 形态的关键组件，TiFlash 源码阅读系列文章将从源码层面介绍 TiFlash 的内部实现。在前面的源码分析中对 TiFlash 的计算层和存储层都进行了深入的分析，其中 [TiFlash DeltaTree 存储引擎设计及实现分析 (Part 1)](tidb-monthly/2022-05/3-feature-indepth/2-tiflash-3.md) 和 [TiFlash DeltaTree 存储引擎设计及实现分析 (Part 2)](tidb-monthly/2022-08/3-feature-indepth/2-tiflash-deltatree-storage-engine.md) 对 TiFlash 存储层的读写流程进行了完整的梳理，本文将在这两篇文章的基础上对 DeltaTree Index 在读取时的作用以及如何维护 DeltaTree Index 进行讲解。
 
 ## **背景**
 
-在前面的源码分析中对 TiFlash 的计算层和存储层都进行了深入的分析，其中 [TiFlash DeltaTree 存储引擎设计及实现分析 (Part 1)](tidb-monthly/2022-05/3-feature-indepth/2-tiflash-3.md) 和 [TiFlash DeltaTree 存储引擎设计及实现分析 (Part 2)](tidb-monthly/2022-08/3-feature-indepth/2-tiflash-deltatree-storage-engine)对 TiFlash 存储层的读写流程进行了完整的梳理，如果读者没有阅读过这两篇文章，建议阅读后再继续本文的阅读。
+在前面的源码分析中对 TiFlash 的计算层和存储层都进行了深入的分析，其中 [TiFlash DeltaTree 存储引擎设计及实现分析 (Part 1)](tidb-monthly/2022-05/3-feature-indepth/2-tiflash-3.md) 和 [TiFlash DeltaTree 存储引擎设计及实现分析 (Part 2)](tidb-monthly/2022-08/3-feature-indepth/2-tiflash-deltatree-storage-engine.md)对 TiFlash 存储层的读写流程进行了完整的梳理，如果读者没有阅读过这两篇文章，建议阅读后再继续本文的阅读。
 
 这里简单回顾一下，TiFlash 存储层的数据是按表分开存储的，每张表的数据会根据 Handle Range 切分为多个 Segment，每个 Segment 包含 Stable 层和 Delta 层，其中 Segment 的大部分数据存储在 Stable 层，Delta 层只负责处理少部分新写入的数据，并且在写入数据达到一定阈值后会将 Delta 层的数据合并到 Stable 层。在读取时需要通过 DeltaTree Index 这个数据结构将 Stable 层和 Delta 层合并成一个有序的数据流，本文会对 DeltaTree Index 在读取时的作用以及如何维护 DeltaTree Index 进行讲解。
 
