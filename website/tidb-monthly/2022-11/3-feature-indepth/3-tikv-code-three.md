@@ -18,8 +18,8 @@ keywords: [TiDB Cloud, JDBC, JDK 17, JDBC driver]
 
 笔者将结合 [TiKV 官方源码解析文档 ](https://cn.pingcap.com/blog/?tag=TiKV 源码解析)系列文章，基于 **6.1 版本的源码**撰写三篇博客，分别介绍以下三个方面：
 
-- [TiKV 源码阅读三部曲（一）重要模块 ](/website/tidb-monthly/2022-10/3-feature-indepth/1-tikv-code-one.md)：TiKV 的基本概念，TiKV 读写路径上的三个重要模块（KVService，Storage，RaftStore）和断点调试 TiKV 学习源码的方案
-- [TiKV 源码阅读三部曲（二）读流程 ](/website/tidb-monthly/2022-10/3-feature-indepth/2-tikv-code-two.md)：TiKV 中一条读请求的全链路流程
+- [TiKV 源码阅读三部曲（一）重要模块 ](../../2022-10/3-feature-indepth/1-tikv-code-one.md)：TiKV 的基本概念，TiKV 读写路径上的三个重要模块（KVService，Storage，RaftStore）和断点调试 TiKV 学习源码的方案
+- [TiKV 源码阅读三部曲（二）读流程 ](../../2022-10/3-feature-indepth/2-tikv-code-two.md)：TiKV 中一条读请求的全链路流程
 - TiKV 源码阅读三部曲（三）写流程：TiKV 中一条写请求的全链路流程
 
 希望此三篇博客能够帮助对 TiKV 开发感兴趣的新同学尽快了解 TiKV 的 codebase。
