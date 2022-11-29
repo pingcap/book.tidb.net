@@ -22,9 +22,11 @@ keywords: [TiDB, DevCon, 开发者, Workshop, 源码解读, TiCDC]
 
 线上线下均可参与，微信扫码可直接报名哟～报名更有 Ti 飞盘限量款等你拿！
 
-<img src="https://img2.pingcap.com/forms/7/a/7a621a6523445b1c0cb1f383b4467c3e3305e3a7.jpeg" alt="报名二维码.jpeg" style="zoom:30%;" />
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
-
+<center>
+    <img src="https://img2.pingcap.com/forms/7/a/7a621a6523445b1c0cb1f383b4467c3e3305e3a7.jpeg" width="30%" />
+</center>
 
 ## 12月10日 TiDB Workshop Day @上海，Serverless TiDB Cloud 体验课堂
 
