@@ -1,4 +1,3 @@
-
 ---
 title: 10 月精彩活动回顾 - TiDB 社区技术月刊
 hide_title: true

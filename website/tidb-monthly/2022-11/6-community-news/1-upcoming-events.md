@@ -20,7 +20,7 @@ keywords: [TiDB, DevCon, 开发者, Workshop, 源码解读, TiCDC]
 
 ![会议亮点.jpeg](https://img2.pingcap.com/forms/7/7/774723eaacd632a71d57fa14c1c833568e00afcc.jpeg)
 
-线上线下均可参与，微信扫码可直接报名哟～报名更有Ti 飞盘限量款等你拿！
+线上线下均可参与，微信扫码可直接报名哟～报名更有 Ti 飞盘限量款等你拿！
 
 <img src="https://img2.pingcap.com/forms/7/a/7a621a6523445b1c0cb1f383b4467c3e3305e3a7.jpeg" alt="报名二维码.jpeg" style="zoom:30%;" />
 
