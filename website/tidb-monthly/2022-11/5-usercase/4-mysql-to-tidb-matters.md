@@ -3,7 +3,7 @@ title: 将业务从mysql迁移至TIDB，有哪些需要注意的？ - TiDB 社�
 sidebar_label: 将业务从mysql迁移至TIDB，有哪些需要注意的？
 hide_title: true
 description: 本文主要是分享一些从mysql迁移到tidb遇到的问题，以及如何解决。
-keywords: [TiDB , MySQL,  注意事项, 数据库迁移]
+keywords: [TiDB, MySQL, 注意事项, 数据库迁移]
 ---
 
 # 将业务从mysql迁移至TIDB，有哪些需要注意的？
@@ -28,18 +28,22 @@ keywords: [TiDB , MySQL,  注意事项, 数据库迁移]
 
 而在tidb中的闪回和一致性读是直接依赖本地保留的历史版本数据，直接保存各个版本数据实现mvcc,再通过gc定期清除历史版本数据。
 
-mysql在进行mvcc控制的时候，读取历史的版本，依赖的是：事务开始时间戳、当前的数据、undo log日志链。在事务中中在读取历史版本数据时，会先找到最新的数据，依靠每行数据自带的回滚指针，去undo log 中找到事务开始时间戳前最近的一个版本，按时间有序的链表查找历史数据。![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1668346259945.png)
+mysql在进行mvcc控制的时候，读取历史的版本，依赖的是：事务开始时间戳、当前的数据、undo log日志链。在事务中中在读取历史版本数据时，会先找到最新的数据，依靠每行数据自带的回滚指针，去undo log 中找到事务开始时间戳前最近的一个版本，按时间有序的链表查找历史数据。
+
+![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1668346259945.png)
 
 而在tidb中，所有的dml操作都转化为在磁盘中进行追加一行新的数据，最新的数据和历史版本的数据都保留在了一起，在读取数据时，会先将附近版本的数据全部读取，再根据所需版本进行过滤，这样当保留了过多版本的历史数据时，每次读取都会读取很多无用的数据，造成性能开销
 
-![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1668347086364.png)![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1668347182584.png)
+![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1668347086364.png)
+
+![image.png](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/image-1668347182584.png)
 
 
 ### tidb中历史版本过多相关问题，及排查方案
 
 在这篇文章中，就讲到了历史版本过多的一些排查方式，比较全面
 
-[一次TiDB GC阻塞引发的性能问题分析](4-trouble-shooting/3-tidb-gc-block.md)
+[一次TiDB GC阻塞引发的性能问题分析](../4-trouble-shooting/3-tidb-gc-block.md)
 
 文章中比较直观的描述了历史版本数据过多时，对于sql执行直接的影响：
 
