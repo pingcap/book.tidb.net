@@ -1,12 +1,12 @@
 ---
-title: 10 月精彩活动回顾 - TiDB 社区技术月刊
+title: 11 月精彩活动回顾 - TiDB 社区技术月刊
 hide_title: true
-sidebar_label: 10 月精彩活动回顾
-description: 10 月精彩活动回顾
-keywords: [TiDB, Infra Meetup, 10月, 源码解读]
+sidebar_label: 11 月精彩活动回顾
+description: 11 月精彩活动回顾
+keywords: [TiDB, Infra Meetup, 11月, 源码解读]
 ---
 
-# 10 月精彩活动回顾
+# 11 月精彩活动回顾
 
 ## Infra Meetup No.154 TiDB DDL - 分布式数据库中的在线 schema 变更解析
 

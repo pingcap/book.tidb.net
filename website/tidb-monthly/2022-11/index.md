@@ -38,7 +38,7 @@ sidebar_position: 3
 - 用户实践
   - [记录一次TiDB v5.2.3迁移到v6.1.0的过程](5-usercase/1-tidb-5-3-2-6-1-0.md)
   - [教你一招，安全的从 MySQL 切换到 TiDB](5-usercase/2-mysql-to-tidb.md)
-  - [MySQL or TiDB？HTAP 数据库在中国 SaaS 行业头部服务商的应用实践](5-usercase/3-tidb-or-mysql-htap-saas- practice.md)
+  - [MySQL or TiDB？HTAP 数据库在中国 SaaS 行业头部服务商的应用实践](5-usercase/3-tidb-or-mysql-htap-saas-practice.md)
   - [将业务从mysql迁移至TIDB，有哪些需要注意的？](5-usercase/4-mysql-to-tidb-matters.md)
   - [使用Online unsafe recovery恢复v6.2同城应急集群](5-usercase/5-online-unsafe-recovery-6-2.md)
   - [TiDB常用SQL](5-usercase/6-tidb-comment-sql.md)
@@ -54,6 +54,7 @@ sidebar_position: 3
   - 我和 TiDB 的故事
     - [我和 TiDB 的故事|这里集齐了 34 位社区小伙伴和 TiDB 的故事](6-community-news/6-tidb-story/1-tidb-community-story.md)
     - [地区组织者页面上新啦！地区技术交流活动等你来启动哟~ ](6-community-news/6-tidb-story/2-tidb-regional-meetup.md)
+    - [社区满意度调研](6-community-news/6-tidb-story/3-tidb-community-survey.md)
 
 - TiDB 能力认证
   - [认证介绍 & 考试安排](7-tidb-certification/1-pcta-pctp.md)
@@ -61,6 +62,6 @@ sidebar_position: 3
 
 ## 感谢
 
-感谢所有贡献内容的作者（按文章收录顺序排列）：[jiashiwen](https://tidb.net/u/jiashiwen/answer)、[李德竹](https://github.com/lidezhu)、[骆融臻](https://github.com/CalvinNeo)、[谭新宇]((https://github.com/OneSizeFitsQuorum)、[代晓磊_Mars](https://tidb.net/u/%E4%BB%A3%E6%99%93%E7%A3%8A_Mars/answer)、[tracy0984](https://tidb.net/u/tracy0984/answer)、[gary](https://tidb.net/u/gary/answer)、[hey-hoho](https://tidb.net/u/hey-hoho/answer)、[yiduoyunQ](https://tidb.net/u/yiduoyunQ/answer)、[CuteRay](https://tidb.net/u/CuteRay/answer)、[BraveChen](https://tidb.net/u/BraveChen/answer)、[cchouqiang](https://tidb.net/u/cchouqiang/answer)、[我是咖啡哥](https://tidb.net/u/%E6%88%91%E6%98%AF%E5%92%96%E5%95%A1%E5%93%A5/answer)、
+感谢所有贡献内容的作者（按文章收录顺序排列）：[jiashiwen](https://tidb.net/u/jiashiwen/answer)、[李德竹](https://github.com/lidezhu)、[骆融臻](https://github.com/CalvinNeo)、[谭新宇](https://github.com/OneSizeFitsQuorum)、[代晓磊_Mars](https://tidb.net/u/%E4%BB%A3%E6%99%93%E7%A3%8A_Mars/answer)、[tracy0984](https://tidb.net/u/tracy0984/answer)、[gary](https://tidb.net/u/gary/answer)、[hey-hoho](https://tidb.net/u/hey-hoho/answer)、[yiduoyunQ](https://tidb.net/u/yiduoyunQ/answer)、[CuteRay](https://tidb.net/u/CuteRay/answer)、[BraveChen](https://tidb.net/u/BraveChen/answer)、[cchouqiang](https://tidb.net/u/cchouqiang/answer)、[我是咖啡哥](https://tidb.net/u/%E6%88%91%E6%98%AF%E5%92%96%E5%95%A1%E5%93%A5/answer)
 
 感谢本期月刊的内容编辑：[CandicePan](https://github.com/Candicepan)，[Xiaolu Zhou](https://github.com/luzizhuo)，[ShawnYan](https://tidb.net/u/ShawnYan/post/all)，[Yan Yan](https://tidb.net/u/YY-ha/answer)，[Linlin Wang](https://github.com/Soline324)、[张慧颖](https://tidb.net/u/hazelll/answer)
