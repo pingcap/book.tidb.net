@@ -8,15 +8,9 @@ keywords: [认证, PCTA, PCTP]
 
 # 认证介绍 & 考试安排
 
-## **TiDB** **精品课程及认证考试社区积分兑换政策更新！**
+## 《PingCAP 培训认证手册》上线官网，支持在线查看及下载
 
-- PCTA v6 认证考试季度兑换码：1599 积分
-- PCSD v6 认证考试季度兑换码：1599 积分
-- PCTP v6 认证考试季度兑换码：2899 积分
-- PCTP v5 认证考试季度兑换码：2899 积分
-- TiDB 数据库管理 v6（303）课程 1 年在线观看：1200 积分
--  TiDB 性能调优案例 304 课程 1 年在线观看：1200 积分
-- TiDB 性能调优 307 课程 1 年在线观看：1200 积分
+《PingCAP 培训认证手册》内容涵盖开发人员、数据库运维管理人员的培训课程（精确到课程大纲级别）和认证项目（精确到考试大纲级别），以及当前支持的培训与认证方式。现已更新至官网，支持在线查看与下载。点击[下载《PingCAP 培训认证手册》](https://live.pingcap.com/resources/ResourcePc/ResourcePcInfo?pf_uid=19697_1864&id=40234&source=1&pf_type=3&channel_id=30309&channel_name=pingcap-%E5%AE%98%E7%BD%91&tag_id=dafc115c773f5254)
 
 
 ![1.png](https://img2.pingcap.com/forms/6/7/67c83f326f20e3708f01402facdda1206e0623e6.png)
