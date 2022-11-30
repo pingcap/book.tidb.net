@@ -16,7 +16,7 @@ keywords: [TiDB 社区, 满意度调研, 社区周边]
 
 在过去的一年，我们[版主](https://asktug.com/badges/135/-)团队从几个人拓展到了 15人，也因为有了版主和各位社区的小伙伴，咱们的社区问答论坛，基本上每一个问题都可以获得回应；
 
-[![image](https://asktug.com/uploads/default/optimized/4X/7/1/0/710e70a0cbc23ae381089acb06ec2ed213cb4ecb_2_690x213.png)image1487×461 282 KB](https://asktug.com/uploads/default/original/4X/7/1/0/710e70a0cbc23ae381089acb06ec2ed213cb4ecb.png)
+![image](https://asktug.com/uploads/default/optimized/4X/7/1/0/710e70a0cbc23ae381089acb06ec2ed213cb4ecb_2_690x213.png)
 
 ![](https://asktug.com/uploads/default/original/4X/f/7/8/f78f7aa50109ffc2afb1359ccbde367ecb0e8ccd.gif)
 
