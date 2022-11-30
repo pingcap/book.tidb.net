@@ -2,7 +2,6 @@
 
 - [社区活动预告](1-upcoming-events.md)
 - [11 月精彩活动回顾](2-event-summary.md)
-- [11 月社区荣誉成员](3-mva-202211.md)
 - [Contributor 动态](4-contributors.md)
 - hackathon 背后的故事
   - [让迁移不再开盲盒，让云也能省钱丨Hackathon 项目背后的故事第一期回顾](5-hackathon-2022-story/1-hackathon-2022-story-1-cloud.md)
