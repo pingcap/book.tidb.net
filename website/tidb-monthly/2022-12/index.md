@@ -15,7 +15,7 @@ sidebar_position: 2
 > 手机端查看，点击左上角即可展开目录结构。
 
 - 产品更新
-  - [TiDB 6.5.0 Release Notes](1-update/1-tidb-6.5.0.md)
+  - [TiDB 6.5.0 Release Notes](1-update/1-tidb-6-5-0.md)
   - [TiDB 6.1.3 Release Notes](1-update/2-tidb-6-1-3.md)
   - [TiSpark 3.1.2 Release Notes](1-update/3-tispark-3-1-2.md)
   - [TiDB 5.1.5 Release Notes](1-update/4-tidb-5-1-5.md) 
