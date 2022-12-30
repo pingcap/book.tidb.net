@@ -1,6 +1,6 @@
 ---
-title: 分布式数据库新秀TIDB初探 - TiDB 社区技术月刊
-sidebar_label: 分布式数据库新秀TIDB初探
+title: 分布式数据库新秀TiDB初探 - TiDB 社区技术月刊
+sidebar_label: 分布式数据库新秀TiDB初探
 hide_title: true
 description: 本文将分享初探TiDB的架构与性能分享。
 keywords: [TiDB, 源码解读, 底层架构]
