@@ -88,8 +88,8 @@ Raftstore 模块会将这些 key value 提交到 Raft Log 中，如果 Raft Log 
 
 ### Rafstore -> CDC
 
-- RaftCmd: [`CoprocessorHost::on_flush_applied_cmd_batch(Vec<RaftCmdRequest>)`](https://github.com/tikv/tikv/blob/v6.4.0/components/raftstore/src/store/fsm/apply.rs#L597)
-- Txn Record: [`Engine::async_snapshot()`](https://github.com/tikv/tikv/blob/v6.4.0/src/server/raftkv.rs#L431)
+- RaftCmd: [CoprocessorHost::on_flush_applied_cmd_batch(Vec\<RaftCmdRequest>)](https://github.com/tikv/tikv/blob/v6.4.0/components/raftstore/src/store/fsm/apply.rs#L597)
+- Txn Record: [Engine::async_snapshot()](https://github.com/tikv/tikv/blob/v6.4.0/src/server/raftkv.rs#L431)
 
 从这里起，数据开始流出了，从 Raftstore 到 CDC 模块有两条蓝线，对应这里的两个重要的 API，分别为 `on_flush_applied_cmd_batch` 实时数据的流出，和 `async_snapshot` 历史增量数据的流出（后面会说细节）。
 
