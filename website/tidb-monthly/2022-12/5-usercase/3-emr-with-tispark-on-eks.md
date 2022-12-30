@@ -1,6 +1,6 @@
 ---
-title: EMR with TiSpark（on EKS ） - TiDB 社区技术月刊
-sidebar_label: EMR with TiSpark（on EKS ）
+title: EMR with TiSpark on EKS - TiDB 社区技术月刊
+sidebar_label: EMR with TiSpark on EKS
 hide_title: true
 description: 在 AWS 上 Spark 有 3 种部署形式：emr serverless，EMR on EC2，EMR on EKS，考虑到 TiSpark 需要和 PD，TiKV 进行交互，使用 EMR on EKS 默认网络是连通的，以下的方案是基于 EMR on EKS 展开。
 keywords: [TiDB, EMR, TiSpark, EKS]
