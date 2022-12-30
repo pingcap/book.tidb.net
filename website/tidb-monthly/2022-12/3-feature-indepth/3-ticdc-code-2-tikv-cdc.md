@@ -51,7 +51,7 @@ CDC 模块的代码在 TiKV 代码仓库的 `compoenetns/cdc` 和 `components/re
 
 `service.rs` 文件中的 `Service` 结构体，它实现了 ChagneData gRPC 服务，运行在 gRPC 的线程中，它负责 TiKV 和 TiCDC 的 RPC 交互，同时它和 `Endpoint` 中的 `Delegate` 和 `Initializer` 也会有交互，主要是接受来自它俩的数据变更事件，然后把这些事件通过 RPC 发送给 TiCDC。
 
-最后一个重要文件是 `resolver.rs`，它与上面的文件不太一样，在 resolve\_ts 这个 component 中，里面的 `Resolver` 负责计算 resolved ts。
+最后一个重要文件是 `resolver.rs`，它与上面的文件不太一样，在 resolve_ts 这个 component 中，里面的 `Resolver` 负责计算 resolved ts。
 
 ![](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/unnamed-1671608013248.png)
 
