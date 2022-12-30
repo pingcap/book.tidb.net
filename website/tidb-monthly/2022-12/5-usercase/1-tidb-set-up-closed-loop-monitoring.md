@@ -3,7 +3,7 @@ title: 从TiDB搭建到监控闭环 - TiDB 社区技术月刊
 sidebar_label: 从TiDB搭建到监控闭环
 hide_title: true
 description: 本文将分享使用 TiDB 过程中遇到的一些小问题以及解决方案，从安装配置、使用、后期监控维护等维度展开。
-keywords: [TiDB, , , ]
+keywords: [TiDB, 监控闭环, 安装配置]
 ---
 
 # 从TiDB搭建到监控闭环
