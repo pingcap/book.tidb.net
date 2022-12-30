@@ -67,7 +67,7 @@ tiup update cluster
 
 #### 3、检查节点服务状态
 
-使用命令 `systemctl status node_exporter-9100.service` 检查是否有多于一个 node\_export service，如果有多个 node\_exporter service ，则会导致 PD 扩容加载失败，会在 PD 扩容时出现无法启动的问题。所以启动前可以先停止 node\_export 服务：`systemctl stop node_exporter-9100.service` 。
+使用命令 `systemctl status node_exporter-9100.service` 检查是否有多于一个 node_export service，如果有多个 node_exporter service ，则会导致 PD 扩容加载失败，会在 PD 扩容时出现无法启动的问题。所以启动前可以先停止 node_export 服务：`systemctl stop node_exporter-9100.service` 。
 
 ![image-20221013165759174](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/GM8e4QKEYvcN2iq-1666751364651.png)
 
