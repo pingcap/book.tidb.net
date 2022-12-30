@@ -77,7 +77,7 @@ TiDB 地区组织活动是通过各地区组织者举办的地区技术交流活
   - **APAC**
   ![image](https://asktug.com/uploads/default/optimized/4X/2/5/8/258cda1f4f5bf7db94bca9632d596701ecb81798_2_690x264.jpeg)
 
-  - **北美：**共举办 21 场meetups，共 1632 个signups，1370 个attendees，其中有 TiDB 产品介绍和一些技术方面的 deep dive（包括 evolution of TiDB, evolution of TiDB Cloud Architecture, TiKV, TiFlash, Data Placement and Queue, Optimizer, Table Partition, DDL 等 ），也有很多跟其他公司和高校的联合活动。
+  - **北美：** 共举办 21 场meetups，共 1632 个signups，1370 个attendees，其中有 TiDB 产品介绍和一些技术方面的 deep dive（包括 evolution of TiDB, evolution of TiDB Cloud Architecture, TiKV, TiFlash, Data Placement and Queue, Optimizer, Table Partition, DDL 等 ），也有很多跟其他公司和高校的联合活动。
     - 学术界: 与 CMU, BU, UCBerkeley, UW-Wisconsin 都一起联合举办了meetup
     - 工业界: 跟 Pinterest 合作了第一场北美的u ser case sharing，跟 Retool, Databricks, Rockset, Imprint, StreamNative 以及 Meta 联合举办了 meetup
     ![image](https://asktug.com/uploads/default/optimized/4X/9/4/c/94cb8d07a63fa00d0a3cda2c108e5bac3c10a5cd_2_690x129.jpeg)
@@ -110,8 +110,6 @@ TiDB 社区版主：由 TiDB 社区中的用户、开发者、Contributor 以及
 
 让我们一起来认识认识他们吧！
 
-<video width="100%" height="100%" preload="metadata" controls="" style="max-height: 500px; position: absolute; width: 690px; height: 388.125px; max-width: 100%;"></video>
-
 ![image](https://asktug.com/uploads/default/optimized/4X/e/8/4/e841e49e52d6b907df901da2062c37cfa6d81785_2_687x500.jpeg)
 
 ![image](https://asktug.com/uploads/default/optimized/4X/f/6/b/f6b207ad8c8628a89d6993db13ce00a99dbb8af6_2_690x251.jpeg)
@@ -136,8 +134,6 @@ TiDB 社区版主：由 TiDB 社区中的用户、开发者、Contributor 以及
 
 让我们一起来认识认识他们吧！
 
-<video width="100%" height="100%" preload="metadata" controls="" style="max-height: 500px; position: absolute; width: 690px; height: 388.125px; max-width: 100%;"></video>
-
 他们分别是：
 
 ![image](https://asktug.com/uploads/default/optimized/4X/7/9/7/797e742e68c75dcd8be9df7a5e917dfdbc00ff33_2_690x394.jpeg)
@@ -149,8 +145,6 @@ TiDB 社区版主：由 TiDB 社区中的用户、开发者、Contributor 以及
 咱们也从官方组织的活动转变到了 TiDBer 自组织活动，从武汉、济南、广州、做到了天津、石家庄；
 
 让我们一起来认识认识他们吧！
-
-<video width="100%" height="100%" preload="metadata" controls="" style="max-height: 500px; position: absolute; width: 690px; height: 388.125px; max-width: 100%;"></video>
 
 他们分别是：
 
@@ -215,7 +209,7 @@ Asktug 社区论坛——解决问题，专栏技术文章——学习 TiDB 最�
 
 也恭喜 [@h5n1](https://asktug.com/u/h5n1) 成为 2022 年第一个 MVA 和第一个 MOA.
 
-![image](https://asktug.com/uploads/default/optimized/4X/9/b/e/9be38d37335c408b798887c6435ad1485512cea4_2_690x494.png)i
+![image](https://asktug.com/uploads/default/optimized/4X/9/b/e/9be38d37335c408b798887c6435ad1485512cea4_2_690x494.png)
 
 ### TiDB 社区荣誉体验官
 
@@ -338,7 +332,7 @@ Asktug 社区论坛——解决问题，专栏技术文章——学习 TiDB 最�
 
 在此，特别感谢参与本电子书 Review 的老师：[陈超 ](https://tidb.net/u/啦啦啦啦啦)、[严少安](https://tidb.net/u/ShawnYan)、[尹裕皓 1](https://tidb.net/u/g7尹裕皓)、[张俊亭](https://tidb.net/u/dba-kit)、[张田](https://tidb.net/u/数据小黑)、[姚维](https://tidb.net/u/wink)、[陈畅亮](https://tidb.net/u/听风吹雨)、[陈霜](https://tidb.net/u/crazycs520-PingCAP/answer)、[霍昊](https://tidb.net/u/sykp241095)、[李仲舒](https://tidb.net/u/lucien)、[戚铮](https://tidb.net/u/qizheng)、[苏志鹏](https://tidb.net/u/jansu-dev)、[王琦智](https://tidb.net/u/Icemap)、[乔丹](https://github.com/qqqdan)、[陈焕生](https://github.com/dbsid)、[邵希茜](https://github.com/shaoxiqian)、[宋昱颖](https://github.com/Yui-Song)、[毛康力](https://tidb.net/u/tiancaiamao)。
 
-### [2022 年 7 月：七夕节为爱挑战 1](https://asktug.com/t/topic/695399)
+### [2022 年 7 月：七夕节为爱挑战](https://asktug.com/t/topic/695399)
 
 ![image](https://asktug.com/uploads/default/original/4X/c/4/f/c4f7e20ea0120e7fa1c062b27c07376a852c340f.jpeg)
 
@@ -357,8 +351,6 @@ TOP 2-20 名单：[@xfworld](https://asktug.com/u/xfworld) [@啦啦啦啦啦](ht
 ### [2022 年 9 月 TiDB Hackathon 2022](https://asktug.com/t/topic/933349)
 
 本届大赛主题为「Possibility at Scale」，**规模创历史之最，共有 303 名选手报名 ，86 支队伍参赛**，有来自**微软、蚂蚁集团、字节跳动、网易有道、浪潮、明朝万达、B 站、思科、太极图形等企业的选手**，也有来自清华大学、北京邮电大学、华东师范大学、浙江理工大学、新加坡国立大学等高校的学生。选手们围绕着 TiDB 产品组和应用组两大赛道，展开了一场技术的比拼和创意的碰撞。Hackathon，即“黑客马拉松”，是程序员非常喜闻乐见的赛事活动。它有着自由的形式：Hacker 们聚集在一起，紧密合作，发挥创意，持续编程，实现创想。编程马拉松的精髓在于：**一群志同道合的伙伴，在特定的时间内，相聚在一起，去做他们想做的事情**——整个编程的过程几乎没有任何限制。作为一个已经举办了 5 年的赛事，PingCAP 联合创始人兼 CTO 黄东旭总是焦虑上届已经办得非常成功，这届达不到上届水准怎么办？但当看到选手们的精彩展示后，我们发现随着开发者们对 TiDB 的理解和使用越来越纯熟，Hackathon 的质量也在不断进化。最终，在两天一夜的 Hacking Time 中，**有 16 支队伍瓜分了总计 35 万元的奖金，其中有 10 支队伍分获最佳创意奖、公益贡献奖、技术趋势奖、Cloud 应用生态奖、最佳人气奖、最佳校园奖、用户之选奖**。
-
-<video width="100%" height="100%" preload="metadata" controls="" style="max-height: 500px; position: absolute; width: 690px; height: 388.125px; max-width: 100%;"></video>
 
 获奖名单：
 
