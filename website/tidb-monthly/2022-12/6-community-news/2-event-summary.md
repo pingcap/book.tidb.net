@@ -48,4 +48,4 @@ TiCDC（TiDB Change Data Capture）是用来捕捉和输出 TiDB/TiKV 集群上�
 ![workshop.jpeg](https://img2.pingcap.com/forms/b/6/b6c9ea959af372f0e52fd21db36a8a637115b270.jpeg)
 
 本期上海站来自 PingCAP 开发者生态团队的工程师们向大家介绍了 TiDB 的场景设计，以及通过 Demo 演示让你“沉浸式体验”如何部署一个“All in Cloud的书店网站”。另外从生态兼容性上，工程师们也将演示如何结合 gitpod 来快速启动 mini ossinsight（开源项目洞察工具），带你体验基于 TiDB Cloud 之上的实时分析。
-点击 视频回放 查看视频回放。
+点击 [视频回放](https://www.bilibili.com/video/BV1RV4y1P7TL/?vd_source=a169c698408d52b2e8600fed93a0bda6) 查看。
