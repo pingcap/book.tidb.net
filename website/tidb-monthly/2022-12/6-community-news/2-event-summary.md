@@ -41,7 +41,7 @@ TiCDC（TiDB Change Data Capture）是用来捕捉和输出 TiDB/TiKV 集群上�
 - Scheduler 模块的工作机制
 - TiCDC 滚动升级
 
-点击可查看“直播回顾”
+点击可查看“[直播回顾](https://www.bilibili.com/video/BV1hY411U7Z2/)”
 
 ## TiDBWorkshop Day@上海
 
