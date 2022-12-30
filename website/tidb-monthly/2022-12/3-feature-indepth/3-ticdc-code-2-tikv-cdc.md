@@ -63,22 +63,22 @@ CDC 模块的代码在 TiKV 代码仓库的 `compoenetns/cdc` 和 `components/re
 
 ### TiDB -> TiKV Service
 
-- txn prewrite: [*Tikv::kv\_prewrite(PrewriteRequest)*](https://github.com/tikv/tikv/blob/v6.4.0/src/server/service/kv.rs#L242)
-- txn commit: [*Tikv::kv\_commit(CommitRequest)*](https://github.com/tikv/tikv/blob/v6.4.0/src/server/service/kv.rs#L263)
+- txn prewrite: [*Tikv::kv_prewrite(PrewriteRequest)*](https://github.com/tikv/tikv/blob/v6.4.0/src/server/service/kv.rs#L242)
+- txn commit: [*Tikv::kv_commit(CommitRequest)*](https://github.com/tikv/tikv/blob/v6.4.0/src/server/service/kv.rs#L263)
 
-我们看下从 TiDB 指向 TiKV 的红线。我们知道数据来自 TiDB 的事务写入，对于一个正常的事务来说，TiDB 需要分两次调用 TiKV 的 gRPC 接口，分别是 kv\_prewrite 和 kv\_commit，对应了事务中的 prewrite 和 commit，在 request 请求中包含了要写入或者删除的 key 和它的 value，以及一些事务的元数据，比如 start ts，commit ts 等。
+我们看下从 TiDB 指向 TiKV 的红线。我们知道数据来自 TiDB 的事务写入，对于一个正常的事务来说，TiDB 需要分两次调用 TiKV 的 gRPC 接口，分别是 kv_prewrite 和 kv_commit，对应了事务中的 prewrite 和 commit，在 request 请求中包含了要写入或者删除的 key 和它的 value，以及一些事务的元数据，比如 start ts，commit ts 等。
 
 ### TiKV Service -> Txn
 
-- txn prewrite: [*Storage::sched\_prewrite(PrewriteRequest)*](https://github.com/tikv/tikv/blob/v6.4.0/src/server/service/kv.rs#L2189-L2241)
-- txn commit: [*Storage::sched\_commit(CommitRequest)*](https://github.com/tikv/tikv/blob/v6.4.0/src/server/service/kv.rs#L2271-L2283)
+- txn prewrite: [*Storage::sched_prewrite(PrewriteRequest)*](https://github.com/tikv/tikv/blob/v6.4.0/src/server/service/kv.rs#L2189-L2241)
+- txn commit: [*Storage::sched_commit(CommitRequest)*](https://github.com/tikv/tikv/blob/v6.4.0/src/server/service/kv.rs#L2271-L2283)
 
 我们再看从 gRPC 指向 Txn 的红线。它代表 RPC 请求从 gRPC 模块流到事务模块的这一步。这里相应的也有两个 API 的调用，分别是 `sched_prewrite` 和 `sched_commit`，在这两个 API 中，事务模块会对 request 做一些检查，比如检查 write conflict，计算 commit ts 等（事务的细节可以参考 TiKV 的源码阅读文章，在这里就先跳过了。）
 
 ### Txn -> Raftstore
 
-- txn prewrite: [*Engine::async\_write\_ext(RaftCmdRequest)*](https://github.com/tikv/tikv/blob/v6.4.0/src/storage/txn/scheduler.rs#L1323)
-- txn commit: [*Engine::async\_write\_ext(RaftCmdRequest)*](https://github.com/tikv/tikv/blob/v6.4.0/src/storage/txn/scheduler.rs#L1323)
+- txn prewrite: [*Engine::async_write_ext(RaftCmdRequest)*](https://github.com/tikv/tikv/blob/v6.4.0/src/storage/txn/scheduler.rs#L1323)
+- txn commit: [*Engine::async_write_ext(RaftCmdRequest)*](https://github.com/tikv/tikv/blob/v6.4.0/src/storage/txn/scheduler.rs#L1323)
 
 事务模块到 Raftstore 的红线代表：Request 通过检查后，会被事务模块序列化成对 KV 的操作，然后被组装成 `RaftCmdRequest`。`RaftCmdRequest` 再经由 `Engine::async_commit_ext` API 被发送至 Raftstore 模块。
 
@@ -88,14 +88,14 @@ Raftstore 模块会将这些 key value 提交到 Raft Log 中，如果 Raft Log 
 
 ### Rafstore -> CDC
 
-- RaftCmd: [*CoprocessorHost::on\_flush\_applied\_cmd\_batch(Vec\<RaftCmdRequest>)*](https://github.com/tikv/tikv/blob/v6.4.0/components/raftstore/src/store/fsm/apply.rs#L597)
-- Txn Record: [*Engine::async\_snapshot()*](https://github.com/tikv/tikv/blob/v6.4.0/src/server/raftkv.rs#L431)
+- RaftCmd: [*CoprocessorHost::on_flush_applied_cmd_batch(Vec\<RaftCmdRequest>)*](https://github.com/tikv/tikv/blob/v6.4.0/components/raftstore/src/store/fsm/apply.rs#L597)
+- Txn Record: [*Engine::async_snapshot()*](https://github.com/tikv/tikv/blob/v6.4.0/src/server/raftkv.rs#L431)
 
 从这里起，数据开始流出了，从 Raftstore 到 CDC 模块有两条蓝线，对应这里的两个重要的 API，分别为 `on_flush_applied_cmd_batch` 实时数据的流出，和 `async_snapshot` 历史增量数据的流出（后面会说细节）。
 
 ### CDC -> gRPC -> TiCDC
 
-- ChangeDataEvent: [*Service::event\_feed() -> ChangeDataEvent*](https://github.com/tikv/tikv/blob/v6.4.0/components/cdc/src/service.rs#LL201C8-L201C18)
+- ChangeDataEvent: [*Service::event_feed() -> ChangeDataEvent*](https://github.com/tikv/tikv/blob/v6.4.0/components/cdc/src/service.rs#LL201C8-L201C18)
 
 最后就是从 CDC 模块到 TiCDC 这几条蓝线了。数据进入 CDC 模块后，经过一系列转换，组装成 Protobuf message，最后交给 gRPC 通过 ChangeData service 中的 `EventFeed` 这个 RPC 发送到下游的 TiCDC。
 

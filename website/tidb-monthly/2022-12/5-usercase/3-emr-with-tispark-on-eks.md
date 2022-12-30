@@ -176,10 +176,10 @@ aws emr-containers delete-virtual-cluster --id e5uoso9wwz5v1nilwe3yu92f7
 
 ### demo
 
-export VIRTUAL\_CLUSTER\_ID=$(aws emr-containers list-virtual-clusters --query "virtualClusters\[?state=='RUNNING'].id" --output text)
-export EMR\_ROLE\_ARN=$(aws iam get-role --role-name EMRContainers-JobExecutionRole --query Role.Arn --output text)
+export VIRTUAL_CLUSTER_ID=$(aws emr-containers list-virtual-clusters --query "virtualClusters[?state=='RUNNING'].id" --output text)
+export EMR_ROLE_ARN=$(aws iam get-role --role-name EMRContainers-JobExecutionRole --query Role.Arn --output text)
 
-aws emr-containers start-job-run --virtual-cluster-id=$VIRTUAL\_CLUSTER\_ID --name=pi-2 --execution-role-arn=$EMR\_ROLE\_ARN --release-label=emr-6.2.0-latest --job-driver='{
+aws emr-containers start-job-run --virtual-cluster-id=$VIRTUAL_CLUSTER_ID --name=pi-2 --execution-role-arn=$EMR_ROLE_ARN --release-label=emr-6.2.0-latest --job-driver='{
 "sparkSubmitJobDriver": {
 "entryPoint": "local:///usr/lib/spark/examples/src/main/python/pi.py",
 "sparkSubmitParameters": "--conf spark.executor.instances=1 --conf spark.executor.memory=2G --conf spark.executor.cores=1 --conf spark.driver.cores=1"
