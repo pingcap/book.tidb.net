@@ -1,8 +1,9 @@
 ---
+title: 2022 年
 sidebar_position: 1
 ---
 
-# 2022 年
+# 2022 年 TiDB 技术月刊合集
 
 ## 推荐语
 
