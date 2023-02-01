@@ -2,7 +2,7 @@
 title: 通过 Jmeter 对 TiDB 数据库进行压测 - TiDB 社区技术月刊
 sidebar_label: 通过 Jmeter 对 TiDB 数据库进行压测
 hide_title: true
-description: 
+description: 通过Jmeter可以对TiDB数据库进行压测，从而找出数据库的瓶颈对相关的系统参数进行优化，提供数据库的性能，本文将分析对TiDB数据库进行压测的实例。
 keywords: [TiDB, Jmeter, 压测, 存储服务]
 ---
 
