@@ -30,7 +30,7 @@ TiDB 是创业即开源的真国产开源数据库，刚接触 TiDB 时，我就
 
 ### TiDB 能力认证
 
-作为一名合格的 TiJuaner，自然是 PE 课程和认证全卷一遍。我一直推崇“以考促学”，对于刚接触一个新数据库，快速搭建最小验证环境，先用起来，对其有现实感受。与此同时，翻阅[官方文档](https://docs.pingcap.com/zh/tidb/stable)和学习[原厂课程](https://tidb.net/book/tidb-monthly/2022-07/tidb-certification/tidb-course)，可以帮助我快速补齐理论知识，以此做到理论与运用“双工”推进。
+作为一名合格的 TiJuaner，自然是 PE 课程和认证全卷一遍。我一直推崇“以考促学”，对于刚接触一个新数据库，快速搭建最小验证环境，先用起来，对其有现实感受。与此同时，翻阅[官方文档](https://docs.pingcap.com/zh/tidb/stable)和学习[原厂课程](https://tidb.net/book/tidb-monthly/2022/2022-07/tidb-certification/tidb-course)，可以帮助我快速补齐理论知识，以此做到理论与运用“双工”推进。
 
 不得不说，TiDB PE 课程都是良心课程，把商业课程做到了“限时免费”，对于数据库小白，或者有一定其他数据库基础的同学都可以快速、有效地学习 TiDB，对课程有疑问可以在论坛反馈，问题基本会得到有效解决，形成了良好的课程学习闭环。
 
@@ -70,7 +70,7 @@ A: 不止黑客帝国里有先知，TiDB 里也有，这就是 TSO（Timestamp O
 
 ![6.PNG](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/6-1659593466054.png)
 
-在 AskTUG，不仅可以收获第一手社区新鲜事，TiDB 异常案例、解决方案，还有丰富的[资源案例](https://asktug.com/c/resource)，也还有我有幸参与编辑的[技术月刊](https://tidb.net/book/tidb-monthly/2022-07/)。
+在 AskTUG，不仅可以收获第一手社区新鲜事，TiDB 异常案例、解决方案，还有丰富的[资源案例](https://asktug.com/c/resource)，也还有我有幸参与编辑的[技术月刊](https://tidb.net/book/tidb-monthly/2022/2022-07/)。
 
 ![9.JPG](https://tidb-blog.oss-cn-beijing.aliyuncs.com/media/9-1659593493082.jpg)
 

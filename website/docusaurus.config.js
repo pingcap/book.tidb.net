@@ -66,6 +66,16 @@ const config = {
           },
         ],
         createRedirects(existingPath) {
+          // tidb-monthly redirect (with year 2022)
+          if (existingPath.includes("/tidb-monthly/2022/2022-")) {
+            // Redirect from /tidb-monthly/2022-X to /tidb-monthly/2022/2022-X
+            return [
+              existingPath.replace(
+                "/tidb-monthly/2022/2022-",
+                "/tidb-monthly/2022-"
+              ),
+            ];
+          }
           // book-rush redirect
           if (
             existingPath.includes(
