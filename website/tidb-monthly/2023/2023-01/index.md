@@ -22,7 +22,7 @@ sidebar_position: 12
 - 原理 & 特性解读
   - [TiDB 6.5 LTS 发版](3-feature-indepth/1-tidb-6-5-0-lts.md)
   - [关于 TiDB 对接数据仓库的一些思考](3-feature-indepth/2-tidb-6-5-0-data-warehouse.md)
-  - [DM 数据旅程 01：序言 + 第一次 start task](3-feature-indepth/3-dm-01- start-task.md)
+  - [DM 数据旅程 01：序言 + 第一次 start task](3-feature-indepth/3-dm-01-start-task.md)
   - [TiCDC 源码解读（3）-- TiCDC 集群工作过程解析](3-feature-indepth/4-ticdc-3-5-server.md)
   - [TiCDC 源码解读（4）-- TiCDC Scheduler 工作原理解析](3-feature-indepth/5-ticdc-4-scheduler.md)
 
