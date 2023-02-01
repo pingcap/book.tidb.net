@@ -25,7 +25,8 @@ sidebar_position: 12
   - [DM 数据旅程 01：序言 + 第一次 start task](3-feature-indepth/3-dm-01-start-task.md)
   - [TiCDC 源码解读（3）-- TiCDC 集群工作过程解析](3-feature-indepth/4-ticdc-3-5-server.md)
   - [TiCDC 源码解读（4）-- TiCDC Scheduler 工作原理解析](3-feature-indepth/5-ticdc-4-scheduler.md)
-
+  - [PingCAP 黄东旭万字长文剖析数据库发展新趋势：脱离应用开发者的数据库，不会成功](3-feature-indepth/6-tidb-db-development-ed-huang.md)
+  
 - 故障排查 & 调优 
   - [v6.3.0-v6.5.0 使用 Multi-schema change 添加唯一索引导致数据索引不一致](4-trouble-shooting/1-critical-bug-multi-schema-change.md)
 
@@ -39,6 +40,9 @@ sidebar_position: 12
   - [有什么方法从 PostgreSQL 数据迁移到 TiDB？](5-usercase/7-postgresql-tidb.md)
   - [复制 order 表的效率挑战](5-usercase/8-tidb-dumpling-order.md)
   - [TiCDC MQ 吞吐性能提升报告](5-usercase/9-ticdc-mq-throughput-performance-improvement-report.md)
+  - [TiDB CDC v6.5.0 新特性实践](5-usercase/10-tidb-cdc-6-5-0-practices.md)
+  - [DR Auto-Sync 搭建和灾难恢复手册](5-usercase/11-dr-auto-sync.md)
+  - [通过 Jmeter 对 TiDB 数据库进行压测](5-usercase/12-jmeter-tidb.md)
 
 - 社区动态
   - [社区活动预告](6-community-news/1-upcoming-events.md)
@@ -51,6 +55,6 @@ sidebar_position: 12
 
 ## 感谢
 
-感谢所有贡献内容的作者（按文章收录顺序排列）：马晓宇、[数据小黑](https://tidb.net/u/数据小黑/answer)、[okenJiang](https://tidb.net/u/okenJiang/answer)、[LingJin](https://tidb.net/u/LingJin/answer)、Tengjin Xie、张龙、贺磊、[lqbyz](https://tidb.net/u/lqbyz/answer)、[caiyfc](https://tidb.net/u/caiyfc/answer)、[pepezzzz](https://tidb.net/u/pepezzzz/answer)
+感谢所有贡献内容的作者（按文章收录顺序排列）：马晓宇、[数据小黑](https://tidb.net/u/数据小黑/answer)、[okenJiang](https://tidb.net/u/okenJiang/answer)、[LingJin](https://tidb.net/u/LingJin/answer)、黄东旭、Tengjin Xie、张龙、贺磊、[lqbyz](https://tidb.net/u/lqbyz/answer)、[caiyfc](https://tidb.net/u/caiyfc/answer)、[pepezzzz](https://tidb.net/u/pepezzzz/answer)、 [数据小黑](https://tidb.net/u/%E6%95%B0%E6%8D%AE%E5%B0%8F%E9%BB%91/answer)、[Gin](https://tidb.net/u/Gin/answer)
 
 感谢本期月刊的内容编辑：[CandicePan](https://github.com/Candicepan)，[Xiaolu Zhou](https://github.com/luzizhuo)，[ShawnYan](https://tidb.net/u/ShawnYan/post/all)，[Yan Yan](https://tidb.net/u/YY-ha/answer)，[Linlin Wang](https://github.com/Soline324)、[张慧颖](https://tidb.net/u/hazelll/answer)

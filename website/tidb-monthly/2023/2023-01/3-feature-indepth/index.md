@@ -5,3 +5,4 @@
 - [DM 数据旅程 01：序言 + 第一次 start task](3-dm-01-start-task.md)
 - [TiCDC 源码解读（3）-- TiCDC 集群工作过程解析](4-ticdc-3-5-server.md)
 - [TiCDC 源码解读（4）-- TiCDC Scheduler 工作原理解析](5-ticdc-4-scheduler.md)
+- [PingCAP 黄东旭万字长文剖析数据库发展新趋势：脱离应用开发者的数据库，不会成功](6-tidb-db-development-ed-huang.md)

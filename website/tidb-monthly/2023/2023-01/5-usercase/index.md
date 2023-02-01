@@ -9,3 +9,6 @@
 - [有什么方法从 PostgreSQL 数据迁移到 TiDB？](7-postgresql-tidb.md)
 - [复制 order 表的效率挑战](8-tidb-dumpling-order.md)
 - [TiCDC MQ 吞吐性能提升报告](9-ticdc-mq-throughput-performance-improvement-report.md)
+- [TiDB CDC v6.5.0 新特性实践](10-tidb-cdc-6-5-0-practices.md)
+- [DR Auto-Sync 搭建和灾难恢复手册](11-dr-auto-sync.md)
+- [通过 Jmeter 对 TiDB 数据库进行压测](12-jmeter-tidb.md)
