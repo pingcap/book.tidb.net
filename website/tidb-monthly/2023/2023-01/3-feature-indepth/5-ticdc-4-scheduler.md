@@ -227,7 +227,7 @@ type ReplicationSet struct {
 以上就是本文的全部内容。希望在阅读上面的内容之后，读者能够对 TiCDC 的 Scheduler 模块的工作原理有一个基本的了解。
 
 TiCDC 源码解读系列文章阅读：
-- [TiCDC 源码解读（1）-- TiCDC 的架构概览](tidb-monthly/2022/2022-12/feature-indepth/ticdc-code-1-framework.md)
-- [TiCDC 源码解读（2）-- TiKV CDC 模块介绍 ](tidb-monthly/2022/2022-12/feature-indepth/ticdc-code-2-tikv-cdc.md)
+- [TiCDC 源码解读（1）-- TiCDC 的架构概览](tidb-monthly/2022/2022-12/3-feature-indepth/2-ticdc-code-1-framework.md)
+- [TiCDC 源码解读（2）-- TiKV CDC 模块介绍 ](tidb-monthly/2022/2022-12/3-feature-indepth/3-ticdc-code-2-tikv-cdc.md)
 -[TiCDC 源码解读（3）-- TiCDC 集群工作过程解析](4-ticdc-3-5-server.md)
 

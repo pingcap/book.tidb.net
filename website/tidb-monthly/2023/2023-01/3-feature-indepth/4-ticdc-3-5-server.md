@@ -131,5 +131,5 @@ Owner 和 ProcessorManager 都是一个[ Reactor 接口](https://github.com/ping
 下一次我们将向大家介绍 TiCDC Changefeed 内部的 Scheduler 模块的工作原理。
 
 TiCDC 源码解读系列文章阅读：
-- [TiCDC 源码解读（1）-- TiCDC 的架构概览](tidb-monthly/2022/2022-12/feature-indepth/ticdc-code-1-framework)
-- [TiCDC 源码解读（2）-- TiKV CDC 模块介绍 ](tidb-monthly/2022/2022-12/feature-indepth/ticdc-code-2-tikv-cdc)
+- [TiCDC 源码解读（1）-- TiCDC 的架构概览](tidb-monthly/2022/2022-12/3-feature-indepth/2-ticdc-code-1-framework)
+- [TiCDC 源码解读（2）-- TiKV CDC 模块介绍 ](tidb-monthly/2022/2022-12/3-feature-indepth/3-ticdc-code-2-tikv-cdc)
