@@ -2,7 +2,7 @@
 title: DM 数据旅程 01：序言 + 第一次 start task - TiDB 社区技术月刊
 sidebar_label: DM 数据旅程 01：序言 + 第一次 start task
 hide_title: true
-description: 
+description: 《DM 数据旅程系列》每一篇文章将以一个个小功能为线索，带大家理解 DM 中的各种实现，本篇为该系列的第一篇。
 keywords: [TiDB, DM, 数据旅程, start task]
 ---
 
