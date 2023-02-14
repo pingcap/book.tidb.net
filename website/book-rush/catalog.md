@@ -128,6 +128,10 @@ sidebar_position: 0.5
 
 非常感谢以上老师，在两个月中兢兢业业，非常认真负责地对每一篇文章提出优化建议，我们铭记每一份为社区贡献的力量！
 
+### TiDB in Action 4.0
+
+Read it: [TiDB In Action: based on 4.0](https://book.tidb.io/)
+
 ### [活动详情 & 参与指南](7-event-guide/index.md)
 
 - 活动收官：[感谢每一位 TiDBer，TiDB 6.0 Book Rush 正式收官](https://asktug.com/t/topic/812920)
