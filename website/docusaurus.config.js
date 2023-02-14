@@ -183,6 +183,10 @@ const config = {
             to: "/db-selection",
             label: "数据库架构选型指南",
           },
+          {
+            to: "https://book.tidb.io/",
+            label: "TiDB In Action: based on 4.0",
+          },
           // {
           //   type: "dropdown",
           //   label: "电子书",
