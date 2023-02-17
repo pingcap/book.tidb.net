@@ -180,6 +180,10 @@ const config = {
             label: "🔥 TiDB 6.x in Action",
           },
           {
+            to: "https://book.tidb.io/",
+            label: "TiDB 4.x in Action",
+          },
+          {
             to: "/db-selection",
             label: "数据库架构选型指南",
           },
