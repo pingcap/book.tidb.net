@@ -20,3 +20,4 @@ WORKDIR /home/node/app
 # Copy what we've installed/built from production
 COPY --chown=node:node --from=production /home/node/app/build /usr/share/nginx/html/book
 COPY ./default.conf /etc/nginx/conf.d/
+EXPOSE 3000
