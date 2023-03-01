@@ -8,6 +8,10 @@ keywords: [课程, TiDB]
 
 # TiDB 标准课程推荐
 
+**#Ti涨知识 短视频推荐**：**[如何在 TiDB 数据库集群上进行基于时间点的恢复 PITR （point-in-time-recovery）](https://www.bilibili.com/video/BV1zM411J7Y5/?share_source=copy_web&vd_source=2167cc2725f23cd933ebdcb83d2529f8)**
+   
+   > TiDB PITR（Point-in-Time Recovery）是结合了 BR 和变更捕获（Change Data Capture）两种能力的灾备特性。以往 BR 的静态灾备只能将数据恢复到备份的时间点，如果要更提供针对更新和更多时间点的恢复，则相应需要提高备份频率。这不但会加重备份对在线业务的负担，也需要更多存储成本。使用 PITR 则可以摆脱这个烦恼，用户无需不断进行全量备份，而是可经由一个全量备份结合增量共同完成针对任意时间点的数据恢复。
+
 ![TiDB 标准培训课程.png](https://img2.pingcap.com/forms/4/1/4199e8f4b3db1f594a90e9be69068b6f096bd36e.png)
 
 ## [【Developer 入门课程】TiDB 的架构与特点 TiDB v6（201.1）- 限时免费](https://learn.pingcap.com/learner/course/600003)
