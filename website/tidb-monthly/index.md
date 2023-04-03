@@ -4,6 +4,26 @@ sidebar_position: 0
 
 # TiDB 社区技术月刊
 
+## 月刊更新说明 (2023-04-01) {#update}
+
+为了让大家更及时得了解产品及社区动态，我们将月刊模式更新调整为周刊，感兴趣的同学可以通过注册社区会员的形式订阅 TiDB 社区周刊。
+
+:::tip
+
+**Q：如何订阅 TiDB 社区周刊？**
+
+A：请点击右侧链接，注册成为 TiDB 社区会员。[首页 | TiDB 社区](https://tidb.net/)
+
+**Q：如果您已经成为 TiDB 社区注册用户，但是没有收到邮件怎么办？**
+
+A：请打开社区网站（[首页 | TiDB 社区](https://tidb.net/)），下拉到页面最下处【[订阅 TiDB 社区的最新资讯](https://tidb.net/#:~:text=%E9%9A%90%E7%A7%81%E6%94%BF%E7%AD%96-,%E8%AE%A2%E9%98%85%20TiDB%20%E7%A4%BE%E5%8C%BA%E7%9A%84%E6%9C%80%E6%96%B0%E8%B5%84%E8%AE%AF,-%E6%8F%90%20%E4%BA%A4)】重新提交您的收件邮箱。
+
+![subscribe TiDB Community news](/img/monthly/subTiDBNews.jpeg)
+
+:::
+
+## 关于月刊
+
 TiDB 社区技术月刊建立的初心是为了让社区的小伙伴们能通过一个固定窗口了解 TiDB 最近有哪些新消息；社区用户又有哪些新应用、新尝试；TiDB 又更新了哪些新课程，近期活动等最新动态。为了让大家能一站式获取到 TiDB 产品/社区资讯，产品帮我们找到了 [Docusaurus](https://github.com/facebook/docusaurus) 这个开源工具，可以快速将 Markdown 文档转化为阅读体验较好的在线电子书，方便大家浏览阅读。
 
 社区技术月刊分为【产品更新】、【开发适配】、【原理 & 特性解读】、【故障排查 & 诊断】、【用户实践】、【社区动态】、【TiDB 能力认证】七大模板。
