@@ -4,6 +4,19 @@ sidebar_position: 0
 
 # TiDB 社区技术月刊
 
+## 月刊更新说明
+
+！！！你写在这里！！！
+
+:::tip
+
+Some **content** with _Markdown_ `syntax`. Check [this `api`](#).
+
+:::
+
+
+## 关于月刊
+
 TiDB 社区技术月刊建立的初心是为了让社区的小伙伴们能通过一个固定窗口了解 TiDB 最近有哪些新消息；社区用户又有哪些新应用、新尝试；TiDB 又更新了哪些新课程，近期活动等最新动态。为了让大家能一站式获取到 TiDB 产品/社区资讯，产品帮我们找到了 [Docusaurus](https://github.com/facebook/docusaurus) 这个开源工具，可以快速将 Markdown 文档转化为阅读体验较好的在线电子书，方便大家浏览阅读。
 
 社区技术月刊分为【产品更新】、【开发适配】、【原理 & 特性解读】、【故障排查 & 诊断】、【用户实践】、【社区动态】、【TiDB 能力认证】七大模板。
